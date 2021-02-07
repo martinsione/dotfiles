@@ -1,0 +1,79 @@
+env:
+  TERM: xterm-256color
+
+# Set colorscheme
+colors:
+  cursor:
+    text: "#191919"
+    cursor: "#d8dee9"
+
+# Gruvbox dark
+  primary:
+    background: "#1E1E1E"
+    foreground: "#D8DEE9"
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+  bright:
+    black:   '#b5ada6'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+
+# background_opacity: 0.95
+
+font:
+  normal:
+    family: "Cascadia Code PL"
+    style: Regular
+  bold:
+    family: "Cascadia Code PL"
+    style: Bold
+  italic:
+    family: "Cascadia Code PL"
+    style: Italic
+  bold_italic:
+    family: "Cascadia Code PL"
+    style: Bold Italic
+
+  size: 13.0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  offset:
+    x: 0
+    y: 3
+
+window:
+  padding:
+    x: 2
+    y: 2
+
+scrolling:
+  history: 10000
+  multiplier: 10
+
+draw_bold_text_with_bright_colors: true
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: true
+
+live_config_reload: true
+
+key_bindings:
+  - { key: Key0,     mods: Control,         action: ResetFontSize  }
+  - { key: Equals,   mods: Control,         action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,         action: DecreaseFontSize }

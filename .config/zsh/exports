@@ -1,0 +1,56 @@
+#!/bin/zsh
+#----------------------------- Set encoding ----------------------------
+export LANG=en_US.UTF-8
+
+#----------------------------- Path ------------------------------------
+export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
+export PATH="$PATH:$(du "$HOME/.local/bin/statusbar" | cut -f2 | paste -sd ':')"
+
+#----------------------------- Default Programs ------------------------
+export EDITOR="nvim"
+export GUIEDITOR="codium"
+export TERMINAL="kitty"
+export BROWSER="brave"
+export READER="zathura"
+export FILE="ranger"
+export GUIFILE="pcmanfm"
+export MAIL="thunderbird"
+
+#----------------------------- Exports ---------------------------------
+# XDG paths
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
+# Disable hist files
+export LESSHISTFILE=-
+
+# ~/ Clean-up:
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/inputrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+
+# Color man pages
+export LESS_TERMCAP_mb=$'\E[01;32m'
+export LESS_TERMCAP_md=$'\E[01;32m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;47;34m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;36m'
+export LESS=-r
+
+# Other program settings:
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING=1        # Fix for Java applications in dwm

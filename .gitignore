@@ -1,0 +1,7 @@
+.local/src/dwm/dwm
+.local/src/dwmblocks/dwmblocks
+*.o
+*.orig
+*.rej
+*log
+*.zcompdump

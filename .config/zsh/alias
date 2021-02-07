@@ -1,0 +1,42 @@
+#!/bin/zsh
+
+#------------------- Default settings ----------------------------------
+alias bld="make && sudo make clean install"
+alias cl="clear"
+alias cp="cp -iv"
+alias diff="diff --color=auto"
+alias grep="grep --color=auto"
+alias ka="killall"
+alias ll="ls -A"
+alias ls="ls -hNv --color=auto --group-directories-first"
+alias mkd="mkdir -pv"
+alias mv="mv -iv"
+alias p="sudo pacman"
+alias rm="rm -vI"
+alias rmln="find . -xtype l -delete"
+
+#------------------- Cli apps  -----------------------------------------
+alias r="$FILE"
+alias sr="sudo $FILE"
+alias v="$EDITOR"
+alias sv="sudo $EDITOR"
+
+#------------------- Git commands -------------------------------------
+alias g="git"
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit"
+alias gca="git commit -am"
+alias gcm="git commit -m"
+alias gd="git diff"
+alias gcl="git clone"
+alias gP='git push'
+alias gp='git pull'
+alias gs="git st"
+alias gst="git status"
+
+#------------------- Tmux commands -------------------------------------
+alias t="tmux -u"
+alias ta="tmux -u a"
+alias tls="tmux ls"
+alias tks="tmux kill-session -t"

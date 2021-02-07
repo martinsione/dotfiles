@@ -1,0 +1,13 @@
+[user]
+	email = sionemartin@hotmail.com
+	name = Martin Sione
+
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  st = status --short --branch -M
+
+[core]
+  editor = nvim
+
+[push]
+  default = current

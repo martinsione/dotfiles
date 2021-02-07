@@ -1,0 +1,6 @@
+#!/bin/zsh
+alias cfa="$EDITOR ~/.config/zsh/alias"
+alias cfd="$EDITOR ~/.config/zsh/bm-dirs"
+alias cff="$EDITOR ~/.config/zsh/bm-files"
+alias cblo="cd ~/.local/src/dwmblocks && $EDITOR blocks.h"
+alias cdwm="cd ~/.local/src/dwm && $EDITOR config.h"
