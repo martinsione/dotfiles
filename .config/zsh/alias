@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-#------------------- Default settings ----------------------------------
+#------------------- Common aliases ------------------------------------
 alias bld="make && sudo make clean install"
 alias cl="clear"
 alias cp="cp -iv"
@@ -14,6 +14,7 @@ alias mv="mv -iv"
 alias p="sudo pacman"
 alias rm="rm -vI"
 alias rmln="find . -xtype l -delete"
+alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 
 #------------------- Cli apps  -----------------------------------------
 alias r="$FILE"
@@ -21,17 +22,22 @@ alias sr="sudo $FILE"
 alias v="$EDITOR"
 alias sv="sudo $EDITOR"
 
-#------------------- Git commands -------------------------------------
+#------------------- Git commands --------------------------------------
 alias g="git"
 alias ga="git add"
 alias gb="git branch"
 alias gc="git commit"
+alias gcb="git checkout -b"
+alias gco="git checkout"
 alias gca="git commit -am"
 alias gcm="git commit -m"
 alias gd="git diff"
 alias gcl="git clone"
-alias gP='git push'
+alias glg="git lg"
 alias gp='git pull'
+alias gr='git remote'
+alias gm='git merge'
+alias gpu='git push'
 alias gs="git st"
 alias gst="git status"
 

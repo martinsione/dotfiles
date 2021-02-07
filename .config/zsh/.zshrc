@@ -1,5 +1,5 @@
 #----------------------------- ZSH config ------------------------------
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/exports" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/exports"
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/export" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/export"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/cursor" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/cursor"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/icons" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/icons"
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/alias"
@@ -47,9 +47,7 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 sudo -n loadkeys $HOME/.local/bin/ttymaps.kmap 2>/dev/null
 
 #-------------------------- Load Plugins -------------------------------
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(starship init zsh)"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/startx"
