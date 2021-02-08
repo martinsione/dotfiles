@@ -2,22 +2,9 @@ local gl = require('galaxyline')
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
--- local colors = {
---   bg = '#282828',
---   yellow = '#fabd2f',
---   cyan = '#008080',
---   darkblue = '#081633',
---   green = '#608B4E',
---   orange = '#FF8800',
---   purple = '#5d4d7a',
---   magenta = '#d16d9e',
---   blue = '#569CD6',
---   red = '#D16969'
--- }
-
 local colors = {
-  bg = 'NONE',
-  fg = '#bbc2cf',
+  bg = '#413654',
+  fg = '#cccccc',
   yellow = '#fabd2f',
   cyan = '#008080',
   darkblue = '#081633',

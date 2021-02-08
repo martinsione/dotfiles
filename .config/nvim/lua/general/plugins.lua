@@ -26,7 +26,11 @@ return packer.startup(function()
     use 'nvim-lua/plenary.nvim'
     use 'nvim-lua/popup.nvim'
     use 'tjdevries/cyclist.vim'
-    use 'tweekmonster/startuptime.vim' -- use 'neoclide/coc.nvim'
+    use 'tweekmonster/startuptime.vim'
+    use 'neoclide/coc.nvim'
+
+    --
+    use {'norcalli/nvim-terminal.lua',      config = function() require'terminal'.setup() end }
 
     -- Tpope's
     use 'tpope/vim-commentary'
@@ -40,9 +44,11 @@ return packer.startup(function()
     use {'nvim-treesitter/nvim-treesitter', config = function() require('plugin.treesitter') end }
 
     -- Lsp
-    use {'neovim/nvim-lspconfig',           config = function() require('plugin.lsp') end }
-    use {'nvim-lua/completion-nvim' ,       config = function() require('plugin.completion') end }
-    use 'nvim-lua/lsp-status.nvim'
+    -- use {'neovim/nvim-lspconfig',           config = function() require('plugin.lsp') end }
+    -- use {'nvim-lua/completion-nvim' ,       config = function() require('plugin.completion') end }
+    -- use 'nvim-lua/lsp_extensions.nvim'
+    -- use 'nvim-lua/lsp-status.nvim'
+    -- use 'tjdevries/astronauta.nvim'
 
     -- Lua
     use 'euclidianAce/BetterLua.vim'

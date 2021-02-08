@@ -8,6 +8,9 @@ inoremap <silent> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap kj <esc>
 inoremap jk <esc>
 
+inoremap <S-CR> <C-O>o
+inoremap <C-CR> <C-O>O
+
 nnoremap <silent> <C-s>         <cmd>w<CR>
 nnoremap <silent> <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
 
@@ -38,6 +41,7 @@ tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " Command line
 cnoremap %P <C-R>=expand('%:p')<CR>
@@ -52,7 +56,7 @@ nnoremap <silent>gi         <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent>gr         <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent><space>ca  <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent><space>gh  <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent><space>cw  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent><space>rn  <cmd>lua vim.lsp.buf.rename()<CR>
 
 " Telescope
 nnoremap <silent> <C-p>     	<cmd>lua require('telescope.builtin').find_files()<CR>

@@ -22,7 +22,7 @@ let g:nvim_tree_bindings = {
     \ 'edit_vsplit':     '<C-v>',
     \ 'edit_split':      '<C-x>',
     \ 'edit_tab':        '<C-t>',
-    \ 'close_node':      ['<S-CR>', '<BS>'],
+    \ 'close_node':      ['<BS>'],
     \ 'toggle_ignored':  'I',
     \ 'toggle_dotfiles': 'H',
     \ 'refresh':         'R',
