@@ -43,6 +43,7 @@ return packer.startup(function()
     use {'nvim-telescope/telescope.nvim',   config = function() require('plugin.telescope') end }
     use {'nvim-treesitter/nvim-treesitter', config = function() require('plugin.treesitter') end }
 
+    use 'voldikss/vim-floaterm'
     -- Lsp
     -- use {'neovim/nvim-lspconfig',           config = function() require('plugin.lsp') end }
     -- use {'nvim-lua/completion-nvim' ,       config = function() require('plugin.completion') end }

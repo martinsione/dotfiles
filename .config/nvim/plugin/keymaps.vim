@@ -11,7 +11,7 @@ inoremap jk <esc>
 inoremap <S-CR> <C-O>o
 inoremap <C-CR> <C-O>O
 
-nnoremap <silent> <C-s>         <cmd>w<CR>
+nnoremap <silent> <C-s>  <cmd>w<CR>
 nnoremap <silent> <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
 
 " Move Code in Visual mode
@@ -74,3 +74,8 @@ nnoremap <silent> <C-n> <cmd>NvimTreeToggle<CR>
 
 " Goyo
 nnoremap <silent> z <cmd>Goyo<CR>
+
+" Floaterm
+nnoremap <silent> <C-T>     <cmd>FloatermToggle<CR>
+nnoremap <silent> <space>ts <cmd>FloatermNew --wintype=normal --height=10<CR>
+nnoremap <silent> <space>tr <cmd>FloatermNew ranger<CR>

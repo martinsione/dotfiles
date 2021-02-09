@@ -121,6 +121,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
+  ["vim-floaterm"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/vim-fugitive"
@@ -139,18 +143,18 @@ _G.packer_plugins = {
   }
 }
 
--- Config for: nvim-terminal.lua
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rterminal\frequire\0", "config", "nvim-terminal.lua")
--- Config for: nvim-colorizer.lua
-try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugin.colorizer\frequire\0", "config", "nvim-colorizer.lua")
 -- Config for: telescope.nvim
 try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugin.telescope\frequire\0", "config", "telescope.nvim")
+-- Config for: nvim-treesitter
+try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.treesitter\frequire\0", "config", "nvim-treesitter")
+-- Config for: nvim-terminal.lua
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rterminal\frequire\0", "config", "nvim-terminal.lua")
 -- Config for: nvim-bufferline.lua
 try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15bufferline\frequire\0", "config", "nvim-bufferline.lua")
 -- Config for: galaxyline.nvim
 try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.galaxyline\frequire\0", "config", "galaxyline.nvim")
--- Config for: nvim-treesitter
-try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.treesitter\frequire\0", "config", "nvim-treesitter")
+-- Config for: nvim-colorizer.lua
+try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugin.colorizer\frequire\0", "config", "nvim-colorizer.lua")
 END
 
 catch
