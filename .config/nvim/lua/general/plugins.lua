@@ -16,8 +16,6 @@ return packer.startup(function()
     use {'wbthomason/packer.nvim', opt = true}
     use 'AndrewRadev/splitjoin.vim'
     use 'Yggdroot/indentLine'
-    use 'airblade/vim-gitgutter'
-    use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'christoomey/vim-tmux-navigator'
     use 'glepnir/dashboard-nvim'
     use 'junegunn/goyo.vim'
@@ -29,8 +27,15 @@ return packer.startup(function()
     use 'tweekmonster/startuptime.vim'
     use 'neoclide/coc.nvim'
 
-    --
-    use {'norcalli/nvim-terminal.lua',      config = function() require'terminal'.setup() end }
+    -- Colors
+    use 'christianchiarulli/nvcode-color-schemes.vim'
+    use 'tjdevries/colorbuddy.nvim'
+    use 'tjdevries/gruvbuddy.nvim'
+    use 'Th3Whit3Wolf/onebuddy'
+
+    -- Git
+    -- use 'airblade/vim-gitgutter'
+    use {'lewis6991/gitsigns.nvim',         config = function() require('plugin.gitsigns') end }
 
     -- Tpope's
     use 'tpope/vim-commentary'
@@ -43,7 +48,10 @@ return packer.startup(function()
     use {'nvim-telescope/telescope.nvim',   config = function() require('plugin.telescope') end }
     use {'nvim-treesitter/nvim-treesitter', config = function() require('plugin.treesitter') end }
 
+    -- Terminal
+    use {'norcalli/nvim-terminal.lua',      config = function() require'terminal'.setup() end }
     use 'voldikss/vim-floaterm'
+
     -- Lsp
     -- use {'neovim/nvim-lspconfig',           config = function() require('plugin.lsp') end }
     -- use {'nvim-lua/completion-nvim' ,       config = function() require('plugin.completion') end }

@@ -39,6 +39,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/coc.nvim"
   },
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
+  },
   ["cyclist.vim"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/cyclist.vim"
@@ -48,13 +52,22 @@ _G.packer_plugins = {
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
   },
   ["galaxyline.nvim"] = {
-    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.galaxyline\frequire\0" },
+    config = { "try_loadstring(\"\\27LJ\\2\\n1\\0\\0\\3\\0\\2\\0\\0046\\0\\0\\0'\\2\\1\\0B\\0\\2\\1K\\0\\1\\0\\22plugin.galaxyline\\frequire\\0\", \"config\", \"galaxyline.nvim\")" },
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
+  ["gitsigns.nvim"] = {
+    config = { "try_loadstring(\"\\27LJ\\2\\n/\\0\\0\\3\\0\\2\\0\\0046\\0\\0\\0'\\2\\1\\0B\\0\\2\\1K\\0\\1\\0\\20plugin.gitsigns\\frequire\\0\", \"config\", \"gitsigns.nvim\")" },
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   ["goyo.vim"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/goyo.vim"
+  },
+  ["gruvbuddy.nvim"] = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
   },
   indentLine = {
     loaded = true,
@@ -65,17 +78,17 @@ _G.packer_plugins = {
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim"
   },
   ["nvim-bufferline.lua"] = {
-    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15bufferline\frequire\0" },
+    config = { "try_loadstring(\"\\27LJ\\2\\n<\\0\\0\\3\\0\\3\\0\\a6\\0\\0\\0'\\2\\1\\0B\\0\\2\\0029\\0\\2\\0004\\2\\0\\0B\\0\\2\\1K\\0\\1\\0\\nsetup\\15bufferline\\frequire\\0\", \"config\", \"nvim-bufferline.lua\")" },
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
   ["nvim-colorizer.lua"] = {
-    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugin.colorizer\frequire\0" },
+    config = { "try_loadstring(\"\\27LJ\\2\\n0\\0\\0\\3\\0\\2\\0\\0046\\0\\0\\0'\\2\\1\\0B\\0\\2\\1K\\0\\1\\0\\21plugin.colorizer\\frequire\\0\", \"config\", \"nvim-colorizer.lua\")" },
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-terminal.lua"] = {
-    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rterminal\frequire\0" },
+    config = { "try_loadstring(\"\\27LJ\\2\\n6\\0\\0\\3\\0\\3\\0\\0066\\0\\0\\0'\\2\\1\\0B\\0\\2\\0029\\0\\2\\0B\\0\\1\\1K\\0\\1\\0\\nsetup\\rterminal\\frequire\\0\", \"config\", \"nvim-terminal.lua\")" },
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-terminal.lua"
   },
@@ -84,13 +97,17 @@ _G.packer_plugins = {
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.treesitter\frequire\0" },
+    config = { "try_loadstring(\"\\27LJ\\2\\n1\\0\\0\\3\\0\\2\\0\\0046\\0\\0\\0'\\2\\1\\0B\\0\\2\\1K\\0\\1\\0\\22plugin.treesitter\\frequire\\0\", \"config\", \"nvim-treesitter\")" },
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  onebuddy = {
+    loaded = true,
+    path = "/home/martin/.local/share/nvim/site/pack/packer/start/onebuddy"
   },
   ["packer.nvim"] = {
     loaded = false,
@@ -113,7 +130,7 @@ _G.packer_plugins = {
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/startuptime.vim"
   },
   ["telescope.nvim"] = {
-    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugin.telescope\frequire\0" },
+    config = { "try_loadstring(\"\\27LJ\\2\\n0\\0\\0\\3\\0\\2\\0\\0046\\0\\0\\0'\\2\\1\\0B\\0\\2\\1K\\0\\1\\0\\21plugin.telescope\\frequire\\0\", \"config\", \"telescope.nvim\")" },
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
@@ -128,10 +145,6 @@ _G.packer_plugins = {
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/martin/.local/share/nvim/site/pack/packer/start/vim-fugitive"
-  },
-  ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/home/martin/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
   },
   ["vim-surround"] = {
     loaded = true,
@@ -149,12 +162,14 @@ try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugin.
 try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.treesitter\frequire\0", "config", "nvim-treesitter")
 -- Config for: nvim-terminal.lua
 try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rterminal\frequire\0", "config", "nvim-terminal.lua")
--- Config for: nvim-bufferline.lua
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15bufferline\frequire\0", "config", "nvim-bufferline.lua")
--- Config for: galaxyline.nvim
-try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.galaxyline\frequire\0", "config", "galaxyline.nvim")
 -- Config for: nvim-colorizer.lua
 try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21plugin.colorizer\frequire\0", "config", "nvim-colorizer.lua")
+-- Config for: gitsigns.nvim
+try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20plugin.gitsigns\frequire\0", "config", "gitsigns.nvim")
+-- Config for: galaxyline.nvim
+try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22plugin.galaxyline\frequire\0", "config", "galaxyline.nvim")
+-- Config for: nvim-bufferline.lua
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15bufferline\frequire\0", "config", "nvim-bufferline.lua")
 END
 
 catch

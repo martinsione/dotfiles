@@ -31,7 +31,7 @@ require('telescope').setup {
         preview_height = 0.5,
       }
     },
-
+    file_ignore_patterns = { "**/node_modules", "**.jpg", "**.jpeg", "**.png", "**.svg"},
     selection_strategy = "reset",
     sorting_strategy = "descending",
     scroll_strategy = "cycle",
@@ -78,7 +78,6 @@ function M.edit_dotfiles()
   require('telescope.builtin').find_files {
     prompt = "~ dotfiles ~",
     shorten_path = false,
-		file_ignore_patterns = {},
     cwd = "~/dotfiles/.config/",
   }
 end

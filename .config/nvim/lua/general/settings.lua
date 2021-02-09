@@ -1,36 +1,45 @@
-
 require('general.opt')
 local opt = vim.opt
 
-opt.pumheight     = 10
-opt.showmode      = false
-opt.termguicolors = true
-opt.cursorline    = true
-opt.nu            = true
-opt.rnu           = true
-opt.signcolumn    = 'yes'
-opt.wrap          = false
-opt.backup        = false
-opt.writebackup   = false
 opt.clipboard     = 'unnamedplus'
-opt.cmdheight     = 1
 opt.hidden        = true
 opt.mouse         = 'a'
+opt.pumheight     = 10
 opt.scrolloff     = 8
 opt.splitbelow    = true
 opt.splitright    = true
 opt.timeoutlen    = 1000
 opt.updatetime    = 100
+
+-- Appearance
+opt.cmdheight     = 1
+opt.cursorline    = true
+opt.nu            = true
+opt.rnu           = true
+opt.showmode      = false
+opt.signcolumn    = 'yes'
+opt.termguicolors = true
+opt.wrap          = false
+
+-- Search
 opt.ignorecase    = true
 opt.smartcase     = true
 opt.wildignore    = '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**';
 opt.wildignorecase= true
-opt.expandtab     = true
-opt.shiftwidth    = 0
-opt.tabstop       = 2
-opt.shiftwidth    = 0
-opt.tabstop       = 2
+
+-- On the edge
+opt.backup        = false
+opt.writebackup   = false
 opt.swapfile      = false
+
+-- Tab
+opt.expandtab     = true
+opt.shiftwidth    = 2
+opt.tabstop       = 2
+opt.tabstop       = 2
+
+-- Messing around
+opt.inccommand     = 'split'
 
 -- Thanks tj
 opt.formatoptions = opt.formatoptions
