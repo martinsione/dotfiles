@@ -1,0 +1,16 @@
+HISTFILE=~/.cache/zsh/history
+
+# Vim keys to move in completion menu
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v                                        # Vi mode
+export KEYTIMEOUT=1                               # Reduce vi timeout
+
+#------------------------ Change Caps to Escape ------------------------
+sudo -n loadkeys $HOME/.local/bin/ttymaps.kmap 2>/dev/null
+
+#-------------------------- Load Plugins -------------------------------
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

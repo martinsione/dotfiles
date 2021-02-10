@@ -1,4 +1,3 @@
-#!/bin/zsh
 alias d="$HOME/dotfiles"
 alias D="$HOME/Downloads"
 alias P="$HOME/Pictures"

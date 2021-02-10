@@ -4,4 +4,4 @@
 *.orig
 *.rej
 *log
-*.zcompdump
+*.zcompdump*
