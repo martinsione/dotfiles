@@ -77,3 +77,6 @@ key_bindings:
   - { key: Key0,     mods: Control,         action: ResetFontSize  }
   - { key: Equals,   mods: Control,         action: IncreaseFontSize }
   - { key: Minus,    mods: Control,         action: DecreaseFontSize }
+    # Fix for detecting <S-CR> and <C-CR>
+  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
+  - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
