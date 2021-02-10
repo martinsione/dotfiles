@@ -7,14 +7,14 @@ export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 export PATH="$PATH:$(du "$HOME/.local/bin/statusbar" | cut -f2 | paste -sd ':')"
 
 #----------------------------- Default Programs ------------------------
-export EDITOR="nvim"
-export GUIEDITOR="codium"
-export TERMINAL="kitty"
 export BROWSER="brave"
-export READER="zathura"
+export EDITOR="nvim"
 export FILE="ranger"
-export GUIFILE="pcmanfm"
+export GEDITOR="codium"
+export GFILE="pcmanfm"
 export MAIL="thunderbird"
+export READER="zathura"
+export TERMINAL="kitty"
 
 #----------------------------- Exports ---------------------------------
 # XDG paths
@@ -41,6 +41,12 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export STARSHIP_CONFIG=~/.config/zsh/starship
 
+# Other program settings:
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
+export _JAVA_AWT_WM_NONREPARENTING=1        # Fix for Java applications in dwm
+
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
@@ -50,9 +56,3 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
-
-# Other program settings:
-export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
-export _JAVA_AWT_WM_NONREPARENTING=1        # Fix for Java applications in dwm
