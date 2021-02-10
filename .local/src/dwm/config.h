@@ -25,9 +25,9 @@ static const unsigned int borderalpha = OPAQUE;
 // Colorscheme
 static const char col_gray1[]       = "#222222";        // Title bar color
 static const char col_gray2[]       = "#444444";        // Border of non-focus windows
-static const char col_gray3[]       = "#ffffff";        // Tags and xsetroot text
-static const char col_gray4[]       = "#eeeeee";        // Window title and selected tag
-static const char col_cyan[]        = "#005577";        // Window border and center-bar color
+static const char col_gray3[]       = "#eaeaeb";        // Tags and xsetroot text
+static const char col_gray4[]       = "#eaeaeb";        // Window title and selected tag
+static const char col_cyan[]        = "#444444";        // Window border and center-bar color
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
