@@ -1,22 +1,10 @@
-require('colorbuddy')
-
-local c = require('colorbuddy.color').colors
-local Group = require('colorbuddy.group').Group
-
-Color.new('GitSignsAdd',    '#00ff00')
-Color.new('GitSignsChange', '#ffff00')
-Color.new('GitSignsDelete', '#ff0000')
-Group.new('GitSignsAdd',    c.GitSignsAdd)
-Group.new('GitSignsChange', c.GitSignsChange)
-Group.new('GitSignsDelete', c.GitSignsDelete)
-
 require('gitsigns').setup {
   signs = {
-    add          = {hl = 'GitSignsAdd'   , text = '+', numhl='GitSignsAddNr'},
-    change       = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr'},
-    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr'},
-    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr'},
-    changedelete = {hl = 'GitSignsDelete', text = '~', numhl='GitSignsChangeNr'},
+    add          = {hl = 'DiffAdd'   , text = '+', numhl='GitSignsAddNr'},
+    change       = {hl = 'DiffChange', text = '~', numhl='GitSignsChangeNr'},
+    delete       = {hl = 'DiffDelete', text = '_', numhl='GitSignsDeleteNr'},
+    topdelete    = {hl = 'DiffDelete', text = '‾', numhl='GitSignsDeleteNr'},
+    changedelete = {hl = 'DiffChange', text = '~', numhl='GitSignsChangeNr'},
   },
   numhl = false,
   keymaps = {
