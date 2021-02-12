@@ -4,10 +4,6 @@ let mapleader= ","
 inoremap <silent> <expr><TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Escape insert-mode
-inoremap kj <esc>
-inoremap jk <esc>
-
 inoremap <S-CR> <C-O>o
 inoremap <C-CR> <C-O>O
 
@@ -37,11 +33,10 @@ inoremap <C-h> <C-\><C-N><C-w>h
 inoremap <C-j> <C-\><C-N><C-w>j
 inoremap <C-k> <C-\><C-N><C-w>k
 inoremap <C-l> <C-\><C-N><C-w>l
-tnoremap <C-h> <C-\><C-N><C-w>h
-tnoremap <C-j> <C-\><C-N><C-w>j
-tnoremap <C-k> <C-\><C-N><C-w>k
-tnoremap <C-l> <C-\><C-N><C-w>l
-tnoremap <Esc><Esc> <C-\><C-n>
+nnoremap <C-h> <C-\><C-N><C-w>h
+nnoremap <C-j> <C-\><C-N><C-w>j
+nnoremap <C-k> <C-\><C-N><C-w>k
+nnoremap <C-l> <C-\><C-N><C-w>l
 
 " Command line
 cnoremap %P <C-R>=expand('%:p')<CR>
@@ -59,6 +54,7 @@ nnoremap <silent><space>gh  <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent><space>rn  <cmd>lua vim.lsp.buf.rename()<CR>
 
 " Telescope
+nnoremap <silent> <space>p    <Nop>
 nnoremap <silent> <C-p>     	<cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <silent> <space>pg 	<cmd>lua require('telescope.builtin').git_files()<CR>
 nnoremap <silent> <space>pw 	<cmd>lua require('telescope.builtin').live_grep()<CR>
