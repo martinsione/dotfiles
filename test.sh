@@ -19,7 +19,7 @@ timedatectl set-ntp true
 # EOF
 
 # Insert the name without the /
-disk=vda
+export disk=vda
 cat <<EOF | fdisk /dev/${disk}
 g
 n
@@ -41,10 +41,6 @@ mkfs.ext4 /dev/${disk}2     # Make the second partition(left space on the drive)
 
 mount /dev/${disk}2 /mnt    # Mount the big partition
 
-# La variables disk se borra dsp de pacstrap
-mkdir /boot/EFI
-mount /dev/${disk}1 /boot/EFI
-
 # Install base and kernel
 pacstrap /mnt base linux-lts linux-firmware --needed base-devel
 
@@ -61,12 +57,14 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 
 # Grub config for uefi
+mkdir /boot/EFI
+mount /dev/${disk}1 /boot/EFI
 pacman -S --noconfirm grub efibootmgr dosfstools os-prober mtools
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Hostname and password
-hostname=arch
+export hostname=arch
 echo ${hostname} >> /etc/hostname
 
 cat >> /etc/hosts <<EOF
