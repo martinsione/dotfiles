@@ -1,0 +1,14 @@
+#!/bin/sh
+
+aurhelper=paru
+
+install_aur_helper() {
+  cd /tmp
+  curl -sO https://aur.archlinux.org/cgit/aur.git/snapshot/"$aurhelper".tar.gz
+  tar -xvf "$aurhelper".tar.gz
+  cd "$aurhelper"
+  makepkg --noconfirm -si
+  sudo rm -rf ../$aurhelper*
+}
+
+install_aur_helper
