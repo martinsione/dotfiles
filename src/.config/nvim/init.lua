@@ -1,3 +1,3 @@
 require('main.plugins')
-require('main.settings')
+require('main.options')
 require('colorbuddy').colorscheme('onebuddy')
