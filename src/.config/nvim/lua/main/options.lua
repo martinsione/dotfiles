@@ -55,5 +55,13 @@ opt.formatoptions = opt.formatoptions
                     + 'j'     -- Auto-remove comments if possible.
                     - '2'     -- I'm not in gradeschool anymore
 
--- Prevents from creating .netrwhist
-vim.g.netrw_dirhistmax = 0
+-- Disabling some default plugins
+vim.g.loaded_netrw             = 1
+vim.g.loaded_netrwPlugin       = 1
+vim.g.loaded_netrwSettings     = 1
+vim.g.loaded_netrwFileHandlers = 1
+vim.g.loaded_gzip              = 1
+vim.g.loaded_tar               = 1
+vim.g.loaded_tarPlugin         = 1
+vim.g.loaded_zip               = 1
+vim.g.loaded_zipPlugin         = 1
