@@ -78,7 +78,7 @@ function M.edit_dotfiles()
   require('telescope.builtin').find_files {
     prompt = "~ dotfiles ~",
     shorten_path = false,
-    cwd = "~/dotfiles/.config/",
+    cwd = "~/dotfiles/src/.config/",
   }
 end
 
