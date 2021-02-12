@@ -57,6 +57,3 @@ opt.formatoptions = opt.formatoptions
 
 -- Prevents from creating .netrwhist
 vim.g.netrw_dirhistmax = 0
-
--- Remove whitespace on save
-vim.cmd[[autocmd BufWritePre * %s/\s\+$//e]]
