@@ -11,5 +11,5 @@ P = function(v)
 end
 
 -- `vim.opt`
-require('general.opt.opt')
+require('main.opt.opt')
 

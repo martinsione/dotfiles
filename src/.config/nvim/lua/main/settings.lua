@@ -1,4 +1,4 @@
-require('general.opt')
+require('main.opt')
 local opt = vim.opt
 
 opt.clipboard     = 'unnamedplus'
