@@ -18,11 +18,11 @@ let g:nvim_tree_show_icons = {
     \ }
 
 let g:nvim_tree_bindings = {
-    \ 'edit':            ['<CR>', 'o'],
+    \ 'edit':            ['l', '<CR>'],
     \ 'edit_vsplit':     '<C-v>',
     \ 'edit_split':      '<C-x>',
     \ 'edit_tab':        '<C-t>',
-    \ 'close_node':      ['<BS>'],
+    \ 'close_node':      'h',
     \ 'toggle_ignored':  'I',
     \ 'toggle_dotfiles': 'H',
     \ 'refresh':         'R',
