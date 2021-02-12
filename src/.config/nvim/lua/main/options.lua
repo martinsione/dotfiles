@@ -1,6 +1,7 @@
 require('main.globals')
 local opt = vim.opt
 
+-- General
 opt.clipboard     = 'unnamedplus'
 opt.hidden        = true
 opt.mouse         = 'a'
@@ -40,6 +41,7 @@ opt.tabstop       = 2
 
 -- Messing around
 opt.inccommand     = 'split'
+opt.shortmess      = 'cI'     -- I => not showing start message
 
 -- Thanks tj
 opt.formatoptions = opt.formatoptions
