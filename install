@@ -1,6 +1,7 @@
 #!/bin/sh
 
 aurhelper=paru
+email=sionemartin@hotmail.com
 
 install_aur_helper() {
   cd /tmp
@@ -9,6 +10,32 @@ install_aur_helper() {
   cd "$aurhelper"
   makepkg --noconfirm -si
   sudo rm -rf ../$aurhelper*
+  cd ~
 }
 
+# Install packages
+sudo pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort backup/arch/pac.list ))
 install_aur_helper
+$aurhelper -S --needed $(comm -12 <(yay -Slq | sort) <(sort backup/arch/aur.list ))
+
+# Clone dotfiles repo
+git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
+
+mkdir -p ~/.config/VSCodium/User ~/.local
+cd ~/dotfiles
+stow src
+
+# Compile packages
+for file in ~/.local/src/*; do cd "$file" && make && sudo make clean install; done
+
+# Change shell to zsh
+chsh -s $(which zsh)
+
+# Auto mount the hard drive
+echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0	/mnt/storage	ext4		rw,relatime	0 2' | sudo tee -a /etc/fstab
+echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv
+
+# Generate ssh keys
+ssh-keygen -t rsa -b 4096 -C "${email}"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
