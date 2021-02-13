@@ -13,7 +13,6 @@ get_user_input() {
 		pass2=$(dialog --no-cancel --passwordbox "Retype password." 10 60 3>&1 1>&2 2>&3 3>&1)
 	done
 
-  dialog --no-cancel --inputbox "First, please enter a name for the user account." 10 60 3>&1 1>&2 2>&3 3>&1
 	disk=$(dialog --no-cancel --inputbox "Enter the disk in which you want to install the system" 10 60 3>&1 1>&2 2>&3 3>&1) || exit 1
 
   export hostname=$name
@@ -22,37 +21,22 @@ get_user_input() {
 }
 
 format_disk() {
-  # cat <<EOF | fdisk /dev/sda
-  # Set partition table to gpt
-  # Creates a new partition
-  # Enter
-  # Enter
-  # Select the size+550M
-  # Creates a new partition
-  # Enter
-  # Enter
-  # Enter => Uses all the space left
-  # Change the tipe of the partition
-  # Of partition 1
-  # To tipe 1 (EFI System)
-  # Write the changes
+  # cat <<EOF | fdisk /dev/${disk}
+  # g         | Set partition table to gpt
+  # n         | Creates a new partition
+  # Enter     | Enter
+  # Enter     | Enter
+  # +550M     | Select the size+550M
+  # n         | Creates a new partition
+  # Enter     | Enter
+  # Enter     | Enter
+  # Enter     | Enter => Uses all the space left
+  # t         | Change the tipe of the partition
+  # 1         | Of partition 1
+  # 1         | To tipe 1 (EFI System)
+  # w         | Write the changes
   # EOF
-
-  cat <<-EOF | fdisk /dev/${disk}
-  g
-  n
-
-
-  +550M
-  n
-
-
-
-  t
-  1
-  1
-  w
-  EOF
+  echo -e 'g\nn\n\n\n+550M\nn\n\n\n\nt\n1\n1\nw' | fdisk /dev/${disk}
 
   mkfs.fat -F32 /dev/${disk}1 # Make first partition (+550M) f32
   mkfs.ext4 /dev/${disk}2     # Make the second partition(left space on the drive) ext4
@@ -72,11 +56,9 @@ arch_chroot() {
 
   # Hostname and password
   echo ${hostname} >> /etc/hostname
-  cat >> /etc/hosts <<-EOF
-  127.0.0.1       localhost
-  ::1             localhost
-  127.0.1.1       ${hostname}.localdomain     ${hostname}
-  EOF
+  echo -e '127.0.0.1       localhost' >> /etc/hosts
+  echo -e '::1             localhost' >> /etc/hosts
+  echo -e '127.0.1.1       ${hostname}.localdomain     ${hostname}' >> /etc/hosts
   echo -e "${passwd}\n${passwd}" | passwd
 }
 
@@ -94,6 +76,8 @@ pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you
 dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "This is intended for personal use.\n\nTo stop this script, press no."  10 60 || exit
 
 get_user_input
+
+dialog --defaultno --title "Atencion" --yesno "Esta es la ultima opurtinidad de cancelar la instalacion.\n\nSi presionas si se borraran todos los datos de /dev/${disk}"  10 60 || exit
 
 timedatectl set-ntp true
 
