@@ -6,8 +6,6 @@ dialog --defaultno --title "Welcome to Martin's Arch automated installation" --y
 
 dialog --no-cancel --inputbox "Enter a name for your computer." 10 60 2> hostname.tmp
 
-dialog --no-cancel --inputbox "Enter a password for your computer." 10 60 2> password.tmp
-
 dialog --no-cancel --inputbox "Enter the disk in which you want to install the system." 10 60 2> disk.tmp
 
 timedatectl set-ntp true
@@ -30,7 +28,6 @@ timedatectl set-ntp true
 
 # Insert the name without the /
 export hostname=$(cat hostname.tmp)
-export password=$(cat password.tmp)
 export disk=$(cat disk.tmp)
 
 cat <<EOF | fdisk /dev/${disk}
@@ -69,12 +66,13 @@ hwclock --systohc
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 
-# Grub config for uefi
+# Grub config for uefi and NetworkManager
 mkdir /boot/EFI
 mount /dev/${disk}1 /boot/EFI
-pacman -S --noconfirm grub efibootmgr dosfstools os-prober mtools
+pacman -S --noconfirm grub efibootmgr dosfstools os-prober mtools networkmanager
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
+systemctl enable NetworkManager
 
 # Hostname and password
 echo ${hostname} >> /etc/hostname
@@ -86,10 +84,3 @@ cat >> /etc/hosts <<EOF
 EOF
 
 passwd # probar ponerlo a lo ult?
-$password
-$password
-
-pacman -S --noconfirm networkmanager git
-systemctl enable NetworkManager
-
-umount -l /mnt
