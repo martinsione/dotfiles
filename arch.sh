@@ -89,7 +89,7 @@ cat >> /etc/hosts <<EOF
 ::1             localhost
 127.0.1.1       ${hostname}.localdomain     ${hostname}
 EOF
-echo -e "${pass1}\n${pass1}" | passwd
+echo -e "${passwd}\n${passwd}" | passwd
 
 # Grub config for uefi and NetworkManager
 mkdir /boot/EFI
