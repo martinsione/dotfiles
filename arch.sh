@@ -1,9 +1,9 @@
 #!/bin/bash
 
 get_user_input() {
-	name=$(dialog --no-cancel --inputbox "First, please enter a name for the user account." 10 60 3>&1 1>&2 2>&3 3>&1) || exit 1
+	name=$(dialog --no-cancel --inputbox "Enter the hostname of the computer." 10 60 3>&1 1>&2 2>&3 3>&1) || exit 1
 	while ! echo "$name" | grep -q "^[a-z_][a-z0-9_-]*$"; do
-		name=$(dialog --no-cancel --inputbox "Username not valid. Give a username beginning with a letter, with only lowercase letters, - or _." 10 60 3>&1 1>&2 2>&3 3>&1)
+		name=$(dialog --no-cancel --inputbox "Hostname not valid. Give a hostname beginning with a letter, with only lowercase letters, - or _." 10 60 3>&1 1>&2 2>&3 3>&1)
 	done
 	pass1=$(dialog --no-cancel --passwordbox "Enter a password for that user." 10 60 3>&1 1>&2 2>&3 3>&1)
 	pass2=$(dialog --no-cancel --passwordbox "Retype password." 10 60 3>&1 1>&2 2>&3 3>&1)
