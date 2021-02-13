@@ -14,10 +14,6 @@ get_user_input() {
 	done
 
 	disk=$(dialog --no-cancel --inputbox "Enter the disk in which you want to install the system" 10 60 3>&1 1>&2 2>&3 3>&1) || exit 1
-
-  export hostname=$name
-  export passwd=$pass1
-  export disk=$disk
 }
 
 format_disk() {
@@ -75,7 +71,8 @@ pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you
 
 dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "This is intended for personal use.\n\nTo stop this script, press no."  10 60 || exit
 
-get_user_input
+# Get user input and export it
+get_user_input; export hostname=$name; export passwd=$pass1; export disk=$disk;
 
 dialog --defaultno --title "Atencion" --yesno "Esta es la ultima opurtinidad de cancelar la instalacion.\n\nSi presionas si se borraran todos los datos de /dev/${disk}"  10 60 || exit
 
