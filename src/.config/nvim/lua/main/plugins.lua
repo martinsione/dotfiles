@@ -26,7 +26,7 @@ return packer.startup(function()
 
   -- Appearance
   use 'junegunn/goyo.vim'
-  -- use {'kyazdani42/nvim-web-devicons',    config = function() require'nvim-web-devicons'.setup{} end}
+  use {'kyazdani42/nvim-web-devicons',    config = function() require'nvim-web-devicons'.setup{} end}
   use 'tjdevries/cyclist.vim'
 
   -- Colors
