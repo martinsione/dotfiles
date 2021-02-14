@@ -21,7 +21,7 @@ install_aur_helper() {
   cd ~ ;}
 
 # Clone dotfiles repo
-sudo pacman -S --noconfirm git --neded base-devel
+sudo pacman -S --noconfirm git cargo --neded base-devel
 git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
 
 # Install packages
