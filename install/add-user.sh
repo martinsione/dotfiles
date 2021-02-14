@@ -25,5 +25,5 @@ get_user_and_pass
 adduserandpass
 pacman -S --noconfirm sudo
 echo "$name  ALL=(ALL:ALL) ALL" >> /etc/sudoers
-dotfiles() { curl https://raw.githubusercontent.com/martinsione/dotfiles/testing/install/dotfiles.sh | bash ;}
-dialog --title "Install Martin's dotfiles?" --yesno "This will run a script and install Martin's dotfiles. \nIf you'd like to install this, select yes, otherwise select no.\n\nLuke"  15 60 && su -l $name && dotfiles
+# dotfiles() { curl https://raw.githubusercontent.com/martinsione/dotfiles/testing/install/dotfiles.sh | bash ;}
+# dialog --title "Install Martin's dotfiles?" --yesno "This will run a script and install Martin's dotfiles. \nIf you'd like to install this, select yes, otherwise select no.\n\nLuke"  15 60 && su -l $name && dotfiles
