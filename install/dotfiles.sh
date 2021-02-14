@@ -25,9 +25,9 @@ sudo pacman -S --noconfirm git
 git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
 
 # Install packages
-sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
 install_aur_helper
-$aurhelper -S --noconfirm --needed $(comm -12 <($aurhelper -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
+sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
+${aurhelper} -S --noconfirm --needed $(comm -12 <(${aurhelper} -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
 
 mkdir -p ~/.config/VSCodium/User ~/.local
 cd ~/dotfiles
