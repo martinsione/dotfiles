@@ -14,19 +14,19 @@ get_mail() {
 
 install_aur_helper() {
   cd /tmp
-  curl -sO https://aur.archlinux.org/cgit/aur.git/snapshot/"$aurhelper".tar.gz
-  tar -xvf "$aurhelper".tar.gz
-  cd "$aurhelper"
+  git clone https://aur.archlinux.org/$aurhelper
+  cd $aurhelper
   makepkg --noconfirm -si
   cd ~ ;}
 
 # Clone dotfiles repo
-sudo pacman -S --noconfirm git cargo --neded base-devel
+sudo pacman -S --noconfirm git --needed base-devel
 git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
 
 # Install packages
 install_aur_helper
 sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
+echo -e '\n\nY\nY\n' | $aurhelper -S libxft-bgra-git
 ${aurhelper} -S --noconfirm --needed $(comm -12 <(${aurhelper} -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
 
 mkdir -p ~/.config/VSCodium/User ~/.local/share
@@ -34,16 +34,17 @@ cd ~/dotfiles
 stow src
 
 # Compile packages
-for file in ~/.local/src/*; do cd "$file" && make && sudo make clean install; done
+cd ~/.local/src/dwm && make && sudo make clean install
+cd ~/.local/src/dwmblocks && make && sudo make clean install
+cd ~
 
 # Change shell to zsh
 chsh -s $(which zsh)
 
 # Install ohmyzsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo -e "\n" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 rm -rf ~/.zshrc
 mv ~/.oh-my-zsh ~/.local/share/oh-my-zsh
-source ~/.config/zsh/.zshrc
 
 # Auto mount the hard drive
 # echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0	/mnt/storage	ext4		rw,relatime	0 2' | sudo tee -a /etc/fstab
