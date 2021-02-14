@@ -84,6 +84,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 systemctl start NetworkManager
 
+pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you're running this as the root user? Are you sure you have an internet connection?"; exit; }
 dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "Do you want to create your user and set up your password?."  10 60 || exit
 
 export install_path=https://raw.githubusercontent.com/martinsione/dotfiles/testing/install
