@@ -82,3 +82,9 @@ mount /dev/${disk}1 /boot/EFI
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
+systemctl start NetworkManager
+
+dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "Do you want to create your user and set up your password?."  10 60 || exit
+
+export install_path=https://raw.githubusercontent.com/martinsione/dotfiles/testing/install
+curl ${install_path}/user.sh | bash
