@@ -18,7 +18,6 @@ install_aur_helper() {
   tar -xvf "$aurhelper".tar.gz
   cd "$aurhelper"
   makepkg --noconfirm -si
-  sudo rm -rf ../$aurhelper*
   cd ~ ;}
 
 # Clone dotfiles repo
