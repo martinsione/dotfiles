@@ -11,10 +11,11 @@ get_user_and_pass() {
 		unset pass2
 		pass1=$(dialog --no-cancel --passwordbox "Passwords do not match.\\n\\nEnter password again." 10 60 3>&1 1>&2 2>&3 3>&1)
 		pass2=$(dialog --no-cancel --passwordbox "Retype password." 10 60 3>&1 1>&2 2>&3 3>&1)
-	done ;}
+	done
+  export name=$name ;}
 
 adduserandpass() {
-	useradd -mg wheel "$name" >/dev/null 2>&1
+	useradd -mg wheel "$name"
 	usermod -aG wheel "$name"
 	echo "$name:$pass1" | chpasswd
 	unset pass1 pass2 ;}
