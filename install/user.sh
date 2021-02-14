@@ -23,7 +23,7 @@ adduserandpass() {
 pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you're running this as the root user? Are you sure you have an internet connection?"; exit; }
 get_user_and_pass
 adduserandpass
-pacman -S sudo
+pacman -S --noconfirm sudo
 echo "$name  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 su -l $name
 dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "Do you want to create your user and set up your password?."  10 60 || exit
