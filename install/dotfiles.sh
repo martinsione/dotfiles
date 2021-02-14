@@ -1,5 +1,6 @@
 #!/bin/sh
 
+repo=https://raw.githubusercontent.com/martinsione/dotfiles/master
 aurhelper=paru
 
 get_mail() {
@@ -26,9 +27,9 @@ install_aur_helper() {
 su $name
 
 # Install packages
-sudo pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort backup/arch/pac.list ))
+sudo pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort ${repo}/backup/arch/pac.list ))
 install_aur_helper
-$aurhelper -S --needed $(comm -12 <(yay -Slq | sort) <(sort backup/arch/aur.list ))
+$aurhelper -S --needed $(comm -12 <(yay -Slq | sort) <(sort ${repo}backup/arch/aur.list ))
 
 # Clone dotfiles repo
 git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
