@@ -73,6 +73,7 @@ cat >> /etc/hosts <<-EOF
 ::1             localhost
 127.0.1.1       ${hostname}.localdomain     ${hostname}
 EOF
+echo -e "${passwd}\n${passwd}" | passwd
 
 # Grub cfg and NetworkManager
 pacman -S --noconfirm grub efibootmgr dosfstools os-prober mtools networkmanager
