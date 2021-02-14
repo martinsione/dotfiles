@@ -28,5 +28,5 @@ echo "$name  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 su -l $name
 dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "Do you want to install Martin's dotfiles?"  10 60 || exit
 
-export install_path=https://raw.githubusercontent.com/martinsione/dotfiles/testing/install
+install_path=https://raw.githubusercontent.com/martinsione/dotfiles/testing/install
 curl ${install_path}/dotfiles.sh | bash
