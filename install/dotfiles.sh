@@ -1,6 +1,6 @@
 #!/bin/sh
 
-aurhelper=paru
+export aurhelper=paru
 
 get_mail() {
 	mail1=$(dialog --inputbox "Enter your email." 10 60 3>&1 1>&2 2>&3 3>&1)
