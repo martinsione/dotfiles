@@ -38,10 +38,12 @@ for file in ~/.local/src/*; do cd "$file" && make && sudo make clean install; do
 
 # Change shell to zsh
 chsh -s $(which zsh)
-source ~/.config/zsh/.zshrc
 
-# Install git programs
+# Install ohmyzsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+rm -rf ~/.zshrc
+mv ~/.oh-my-zsh ~/.local/share/oh-my-zsh
+source ~/.config/zsh/.zshrc
 
 # Auto mount the hard drive
 # echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0	/mnt/storage	ext4		rw,relatime	0 2' | sudo tee -a /etc/fstab
