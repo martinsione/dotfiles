@@ -1,6 +1,5 @@
 #!/bin/sh
 
-repo=https://raw.githubusercontent.com/martinsione/dotfiles/master
 aurhelper=paru
 
 get_mail() {
@@ -20,19 +19,16 @@ install_aur_helper() {
   cd "$aurhelper"
   makepkg --noconfirm -si
   sudo rm -rf ../$aurhelper*
-  cd ~
-}
-
-# Create user
-su $name
-
-# Install packages
-sudo pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort ${repo}/backup/arch/pac.list ))
-install_aur_helper
-$aurhelper -S --needed $(comm -12 <(yay -Slq | sort) <(sort ${repo}backup/arch/aur.list ))
+  cd ~ ;}
 
 # Clone dotfiles repo
+sudo pacman -S git
 git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
+
+# Install packages
+sudo pacman -S --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
+install_aur_helper
+$aurhelper -S --needed $(comm -12 <($aurhelper -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
 
 mkdir -p ~/.config/VSCodium/User ~/.local
 cd ~/dotfiles
