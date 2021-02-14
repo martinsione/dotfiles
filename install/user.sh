@@ -14,9 +14,8 @@ get_user_and_pass() {
 	done ;}
 
 adduserandpass() {
-	dialog --infobox "Adding user \"$name\"..." 4 50
-	useradd -mg wheel "$name" >/dev/null 2>&1 ||
-	usermod -aG wheel,audio,video,optical,storage,libvirt "$name"
+	useradd -mg wheel "$name" >/dev/null 2>&1
+	usermod -aG wheel "$name"
 	echo "$name:$pass1" | chpasswd
 	unset pass1 pass2 ;}
 
