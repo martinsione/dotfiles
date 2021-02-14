@@ -20,13 +20,13 @@ adduserandpass() {
 	echo "$name:$pass1" | chpasswd
 	unset pass1 pass2 ;}
 
+pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you're running this as the root user? Are you sure you have an internet connection?"; exit; }
 get_user_and_pass
-get_mail
 adduserandpass
-pacman -S sudo vi
-echo '%wheel ALL=(ALL) ALL' | visudo
+pacman -S sudo
+echo "$name  ALL=(ALL:ALL) ALL" >> /etc/sudoers
 su -l $name
-
 dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "Do you want to create your user and set up your password?."  10 60 || exit
+
 export install_path=https://raw.githubusercontent.com/martinsione/dotfiles/testing/install
 curl ${install_path}/dotfiles.sh | bash
