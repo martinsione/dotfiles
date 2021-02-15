@@ -1,12 +1,11 @@
-#!/bin/zsh
-#----------------------------- Set encoding ----------------------------
+# Set encoding
 export LANG=en_US.UTF-8
 
-#----------------------------- Path ------------------------------------
+# Path
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 export PATH="$PATH:$(du "$HOME/.local/bin/statusbar" | cut -f2 | paste -sd ':')"
 
-#----------------------------- Default Programs ------------------------
+# Default Programs
 export BROWSER="brave"
 export EDITOR="nvim"
 export FILE="ranger"
@@ -16,14 +15,10 @@ export MAIL="thunderbird"
 export READER="zathura"
 export TERMINAL="kitty"
 
-#----------------------------- Exports ---------------------------------
 # XDG paths
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-
-# Disable hist files
-export LESSHISTFILE=-
 
 # ~/ Clean-up:
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
@@ -44,6 +39,7 @@ export STARSHIP_CONFIG=~/.config/zsh/starship
 # Other program settings:
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+export LESSHISTFILE=-                       # Disable hist files
 export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1        # Fix for Java applications in dwm
 
