@@ -37,8 +37,7 @@ cd ~/dotfiles
 stow src
 
 # Compile packages
-cd ~/.local/src/dwm && make && sudo make clean install
-cd ~/.local/src/dwmblocks && make && sudo make clean install
+for file in ~/.local/src/*; do cd "$file" && make && sudo make clean install; done
 cd ~
 
 # Change shell to zsh
