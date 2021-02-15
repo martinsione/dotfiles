@@ -82,3 +82,9 @@ mount /dev/${disk}1 /boot/EFI
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
+systemctl start NetworkManager
+
+pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you're running this as the root user? Are you sure you have an internet connection?"; exit; }
+dialog --defaultno --title "Welcome to Martin's Arch automated installation" --yesno "Do you want to create your user and set up your password?."  10 60 || exit
+
+curl https://raw.githubusercontent.com/martinsione/dotfiles/master/install/add-user.sh | bash

@@ -11,18 +11,19 @@ get_user_and_pass() {
 		unset pass2
 		pass1=$(dialog --no-cancel --passwordbox "Passwords do not match.\\n\\nEnter password again." 10 60 3>&1 1>&2 2>&3 3>&1)
 		pass2=$(dialog --no-cancel --passwordbox "Retype password." 10 60 3>&1 1>&2 2>&3 3>&1)
-	done ;}
+	done
+  export name=$name ;}
 
 adduserandpass() {
-	dialog --infobox "Adding user \"$name\"..." 4 50
-	useradd -mg wheel "$name" >/dev/null 2>&1 ||
-	usermod -aG wheel,audio,video,optical,storage,libvirt "$name"
+	useradd -mg wheel "$name"
+	usermod -aG wheel "$name"
 	echo "$name:$pass1" | chpasswd
 	unset pass1 pass2 ;}
 
+pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you're running this as the root user? Are you sure you have an internet connection?"; exit; }
 get_user_and_pass
-get_mail
 adduserandpass
-pacman -S sudo
-echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
-su -l $name
+pacman -S --noconfirm sudo
+echo "$name  ALL=(ALL:ALL) ALL" >> /etc/sudoers
+# dotfiles() { curl https://raw.githubusercontent.com/martinsione/dotfiles/master/install/dotfiles.sh | bash ;}
+# dialog --title "Install Martin's dotfiles?" --yesno "This will run a script and install Martin's dotfiles. \nIf you'd like to install this, select yes, otherwise select no.\n\nLuke"  15 60 && su -l $name && dotfiles
