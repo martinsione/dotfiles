@@ -10,13 +10,6 @@ get_mail_and_pass() {
 		mail1=$(dialog --inputbox "Mails do not match.\\n\\nEnter your email again." 10 60 3>&1 1>&2 2>&3 3>&1)
 		mail2=$(dialog --inputbox "Retype your email." 10 60 3>&1 1>&2 2>&3 3>&1)
 	done
-	pass1=$(dialog --no-cancel --passwordbox "Enter a password for the ssh-key." 10 60 3>&1 1>&2 2>&3 3>&1)
-	pass2=$(dialog --no-cancel --passwordbox "Retype password." 10 60 3>&1 1>&2 2>&3 3>&1)
-	while ! [ "$pass1" = "$pass2" ]; do
-		unset pass2
-		pass1=$(dialog --no-cancel --passwordbox "Passwords do not match.\\n\\nEnter password again." 10 60 3>&1 1>&2 2>&3 3>&1)
-		pass2=$(dialog --no-cancel --passwordbox "Retype password." 10 60 3>&1 1>&2 2>&3 3>&1)
-	done
   export email=$mail1; export pass=$pass1 ;}
 
 install_aur_helper() {
@@ -27,7 +20,7 @@ install_aur_helper() {
 
 
 # Start of the script
-get_mail_and_pass
+# get_mail_and_pass
 
 # Clone dotfiles repo
 sudo pacman -S --noconfirm --needed base-devel git
@@ -61,6 +54,6 @@ mv ~/.oh-my-zsh ~/.local/share/oh-my-zsh
 echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv
 
 # Generate ssh keys
-echo -e "\n${pass}\n${pass}\n" | ssh-keygen -t rsa -b 4096 -C "${email}"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+# ssh-keygen -t rsa -b 4096 -C "${email}"
+# eval "$(ssh-agent -s)"
+# ssh-add ~/.ssh/id_rsa
