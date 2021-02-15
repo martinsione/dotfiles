@@ -23,9 +23,10 @@ install_aur_helper() {
   cd /tmp
   git clone https://aur.archlinux.org/$aurhelper
   cd $aurhelper
-  makepkg --noconfirm -si
-  cd ~ ;}
+  makepkg --noconfirm -si ;}
 
+
+# Start of the script
 get_mail_and_pass
 
 # Clone dotfiles repo
@@ -34,6 +35,7 @@ git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
 
 # Install packages
 install_aur_helper
+yes | sudo -u $(whoami) $aurhelper -S libxft-bgra-git >/dev/null 2>&1   # otherwise it doesn't install due to conflicts
 sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
 ${aurhelper} -S --noconfirm --needed $(comm -12 <(${aurhelper} -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
 
