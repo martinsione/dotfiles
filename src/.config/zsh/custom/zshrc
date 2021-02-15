@@ -1,5 +1,6 @@
 HISTFILE=~/.cache/zsh/history
 unsetopt BEEP
+unsetopt PROMPT_SP
 
 # Vim keys to move in completion menu
 bindkey -M menuselect 'h' vi-backward-char
