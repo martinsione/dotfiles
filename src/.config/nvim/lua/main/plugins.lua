@@ -40,8 +40,12 @@ return packer.startup(function()
   -- Exploring files
   use 'kyazdani42/nvim-tree.lua'
   use {
-    'nvim-telescope/telescope.nvim', config = function() require('plugin.telescope') end,
-    requires = { 'nvim-telescope/telescope-fzy-native.nvim' }
+    'nvim-telescope/telescope.nvim',
+    config = function() require('plugin.telescope') end,
+    requires = {
+      'nvim-telescope/telescope-fzy-native.nvim',
+      'nvim-telescope/telescope-fzf-writer.nvim',
+    },
   }
 
   -- Git
@@ -59,7 +63,7 @@ return packer.startup(function()
   use 'tpope/vim-surround'
 
   --
-  -- use {'akinsho/nvim-bufferline.lua',     config = function() require'bufferline'.setup{options = {always_show_bufferline = false}} end }
+  use {'akinsho/nvim-bufferline.lua',     config = function() require'bufferline'.setup{options = {always_show_bufferline = false}} end }
   use {'glepnir/galaxyline.nvim',         config = function() require('plugin.galaxyline') end }
 
   -- Terminal

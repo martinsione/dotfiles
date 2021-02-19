@@ -57,13 +57,12 @@ nnoremap <silent><space>rn  <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <space>p    <Nop>
 nnoremap <silent> <C-p>     	<cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <silent> <space>pg 	<cmd>lua require('telescope.builtin').git_files()<CR>
+nnoremap <silent> <space>pr 	<cmd>lua require('telescope.builtin').oldfiles()<CR>
 nnoremap <silent> <space>pw 	<cmd>lua require('telescope.builtin').live_grep()<CR>
 nnoremap <silent> <space>pb 	<cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <silent> <space>ph 	<cmd>lua require('telescope.builtin').help_tags()<CR>
 " Custom Telescope functions
-nnoremap <silent> <leader>en 		<cmd>lua require('plugin.telescope').edit_neovim()<CR>
-nnoremap <silent> <leader>ez 		<cmd>lua require('plugin.telescope').edit_zsh()<CR>
-nnoremap <silent> <leader>dot 	<cmd>lua require('plugin.telescope').edit_dotfiles()<CR>
+nnoremap <silent> <space>pd 	<cmd>lua require('plugin.telescope.custom').edit_dotfiles()<CR>
 
 " Tree
 nnoremap <silent> <C-n> <cmd>NvimTreeToggle<CR>
