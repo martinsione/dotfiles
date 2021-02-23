@@ -6,8 +6,7 @@
     "typescript",
     "graphql",
     "html",
-    "json",
-    "python"
+    "json"
   ],
   "suggest.completionItemKindLabels": {
     "method": "  ",
@@ -44,7 +43,6 @@
   "list.indicator": ">",
   "list.selectedSignText": " ",
   "emmet.includeLanguages": {
-    "vue-html": "html",
     "javascript": "javascriptreact"
   },
   "css.validate": false,
