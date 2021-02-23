@@ -2,10 +2,9 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim' if fn.empty(fn.glob(install_path)) > 0 then
-  if vim.fn.input("Download Packer? (y for yes) ") == "y" then
-    execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-    execute 'packadd packer.nvim'
-  end
+  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  execute 'packadd packer.nvim'
+  execute 'PackerInstall'
 end
 
 
@@ -49,7 +48,7 @@ return packer.startup(function()
   }
 
   -- Git
-  use 'tpope/vim-fugitive'
+  -- use 'tpope/vim-fugitive'
   use {'lewis6991/gitsigns.nvim',         config = function() require('plugin.gitsigns') end }
 
   -- Lsp
@@ -59,6 +58,7 @@ return packer.startup(function()
 
   -- Text manipulation
   -- use { 'prettier/vim-prettier', run = 'yarn install' }
+  use {'windwp/nvim-autopairs',           config = function() require('nvim-autopairs').setup() end }
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
 
