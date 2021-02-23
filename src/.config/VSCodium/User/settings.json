@@ -2,7 +2,7 @@
   "breadcrumbs.enabled": false,
   "editor.cursorBlinking": "solid",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontFamily": "Cascadia Code PL",
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "editor.formatOnSave": false,
@@ -24,13 +24,21 @@
   "terminal.integrated.shell.linux": "/bin/zsh",
   "window.menuBarVisibility": "hidden",
   "window.zoomLevel": 1,
-  "workbench.activityBar.visible": false,
   "workbench.editor.showTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.automaticKeyboardNavigation": false,
   "workbench.startupEditor": "newUntitledFile",
   "zenMode.hideLineNumbers": false,
   "zenMode.hideTabs": false,
+
+  // Plugins
+  "oneDarkPro.bold": true,
+  "oneDarkPro.editorTheme": "oneDarkProFlat",
+  "oneDarkPro.vivid": true,
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode.vim",
+
+  // Colorscheme Configuration
   "workbench.colorCustomizations": {
     "[Default Dark+]": {
       "statusBar.background": "#2E2E2E",
@@ -40,8 +48,8 @@
       "activityBar.background": "#2E2E2E",
       "tab.inactiveBackground": "#2E2E2E"
     },
+
     // Terminal colorscheme
-    // "terminal.background": "#1E1E1E", // Background is optional
     "terminal.foreground": "#D8DEE9",
     "terminal.ansiBlack": "#3B4252",
     "terminal.ansiBrightBlack": "#3B4252",
@@ -59,12 +67,5 @@
     "terminal.ansiBrightCyan": "#29B8DB",
     "terminal.ansiWhite": "#abb2bf",
     "terminal.ansiBrightWhite": "#ECEFF4"
-  },
-  "oneDarkPro.bold": true,
-  "oneDarkPro.editorTheme": "oneDarkProFlat",
-  "oneDarkPro.vivid": true,
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/lua/vscode.vim",
-  "oneDarkPro.markdownStyle": false,
-  "workbench.colorTheme": "Default Dark+"
+  }
 }
