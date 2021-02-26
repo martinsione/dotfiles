@@ -1,4 +1,4 @@
-let mapleader= ","
+let mapleader= " "
 
 " Tab completion
 inoremap <silent> <expr><TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -56,19 +56,22 @@ nnoremap <silent><space>rn  <cmd>lua vim.lsp.buf.rename()<CR>
 " Telescope
 nnoremap <silent> <space>p    <Nop>
 nnoremap <silent> <C-p>     	<cmd>lua require('telescope.builtin').find_files()<CR>
-nnoremap <silent> <space>pg 	<cmd>lua require('telescope.builtin').git_files()<CR>
 nnoremap <silent> <space>pr 	<cmd>lua require('telescope.builtin').oldfiles()<CR>
 nnoremap <silent> <space>pw 	<cmd>lua require('telescope.builtin').live_grep()<CR>
 nnoremap <silent> <space>pb 	<cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <silent> <space>ph 	<cmd>lua require('telescope.builtin').help_tags()<CR>
+" Git related
+nnoremap <silent> <space>gf 	<cmd>lua require('telescope.builtin').git_files()<CR>
+nnoremap <silent> <space>gs   <cmd>lua require('telescope.builtin').git_status()<CR>
+nnoremap <silent> <space>gc   <cmd>lua require('telescope.builtin').git_commits()<CR>
 " Custom Telescope functions
 nnoremap <silent> <space>pd 	<cmd>lua require('plugin.telescope.custom').edit_dotfiles()<CR>
 
 " Tree
-nnoremap <silent> <C-n> <cmd>NvimTreeToggle<CR>
+nnoremap <silent> <C-n>     <cmd>NvimTreeToggle<CR>
 
 " Goyo
-nnoremap <silent> z <cmd>Goyo<CR>
+nnoremap <silent> <space>z  <cmd>Goyo<CR>
 
 " Floaterm
 nnoremap <silent> <C-T>     <cmd>FloatermToggle<CR>
