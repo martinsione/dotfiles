@@ -18,22 +18,17 @@ return packer.startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   use {'nvim-treesitter/nvim-treesitter', config = function() require('plugin.treesitter') end }
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
   use 'tweekmonster/startuptime.vim'
   use 'neoclide/coc.nvim'
 
   -- Appearance
   use 'junegunn/goyo.vim'
   use {'kyazdani42/nvim-web-devicons',    config = function() require'nvim-web-devicons'.setup{} end}
-  use 'tjdevries/cyclist.vim'
+  -- use 'tjdevries/cyclist.vim'
 
   -- Colors
-  use 'Th3Whit3Wolf/onebuddy'
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'glepnir/zephyr-nvim'
-  use 'tjdevries/colorbuddy.nvim'
-  use 'tjdevries/gruvbuddy.nvim'
   use {'norcalli/nvim-colorizer.lua',     config = function() require('plugin.colorizer') end }
 
   -- Exploring files
@@ -42,6 +37,8 @@ return packer.startup(function()
     'nvim-telescope/telescope.nvim',
     config = function() require('plugin.telescope') end,
     requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-lua/popup.nvim',
       'nvim-telescope/telescope-fzy-native.nvim',
       'nvim-telescope/telescope-fzf-writer.nvim',
     },
@@ -67,7 +64,6 @@ return packer.startup(function()
   use {'glepnir/galaxyline.nvim',         config = function() require('plugin.galaxyline') end }
 
   -- Terminal
-  use {'norcalli/nvim-terminal.lua',      config = function() require'terminal'.setup() end }
   use 'voldikss/vim-floaterm'
 
 end)
