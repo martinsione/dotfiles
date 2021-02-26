@@ -17,6 +17,7 @@ require('telescope').setup {
     prompt_prefix = '😎 ',
     prompt_position = 'bottom',
     sorting_strategy = 'descending',
+    file_sorter = require('telescope.sorters').get_fzy_sorter,
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
     qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
