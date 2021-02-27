@@ -73,7 +73,5 @@ nnoremap <silent> <C-n>     <cmd>NvimTreeToggle<CR>
 " Goyo
 nnoremap <silent> <space>z  <cmd>Goyo<CR>
 
-" Floaterm
-nnoremap <silent> <C-T>     <cmd>FloatermToggle<CR>
-nnoremap <silent> <space>ts <cmd>FloatermNew --wintype=normal --height=10<CR>
-nnoremap <silent> <space>tr <cmd>FloatermNew ranger<CR>
+nnoremap <silent> <C-t> :call TerminalToggle()<CR>
+tnoremap <silent> <C-t> <C-\><C-N>:call TerminalToggle()<CR>
