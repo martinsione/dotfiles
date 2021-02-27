@@ -18,6 +18,7 @@ return packer.startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   use {'nvim-treesitter/nvim-treesitter', config = function() require('plugin.treesitter') end }
+  use 'ThePrimeagen/vim-be-good'
   use 'tweekmonster/startuptime.vim'
   use 'neoclide/coc.nvim'
 
@@ -62,8 +63,5 @@ return packer.startup(function()
   --
   use {'akinsho/nvim-bufferline.lua',     config = function() require'bufferline'.setup{options = {always_show_bufferline = false}} end }
   use {'glepnir/galaxyline.nvim',         config = function() require('plugin.galaxyline') end }
-
-  -- Terminal
-  use 'voldikss/vim-floaterm'
 
 end)
