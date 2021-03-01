@@ -13,21 +13,21 @@ colors:
     foreground: "#D8DEE9"
   normal:
     black:   '#3B4252'
-    red:     '#BF616A'
-    green:   '#A3BE8C'
-    yellow:  '#EBCB8B'
-    blue:    '#81A1C1'
-    magenta: '#B48EAD'
-    cyan:    '#88C0D0'
-    white:   '#E5E9F0'
+    red:     '#D54646'
+    green:   '#23D18B'
+    yellow:  '#D7BA7D'
+    blue:    '#569CD6'
+    magenta: '#C586C0'
+    cyan:    '#29B8DB'
+    white:   '#ECEFF4'
   bright:
-    black:   '#4C566A'
-    red:     '#BF616A'
-    green:   '#A3BE8C'
-    yellow:  '#EBCB8B'
-    blue:    '#81A1C1'
-    magenta: '#B48EAD'
-    cyan:    '#8FBCBB'
+    black:   '#3B4252'
+    red:     '#D54646'
+    green:   '#23D18B'
+    yellow:  '#D7BA7D'
+    blue:    '#569CD6'
+    magenta: '#C586C0'
+    cyan:    '#29B8DB'
     white:   '#ECEFF4'
 
 # background_opacity: 0.95
@@ -59,7 +59,7 @@ font:
 window:
   padding:
     x: 2
-    y: 2
+    y: 0
 
 scrolling:
   history: 10000
