@@ -1,2 +1,35 @@
-Sxiv.background: #000000
-Sxiv.foreground: #eaeaeb
+*.foreground:   #D8DEE9
+*.background:   #282C34
+*.cursorColor:  #d8dee9
+
+! black
+*.color0:       #3B4252
+*.color8:       #3B4252
+
+! red
+*.color1:       #D54646
+*.color9:       #D54646
+
+! green
+*.color2:       #23D18B
+*.color10:      #23D18B
+
+! yellow
+*.color3:       #D7BA7D
+*.color11:      #D7BA7D
+
+! blue
+*.color4:       #569CD6
+*.color12:      #569CD6
+
+! magenta
+*.color5:       #C586C0
+*.color13:      #C586C0
+
+! cyan
+*.color6:       #29B8DB
+*.color14:      #29B8DB
+
+! white
+*.color7:       #ECEFF4
+*.color15:      #ECEFF4
