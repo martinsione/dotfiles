@@ -1,15 +1,15 @@
--- Auto install packer if missing: {{{
-local execute = vim.api.nvim_command
+
+--{{{ Auto install packer if missing:
+local execute = vim.api.nvim_command--{{{}}}
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim' if fn.empty(fn.glob(install_path)) > 0 then
+local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
   execute 'packadd packer.nvim'
-  execute 'PackerInstall'
 end
 
-
 vim.cmd[[au BufWritePost plugins.lua PackerCompile]] vim.cmd [[packadd packer.nvim]]
---- }}}
+--}}}
 
 local packer = require('packer')
 return packer.startup(function()
@@ -30,6 +30,7 @@ return packer.startup(function()
   -- Colors
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'glepnir/zephyr-nvim'
+  use 'sainnhe/gruvbox-material'
   use {'norcalli/nvim-colorizer.lua',     config = function() require('plugin.colorizer') end }
 
   -- Exploring files

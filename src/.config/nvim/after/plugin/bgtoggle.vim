@@ -8,4 +8,3 @@ function! Toggle_transparent_background()
     let t:is_transparent = 0
   endif
 endfunction
-nnoremap <silent> <space>tt :call Toggle_transparent_background()<CR>

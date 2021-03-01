@@ -1,6 +1,7 @@
 require('main.globals')
 local opt = vim.opt
 
+vim.g.mapleader   = " "
 -- General
 opt.clipboard     = 'unnamedplus'
 opt.hidden        = true
@@ -15,6 +16,7 @@ opt.updatetime    = 100
 -- Appearance
 opt.cmdheight     = 1
 opt.cursorline    = true
+opt.foldmethod    = 'marker'
 opt.nu            = true
 opt.rnu           = true
 opt.showmode      = false
