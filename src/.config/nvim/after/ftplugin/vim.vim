@@ -1,1 +1,0 @@
-au BufWritePost *.vim :source %
