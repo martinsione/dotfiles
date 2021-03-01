@@ -1,0 +1,1 @@
+setlocal scrolloff=0

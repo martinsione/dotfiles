@@ -1,3 +1,5 @@
+inoremap <C-c> <esc>
+
 " Tab completion
 inoremap <silent> <expr><TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
