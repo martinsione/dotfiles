@@ -1,16 +1,19 @@
 local lspconfig = require('lspconfig')
-local on_attach = require'compe'.on_attach
+local completion = require'compe'.on_attach
 vim.o.completeopt = "menuone,noinsert,noselect"
 
 lspconfig.tsserver.setup{
   root_dir = function() return vim.loop.cwd() end,
-  on_attach=on_attach
+  on_attach = completion
 }
 
-lspconfig.cssls.setup{ on_attach = on_attach }
-lspconfig.html.setup{ on_attach = on_attach }
-lspconfig.jsonls.setup{ on_attach = on_attach }
-lspconfig.vimls.setup({ on_attach = on_attach })
+local servers = {
+  'bashls', 'cssls', 'html', 'vimls'
+}
+
+for _,server in ipairs(servers) do
+  lspconfig[server].setup{ on_attach = completion }
+end
 
 -- Completion setup
 require'compe'.setup {
@@ -42,3 +45,4 @@ require'compe'.setup {
 }
 
 vim.cmd [[inoremap <silent><expr> <CR>      compe#confirm('<CR>')]]
+

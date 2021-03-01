@@ -15,7 +15,6 @@ function! TerminalOpen()
     buffer Terminal\ 1
     let s:terminal_window = win_getid()
   endif
-
   wincmd J
   call nvim_win_set_height(0, 14)
 endfunction
