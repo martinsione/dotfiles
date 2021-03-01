@@ -63,5 +63,6 @@
     "terminal.ansiBrightCyan": "#29B8DB",
     "terminal.ansiWhite": "#abb2bf",
     "terminal.ansiBrightWhite": "#ECEFF4"
-  }
+  },
+  "workbench.activityBar.visible": false
 }
