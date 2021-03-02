@@ -3,6 +3,7 @@ alias r="$FILE"
 alias sr="sudo $FILE"
 alias v="$EDITOR"
 alias sv="sudo $EDITOR"
+alias code="$GEDITOR"
 
 # Color
 alias diff="diff --color=auto"
