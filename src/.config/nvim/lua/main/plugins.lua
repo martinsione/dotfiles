@@ -1,17 +1,19 @@
 
 --{{{ Auto install packer:
-local execute = vim.api.nvim_command--{{{}}}
-local fn = vim.fn
+ local execute = vim.api.nvim_command
+ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
   execute 'packadd packer.nvim'
 end
-
-vim.cmd[[au BufWritePost plugins.lua PackerCompile]] vim.cmd [[packadd packer.nvim]]
 --}}}
 
+execute 'au BufWritePost plugins.lua PackerCompile'
+execute 'packadd packer.nvim'
+
 local packer = require('packer')
+
 return packer.startup(function()
   local use = use
 
@@ -83,8 +85,13 @@ return packer.startup(function()
 --}}}
 
 --{{{ Text manipulation
-  -- use { 'prettier/vim-prettier', run = 'yarn install' }
-  -- use {'windwp/nvim-autopairs',           config = function() require('nvim-autopairs').setup() end }
+  use {
+    'prettier/vim-prettier',
+    run = 'yarn install',
+    ft = { 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html' }
+  }
+
+  use {'windwp/nvim-autopairs',           config = function() require('nvim-autopairs').setup() end }
   use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
 --}}}

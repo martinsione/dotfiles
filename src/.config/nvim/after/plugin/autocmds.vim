@@ -9,4 +9,5 @@ augroup filetype_cmds
   au!
   au BufWritePost *.lua :luafile %
   au BufWritePost *.vim :source %
+  au BufWritePost *.js :Prettier
 augroup end

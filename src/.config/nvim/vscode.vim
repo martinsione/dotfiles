@@ -9,6 +9,8 @@ set clipboard=unnamedplus
 "-------------------- Vim mappings -------------------------------------
 " Leader key
 let mapleader=" "
+inoremap <C-c> <Esc>
+nnoremap <C-c> <Esc>
 nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
 
 " Indent selected code with < / >
