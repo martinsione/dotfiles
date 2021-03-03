@@ -1,5 +1,3 @@
-tnoremap <Esc> <Nop>
-
 " Window Navigation
 tnoremap <C-w>h <C-\><C-N><C-w>h
 tnoremap <C-w>j <C-\><C-N><C-w>j

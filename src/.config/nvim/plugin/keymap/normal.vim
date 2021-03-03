@@ -32,13 +32,13 @@ nnoremap <space>=    <C-w>=
 " ---------------------------------------------------------------------"
 
 " Lsp
-nnoremap <silent>K            <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent>K            <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
 nnoremap <silent>gd           <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent>gi           <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent>gr           <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <space>ca   <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <space>gh   <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <space>rn   <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <space>rn   <cmd>lua require('lspsaga.rename').rename()<CR>
 
 " Telescope
 nnoremap <silent> <space>p    <Nop>

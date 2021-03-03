@@ -43,7 +43,6 @@ opt.tabstop       = 2
 
 
 -- Messing around
-opt.rtp           = opt.rtp + "$XDG_CONFIG_HOME/nvim/after/keymap/**"
 opt.joinspaces    = false
 opt.inccommand    = 'split'
 opt.shortmess     = 'filnxtToOFAcIW'
