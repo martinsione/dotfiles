@@ -7,8 +7,13 @@ lspconfig.tsserver.setup{
   on_attach = completion
 }
 
+lspconfig.bashls.setup{
+  filetypes = {"sh", "zsh", "bash"}
+}
+
+lspconfig.jsonls.setup{on_attach = completion}
 local servers = {
-  'bashls', 'cssls', 'html', 'vimls'
+  'cssls', 'jsonls', 'html', 'vimls'
 }
 
 for _,server in ipairs(servers) do

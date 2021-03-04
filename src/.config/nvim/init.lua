@@ -1,4 +1,4 @@
 require('main.plugins')
 require('main.options')
-require('plugin.lsp')
+require('main.keymaps')
 vim.cmd[[colo onedark]]
