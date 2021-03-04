@@ -37,7 +37,7 @@ return packer.startup(function()
   --}}}
 
   --{{{ Exploring files
-  use 'kyazdani42/nvim-tree.lua'
+  use {'kyazdani42/nvim-tree.lua',        config = function() require('plugin.nvim_tree') end }
   use {
     'nvim-telescope/telescope.nvim',
     config = function() require('plugin.telescope') end,
@@ -56,7 +56,7 @@ return packer.startup(function()
   ---}}}
 
   --{{{ Lsp
-  use 'neovim/nvim-lspconfig'
+  use {'neovim/nvim-lspconfig',           config = function () require('plugin.lsp') end }
   use 'hrsh7th/nvim-compe'
 
   use {

@@ -1,7 +1,6 @@
 require('main.utils')
 local opt = vim.opt
 
-vim.g.mapleader   = " "
 -- General
 opt.clipboard     = 'unnamedplus'
 opt.hidden        = true

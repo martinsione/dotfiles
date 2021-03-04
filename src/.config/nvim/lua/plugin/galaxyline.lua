@@ -1,4 +1,5 @@
 local gl = require('galaxyline')
+local colors = require('galaxyline.theme').default
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
