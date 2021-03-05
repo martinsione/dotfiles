@@ -1,3 +1,9 @@
+if not packer_plugins['plenary.nvim'].loaded then
+  vim.cmd [[packadd plenary.nvim]]
+  vim.cmd [[packadd popup.nvim]]
+  vim.cmd [[packadd telescope-fzy-native.nvim]]
+end
+
 local actions = require('telescope.actions')
 
 require('telescope').setup {
@@ -79,5 +85,12 @@ function M.edit_plugins()
 end
 --}}}
 
+--{{{ Search all files
+function M.search_all_files()
+  require('telescope.builtin').find_files {
+    find_command = { 'rg', '--no-ignore', '--files', },
+  }
+end
+--}}}
 
 return M
