@@ -22,6 +22,7 @@ return packer.startup(function()
   use 'ThePrimeagen/vim-be-good'
   use 'tweekmonster/startuptime.vim'
   use 'tpope/vim-eunuch'
+  use 'itchyny/vim-cursorword'
 
   --{{{ Appearance
   use 'junegunn/goyo.vim'
@@ -30,9 +31,9 @@ return packer.startup(function()
   --}}}
 
   --{{{ Colors
-  use 'christianchiarulli/nvcode-color-schemes.vim'
+  -- use {'npxbr/gruvbox.nvim', requires = {"rkt'jmp/lush.nvim"}}
+  use 'ChristianChiarulli/nvcode-color-schemes.vim'
   use 'glepnir/zephyr-nvim'
-  use 'sainnhe/gruvbox-material'
   use {'norcalli/nvim-colorizer.lua',     config = function() require('plugin.colorizer') end }
   --}}}
 
@@ -81,7 +82,11 @@ return packer.startup(function()
   --}}}
 
 --{{{ Syntax
-  use {'nvim-treesitter/nvim-treesitter', config = function() require'nvim-treesitter.configs'.setup { highlight = { enable = true } } end }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require'nvim-treesitter.configs'.setup { highlight = { enable = true }, ensure_installed = 'all' }
+    end }
 --}}}
 
 --{{{ Text manipulation

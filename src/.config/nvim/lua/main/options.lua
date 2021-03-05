@@ -5,7 +5,6 @@ local opt = vim.opt
 opt.clipboard     = 'unnamedplus'
 opt.hidden        = true
 opt.mouse         = 'a'
-opt.pumheight     = 10
 opt.scrolloff     = 8
 opt.splitbelow    = true
 opt.splitright    = true
@@ -23,6 +22,10 @@ opt.signcolumn    = 'yes'
 opt.termguicolors = true
 opt.wrap          = false
 
+-- Completion
+opt.completeopt   = "menuone,noinsert,noselect"
+opt.pumheight     = 10
+
 -- Search
 opt.ignorecase    = true
 opt.smartcase     = true
@@ -34,7 +37,7 @@ opt.backup        = false
 opt.writebackup   = false
 opt.swapfile      = false
 
--- -- Tab
+-- Tabs
 opt.expandtab     = true
 opt.shiftwidth    = 2
 opt.softtabstop   = 0
@@ -61,23 +64,3 @@ opt.formatoptions = opt.formatoptions
                     + 'n'     -- Indent past the formatlistpat, not underneath it.
                     + 'j'     -- Auto-remove comments when combining lines ( <C-J> )
                     - '2'     -- I'm not in gradeschool anymore
-
--- Disabling some default plugins
-vim.g.loaded_gzip              = 1
-vim.g.loaded_tar               = 1
-vim.g.loaded_tarPlugin         = 1
-vim.g.loaded_zip               = 1
-vim.g.loaded_zipPlugin         = 1
-vim.g.loaded_getscript         = 1
-vim.g.loaded_getscriptPlugin   = 1
-vim.g.loaded_vimball           = 1
-vim.g.loaded_vimballPlugin     = 1
-vim.g.loaded_matchit           = 1
-vim.g.loaded_matchparen        = 1
-vim.g.loaded_2html_plugin      = 1
-vim.g.loaded_logiPat           = 1
-vim.g.loaded_rrhelper          = 1
-vim.g.loaded_netrw             = 1
-vim.g.loaded_netrwPlugin       = 1
-vim.g.loaded_netrwSettings     = 1
-vim.g.loaded_netrwFileHandlers = 1

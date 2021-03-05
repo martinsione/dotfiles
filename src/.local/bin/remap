@@ -5,4 +5,4 @@ xset r rate 300 50
 # Set CapsLock to Control
 setxkbmap -option ctrl:nocaps
 # Set Control to Escape
-xmodmap -e 'keycode 66 = Escape'
+# xmodmap -e 'keycode 66 = Escape'

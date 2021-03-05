@@ -1,7 +1,6 @@
 " General
-set rtp=$VIMRC
-set nohlsearch
-set timeoutlen=500
+set hlsearch
+set timeoutlen=1000
 set ignorecase
 set smartcase
 set clipboard=unnamedplus
@@ -11,7 +10,7 @@ set clipboard=unnamedplus
 let mapleader=" "
 inoremap <C-c> <Esc>
 nnoremap <C-c> <Esc>
-nnoremap <M-CR> :let v:hlsearch=!v:hlsearch<CR>
+nnoremap <expr> <CR> {-> v:hlsearch ? ":nohl\<CR>" : "\<CR>"}()
 
 " Indent selected code with < / >
 vnoremap < <gv
@@ -29,11 +28,11 @@ xnoremap <silent> <C-h> :call VSCodeNotify('workbench.action.navigateLeft')<CR>
 nnoremap <silent> <C-l> :call VSCodeNotify('workbench.action.navigateRight')<CR>
 xnoremap <silent> <C-l> :call VSCodeNotify('workbench.action.navigateRight')<CR>
 
-nnoremap <silent> <S-k>      <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
-nnoremap <silent> <space> gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
-nnoremap <silent> <space> gd <cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
-nnoremap <silent> <space> qf <cmd>call VSCodeNotify('editor.action.quickFix')<CR>
-nnoremap <silent> <C-w>gd <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+nnoremap <silent> K           <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
+nnoremap <silent> <space> gr  <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
+nnoremap <silent> <space> gd  <cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
+nnoremap <silent> <space> qf  <cmd>call VSCodeNotify('editor.action.quickFix')<CR>
+nnoremap <silent> <C-w>gd     <Cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
 
 "-------------------- Buffers ------------------------------------------
 " Close active buffer
