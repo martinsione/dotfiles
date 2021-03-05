@@ -1,120 +1,135 @@
 
 -- Helper Function {{{
+-- Must replace single \ for \\ otherwise it is taken as an escape character
 local function map(mode, lhs, rhs, opts)
     local options = {noremap = true, silent = true}
     if opts then options = vim.tbl_extend('force', options, opts) end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end -- Must replce single \ for \\ otherwise it is taken as a escape character
+end
+
+local function nmap(lhs, rhs, opts)
+  return map('n', lhs, rhs, opts)
+end
+
+local function imap(lhs, rhs, opts)
+  return map('i', lhs, rhs, opts)
+end
+
+local function xmap(lhs, rhs, opts)
+  return map('x', lhs, rhs, opts)
+end
+
+local function tmap(lhs, rhs, opts)
+  return map('t', lhs, rhs, opts)
+end
+
+local function cmap(lhs, rhs)
+  -- { silent } need to be false to work
+  return map('c', lhs, rhs, { silent = false })
+end
 -- }}}
 
--- Leader
-vim.g.mapleader   = " "
+vim.g.mapleader = ' '
+nmap('<leader>',  '')
+xmap('<leader>',  '')
 
--- Normal: {{{
 
-map('n', '<C-s>',       '<cmd>w<CR>')
-map('n', '<CR>',        '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true})
-map('n', 'Q',           '<Nop>')
-map('n', 'Y',           'y$')
-
+-- Normal
+nmap('<C-s>',       '<cmd>w<CR>')
+nmap('<CR>',        '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true})
+nmap('Q',           '<Nop>')
+nmap('Y',           'y$')
+-- Stands for yank inside line
+nmap('yil',         '0yg_')
 -- Buffers
-map('n',  '<Tab>',      '<cmd>bnext<CR>')
-map('n',  '<S-Tab>',    '<cmd>bprevious<CR>')
-map('n',  '<space>bd',  '<cmd>bd<CR>')
-
+nmap('<Tab>',       '<cmd>bnext<CR>')
+nmap('<S-Tab>',     '<cmd>bprevious<CR>')
+nmap('<space>bd',   '<cmd>bd<CR>')
 -- Window Navigation
-map('n',  '<C-h>',      '<C-\\><C-N><C-w>h')
-map('n',  '<C-j>',      '<C-\\><C-N><C-w>j')
-map('n',  '<C-k>',      '<C-\\><C-N><C-w>k')
-map('n',  '<C-l>',      '<C-\\><C-N><C-w>l')
-
+nmap('<C-h>',       '<C-\\><C-N><C-w>h')
+nmap('<C-j>',       '<C-\\><C-N><C-w>j')
+nmap('<C-k>',       '<C-\\><C-N><C-w>k')
+nmap('<C-l>',       '<C-\\><C-N><C-w>l')
 -- Window Resizing
-map('n',  '<Up>',       '<C-w>-')
-map('n',  '<Down>',     '<C-w>+')
-map('n',  '<Left>',     '<C-w><')
-map('n',  '<Right>',    '<C-w>>')
-map('n',  '<space>=',   '<C-w>=')
-
+nmap('<Up>',        '<C-w>-')
+nmap('<Down>',      '<C-w>+')
+nmap('<Left>',      '<C-w><')
+nmap('<Right>',     '<C-w>>')
+nmap('<space>=',    '<C-w>=')
 -- Lsp
-map('n',  'K',          '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
-map('n',  'gd',         '<cmd>lua vim.lsp.buf.definition()<CR>')
-map('n',  'gi',         '<cmd>lua vim.lsp.buf.implementation()<CR>')
-map('n',  'gr',         '<cmd>lua vim.lsp.buf.references()<CR>')
-map('n',  '<space>ca',  '<cmd>lua vim.lsp.buf.code_action()<CR>')
-map('n',  '<space>gh',  '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-map('n',  '<space>rn',  '<cmd>lua require("lspsaga.rename").rename()<CR>')
-
+nmap('K',           '<cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
+nmap('gd',          '<cmd>lua vim.lsp.buf.definition()<CR>')
+nmap('gi',          '<cmd>lua vim.lsp.buf.implementation()<CR>')
+nmap('gr',          '<cmd>lua vim.lsp.buf.references()<CR>')
+nmap('<space>ca',   '<cmd>lua vim.lsp.buf.code_action()<CR>')
+nmap('<space>gh',   '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+nmap('<space>rn',   '<cmd>lua require("lspsaga.rename").rename()<CR>')
 -- Telescope
-map('n',  '<space>p',   '<Nop>')
-map('n',  '<C-p>',     	'<cmd>lua require("telescope.builtin").find_files()<CR>')
-map('n',  '<space>pr',	'<cmd>lua require("telescope.builtin").oldfiles()<CR>')
-map('n',  '<space>pw',	'<cmd>lua require("telescope.builtin").live_grep()<CR>')
-map('n',  '<space>pb',	'<cmd>lua require("telescope.builtin").buffers()<CR>')
-map('n',  '<space>ph',	'<cmd>lua require("telescope.builtin").help_tags()<CR>')
-map('n',  '<space>gf',	'<cmd>lua require("telescope.builtin").git_files()<CR>')
-map('n',  '<space>gs',  '<cmd>lua require("telescope.builtin").git_status()<CR>')
-map('n',  '<space>gc',  '<cmd>lua require("telescope.builtin").git_commits()<CR>')
-map('n',  '<space>pd',	'<cmd>lua require("plugin.telescope").edit_dotfiles()<CR>')
-
+nmap('<space>p',    '<Nop>')
+nmap('<C-p>',     	'<cmd>lua require("telescope.builtin").find_files()<CR>')
+nmap('<space>pr',	  '<cmd>lua require("telescope.builtin").oldfiles()<CR>')
+nmap('<space>pw',	  '<cmd>lua require("telescope.builtin").live_grep()<CR>')
+nmap('<space>pb',	  '<cmd>lua require("telescope.builtin").buffers()<CR>')
+nmap('<space>ph',	  '<cmd>lua require("telescope.builtin").help_tags()<CR>')
+nmap('<space>gf',	  '<cmd>lua require("telescope.builtin").git_files()<CR>')
+nmap('<space>gs',   '<cmd>lua require("telescope.builtin").git_status()<CR>')
+nmap('<space>gc',   '<cmd>lua require("telescope.builtin").git_commits()<CR>')
+nmap('<space>pd',	  '<cmd>lua require("plugin.telescope").edit_dotfiles()<CR>')
+nmap('<space>pp',	  '<cmd>lua require("plugin.telescope").edit_plugins()<CR>')
 -- Tree
-map('n',  '<C-n>',      '<cmd>NvimTreeToggle<CR>')
-map('n',  '<C-t>',      '<cmd>call TerminalToggle()<CR>')
-map('n',  '<space>tt',  '<cmd>call Toggle_transparent_background()<CR>')
--- }}}
+nmap('<C-n>',       '<cmd>NvimTreeToggle<CR>')
+-- Custom functions
+nmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
+nmap('<space>tt',   '<cmd>call Toggle_transparent_background()<CR>')
 
--- Insert: {{{
 
-map('i', '<C-c>', '<esc>')
-
+-- Insert
+imap('<C-c>',       '<esc>')
 -- Tab completion
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
-
+imap('<S-Tab>',     'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
+imap('<Tab>',       'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
+imap('<CR>',        'compe#confirm("<CR>")', {expr = true})
 -- Jump up/down a line
-map('i', '<S-CR>', '<C-O>o')
-map('i', '<C-CR>', '<C-O>O')
-
+imap('<S-CR>',      '<C-O>o')
+imap('<C-CR>',      '<C-O>O')
 -- Window Navigation
-map('i',  '<C-h>',      '<C-\\><C-N><C-w>h')
-map('i',  '<C-j>',      '<C-\\><C-N><C-w>j')
-map('i',  '<C-k>',      '<C-\\><C-N><C-w>k')
-map('i',  '<C-l>',      '<C-\\><C-N><C-w>l')
--- }}}
+imap('<C-h>',       '<C-\\><C-N><C-w>h')
+imap('<C-j>',       '<C-\\><C-N><C-w>j')
+imap('<C-k>',       '<C-\\><C-N><C-w>k')
+imap('<C-l>',       '<C-\\><C-N><C-w>l')
 
--- Visual: {{{
 
-map('x',  '<',          '<gv')
-map('x',  '>',          '>gv')
-map('x',  'K',          ":move '<-2<CR>gv-gv")
-map('x',  'J',          ":move '>+1<CR>gv-gv")
--- }}}
+-- Visual
+xmap('<',           '<gv')
+xmap('>',           '>gv')
+xmap('K',           ":move '<-2<CR>gv-gv")
+xmap('J',           ":move '>+1<CR>gv-gv")
 
--- Terminal: {{{
 
-map('t',  '<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
-
+-- Togle term
+tmap('<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
 -- Window Navigation
-map('t',  '<C-w>h',      '<C-\\><C-N><C-w>h')
-map('t',  '<C-w>j',      '<C-\\><C-N><C-w>j')
-map('t',  '<C-w>k',      '<C-\\><C-N><C-w>k')
-map('t',  '<C-w>l',      '<C-\\><C-N><C-w>l')
-map('t',  '<C-w><C-h>',  '<C-\\><C-N><C-w>h')
-map('t',  '<C-w><C-j>',  '<C-\\><C-N><C-w>j')
-map('t',  '<C-w><C-k>',  '<C-\\><C-N><C-w>k')
-map('t',  '<C-w><C-l>',  '<C-\\><C-N><C-w>l')
--- }}}
+tmap('<C-w>h',      '<C-\\><C-N><C-w>h')
+tmap('<C-w>j',      '<C-\\><C-N><C-w>j')
+tmap('<C-w>k',      '<C-\\><C-N><C-w>k')
+tmap('<C-w>l',      '<C-\\><C-N><C-w>l')
+tmap('<C-w><C-h>',  '<C-\\><C-N><C-w>h')
+tmap('<C-w><C-j>',  '<C-\\><C-N><C-w>j')
+tmap('<C-w><C-k>',  '<C-\\><C-N><C-w>k')
+tmap('<C-w><C-l>',  '<C-\\><C-N><C-w>l')
 
--- Command: {{{
 
+-- Command
+cmap('<C-f>',       '')
+cmap('<C-a>',       '<Home>')
+cmap('<C-e>',       '<End>')
+cmap('<C-h>',       '<Left>')
+cmap('<C-j>',       '<Down>')
+cmap('<C-k>',       '<Up>')
+cmap('<C-l>',       '<Right>')
+cmap('<C-d>',       '<Del>')
 -- Expand current file
-vim.cmd[[cnoremap %P <C-R>=expand('%:p')<CR>]]
-
-vim.cmd[[cnoremap <C-a> <Home>]]
-vim.cmd[[cnoremap <C-e> <End>]]
-vim.cmd[[cnoremap <C-h> <Left>]]
-vim.cmd[[cnoremap <C-l> <Right>]]
-vim.cmd[[cnoremap <C-d> <Del>]]
+cmap('%P',          '<C-R>=expand("%:p")<CR>')
 
 vim.cmd[[command! PackerDelete :silent !rm  -rf ~/.local/share/nvim/site/pack/packer <CR>]]
 vim.cmd[[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
--- }}}
