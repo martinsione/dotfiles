@@ -11,7 +11,7 @@ require('telescope').setup {
     layout_strategy = 'horizontal',
     layout_defaults = {
       horizontal = {
-        width_padding = 0.15,
+        width_padding = 0.1,
         height_padding = 0.1,
         preview_width = 0.6,
       },
@@ -21,7 +21,6 @@ require('telescope').setup {
         preview_height = 0.6,
       },
     },
-    -- preview_cutoff = 120,
     prompt_prefix = '😎 ',
     prompt_position = 'bottom',
     sorting_strategy = 'descending',

@@ -17,6 +17,9 @@ function! TerminalOpen()
   endif
   wincmd J
   call nvim_win_set_height(0, 14)
+  set winfixheight
+  hi Background guibg=#282828
+  setlocal winhighlight=Normal:Background
 endfunction
 
 function! TerminalClose()
@@ -30,6 +33,6 @@ function! TerminalToggle()
     call TerminalClose()
   else
     call TerminalOpen()
-    silent au BufEnter <buffer> startinsert!
+    norm i
   endif
 endfunction

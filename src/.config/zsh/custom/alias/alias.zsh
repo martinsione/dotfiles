@@ -31,3 +31,5 @@ alias bld="make && sudo make clean install"
 alias cl="clear"
 alias ka="killall"
 alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
+
+alias vs="nvim --startuptime now.log && nvim now.log && rm -rf now.log"
