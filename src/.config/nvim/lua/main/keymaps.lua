@@ -38,6 +38,7 @@ xmap('<leader>',  '')
 nmap('<C-s>',       '<cmd>w<CR>')
 nmap('<CR>',        '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true})
 nmap('Q',           '<Nop>')
+nmap('q:',          '<Nop>')
 nmap('Y',           'y$')
 -- Stands for yank inside line
 nmap('yil',         '0yg_')
