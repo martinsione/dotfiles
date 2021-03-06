@@ -1,3 +1,4 @@
+
 local disable_builtin_plugins = function()
   vim.g.loaded_gzip              = 1
   vim.g.loaded_tar               = 1
@@ -19,13 +20,10 @@ local disable_builtin_plugins = function()
   vim.g.loaded_netrwFileHandlers = 1
 end
 
-local load_core = function()
-  disable_builtin_plugins()
-
-  require('main.plugins')
-  require('main.options')
-  require('main.keymaps')
-  require('zephyr')
-end
-
-load_core()
+disable_builtin_plugins()
+require('core.globals.opt')
+require('core.globals.bind')
+require('core.plugins')
+require('core.options')
+require('core.keymaps')
+vim.cmd[[colo zephyr]]

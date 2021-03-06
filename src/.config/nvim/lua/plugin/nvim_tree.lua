@@ -22,3 +22,5 @@ vim.g.nvim_tree_icons = {
    untracked = "",
   },
 }
+
+nmap('<C-n>',     '<cmd>NvimTreeToggle<CR>')

@@ -1,5 +1,3 @@
-
---{{{ vim.opt
 --[[ To use a more declarative syntax, you could do something like this:
 
 local function set_opts(opts_table)
@@ -263,4 +261,3 @@ return {
   opt = vim.opt,
   opt_mt = opt_mt
 }
---}}}

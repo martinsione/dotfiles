@@ -15,3 +15,21 @@ augroup filetype_cmds
   au BufWritePost *.lua :luafile %
   au BufWritePost *.vim :source %
 augroup end
+
+" " Background colors for active vs inactive windows
+" hi ActiveWindow guibg=#17252c
+" hi InactiveWindow guibg=#0D1B22
+
+" " Call method on window enter
+" augroup WindowManagement
+"   autocmd!
+"   autocmd BufLeave * TSBufToggle highlight
+"   autocmd BufLeave * set syntax=off
+"   autocmd BufEnter * set syntax=on
+"   autocmd WinEnter * call Handle_Win_Enter()
+" augroup END
+
+" " Change highlight group of active/inactive windows
+" function! Handle_Win_Enter()
+"   setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+" endfunction
