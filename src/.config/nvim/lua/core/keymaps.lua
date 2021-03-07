@@ -74,19 +74,18 @@ cmap('<C-d>',       '<Del>')
 -- Expand current file
 cmap('<C-t>',       '<C-R>=expand("%:p")<CR>')
 
+local home    = os.getenv("HOME")
 
 -- Telescope
 nmap('<C-p>',       '<cmd>Telescope find_files<CR>')
-nmap('<space>pr',	  '<cmd>Telescope oldfiles<CR>')
-nmap('<space>pw',	  '<cmd>Telescope live_grep<CR>')
-nmap('<space>pb',	  '<cmd>Telescope buffers<CR>')
-nmap('<space>ph',	  '<cmd>Telescope help_tags<CR>')
-nmap('<space>pg',	  '<cmd>Telescope git_files<CR>')
+nmap('<space>pr',   '<cmd>Telescope oldfiles<CR>')
+nmap('<space>pw',   '<cmd>Telescope live_grep<CR>')
+nmap('<space>pb',   '<cmd>Telescope buffers<CR>')
+nmap('<space>ph',   '<cmd>Telescope help_tags<CR>')
+nmap('<space>pg',   '<cmd>Telescope git_files<CR>')
 nmap('<space>ps',   '<cmd>Telescope git_status<CR>')
 nmap('<space>pc',   '<cmd>Telescope git_commits<CR>')
-nmap('<space>pd',	  '<cmd>lua require("plugin.telescope").edit_dotfiles()<CR>')
-nmap('<space>pa',	  '<cmd>lua require("plugin.telescope").search_all_files()<CR>')
-nmap('<space>pp',	  '<cmd>lua require("plugin.telescope").edit_plugins()<CR>')
+nmap('<space>pd',   '<cmd>Telescope dotfiles<CR>')
 -- Togle term
 nmap('<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
 tmap('<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
