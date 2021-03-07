@@ -2,6 +2,8 @@
 
 # Increase key speed via a rate change
 xset r rate 300 50
+# Set the variant (EN Intl Altgr dead keys)
+setxkbmap -variant altgr-intl
 # Set CapsLock to Control
 setxkbmap -option ctrl:nocaps
 # Set Control to Escape
