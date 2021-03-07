@@ -2,6 +2,11 @@ if not packer_plugins['plenary.nvim'].loaded then
   vim.cmd [[packadd plenary.nvim]]
   vim.cmd [[packadd popup.nvim]]
   vim.cmd [[packadd telescope-fzy-native.nvim]]
+  vim.cmd [[packadd telescope-fzf-writer.nvim]]
+end
+
+if not pcall(require, 'telescope') then
+  return
 end
 
 local actions = require('telescope.actions')
@@ -47,6 +52,7 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzy_native')
+require'telescope'.load_extension('dotfiles')
 
 local M = {}
 
@@ -63,31 +69,6 @@ function M.edit_dotfiles()
       '!.git/'
     },
     cwd = "~/dotfiles",
-  }
-end
---}}}
-
---{{{ Edit Plugins
-function M.edit_plugins()
-  require('telescope.builtin').find_files {
-    prompt_title = " Plugins ",
-    find_command = {
-      'rg',
-      '--files',
-      '--no-ignore',
-      '--hidden',
-      '-g',
-      '!.git/'
-    },
-    cwd = "~/.local/share/nvim/site/pack/packer",
-  }
-end
---}}}
-
---{{{ Search all files
-function M.search_all_files()
-  require('telescope.builtin').find_files {
-    find_command = { 'rg', '--no-ignore', '--files', },
   }
 end
 --}}}
