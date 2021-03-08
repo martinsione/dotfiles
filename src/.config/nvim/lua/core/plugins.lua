@@ -18,10 +18,6 @@ return packer.startup(function()
   packer.reset()
 
   use {'wbthomason/packer.nvim', opt = true}
-  -- use {'nvim-lua/popup.nvim'}
-  -- use {'nvim-lua/plenary.nvim'}
-  -- use {'nvim-lua/popup.nvim', opt = true},
-  -- use {'nvim-lua/plenary.nvim', opt = true},
 
   -- Auto-pairs
   use {
@@ -36,6 +32,13 @@ return packer.startup(function()
     event = 'BufRead',
     config = [[require'bufferline'.setup{options = {always_show_bufferline = false}}]]
   }
+
+  -- -- Closetags
+  -- use {
+  --   'windwp/nvim-ts-autotag',
+  --   event = 'InsertEnter',
+  --   config = [[require('nvim-ts-autotag').setup()]]
+  -- }
 
   -- Colorizer
   use {
@@ -61,29 +64,28 @@ return packer.startup(function()
   -- Git
   use {
     'lewis6991/gitsigns.nvim',
-    event = 'BufRead',
-    after = 'telescope.nvim',
-    config = [[require('plugin.gitsigns')]]
+    event = {'BufRead','BufNewFile'},
+    config = [[require('plugin.gitsigns')]], requires = {
+      {'nvim-lua/plenary.nvim', opt = true}
+    }
   }
 
   -- Icons
   use {'kyazdani42/nvim-web-devicons',    config = [[require'nvim-web-devicons'.setup{}]]}
 
   -- Indent Guides
-  use {'glepnir/indent-guides.nvim',      event = {'BufReadPre','BufNewFile'}}
+  use {'glepnir/indent-guides.nvim',      event = 'BufRead'}
 
   -- Lsp
   use {
     'neovim/nvim-lspconfig',
     event = 'BufReadPre',
-    config = [[require('plugin.lsp')]]
+    config = [[require('plugin.lsp')]],
+    requires = {
+      {'hrsh7th/nvim-compe', event = 'InsertEnter'},
+      {'glepnir/lspsaga.nvim', opt = true}
+    }
   }
-  use {
-    'hrsh7th/nvim-compe',
-    event = 'InsertEnter'
-  }
-  use {'glepnir/lspsaga.nvim',            event = {'BufReadPre','BufNewFile'}}
-  use {'wbthomason/lsp-status.nvim',      event = {'BufReadPre','BufNewFile'}}
 
   -- Prettier
   use {
@@ -93,16 +95,16 @@ return packer.startup(function()
   }
 
   -- Profiling
-  use {'tweekmonster/startuptime.vim'}
+  use {'tweekmonster/startuptime.vim',    cmd = 'StartupTime'}
 
 
   -- Statusline
-  use {'glepnir/galaxyline.nvim',       config = [[require('plugin.galaxyline')]]}
+  use {'glepnir/galaxyline.nvim',         config = [[require('plugin.galaxyline')]]}
 
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
-    cmd = "Telescope",
+    -- cmd = 'Telescope',
     config = [[require('plugin.telescope')]],
     requires = {
       {'nvim-lua/popup.nvim', opt = true},
@@ -118,12 +120,16 @@ return packer.startup(function()
   use {'tpope/vim-eunuch',                event = {'BufReadPre','BufNewFile'}}
 
   -- Tree
-  use {'kyazdani42/nvim-tree.lua',        config = [[require('plugin.nvim_tree')]]}
+  use {
+    'kyazdani42/nvim-tree.lua',
+    cmd = 'NvimTreeToggle',
+    config = [[require('plugin.nvim_tree')]]
+  }
 
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
-    event = 'BufRead',
+    -- event = 'BufRead',
     after = 'telescope.nvim',
     config = [[require'nvim-treesitter.configs'.setup { highlight = { enable = true }, ensure_installed = 'all' }]]
   }
