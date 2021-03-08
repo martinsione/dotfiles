@@ -18,8 +18,6 @@ function! TerminalOpen()
   wincmd J
   call nvim_win_set_height(0, 14)
   set winfixheight
-  hi Background guibg=#282828
-  setlocal winhighlight=Normal:Background
 endfunction
 
 function! TerminalClose()
