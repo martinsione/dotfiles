@@ -56,6 +56,9 @@ echo 'load-module module-echo-cancel aec_method=webrtc source_name=noechosource 
 echo 'set-default-source noechosource' | sudo tee -a /etc/pulse/default.pa
 echo 'set-default-sink noechosink' | sudo tee -a /etc/pulse/default.pa
 
+# Create .pulse-cookie in /tmp
+echo 'cookie-file = /tmp/pulse-cookie' | sudo tee -a /etc/pulse/client.conf
+
 # Generate ssh keys
 # ssh-keygen -t rsa -b 4096 -C "${email}"
 # eval "$(ssh-agent -s)"
