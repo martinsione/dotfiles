@@ -22,6 +22,10 @@ install_aur_helper() {
 # Start of the script
 # get_mail_and_pass
 
+# Add multilib
+echo -e '[multilib]\nInclude = /etc/pacman.d/mirrorlist' | sudo tee -a /etc/pacman.conf
+sudo pacman -Sy
+
 # Clone dotfiles repo
 sudo pacman -S --noconfirm --needed base-devel git
 git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
@@ -39,17 +43,13 @@ stow src
 # Compile packages
 for file in ~/.local/src/*; do cd "$file" && make && sudo make clean install; done
 
-# Change shell to zsh
-chsh -s $(which zsh)
-
 # Install ohmyzsh
-echo -e "\n" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 rm -rf ~/.zshrc
 mv ~/.oh-my-zsh ~/.local/share/oh-my-zsh
 
 # Auto mount the hard drive
 # echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0	/mnt/storage	ext4		rw,relatime	0 2' | sudo tee -a /etc/fstab
-echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv
 
 # Add echo cancelation
 echo 'load-module module-echo-cancel aec_method=webrtc source_name=noechosource sink_name=noechosink' | sudo tee -a /etc/pulse/default.pa
@@ -60,3 +60,7 @@ echo 'set-default-sink noechosink' | sudo tee -a /etc/pulse/default.pa
 # ssh-keygen -t rsa -b 4096 -C "${email}"
 # eval "$(ssh-agent -s)"
 # ssh-add ~/.ssh/id_rsa
+
+# Change shell to zsh
+chsh -s $(which zsh)
+echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv
