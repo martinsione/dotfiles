@@ -1,6 +1,6 @@
-vim.g.nvim_tree_side = 'left'
-vim.g.nvim_tree_width = 30
-vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
+vim.g.nvim_tree_side = 'right'
+vim.g.nvim_tree_width = 35
+vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache', '.next' }
 vim.g.nvim_tree_auto_open = 0
 vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_hide_dotfiles = 0
