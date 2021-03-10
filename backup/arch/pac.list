@@ -7,7 +7,6 @@ base
 bat
 binutils
 bison
-deno
 dialog
 discord
 dmenu
@@ -60,7 +59,6 @@ nvidia-settings
 nvidia-utils
 obs-studio
 os-prober
-otf-cascadia-code
 pamixer
 papirus-icon-theme
 patch
@@ -81,8 +79,6 @@ texinfo
 tmux
 trash-cli
 tree
-ttf-dejavu
-ttf-hack
 ttf-joypixels
 ttf-liberation
 ttf-ubuntu-font-family
