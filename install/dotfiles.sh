@@ -32,13 +32,12 @@ yes | sudo -u $(whoami) $aurhelper -S libxft-bgra-git >/dev/null 2>&1   # otherw
 sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
 ${aurhelper} -S --noconfirm --needed $(comm -12 <(${aurhelper} -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
 
-mkdir -p ~/.config/VSCodium/User ~/.local/share
+mkdir -p ~/.config/VSCodium/User ~/.local/share ~/.local/bin ~/.local/src
 cd ~/dotfiles
 stow src
 
 # Compile packages
 for file in ~/.local/src/*; do cd "$file" && make && sudo make clean install; done
-cd ~
 
 # Change shell to zsh
 chsh -s $(which zsh)
@@ -51,6 +50,11 @@ mv ~/.oh-my-zsh ~/.local/share/oh-my-zsh
 # Auto mount the hard drive
 # echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0	/mnt/storage	ext4		rw,relatime	0 2' | sudo tee -a /etc/fstab
 echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv
+
+# Add echo cancelation
+echo 'load-module module-echo-cancel aec_method=webrtc source_name=noechosource sink_name=noechosink' | sudo tee -a /etc/pulse/default.pa
+echo 'set-default-source noechosource' | sudo tee -a /etc/pulse/default.pa
+echo 'set-default-sink noechosink' | sudo tee -a /etc/pulse/default.pa
 
 # Generate ssh keys
 # ssh-keygen -t rsa -b 4096 -C "${email}"
