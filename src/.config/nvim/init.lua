@@ -20,10 +20,10 @@ local disable_builtin_plugins = function()
   vim.g.loaded_netrwFileHandlers = 1
 end
 
+
 disable_builtin_plugins()
-require('core.globals.opt')
-require('core.globals.bind')
+require('core.globals')
 require('core.plugins')
 require('core.options')
 require('core.keymaps')
-vim.cmd[[colo zephyr]]
+colorscheme('nvcode')
