@@ -21,6 +21,24 @@ local completion = require'compe'.setup{
   };
 }
 
+local sumneko_root_path = G.home.."/.local/share/nvim/lsp/lua-language-server"
+local sumneko_binary = sumneko_root_path.."/bin/"..G.os_name.."/lua-language-server"
+
+lspconfig.sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  settings = {
+    Lua = {
+      diagnostics = {
+        enable = true,
+        globals = {"vim","packer_plugins"}
+      },
+      runtime = {version = "LuaJIT"},
+      workspace = {
+        library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
+      },
+    },
+  }
+}
 
 lspconfig.bashls.setup{
   filetypes = {"sh", "zsh", "bash"}
