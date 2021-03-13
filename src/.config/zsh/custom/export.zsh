@@ -2,8 +2,9 @@
 export LANG=en_US.UTF-8
 
 # Path
-export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
-export PATH="$PATH:$(du "$HOME/.local/bin/statusbar" | cut -f2 | paste -sd ':')"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin/statusbar:$PATH"
+export PATH="$XDG_DATA_HOME/go/bin:$PATH"
 
 # Default Programs
 export BROWSER="brave"
