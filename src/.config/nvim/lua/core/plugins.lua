@@ -13,7 +13,7 @@ local packer = require('packer')
 local packer_compiled = fn.stdpath('data')..'/site/plugin/packer_compiled.vim'
 
 return packer.startup(function()
-
+  local use = packer.use
   packer.init({ compile_path = packer_compiled })
   packer.reset()
 
@@ -82,7 +82,11 @@ return packer.startup(function()
     event = 'BufReadPre',
     config = [[require('plugin.lsp')]],
     requires = {
-      {'hrsh7th/nvim-compe', event = 'InsertEnter'},
+      {
+        'hrsh7th/nvim-compe',
+        event = 'InsertEnter',
+        config = [[require('plugin.compe')]]
+      },
       {'glepnir/lspsaga.nvim', opt = true}
     }
   }
