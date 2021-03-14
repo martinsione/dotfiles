@@ -40,6 +40,7 @@ opt.virtualedit   = 'block'
 opt.lazyredraw    = true
 
 -- Search
+opt.inccommand    = 'nosplit'                        -- show substitutions incrementally
 opt.ignorecase    = true
 opt.smartcase     = true
 opt.wildignore    = '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**';
