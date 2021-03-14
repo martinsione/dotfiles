@@ -85,6 +85,8 @@ nmap('<space>pf',   '<cmd>lua require("telescope.builtin").git_files()<CR>')
 nmap('<space>ps',   '<cmd>lua require("telescope.builtin").git_status()<CR>')
 nmap('<space>pc',   '<cmd>lua require("telescope.builtin").git_commits()<CR>')
 nmap('<space>pd',   '<cmd>lua require("plugin.telescope").edit_dotfiles()<CR>')
+-- Toggle background
+nmap('<space>bg',   '<cmd>call Toggle_transparent_background()<CR>')
 -- Togle term
 nmap('<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
 tmap('<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
