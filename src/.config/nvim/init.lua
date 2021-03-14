@@ -23,7 +23,7 @@ end
 
 disable_builtin_plugins()
 require('core.globals')
+colorscheme('nvcode')
 require('core.plugins')
 require('core.options')
 require('core.keymaps')
-colorscheme('nvcode')
