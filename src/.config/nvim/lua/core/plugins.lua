@@ -33,12 +33,12 @@ return packer.startup(function()
     config = [[require'bufferline'.setup{options = {always_show_bufferline = false}}]]
   }
 
-  -- -- Closetags
-  -- use {
-  --   'windwp/nvim-ts-autotag',
-  --   event = 'InsertEnter',
-  --   config = [[require('nvim-ts-autotag').setup()]]
-  -- }
+  -- Closetags
+  use {
+    'windwp/nvim-ts-autotag',
+    event = 'InsertEnter',
+    config = [[require('nvim-ts-autotag').setup()]]
+  }
 
   -- Colorizer
   use {
