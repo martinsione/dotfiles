@@ -19,7 +19,7 @@ opt.writebackup   = false
 opt.swapfile      = false
 
 -- Completion
-opt.completeopt   = "menuone,noinsert,noselect"
+opt.completeopt   = 'menuone,noinsert,noselect'
 opt.pumheight     = 15
 opt.pumblend      = 10
 

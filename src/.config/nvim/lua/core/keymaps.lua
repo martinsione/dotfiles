@@ -4,6 +4,20 @@ nmap('<leader>',  '')
 xmap('<leader>',  '')
 
 
+-- All modes
+-- Window Navigation
+amap('<C-h>',       '<cmd>wincmd h<CR>')
+amap('<C-j>',       '<cmd>wincmd j<CR>')
+amap('<C-k>',       '<cmd>wincmd k<CR>')
+amap('<C-l>',       '<cmd>wincmd l<CR>')
+-- Window Resizing
+amap('<Up>',        '<cmd>wincmd -<CR>')
+amap('<Down>',      '<cmd>wincmd +<CR>')
+amap('<Left>',      '<cmd>wincmd <<CR>')
+amap('<Right>',     '<cmd>wincmd ><CR>')
+amap('<space>=',    '<cmd>wincmd =<CR>')
+
+
 -- Normal
 nmap('<C-s>',       '<cmd>w<CR>')
 nmap('<CR>',        '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true})
@@ -11,23 +25,11 @@ nmap('Q',           '<Nop>')
 nmap('q:',          '<Nop>')
 nmap('Y',           'y$')
 -- Stands for yank inside line
-nmap('yil',         '0yg_')
+nmap('yil',         '0y$')
 -- Buffers
 nmap('<Tab>',       '<cmd>bnext<CR>')
 nmap('<S-Tab>',     '<cmd>bprevious<CR>')
 nmap('<space>bd',   '<cmd>bd<CR>')
--- Window Navigation
-nmap('<C-h>',       '<C-\\><C-N><C-w>h')
-nmap('<C-j>',       '<C-\\><C-N><C-w>j')
-nmap('<C-k>',       '<C-\\><C-N><C-w>k')
-nmap('<C-l>',       '<C-\\><C-N><C-w>l')
--- Window Resizing
-nmap('<Up>',        '<C-w>-')
-nmap('<Down>',      '<C-w>+')
-nmap('<Left>',      '<C-w><')
-nmap('<Right>',     '<C-w>>')
-nmap('<space>=',    '<C-w>=')
-
 
 -- Insert
 imap('<C-c>',       '<esc>')
@@ -37,29 +39,12 @@ imap('<Tab>',       'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 -- Jump up/down a line
 imap('<S-CR>',      '<C-O>o')
 imap('<C-CR>',      '<C-O>O')
--- Window Navigation
-imap('<C-h>',       '<C-\\><C-N><C-w>h')
-imap('<C-j>',       '<C-\\><C-N><C-w>j')
-imap('<C-k>',       '<C-\\><C-N><C-w>k')
-imap('<C-l>',       '<C-\\><C-N><C-w>l')
-
 
 -- Visual
 xmap('<',           '<gv')
 xmap('>',           '>gv')
 xmap('K',           ":move '<-2<CR>gv-gv")
 xmap('J',           ":move '>+1<CR>gv-gv")
-
-
--- Window Navigation
-tmap('<C-w>h',      '<C-\\><C-N><C-w>h')
-tmap('<C-w>j',      '<C-\\><C-N><C-w>j')
-tmap('<C-w>k',      '<C-\\><C-N><C-w>k')
-tmap('<C-w>l',      '<C-\\><C-N><C-w>l')
-tmap('<C-w><C-h>',  '<C-\\><C-N><C-w>h')
-tmap('<C-w><C-j>',  '<C-\\><C-N><C-w>j')
-tmap('<C-w><C-k>',  '<C-\\><C-N><C-w>k')
-tmap('<C-w><C-l>',  '<C-\\><C-N><C-w>l')
 
 
 -- Command
@@ -88,10 +73,10 @@ nmap('<space>pd',   '<cmd>lua require("plugin.telescope").edit_dotfiles()<CR>')
 -- Toggle background
 nmap('<space>bg',   '<cmd>call Toggle_transparent_background()<CR>')
 -- Togle term
-nmap('<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
-tmap('<C-t>',       '<C-\\><C-N>:call TerminalToggle()<CR>')
+nmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
+tmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
 -- Tree
-nmap('<C-n>',     '<cmd>NvimTreeToggle<CR>')
+nmap('<C-n>',       '<cmd>NvimTreeToggle<CR>')
 
 vim.cmd[[command! PackerDelete :silent !rm  -rf ~/.local/share/nvim/site/pack/packer <CR>]]
 vim.cmd[[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
