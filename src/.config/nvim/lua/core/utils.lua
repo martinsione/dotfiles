@@ -1,32 +1,51 @@
---[[ To use a more declarative syntax, you could do something like this:
 
-local function set_opts(opts_table)
-  for k, v in pairs(opts_table) do
-    vim.opt[k] = v
-  end
+function colorscheme(name)
+  pcall(function() vim.cmd('colorscheme '..name) end)
 end
 
-set_opts {
-  mouse = 'n',
-  fillchars = { eob = "~" },
-}
 
---]]
+-----------------
+-- Keybindings --
+-----------------
+function map(mode, lhs, rhs, opts)
+    local options = {noremap = true, silent = true}
+    if opts then options = vim.tbl_extend('force', options, opts) end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
---[[ Global option names
+-- All map
+function amap(lhs, rhs, opts)
+  map('i', lhs, rhs, opts)
+  map('n', lhs, rhs, opts)
+  map('x', lhs, rhs, opts)
+  map('t', lhs, rhs, opts)
+end
 
-For those wondering how to get the values at the top level,
-    you could use Lua's `setfenv` function to set the environment
-    equal to the vim.opt dict
+function nmap(lhs, rhs, opts)
+  return map('n', lhs, rhs, opts)
+end
 
-cc @mccanch
+function imap(lhs, rhs, opts)
+  return map('i', lhs, rhs, opts)
+end
 
-setfenv(function()
-    mouse = 'n'
-end, vim.opt)()
+function xmap(lhs, rhs, opts)
+  return map('x', lhs, rhs, opts)
+end
 
---]]
+function tmap(lhs, rhs, opts)
+  return map('t', lhs, rhs, opts)
+end
 
+function cmap(lhs, rhs)
+  -- { silent } need to be false to work
+  return map('c', lhs, rhs, { silent = false })
+end
+
+
+-------------
+-- Vim opt --
+-------------
 local if_nil = function(a, b)
   if a == nil then
     return b
