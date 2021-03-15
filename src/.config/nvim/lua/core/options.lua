@@ -20,8 +20,8 @@ opt.swapfile      = false
 
 -- Completion
 opt.completeopt   = "menuone,noinsert,noselect"
-opt.pumheight     = 10
-opt.pumblend      = 15
+opt.pumheight     = 15
+opt.pumblend      = 10
 
 -- General
 opt.clipboard     = 'unnamedplus'
@@ -52,6 +52,7 @@ opt.shiftwidth    = 2
 opt.softtabstop   = 0
 opt.tabstop       = 2
 
+opt.iskeyword     = opt.iskeyword + '-'
 opt.formatoptions = opt.formatoptions
                     - 'a'     -- Auto formatting is BAD.
                     - 't'     -- Don't auto format my code. I got linters for that.
