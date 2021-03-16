@@ -48,14 +48,16 @@ return packer.startup(function()
   }
 
   -- Colorscheme
-  use {'ChristianChiarulli/nvcode-color-schemes.vim'}
+  -- use {'ChristianChiarulli/nvcode-color-schemes.vim'}
   use {'glepnir/zephyr-nvim'}
+  -- use {'morhetz/gruvbox'}
+  use {'npxbr/gruvbox.nvim',              requires = {'rktjmp/lush.nvim'}}
 
   -- Cursor
   use {'itchyny/vim-cursorword',          event = {'BufReadPre','BufNewFile'}}
 
-  -- -- Editor config
-  -- use {'editorconfig/editorconfig-vim'}
+  -- Editor config
+  use {'editorconfig/editorconfig-vim'}
 
   -- Emmet
   use {
