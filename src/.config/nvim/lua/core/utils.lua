@@ -1,5 +1,22 @@
+----------------------
+-- Global variables --
+----------------------
+G = {}
+local os_name = vim.loop.os_uname().sysname
 
--- Colorscheme
+function G:load_variables()
+  self.os_name      = os_name
+  self.is_mac       = os_name == 'Darwin'
+  self.is_linux     = os_name == 'Linux'
+  self.is_windows   = os_name == 'Windows'
+  self.home         = os.getenv("HOME")
+end
+
+G:load_variables()
+
+-----------------
+-- Colorscheme --
+-----------------
 function colorscheme(name)
   pcall(function() vim.cmd('colorscheme '..name) end)
 end
@@ -14,10 +31,9 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- All map
-function amap(lhs, rhs, opts)
-  map('n', lhs, rhs, opts)
-  map('x', lhs, rhs, opts)
+-- Window maps
+function wmap(mode, lhs, rhs, opts)
+  return map(mode, lhs, '<cmd>wincmd '..rhs..'<CR>', opts)
 end
 
 function nmap(lhs, rhs, opts)

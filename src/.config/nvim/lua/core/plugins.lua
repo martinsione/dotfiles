@@ -54,6 +54,9 @@ return packer.startup(function()
   -- Cursor
   use {'itchyny/vim-cursorword',          event = {'BufReadPre','BufNewFile'}}
 
+  -- -- Editor config
+  -- use {'editorconfig/editorconfig-vim'}
+
   -- Emmet
   use {
     'mattn/emmet-vim',
@@ -126,6 +129,7 @@ return packer.startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
     -- event = 'BufRead',
+    run = ':TSUpdate',
     after = 'telescope.nvim',
     config = [[require'nvim-treesitter.configs'.setup { highlight = { enable = true }, ensure_installed = 'all' }]]
   }

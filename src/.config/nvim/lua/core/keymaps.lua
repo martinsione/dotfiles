@@ -4,18 +4,26 @@ nmap('<leader>',  '')
 xmap('<leader>',  '')
 
 
--- All modes
 -- Window Navigation
-amap('<C-h>',       '<cmd>wincmd h<CR>')
-amap('<C-j>',       '<cmd>wincmd j<CR>')
-amap('<C-k>',       '<cmd>wincmd k<CR>')
-amap('<C-l>',       '<cmd>wincmd l<CR>')
+wmap('n', '<C-h>',    'h')
+wmap('n', '<C-j>',    'j')
+wmap('n', '<C-k>',    'k')
+wmap('n', '<C-l>',    'l')
 -- Window Resizing
-amap('<Up>',        '<cmd>wincmd -<CR>')
-amap('<Down>',      '<cmd>wincmd +<CR>')
-amap('<Left>',      '<cmd>wincmd <<CR>')
-amap('<Right>',     '<cmd>wincmd ><CR>')
-amap('<space>=',    '<cmd>wincmd =<CR>')
+wmap('n', '<Up>',     '-')
+wmap('n', '<Down>',   '+')
+wmap('n', '<Left>',   '<')
+wmap('n', '<Right>',  '>')
+wmap('n', '<space>=', '=')
+-- Terminal window navigation
+wmap('t', '<C-w>h',   'h')
+wmap('t', '<C-w>j',   'j')
+wmap('t', '<C-w>k',   'k')
+wmap('t', '<C-w>l',   'l')
+wmap('t', '<C-w><C-h>',  'h')
+wmap('t', '<C-w><C-j>',  'j')
+wmap('t', '<C-w><C-k>',  'k')
+wmap('t', '<C-w><C-l>',  'l')
 
 
 -- Normal
@@ -24,7 +32,6 @@ nmap('<CR>',        '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true
 nmap('Q',           '<Nop>')
 nmap('q:',          '<Nop>')
 nmap('Y',           'y$')
--- Stands for yank inside line
 nmap('yil',         '0y$')
 -- Buffers
 nmap('<Tab>',       '<cmd>bnext<CR>')
