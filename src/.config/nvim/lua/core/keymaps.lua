@@ -67,6 +67,16 @@ cmap('<C-d>',       '<Del>')
 cmap('<C-t>',       '<C-R>=expand("%:p")<CR>')
 
 
+-- Vim surround ( noremap need to be false to work)
+nmap('ds',  '<Plug>Dsurround',  {noremap =false})
+nmap('cs',  '<Plug>Csurround',  {noremap =false})
+nmap('cS',  '<Plug>CSurround',  {noremap =false})
+nmap('s',   '<Plug>Ysurround',  {noremap =false})
+nmap('S',   '<Plug>YSurround',  {noremap =false})
+nmap('ss',  '<Plug>Yssurround', {noremap =false})
+nmap('SS',  '<Plug>YSsurround', {noremap =false})
+xmap('s',   '<Plug>VSurround',  {noremap =false})
+xmap('S',   '<Plug>VgSurround', {noremap =false})
 -- Telescope
 nmap('<C-p>',       '<cmd>lua require("telescope.builtin").find_files()<CR>')
 nmap('<space>pr',   '<cmd>lua require("telescope.builtin").oldfiles()<CR>')
