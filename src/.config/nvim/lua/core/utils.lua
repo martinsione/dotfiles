@@ -1,4 +1,5 @@
 
+-- Colorscheme
 function colorscheme(name)
   pcall(function() vim.cmd('colorscheme '..name) end)
 end
@@ -15,10 +16,8 @@ end
 
 -- All map
 function amap(lhs, rhs, opts)
-  map('i', lhs, rhs, opts)
   map('n', lhs, rhs, opts)
   map('x', lhs, rhs, opts)
-  map('t', lhs, rhs, opts)
 end
 
 function nmap(lhs, rhs, opts)
