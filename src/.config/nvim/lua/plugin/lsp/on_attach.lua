@@ -2,7 +2,7 @@ local function map(key, result)
   vim.api.nvim_buf_set_keymap(0, 'n', key, "<cmd>lua " .. result .. "<CR>", {noremap = true, silent = true})
 end
 
-return function (client, bufnr)
+return function (client)
 
   -- Mappings
   map('K',           'require("lspsaga.hover").render_hover_doc()')
@@ -14,10 +14,10 @@ return function (client, bufnr)
   map('<space>gh',   'vim.lsp.buf.signature_help()')
   map('<space>rn',   'require("lspsaga.rename").rename()')
 
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-  -- if client.name == "tsserver" then
-  --   client.resolved_capabilities.document_formatting = false
-  -- end
+  if client.resolved_capabilities.document_formatting then
+	  vim.api.nvim_command[[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
+  end
 
 end

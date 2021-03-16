@@ -91,16 +91,8 @@ return packer.startup(function()
     }
   }
 
-  -- Prettier
-  use {
-    'prettier/vim-prettier',
-    run = 'yarn install',
-    ft = { 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html' }
-  }
-
   -- Profiling
   use {'tweekmonster/startuptime.vim',    cmd = 'StartupTime'}
-
 
   -- Statusline
   use {'glepnir/galaxyline.nvim',         config = [[require('plugin.galaxyline')]]}

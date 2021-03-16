@@ -1,20 +1,17 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('plugin.lsp.on_attach')
 
+-- Formatting
+require('plugin.lsp.format')
+
 if not packer_plugins['lspsaga.nvim'].loaded then
-  vim.cmd [[packadd lspsaga.nvim]]
+  vim.cmd[[packadd lspsaga.nvim]]
 end
 
 lspconfig.bashls.setup{
   filetypes = {"sh", "zsh", "bash"},
   on_attach = on_attach
 }
-
-lspconfig.cssls.setup{on_attach = on_attach}
-
-lspconfig.html.setup{on_attach = on_attach}
-
-lspconfig.jsonls.setup{on_attach = on_attach}
 
 -- Sumneko...
 local sumneko_root_path = G.home.."/.local/share/nvim/lsp/lua-language-server"
@@ -37,6 +34,19 @@ lspconfig.sumneko_lua.setup {
   on_attach = on_attach
 }
 
-lspconfig.tsserver.setup{on_attach = on_attach}
+local servers = {
+  'cssls',
+  'jsonls',
+  'html',
+  'tsserver',
+  'vimls'
+}
 
-lspconfig.vimls.setup{on_attach = on_attach}
+for _,server in ipairs(servers) do
+  lspconfig[server].setup{
+    on_attach = function (client)
+      client.resolved_capabilities.document_formatting = false,
+      on_attach(client)
+    end
+  }
+end
