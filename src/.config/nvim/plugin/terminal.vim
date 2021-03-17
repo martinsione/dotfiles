@@ -15,9 +15,12 @@ function! TerminalOpen()
     buffer Terminal\ 1
     let s:terminal_window = win_getid()
   endif
+  hi Background guibg=#282828
+  setlocal winhighlight=Normal:Background
   wincmd J
   call nvim_win_set_height(0, 14)
   set winfixheight
+  norm i
 endfunction
 
 function! TerminalClose()
@@ -27,10 +30,9 @@ function! TerminalClose()
 endfunction
 
 function! TerminalToggle()
- if win_gotoid(s:terminal_window)
+  if win_gotoid(s:terminal_window)
     call TerminalClose()
   else
     call TerminalOpen()
-    norm i
   endif
 endfunction

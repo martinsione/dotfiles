@@ -8,11 +8,6 @@ if not packer_plugins['lspsaga.nvim'].loaded then
   vim.cmd[[packadd lspsaga.nvim]]
 end
 
-lspconfig.bashls.setup{
-  filetypes = {"sh", "zsh", "bash"},
-  on_attach = on_attach
-}
-
 -- Sumneko...
 local sumneko_root_path = G.home.."/.local/share/nvim/lsp/lua-language-server"
 local sumneko_binary = sumneko_root_path.."/bin/"..G.os_name.."/lua-language-server"
@@ -35,6 +30,7 @@ lspconfig.sumneko_lua.setup {
 }
 
 local servers = {
+  'bashls',
   'cssls',
   'jsonls',
   'html',
