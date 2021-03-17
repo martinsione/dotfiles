@@ -115,6 +115,9 @@ return packer.startup(function()
     }
   }
 
+  -- Terminal
+  use {'akinsho/nvim-toggleterm.lua',     config = [[require('plugin.term')]]}
+
   -- Tpope
   use {'tpope/vim-commentary',            event = {'BufReadPre','BufNewFile'}}
   use {'tpope/vim-surround',              event = {'BufReadPre','BufNewFile'}}
