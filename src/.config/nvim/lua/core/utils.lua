@@ -9,7 +9,7 @@ function G:load_variables()
   self.is_mac       = os_name == 'Darwin'
   self.is_linux     = os_name == 'Linux'
   self.is_windows   = os_name == 'Windows'
-  self.is_git_dir   = os.execute('git rev-parse --is-inside-work-tree')
+  self.is_git_dir   = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
   self.home         = os.getenv("HOME")
 end
 
