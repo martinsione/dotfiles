@@ -79,8 +79,8 @@ nmap('<C-n>',       '<cmd>NvimTreeToggle<CR>')
 -- Toggle background
 nmap('<space>bg',   '<cmd>call Toggle_transparent_background()<CR>')
 -- Toggle term
-nmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
-tmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
+-- nmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
+-- tmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
 -- Vim surround ( noremap need to be false to work)
 nmap('ds',          '<Plug>Dsurround',  {noremap = false})
 nmap('cs',          '<Plug>Csurround',  {noremap = false})
