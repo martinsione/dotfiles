@@ -31,11 +31,6 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- Window maps
-function wmap(mode, lhs, rhs, opts)
-  return map(mode, lhs, '<cmd>wincmd '..rhs..'<CR>', opts)
-end
-
 function nmap(lhs, rhs, opts)
   return map('n', lhs, rhs, opts)
 end
