@@ -24,6 +24,9 @@ bindkey '^Z' fg-bg
 #------------------------ Change Caps to Escape ------------------------
 sudo -n loadkeys $HOME/.local/bin/ttymaps.kmap 2>/dev/null
 
+#-------------------------- Load Prompt --------------------------------
+eval "$(starship init zsh)"
+
 #-------------------------- Load Plugins -------------------------------
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
