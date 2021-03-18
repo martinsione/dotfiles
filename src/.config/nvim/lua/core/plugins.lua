@@ -1,8 +1,8 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
   execute 'packadd packer.nvim'
 end
 
@@ -10,11 +10,11 @@ vim.cmd [[packadd packer.nvim]]
 vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
 
 local packer = require('packer')
-local packer_compiled = fn.stdpath('data')..'/site/plugin/packer_compiled.vim'
+local packer_compiled = fn.stdpath('data') .. '/site/plugin/packer_compiled.vim'
 
 return packer.startup(function()
   local use = packer.use
-  packer.init({ compile_path = packer_compiled })
+  packer.init({compile_path = packer_compiled})
   packer.reset()
 
   use {'wbthomason/packer.nvim', opt = true}
@@ -41,20 +41,16 @@ return packer.startup(function()
   }
 
   -- Colorizer
-  use {
-    'norcalli/nvim-colorizer.lua',
-    event = 'BufRead',
-    config = [[require('plugin.colorizer')]]
-  }
+  use {'norcalli/nvim-colorizer.lua', event = 'BufRead', config = [[require('plugin.colorizer')]]}
 
   -- Colorscheme
   -- use {'ChristianChiarulli/nvcode-color-schemes.vim'}
   use {'glepnir/zephyr-nvim'}
   -- use {'morhetz/gruvbox'}
-  use {'npxbr/gruvbox.nvim',              requires = {'rktjmp/lush.nvim'}}
+  use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 
   -- Cursor
-  use {'itchyny/vim-cursorword',          event = {'BufReadPre','BufNewFile'}}
+  use {'itchyny/vim-cursorword', event = {'BufReadPre', 'BufNewFile'}}
 
   -- Editor config
   use {'editorconfig/editorconfig-vim'}
@@ -63,23 +59,22 @@ return packer.startup(function()
   use {
     'mattn/emmet-vim',
     event = 'InsertEnter',
-    ft = {'html','css','javascript','javascriptreact','vue','typescript','typescriptreact'}
+    ft = {'html', 'css', 'javascript', 'javascriptreact', 'vue', 'typescript', 'typescriptreact'}
   }
 
   -- Git
   use {
     'lewis6991/gitsigns.nvim',
-    event = {'BufRead','BufNewFile'},
-    config = [[require('plugin.gitsigns')]], requires = {
-      {'nvim-lua/plenary.nvim', opt = true}
-    }
+    event = {'BufRead', 'BufNewFile'},
+    config = [[require('plugin.gitsigns')]],
+    requires = {{'nvim-lua/plenary.nvim', opt = true}}
   }
 
   -- Icons
-  use {'kyazdani42/nvim-web-devicons',    config = [[require'nvim-web-devicons'.setup{}]]}
+  use {'kyazdani42/nvim-web-devicons', config = [[require'nvim-web-devicons'.setup{}]]}
 
   -- Indent Guides
-  use {'glepnir/indent-guides.nvim',      event = 'BufRead'}
+  use {'glepnir/indent-guides.nvim', event = 'BufRead'}
 
   -- Lsp
   use {
@@ -87,20 +82,16 @@ return packer.startup(function()
     event = 'BufReadPre',
     config = [[require('plugin.lsp')]],
     requires = {
-      {
-        'hrsh7th/nvim-compe',
-        event = 'InsertEnter',
-        config = [[require('plugin.compe')]]
-      },
+      {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugin.compe')]]},
       {'glepnir/lspsaga.nvim', opt = true}
     }
   }
 
   -- Profiling
-  use {'tweekmonster/startuptime.vim',    cmd = 'StartupTime'}
+  use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
 
   -- Statusline
-  use {'glepnir/galaxyline.nvim',         config = [[require('plugin.galaxyline')]]}
+  use {'glepnir/galaxyline.nvim', config = [[require('plugin.galaxyline')]]}
 
   -- Telescope
   use {
@@ -108,35 +99,32 @@ return packer.startup(function()
     -- cmd = 'Telescope',
     config = [[require('plugin.telescope')]],
     requires = {
-      {'nvim-lua/popup.nvim', opt = true},
-      {'nvim-lua/plenary.nvim',opt = true},
+      {'nvim-lua/popup.nvim', opt = true}, {'nvim-lua/plenary.nvim', opt = true},
       {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
       {'nvim-telescope/telescope-fzf-writer.nvim', opt = true}
     }
   }
 
   -- Terminal
-  use {'akinsho/nvim-toggleterm.lua',     config = [[require('plugin.term')]]}
+  use {'akinsho/nvim-toggleterm.lua', config = [[require('plugin.term')]]}
 
   -- Tpope
-  use {'tpope/vim-commentary',            event = {'BufReadPre','BufNewFile'}}
-  use {'tpope/vim-surround',              event = {'BufReadPre','BufNewFile'}}
-  use {'tpope/vim-eunuch',                event = {'BufReadPre','BufNewFile'}}
+  use {'tpope/vim-commentary', event = {'BufReadPre', 'BufNewFile'}}
+  use {'tpope/vim-fugitive', event = {'BufReadPre', 'BufNewFile'}}
+  use {'tpope/vim-rhubarb', event = {'BufReadPre', 'BufNewFile'}}
+  use {'tpope/vim-surround', event = {'BufReadPre', 'BufNewFile'}}
+  use {'tpope/vim-eunuch', event = {'BufReadPre', 'BufNewFile'}}
 
   -- Tree
-  use {
-    'kyazdani42/nvim-tree.lua',
-    cmd = 'NvimTreeToggle',
-    config = [[require('plugin.nvim_tree')]]
-  }
+  use {'kyazdani42/nvim-tree.lua', cmd = 'NvimTreeToggle', config = [[require('plugin.nvim_tree')]]}
 
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     -- event = 'BufRead',
-    run = ':TSUpdate',
-    after = 'telescope.nvim',
-    config = [[require'nvim-treesitter.configs'.setup { highlight = { enable = true }, ensure_installed = 'all' }]]
+    -- run = ':TSUpdate',
+    -- after = 'telescope.nvim',
+    config = [[require'nvim-treesitter.configs'.setup { highlight = { enable = true }, ensure_installed = 'maintained' }]]
   }
 
 end)
