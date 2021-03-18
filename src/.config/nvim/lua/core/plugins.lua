@@ -50,7 +50,7 @@ return packer.startup(function()
   use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 
   -- Cursor
-  use {'itchyny/vim-cursorword', event = {'BufReadPre', 'BufNewFile'}}
+  use {'RRethy/vim-illuminate', event = {'BufReadPre', 'BufNewFile'}}
 
   -- Editor config
   use {'editorconfig/editorconfig-vim'}
