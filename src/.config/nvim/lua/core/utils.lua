@@ -5,12 +5,12 @@ G = {}
 local os_name = vim.loop.os_uname().sysname
 
 function G:load_variables()
-  self.os_name      = os_name
-  self.is_mac       = os_name == 'Darwin'
-  self.is_linux     = os_name == 'Linux'
-  self.is_windows   = os_name == 'Windows'
-  self.is_git_dir   = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
-  self.home         = os.getenv("HOME")
+  self.os_name = os_name
+  self.is_mac = os_name == 'Darwin'
+  self.is_linux = os_name == 'Linux'
+  self.is_windows = os_name == 'Windows'
+  self.is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
+  self.home = os.getenv('HOME')
 end
 
 G:load_variables()
@@ -19,17 +19,20 @@ G:load_variables()
 -- Colorscheme --
 -----------------
 function colorscheme(name)
-  pcall(function() vim.cmd('colorscheme '..name) end)
+  pcall(function()
+    vim.cmd('colorscheme ' .. name)
+  end)
 end
-
 
 -----------------
 -- Keybindings --
 -----------------
 function map(mode, lhs, rhs, opts)
-    local options = {noremap = true, silent = true}
-    if opts then options = vim.tbl_extend('force', options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  local options = {noremap = true, silent = true}
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 function nmap(lhs, rhs, opts)
@@ -50,9 +53,8 @@ end
 
 function cmap(lhs, rhs)
   -- { silent } need to be false to work
-  return map('c', lhs, rhs, { silent = false })
+  return map('c', lhs, rhs, {silent = false})
 end
-
 
 -------------
 -- Vim opt --
@@ -64,16 +66,12 @@ local if_nil = function(a, b)
   return a
 end
 
-local singular_values = {
-  ['boolean'] = true,
-  ['number']  = true,
-  ['nil']     = true,
-}
+local singular_values = {['boolean'] = true, ['number'] = true, ['nil'] = true}
 
 local set_key_value = function(t, key_value_str)
-  assert(string.find(key_value_str, ":"), "Must have a :" .. tostring(key_value_str))
+  assert(string.find(key_value_str, ':'), 'Must have a :' .. tostring(key_value_str))
 
-  local key, value = unpack(vim.split(key_value_str, ":"))
+  local key, value = unpack(vim.split(key_value_str, ':'))
   key = vim.trim(key)
   value = vim.trim(value)
 
@@ -90,18 +88,18 @@ local convert_vimoption_to_lua = function(option, val)
     return val
   end
 
-  if type(val) == "string" then
+  if type(val) == 'string' then
     -- TODO: Bad hax I think
-    if string.find(val, ":") then
+    if string.find(val, ':') then
       local result = {}
-      local items = vim.split(val, ",")
+      local items = vim.split(val, ',')
       for _, item in ipairs(items) do
         set_key_value(result, item)
       end
 
       return result
     else
-      return vim.split(val, ",")
+      return vim.split(val, ',')
     end
   end
 end
@@ -150,12 +148,8 @@ end
 
 local add_value = function(current, new)
   if singular_values[type(current)] then
-    error(
-      "This is not possible to do. Please do something different: "
-      .. tostring(current)
-      .. " // "
-      .. tostring(new)
-    )
+    error('This is not possible to do. Please do something different: ' .. tostring(current) ..
+            ' // ' .. tostring(new))
   end
 
   if type(new) == 'string' then
@@ -172,12 +166,12 @@ local add_value = function(current, new)
       vim.list_extend(current, new)
     else
       assert(not vim.tbl_islist(new), vim.inspect(new) .. vim.inspect(current))
-      current = vim.tbl_extend("force", current, new)
+      current = vim.tbl_extend('force', current, new)
     end
 
     return current
   else
-    error("Unknown type")
+    error('Unknown type')
   end
 end
 
@@ -210,7 +204,7 @@ opt_mt = {
       return rawget(t, k)
     end
 
-    return setmetatable({ _option = k, }, opt_mt)
+    return setmetatable({_option = k}, opt_mt)
   end,
 
   __newindex = function(t, k, v)
@@ -223,7 +217,7 @@ opt_mt = {
       if getmetatable(v) ~= opt_mt then
         new_value = v
       else
-        assert(v._value, "Must have a value to set this")
+        assert(v._value, 'Must have a value to set this')
         new_value = v._value
       end
 
@@ -240,12 +234,12 @@ opt_mt = {
     if type(v) == 'boolean' then
       vim.o[k] = clean_value(v)
       if v then
-        vim.cmd(string.format("set %s", k))
+        vim.cmd(string.format('set %s', k))
       else
-        vim.cmd(string.format("set no%s", k))
+        vim.cmd(string.format('set no%s', k))
       end
     else
-      vim.cmd(string.format("set %s=%s", k, clean_value(v)))
+      vim.cmd(string.format('set %s=%s', k, clean_value(v)))
     end
   end,
 
@@ -255,9 +249,9 @@ opt_mt = {
     set.wildignore = set.wildignore + { '*.o', '*~', }
     --]]
 
-    assert(left._option, "must have an option key")
+    assert(left._option, 'must have an option key')
     if left._option == 'foldcolumn' then
-      error("not implemented for foldcolumn.. use a string")
+      error('not implemented for foldcolumn.. use a string')
     end
 
     local existing = if_nil(left._value, vim.o[left._option])
@@ -271,7 +265,7 @@ opt_mt = {
   end,
 
   __sub = function(left, right)
-    assert(left._option, "must have an option key")
+    assert(left._option, 'must have an option key')
 
     local existing = if_nil(left._value, vim.o[left._option])
     local current = convert_vimoption_to_lua(left._option, existing)
@@ -286,8 +280,4 @@ opt_mt = {
 
 vim.opt = setmetatable({}, opt_mt)
 
-return {
-  convert_vimoption_to_lua = convert_vimoption_to_lua,
-  opt = vim.opt,
-  opt_mt = opt_mt
-}
+return {convert_vimoption_to_lua = convert_vimoption_to_lua, opt = vim.opt, opt_mt = opt_mt}
