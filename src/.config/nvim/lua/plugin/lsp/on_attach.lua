@@ -21,7 +21,7 @@ return function(client)
   vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 500)]]
+    vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
   end
 
 end
