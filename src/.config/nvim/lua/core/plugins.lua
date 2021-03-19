@@ -83,7 +83,7 @@ return packer.startup(function()
     config = [[require('plugin.lsp')]],
     requires = {
       {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugin.compe')]]},
-      {'glepnir/lspsaga.nvim', opt = true}
+      {'glepnir/lspsaga.nvim', opt = true}, {'onsails/lspkind-nvim', opt = true}
     }
   }
 
