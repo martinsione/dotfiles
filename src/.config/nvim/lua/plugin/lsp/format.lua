@@ -7,22 +7,20 @@ local eslint = {
   formatStdin = true
 }
 
-local prettier = {
-  formatCommand = './node_modules/.bin/prettier --stdin-filepath ${INPUT}',
-  formatStdin = true
-}
+local prettier = {formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true}
 
 local luaformatter = {formatCommand = 'lua-format -i', formatStdin = true}
 
 return {
-  typescript = {prettier, eslint},
+  css = {prettier},
+  html = {prettier},
   javascript = {prettier, eslint},
-  typescriptreact = {prettier, eslint},
   javascriptreact = {prettier, eslint},
   json = {prettier},
-  html = {prettier},
-  scss = {prettier},
-  css = {prettier},
+  lua = {luaformatter},
   markdown = {prettier},
-  lua = {luaformatter}
+  scss = {prettier},
+  typescript = {prettier, eslint},
+  typescriptreact = {prettier, eslint},
+  yaml = {prettier}
 }
