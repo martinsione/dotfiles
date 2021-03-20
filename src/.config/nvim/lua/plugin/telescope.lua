@@ -40,7 +40,7 @@ local M = {}
 function M.find_dotfiles()
   require('telescope.builtin').find_files {
     prompt_title = ' Dotfiles ',
-    find_command = {'rg', '--files', '--no-ignore', '--hidden', '-g', '!.git/'},
+    find_command = {'rg', '--files', '--hidden', '--ignore', '--sort=path'},
     cwd = '~/dotfiles'
   }
 end
