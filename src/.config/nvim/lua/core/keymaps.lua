@@ -64,6 +64,8 @@ cmap('<C-l>', '<Right>')
 cmap('<C-d>', '<Del>')
 cmap('<C-t>', '<C-R>=expand("%:p")<CR>')
 
+-- Git
+nmap('<space>gs', '<cmd>G<CR>')
 -- Telescope
 if utils.os.is_git_dir == 0 then
   nmap('<C-p>', '<cmd>Telescope git_files<CR>')
@@ -80,9 +82,6 @@ nmap('<space>fa', '<cmd>lua require("plugin.telescope").find_all_files()<CR>')
 nmap('<C-n>', '<cmd>NvimTreeToggle<CR>')
 -- Toggle background
 nmap('<space>bg', '<cmd>call Toggle_transparent_background()<CR>')
--- Toggle term
--- nmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
--- tmap('<C-t>',       '<cmd>call TerminalToggle()<CR>')
 -- Vim surround ( noremap need to be false to work)
 nmap('ds', '<Plug>Dsurround', {noremap = false})
 nmap('cs', '<Plug>Csurround', {noremap = false})

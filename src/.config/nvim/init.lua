@@ -24,9 +24,4 @@ require('core.utils')
 require('core.plugins')
 require('core.options')
 require('core.keymaps')
-utils.colorscheme('gruvbox')
-
-vim.g.gruvbox_contrast_dark = 'hard'
-vim.g.gruvbox_invert_selection = false
-vim.g.Illuminate_ftblacklist = {'NvimTree'}
-
+utils.colorscheme('nvcode')
