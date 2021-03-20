@@ -1,8 +1,8 @@
 local lspconfig = require('lspconfig')
 local on_attach = require('plugin.lsp.on_attach')
 local languages = require('plugin.lsp.format')
-local sumneko_root_path = G.home .. '/.local/share/nvim/lsp/lua-language-server'
-local sumneko_binary = sumneko_root_path .. '/bin/' .. G.os_name .. '/lua-language-server'
+local sumneko_root_path = utils.os.home .. '/.local/share/nvim/lsp/lua-language-server'
+local sumneko_binary = sumneko_root_path .. '/bin/' .. utils.os.name .. '/lua-language-server'
 
 vim.cmd [[packadd lspsaga.nvim | packadd lspkind-nvim]]
 require('lspkind').init()

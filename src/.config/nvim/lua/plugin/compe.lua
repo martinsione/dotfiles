@@ -1,3 +1,5 @@
+local imap = utils.keymap.imap
+
 require'compe'.setup {
   enabled = true,
   autocomplete = true,

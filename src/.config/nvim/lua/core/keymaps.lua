@@ -1,3 +1,9 @@
+local nmap = utils.keymap.nmap
+local imap = utils.keymap.imap
+local tmap = utils.keymap.tmap
+local cmap = utils.keymap.cmap
+local xmap = utils.keymap.xmap
+
 vim.g.mapleader = ' '
 nmap('<leader>', '<Nop>')
 xmap('<leader>', '<Nop>')
@@ -59,7 +65,7 @@ cmap('<C-d>', '<Del>')
 cmap('<C-t>', '<C-R>=expand("%:p")<CR>')
 
 -- Telescope
-if G.is_git_dir == 0 then
+if utils.os.is_git_dir == 0 then
   nmap('<C-p>', '<cmd>Telescope git_files<CR>')
 else
   nmap('<C-p>', '<cmd>Telescope find_files<CR>')

@@ -1,17 +1,16 @@
-local function map(key, result)
-  local opts = {noremap = true, silent = true}
-  vim.api.nvim_buf_set_keymap(0, 'n', key, '<cmd>lua  ' .. result .. '<CR>', opts)
+local nmap = function(lhs, rhs, opts)
+  utils.keymap.buf_map('n', lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
 end
 
 local function mappings()
-  map('K', 'require("lspsaga.hover").render_hover_doc()')
-  map('gd', 'vim.lsp.buf.definition()')
-  map('gD', 'vim.lsp.buf.declaration()')
-  map('gi', 'vim.lsp.buf.implementation()')
-  map('gr', 'vim.lsp.buf.references()')
-  map('ca', 'vim.lsp.buf.code_action()')
-  map('<space>gh', 'vim.lsp.buf.signature_help()')
-  map('<space>rn', 'require("lspsaga.rename").rename()')
+  nmap('K', 'require("lspsaga.hover").render_hover_doc()')
+  nmap('gd', 'vim.lsp.buf.definition()')
+  nmap('gD', 'vim.lsp.buf.declaration()')
+  nmap('gi', 'vim.lsp.buf.implementation()')
+  nmap('gr', 'vim.lsp.buf.references()')
+  nmap('ca', 'vim.lsp.buf.code_action()')
+  nmap('<space>gh', 'vim.lsp.buf.signature_help()')
+  nmap('<space>rn', 'require("lspsaga.rename").rename()')
 end
 
 return function(client)
