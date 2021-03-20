@@ -1,61 +1,66 @@
-----------------------
--- Global variables --
-----------------------
-G = {}
+_G.utils = {}
+
+-- Os
+utils.os = {}
 local os_name = vim.loop.os_uname().sysname
 
-function G:load_variables()
-  self.os_name = os_name
+function utils.os:load_variables()
+  self.home = os.getenv('HOME')
+  self.name = os_name
   self.is_mac = os_name == 'Darwin'
   self.is_linux = os_name == 'Linux'
   self.is_windows = os_name == 'Windows'
   self.is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
-  self.home = os.getenv('HOME')
 end
 
-G:load_variables()
+utils.os:load_variables()
 
------------------
--- Colorscheme --
------------------
-function colorscheme(name)
+-- Colorscheme
+function utils.colorscheme(name)
   pcall(function()
     vim.cmd('colorscheme ' .. name)
   end)
 end
 
------------------
--- Keybindings --
------------------
-function map(mode, lhs, rhs, opts)
+-- Keybindings
+utils.keymap = {}
+
+local function make_map(scope, mode, lhs, rhs, opts)
   local options = {noremap = true, silent = true}
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  if scope == 'buffer' then
+    vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
+  else
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  end
 end
 
-function nmap(lhs, rhs, opts)
-  return map('n', lhs, rhs, opts)
+function utils.keymap.buf_map(mode, lhs, rhs, opts)
+  return make_map('buffer', mode, lhs, rhs, opts)
 end
 
-function imap(lhs, rhs, opts)
-  return map('i', lhs, rhs, opts)
+function utils.keymap.nmap(lhs, rhs, opts)
+  return make_map('', 'n', lhs, rhs, opts)
 end
 
-function xmap(lhs, rhs, opts)
-  return map('x', lhs, rhs, opts)
+function utils.keymap.imap(lhs, rhs, opts)
+  return make_map('', 'i', lhs, rhs, opts)
 end
 
-function tmap(lhs, rhs, opts)
-  return map('t', lhs, rhs, opts)
+function utils.keymap.xmap(lhs, rhs, opts)
+  return make_map('', 'x', lhs, rhs, opts)
 end
 
-function cmap(lhs, rhs)
+function utils.keymap.tmap(lhs, rhs, opts)
+  return make_map('', 't', lhs, rhs, opts)
+end
+
+function utils.keymap.cmap(lhs, rhs)
   -- { silent } need to be false to work
-  return map('c', lhs, rhs, {silent = false})
+  return make_map('', 'c', lhs, rhs, {silent = false})
 end
-
 -------------
 -- Vim opt --
 -------------
