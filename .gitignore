@@ -1,3 +1,4 @@
+.git/
 src/.config/nvim/plugin/packer_compiled.vim
 src/.local/src/dwm/dwm
 src/.local/src/dwmblocks/dwmblocks
