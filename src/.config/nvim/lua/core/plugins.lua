@@ -30,7 +30,7 @@ return packer.startup(function()
   use {
     'akinsho/nvim-bufferline.lua',
     event = 'BufRead',
-    config = [[require'bufferline'.setup{options = {always_show_bufferline = false}}]]
+    config = [[require('plugin.nvim-bufferline')]]
   }
 
   -- Closetags
@@ -44,13 +44,24 @@ return packer.startup(function()
   use {'norcalli/nvim-colorizer.lua', event = 'BufRead', config = [[require('plugin.colorizer')]]}
 
   -- Colorscheme
-  -- use {'ChristianChiarulli/nvcode-color-schemes.vim'}
+  use {'ChristianChiarulli/nvcode-color-schemes.vim'}
   use {'glepnir/zephyr-nvim'}
   -- use {'morhetz/gruvbox'}
-  use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
+  use {
+    'npxbr/gruvbox.nvim',
+    config = [[require('plugin.gruvbox')]],
+    requires = {'rktjmp/lush.nvim'}
+  }
 
   -- Cursor
-  use {'RRethy/vim-illuminate', event = {'BufReadPre', 'BufNewFile'}}
+  use {
+    'RRethy/vim-illuminate',
+    event = {'BufReadPre', 'BufNewFile'},
+    config = [[require('plugin.vim-illuminate')]]
+  }
+
+  -- Dashboard
+  use {'glepnir/dashboard-nvim', config = [[require('plugin.dashboard')]]}
 
   -- Editor config
   use {'editorconfig/editorconfig-vim'}
@@ -71,7 +82,7 @@ return packer.startup(function()
   }
 
   -- Icons
-  use {'kyazdani42/nvim-web-devicons', config = [[require'nvim-web-devicons'.setup{}]]}
+  use {'kyazdani42/nvim-web-devicons', config = [[require('plugin.nvim-web-devicons')]]}
 
   -- Indent Guides
   use {'glepnir/indent-guides.nvim', event = 'BufRead'}
@@ -101,7 +112,8 @@ return packer.startup(function()
     requires = {
       {'nvim-lua/popup.nvim', opt = true}, {'nvim-lua/plenary.nvim', opt = true},
       {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
-      {'nvim-telescope/telescope-fzf-writer.nvim', opt = true}
+      {'nvim-telescope/telescope-fzf-writer.nvim', opt = true},
+      {'nvim-telescope/telescope-media-files.nvim', opt = true}
     }
   }
 
@@ -113,20 +125,20 @@ return packer.startup(function()
 
   -- Tpope
   use {'tpope/vim-commentary', event = {'BufReadPre', 'BufNewFile'}}
-  use {'tpope/vim-fugitive', event = {'BufReadPre', 'BufNewFile'}}
-  use {'tpope/vim-rhubarb', event = {'BufReadPre', 'BufNewFile'}}
   use {'tpope/vim-surround', event = {'BufReadPre', 'BufNewFile'}}
   use {'tpope/vim-eunuch', event = {'BufReadPre', 'BufNewFile'}}
+  use {'tpope/vim-fugitive'}
+  use {'tpope/vim-rhubarb'}
 
   -- Tree
-  use {'kyazdani42/nvim-tree.lua', cmd = 'NvimTreeToggle', config = [[require('plugin.nvim_tree')]]}
+  use {'kyazdani42/nvim-tree.lua', cmd = 'NvimTreeToggle', config = [[require('plugin.nvim-tree')]]}
 
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     -- event = 'BufRead',
-    -- run = ':TSUpdate',
-    -- after = 'telescope.nvim',
+    run = ':TSUpdate',
+    after = 'telescope.nvim',
     config = [[require'nvim-treesitter.configs'.setup { highlight = { enable = true }, ensure_installed = 'maintained' }]]
   }
 

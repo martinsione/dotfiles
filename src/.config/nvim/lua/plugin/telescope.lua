@@ -3,6 +3,7 @@ if not packer_plugins['plenary.nvim'].loaded then
   vim.cmd [[packadd popup.nvim]]
   vim.cmd [[packadd telescope-fzy-native.nvim]]
   vim.cmd [[packadd telescope-fzf-writer.nvim]]
+  vim.cmd [[packadd telescope-media-files.nvim]]
 end
 
 if not pcall(require, 'telescope') then
@@ -30,10 +31,15 @@ require('telescope').setup {
       n = {['<C-c>'] = actions.close}
     }
   },
-  extensions = {fzy_native = {override_generic_sorter = false, override_file_sorter = true}}
+  extensions = {
+    fzy_native = {override_generic_sorter = false, override_file_sorter = true},
+    media_files = {filetypes = {'png', 'jpg', 'jpeg', 'mp4', 'webm', 'pdf'}, find_cmd = 'fd'}
+  }
+
 }
 
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('media_files')
 
 local M = {}
 

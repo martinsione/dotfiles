@@ -24,6 +24,7 @@ alias ls="exa --icons -a --group-directories-first"
 # Packages
 alias p="sudo pacman"
 alias upg="paru -Syu --noconfirm"
+alias vupg="cd ~/.local/src/neovim && git pull && sudo make clean install && cd -"
 alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
 
 # System
