@@ -37,14 +37,16 @@ require('telescope').load_extension('fzy_native')
 
 local M = {}
 
--- {{{ Edit dotfiles
-function M.edit_dotfiles()
+function M.find_dotfiles()
   require('telescope.builtin').find_files {
     prompt_title = ' Dotfiles ',
     find_command = {'rg', '--files', '--no-ignore', '--hidden', '-g', '!.git/'},
     cwd = '~/dotfiles'
   }
 end
--- }}}
+
+function M.find_all_files()
+  require('telescope.builtin').find_files {find_command = {'rg', '--no-ignore', '--files'}}
+end
 
 return M
