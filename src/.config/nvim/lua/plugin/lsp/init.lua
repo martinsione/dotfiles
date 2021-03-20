@@ -1,19 +1,11 @@
--- Add packages
-if not packer_plugins['lspsaga.nvim'].loaded then
-  vim.cmd [[packadd lspsaga.nvim]]
-end
-if not packer_plugins['lspkind-nvim'].loaded then
-  vim.cmd [[packadd lspkind-nvim]]
-end
-require('lspkind').init({})
-
--- Lsp
 local lspconfig = require('lspconfig')
 local on_attach = require('plugin.lsp.on_attach')
 local languages = require('plugin.lsp.format')
-
 local sumneko_root_path = G.home .. '/.local/share/nvim/lsp/lua-language-server'
 local sumneko_binary = sumneko_root_path .. '/bin/' .. G.os_name .. '/lua-language-server'
+
+vim.cmd [[packadd lspsaga.nvim | packadd lspkind-nvim]]
+require('lspkind').init()
 
 local servers = {
   bashls = {},
@@ -41,11 +33,6 @@ local servers = {
 }
 
 for ls, config in pairs(servers) do
-  config.on_attach = function(client)
-    if client.name ~= 'efm' then
-      client.resolved_capabilities.document_formatting = false
-    end
-    on_attach(client)
-  end
+  config.on_attach = on_attach
   lspconfig[ls].setup(config)
 end
