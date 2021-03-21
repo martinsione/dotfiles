@@ -1,5 +1,4 @@
-local imap = utils.keymap.imap
-
+-- local imap = utils.keymap.imap
 require'compe'.setup {
   enabled = true,
   autocomplete = true,
@@ -20,4 +19,4 @@ require'compe'.setup {
   }
 }
 
-imap('<CR>', 'compe#confirm("<CR>")', {expr = true})
+-- imap('<CR>', 'compe#confirm("<CR>")', {expr = true})

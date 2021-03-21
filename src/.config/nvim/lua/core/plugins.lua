@@ -23,7 +23,7 @@ return packer.startup(function()
   use {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    config = [[require('nvim-autopairs').setup()]]
+    config = [[require('plugin.nvim-autopairs')]]
   }
 
   -- Bufferline
