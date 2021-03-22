@@ -1,4 +1,5 @@
 " General
+silent set rtp=
 set hlsearch
 set timeoutlen=1000
 set ignorecase

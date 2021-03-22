@@ -2,31 +2,33 @@ let s:terminal_window = -1
 let s:terminal_buffer = -1
 let s:terminal_job_id = -1
 
-function! TerminalOpen()
+function! TerminalOpen(direction)
   if !bufexists(s:terminal_buffer)
     vnew
     term
-    silent file Terminal\ 1
+    silent file Terminal
     let s:terminal_window = win_getid()
     let s:terminal_buffer = bufnr('%')
     set nobuflisted
   elseif !win_gotoid(s:terminal_window)
     vsplit
-    buffer Terminal\ 1
+    buffer Terminal
     let s:terminal_window = win_getid()
   endif
 
-  " hi Background guibg=#282828
-  " setlocal winhighlight=Normal:Background
-  " wincmd J
-  " call nvim_win_set_height(0, 14)
-  " set winfixheight
+  let direction = a:direction
+  if direction == 'horizontal'
+    wincmd J
+    call nvim_win_set_height(0, 14)
+    set winfixheight
+  else
+    wincmd L
+    call nvim_win_set_width(0, 80)
+    set winfixwidth
+  endif
 
-  hi Background guibg=#282828
+  hi Background guibg=#161616
   setlocal winhighlight=Normal:Background
-  wincmd L
-  exec "vertical resize ".(&columns * 2 / 5)
-
   norm i
 endfunction
 
@@ -36,10 +38,11 @@ function! TerminalClose()
   endif
 endfunction
 
-function! TerminalToggle()
+function! TerminalToggle(direction)
   if win_gotoid(s:terminal_window)
     call TerminalClose()
   else
-    call TerminalOpen()
+    let direction = a:direction
+    call TerminalOpen(direction)
   endif
 endfunction
