@@ -31,8 +31,8 @@
   "oneDarkPro.bold": true,
   "oneDarkPro.editorTheme": "oneDarkProFlat",
   "oneDarkPro.vivid": true,
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode.vim",
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
 
   // Colorscheme Configuration
   "workbench.colorCustomizations": {

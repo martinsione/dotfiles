@@ -1,26 +1,37 @@
 local gl = require('galaxyline')
 local condition = require('galaxyline.condition')
 local gls = gl.section
-gl.short_line_list = {'NvimTree', 'toggleterm', 'packer', 'dashboard'}
+gl.short_line_list = {'NvimTree', 'packer', 'term://*', 'dashboard'}
 
-local colors = {
-  bg = '#2E2E2E',
-  yellow = '#DCDCAA',
-  dark_yellow = '#D7BA7D',
-  cyan = '#4EC9B0',
-  green = '#608B4E',
-  light_green = '#B5CEA8',
-  string_orange = '#CE9178',
-  orange = '#FF8800',
-  purple = '#C586C0',
-  magenta = '#D16D9E',
-  grey = '#858585',
-  blue = '#569CD6',
-  vivid_blue = '#4FC1FF',
-  light_blue = '#9CDCFE',
-  red = '#D16969',
-  error_red = '#F44747'
-}
+local colors = {}
+
+if vim.g.colors_name == 'gruvbox' then
+  colors = {
+    bg = '#282828',
+    yellow = '#d79921',
+    cyan = '#83a598',
+    green = '#b8bb26',
+    orange = '#d65d0e',
+    purple = '#b16286',
+    magenta = '#d3869b',
+    grey = '#a89984',
+    blue = '#076678',
+    red = '#cc241d'
+  }
+else
+  colors = {
+    bg = '#2E2E2E',
+    yellow = '#D7BA7D',
+    cyan = '#4EC9B0',
+    green = '#608B4E',
+    orange = '#FF8800',
+    purple = '#C586C0',
+    magenta = '#D16D9E',
+    grey = '#858585',
+    blue = '#569CD6',
+    red = '#D16969'
+  }
+end
 
 gls.left[1] = {
   ViMode = {
@@ -94,7 +105,7 @@ gls.left[5] = {
     condition = condition.check_git_workspace,
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.dark_yellow, colors.bg, 'bold'}
+    highlight = {colors.yellow, colors.bg, 'bold'}
   }
 }
 
@@ -127,7 +138,7 @@ gls.right[1] = {
   DiagnosticError = {
     provider = 'DiagnosticError',
     icon = '  ',
-    highlight = {colors.error_red, colors.bg}
+    highlight = {colors.red, colors.bg}
   }
 }
 gls.right[2] = {

@@ -47,18 +47,10 @@ return packer.startup(function()
   use {'ChristianChiarulli/nvcode-color-schemes.vim'}
   use {'glepnir/zephyr-nvim'}
   -- use {'morhetz/gruvbox'}
-  use {
-    'npxbr/gruvbox.nvim',
-    config = [[require('plugin.gruvbox')]],
-    requires = {'rktjmp/lush.nvim'}
-  }
+  use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 
   -- Cursor
-  use {
-    'RRethy/vim-illuminate',
-    event = {'BufReadPre', 'BufNewFile'},
-    config = [[require('plugin.vim-illuminate')]]
-  }
+  use {'RRethy/vim-illuminate', event = 'BufReadPre', config = [[require('plugin.vim-illuminate')]]}
 
   -- Dashboard
   use {'glepnir/dashboard-nvim', config = [[require('plugin.dashboard')]]}
