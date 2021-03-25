@@ -235,8 +235,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p ,     spawn,	 	   SHCMD(TERMINAL " -e pulsemixer") },
 
 	// Screenshot
-	{ 0,                            XK_Print,  spawn,       SHCMD("maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png") },
-	{ ShiftMask,                    XK_Print,  spawn,       SHCMD("maim ~/Pictures/$(date '+%y%m%d-%H%M-%S').png") },
+	{ 0,                            XK_Print,  spawn,       SHCMD("maimpick") },
+	{ ShiftMask,                    XK_Print,  spawn,       SHCMD("maim -i $(xdotool getactivewindow) ~/Pictures/$(date '+%Y-%m-%d_%H%M%S').png") },
 
 	//-------------------------- Hardware ------------------------------
 	{ 0, XF86XK_AudioMute,          spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
