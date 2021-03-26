@@ -69,8 +69,13 @@ return packer.startup(function()
   -- Icons
   use {'kyazdani42/nvim-web-devicons', config = [[require('plugin.nvim-web-devicons')]]}
 
-  -- Indent Guides
-  use {'glepnir/indent-guides.nvim', event = 'BufRead'}
+  -- Indent line
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    branch = 'lua',
+    event = {'BufRead'},
+    config = [[require('plugin.indentline')]]
+  }
 
   -- Lsp
   use {
