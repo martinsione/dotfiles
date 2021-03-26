@@ -7,6 +7,9 @@ base
 bat
 binutils
 bison
+cloc
+cmake
+ctags
 dialog
 discord
 dmenu
@@ -47,6 +50,8 @@ libva-vdpau-driver
 linux-firmware
 linux-headers
 linux-lts
+lua
+luarocks
 lxsession
 m4
 maim
@@ -57,6 +62,7 @@ mpv
 mtools
 neofetch
 networkmanager
+ninja
 nitrogen
 noto-fonts-emoji
 npm
@@ -66,6 +72,7 @@ nvidia-settings
 nvidia-utils
 obs-studio
 os-prober
+otf-cascadia-code
 pacman
 pamixer
 papirus-icon-theme
@@ -88,6 +95,7 @@ texinfo
 tmux
 trash-cli
 tree
+tree-sitter
 ttf-dejavu
 ttf-joypixels
 ttf-liberation
