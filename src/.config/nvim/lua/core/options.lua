@@ -7,6 +7,7 @@ opt.cursorline = true
 opt.foldmethod = 'marker'
 opt.nu = true
 opt.rnu = true
+opt.ruler = false -- My statusline take care of that
 opt.showmode = false
 opt.signcolumn = 'yes'
 opt.termguicolors = true
