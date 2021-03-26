@@ -1,5 +1,6 @@
 augroup ftplugin
   au!
+  au FileType man setlocal laststatus=0 noruler
   au TermOpen term://* setlocal nornu nonu nocul so=0 scl=no
 augroup end
 

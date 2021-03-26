@@ -41,7 +41,7 @@ export STARSHIP_CONFIG=~/.config/zsh/starship
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export LESSHISTFILE=-                       # Disable hist files
-export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER="nvim -c 'set ft=man'"
 export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
 export _JAVA_AWT_WM_NONREPARENTING=1        # Fix for Java applications in dwm
 
