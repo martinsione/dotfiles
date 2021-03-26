@@ -33,13 +33,6 @@ return packer.startup(function()
     config = [[require('plugin.nvim-bufferline')]]
   }
 
-  -- Closetags
-  use {
-    'windwp/nvim-ts-autotag',
-    event = 'InsertEnter',
-    config = [[require('nvim-ts-autotag').setup()]]
-  }
-
   -- Colorizer
   use {'norcalli/nvim-colorizer.lua', event = 'BufRead', config = [[require('plugin.colorizer')]]}
 
@@ -137,7 +130,10 @@ return packer.startup(function()
     run = ':TSUpdate',
     after = 'telescope.nvim',
     config = [[require('plugin.treesitter')]],
-    requires = {{'p00f/nvim-ts-rainbow', opt = true}}
+    requires = {
+      {'p00f/nvim-ts-rainbow', opt = true}, {'windwp/nvim-ts-autotag', event = 'InsertEnter'},
+      {'JoosepAlviste/nvim-ts-context-commentstring', opt = true}
+    }
   }
 
 end)
