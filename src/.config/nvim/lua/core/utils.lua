@@ -93,7 +93,6 @@ local convert_vimoption_to_lua = function(option, val)
   end
 
   if type(val) == 'string' then
-    -- TODO: Bad hax I think
     if string.find(val, ':') then
       local result = {}
       local items = vim.split(val, ',')
@@ -233,7 +232,6 @@ opt_mt = {
       v = ''
     end
 
-    -- TODO: Figure out why nvim_set_option doesn't override values the same way.
     -- @bfredl said he will fix this for me, so I can just use nvim_set_option
     if type(v) == 'boolean' then
       vim.o[k] = clean_value(v)
