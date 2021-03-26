@@ -4,7 +4,6 @@ end
 
 require('gitsigns').setup {
   signs = {
-    -- TODO add hl to colorscheme
     add = {hl = 'GitSignsAdd', text = '▎'},
     change = {hl = 'GitSignsChange', text = '▎'},
     delete = {hl = 'GitSignsDelete', text = '契'},
