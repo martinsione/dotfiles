@@ -93,6 +93,11 @@ return packer.startup(function()
   -- Profiling
   use {'tweekmonster/startuptime.vim', cmd = 'StartupTime'}
 
+  -- Snippets
+  use {'hrsh7th/vim-vsnip'}
+  use {'dsznajder/vscode-es7-javascript-react-snippets'}
+  use {'xabikos/vscode-javascript'}
+
   -- Statusline
   use {'glepnir/galaxyline.nvim', config = [[require('plugin.galaxyline')]]}
 
@@ -131,7 +136,8 @@ return packer.startup(function()
     -- event = 'BufRead',
     run = ':TSUpdate',
     after = 'telescope.nvim',
-    config = [[require'nvim-treesitter.configs'.setup { highlight = { enable = true }, ensure_installed = 'maintained' }]]
+    config = [[require('plugin.treesitter')]],
+    requires = {{'p00f/nvim-ts-rainbow', opt = true}}
   }
 
 end)
