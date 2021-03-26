@@ -23,6 +23,10 @@ return function(client)
     client.resolved_capabilities.document_formatting = false
   end
 
+  if client.name == 'tsserver' then
+    require('nvim-lsp-ts-utils').setup {}
+  end
+
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
   end
