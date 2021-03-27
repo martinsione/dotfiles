@@ -83,6 +83,7 @@ return packer.startup(function()
     event = 'BufReadPre',
     config = [[require('plugin.lsp')]],
     requires = {
+      {'kabouzeid/nvim-lspinstall'},
       {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugin.compe')]]},
       {'glepnir/lspsaga.nvim', opt = true}, {'onsails/lspkind-nvim', opt = true},
       {'jose-elias-alvarez/nvim-lsp-ts-utils', opt = true}

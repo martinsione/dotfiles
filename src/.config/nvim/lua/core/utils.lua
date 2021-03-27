@@ -11,6 +11,8 @@ function utils.os:load_variables()
   self.is_linux = os_name == 'Linux'
   self.is_windows = os_name == 'Windows'
   self.is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
+self.data = vim.fn.stdpath('data')
+self.cache = vim.fn.stdpath('cache')
 end
 utils.os:load_variables()
 
