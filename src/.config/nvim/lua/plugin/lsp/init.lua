@@ -1,4 +1,5 @@
 local lspconfig = require('lspconfig')
+local lspinstall = require('lspinstall')
 local languages = require('plugin.lsp.format')
 local on_attach = require('plugin.lsp.on_attach')
 
@@ -14,22 +15,16 @@ local servers = {
   lua = {
     settings = {
       Lua = {
-        diagnostics = {globals = {'vim'}},
+        diagnostics = {globals = {'vim', 'packer_plugins'}},
         completion = {keywordSnippet = 'Both'},
         runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
-        workspace = {
-          library = {
-            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-          }
-        }
+        workspace = {library = vim.list_extend({[vim.fn.expand('$VIMRUNTIME/lua')] = true}, {})}
       }
     }
   }
 }
 
 local function setup_servers()
-  local lspinstall = require('lspinstall')
   lspinstall.setup()
   local installed = lspinstall.installed_servers()
   for _, server in pairs(installed) do
