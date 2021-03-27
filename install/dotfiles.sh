@@ -36,7 +36,7 @@ yes | sudo -u $(whoami) $aurhelper -S libxft-bgra-git >/dev/null 2>&1   # otherw
 sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
 ${aurhelper} -S --noconfirm --needed $(comm -12 <(${aurhelper} -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
 
-mkdir -p ~/.config/VSCodium/User ~/.local/share ~/.local/bin ~/.local/src
+mkdir -p ~/.config/VSCodium/User ~/.local/share ~/.local/bin ~/.local/src ~/.cache/zsh
 cd ~/dotfiles
 stow src
 
@@ -59,6 +59,9 @@ echo 'set-default-sink noechosink' | sudo tee -a /etc/pulse/default.pa
 # Create .pulse-cookie in /tmp
 echo 'cookie-file = /tmp/pulse-cookie' | sudo tee -a /etc/pulse/client.conf
 
+# Declutter home directory
+echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv
+
 # Generate ssh keys
 # ssh-keygen -t rsa -b 4096 -C "${email}"
 # eval "$(ssh-agent -s)"
@@ -66,4 +69,3 @@ echo 'cookie-file = /tmp/pulse-cookie' | sudo tee -a /etc/pulse/client.conf
 
 # Change shell to zsh
 chsh -s $(which zsh)
-echo 'export ZDOTDIR=$HOME/.config/zsh' | sudo tee -a /etc/zsh/zshenv
