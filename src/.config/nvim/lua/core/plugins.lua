@@ -103,7 +103,7 @@ return packer.startup(function()
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
-    -- cmd = 'Telescope',
+    cmd = 'Telescope',
     config = [[require('plugin.telescope')]],
     requires = {
       {'nvim-lua/popup.nvim', opt = true}, {'nvim-lua/plenary.nvim', opt = true},
@@ -132,7 +132,7 @@ return packer.startup(function()
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
-    -- event = 'BufRead',
+    event = 'BufRead',
     run = ':TSUpdate',
     after = 'telescope.nvim',
     config = [[require('plugin.treesitter')]],
