@@ -1,19 +1,17 @@
-local execute = vim.api.nvim_command
-local install_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-  execute 'packadd packer.nvim'
+local packer_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
+if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
+  vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
+  vim.cmd 'packadd packer.nvim'
+else
+  vim.cmd [[packadd packer.nvim | au BufWritePost plugins.lua PackerCompile]]
 end
 
-vim.cmd [[packadd packer.nvim | au BufWritePost plugins.lua PackerCompile]]
-
 local packer = require('packer')
-local packer_compiled = vim.fn.stdpath('data') .. '/site/plugin/packer_compiled.vim'
+local packer_compiled = utils.os.data .. '/site/plugin/packer_compiled.vim'
+local plugins_path = utils.os.data .. '/site/pack/packer/start'
 
-return packer.startup(function()
-  local use = packer.use
+return packer.startup(function(use)
   packer.init({compile_path = packer_compiled})
-  packer.reset()
 
   use {'wbthomason/packer.nvim', opt = true}
 
@@ -136,4 +134,7 @@ return packer.startup(function()
     },
   }
 
+  -- Autoinstall/compile  plugins
+  if vim.fn.isdirectory(vim.fn.glob(plugins_path)) > 0 then packer.install() end
+  if vim.fn.empty(vim.fn.glob(packer_compiled)) > 0 then packer.compile() end
 end)
