@@ -12,6 +12,7 @@ augroup end
 augroup on_save
   au!
   au BufWritePre * %s/\s\+$//e                  " Remove whitespace on save
+  au BufWritePre * %s/\n\+\%$//e                " remove trailing newline
   au BufWritePost *.lua :luafile %
   au BufWritePost *.vim :source %
 augroup end

@@ -15,18 +15,18 @@ vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
   find_files = {
     description = {'  Find  Files                             CTRL p '},
-    command = 'Telescope find_files'
+    command = 'Telescope find_files',
   },
   find_history = {
     description = {'  Recently opened files                   SPC f r'},
-    command = 'Telescope oldfiles'
+    command = 'Telescope oldfiles',
   },
   find_word = {
     description = {'  Find  word                              SPC f w'},
-    command = 'Telescope live_grep'
+    command = 'Telescope live_grep',
   },
   find_dotfiles = {
     description = {'  Open Personal dotfiles                  SPC f d'},
-    command = 'lua require("plugin.telescope").find_dotfiles()'
-  }
+    command = 'lua require("plugin.telescope").find_dotfiles()',
+  },
 }

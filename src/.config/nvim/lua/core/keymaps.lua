@@ -54,7 +54,6 @@ tmap('<C-w><C-k>', '<cmd>wincmd k<CR>')
 tmap('<C-w><C-l>', '<cmd>wincmd l<CR>')
 
 -- Command
-cmap('<C-f>', '<Nop>')
 cmap('<C-a>', '<Home>')
 cmap('<C-e>', '<End>')
 cmap('<C-h>', '<Left>')
@@ -62,7 +61,7 @@ cmap('<C-j>', '<Down>')
 cmap('<C-k>', '<Up>')
 cmap('<C-l>', '<Right>')
 cmap('<C-d>', '<Del>')
-cmap('<C-t>', '<C-R>=expand("%:p")<CR>')
+cmap('<C-f>', '<C-R>=expand("%:p")<CR>')
 
 -- Git
 nmap('<space>gs', '<cmd>G<CR>')

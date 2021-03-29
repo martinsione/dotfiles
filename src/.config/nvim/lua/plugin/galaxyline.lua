@@ -16,7 +16,7 @@ if vim.g.colors_name == 'gruvbox' then
     magenta = '#d3869b',
     grey = '#a89984',
     blue = '#076678',
-    red = '#cc241d'
+    red = '#cc241d',
   }
 else
   colors = {
@@ -29,7 +29,7 @@ else
     magenta = '#D16D9E',
     grey = '#858585',
     blue = '#569CD6',
-    red = '#D16969'
+    red = '#D16969',
   }
 end
 
@@ -57,13 +57,13 @@ gls.left[1] = {
         rm = colors.cyan,
         ['r?'] = colors.cyan,
         ['!'] = colors.blue,
-        t = colors.blue
+        t = colors.blue,
       }
       vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
       return '▊ '
     end,
-    highlight = {colors.red, colors.bg, 'bold'}
-  }
+    highlight = {colors.red, colors.bg, 'bold'},
+  },
 }
 
 gls.left[2] = {
@@ -71,8 +71,8 @@ gls.left[2] = {
     provider = 'FileIcon',
     -- condition = condition.buffer_not_empty
     condition = condition.hide_in_width,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg}
-  }
+    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg},
+  },
 }
 
 gls.left[3] = {
@@ -83,8 +83,8 @@ gls.left[3] = {
     condition = condition.hide_in_width,
     separator = '  ',
     separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.grey, colors.bg, 'bold'}
-  }
+    highlight = {colors.grey, colors.bg, 'bold'},
+  },
 }
 
 gls.left[4] = {
@@ -95,8 +95,8 @@ gls.left[4] = {
     condition = condition.check_git_workspace,
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.orange, colors.bg, 'bold'}
-  }
+    highlight = {colors.orange, colors.bg, 'bold'},
+  },
 }
 
 gls.left[5] = {
@@ -105,8 +105,8 @@ gls.left[5] = {
     condition = condition.check_git_workspace,
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.yellow, colors.bg, 'bold'}
-  }
+    highlight = {colors.yellow, colors.bg, 'bold'},
+  },
 }
 
 gls.left[6] = {
@@ -114,55 +114,39 @@ gls.left[6] = {
     provider = 'DiffAdd',
     -- condition = condition.hide_in_width,
     icon = '  ',
-    highlight = {colors.green, colors.bg}
-  }
+    highlight = {colors.green, colors.bg},
+  },
 }
 gls.left[7] = {
   DiffModified = {
     provider = 'DiffModified',
     -- condition = condition.hide_in_width,
     icon = ' 柳',
-    highlight = {colors.blue, colors.bg}
-  }
+    highlight = {colors.blue, colors.bg},
+  },
 }
 gls.left[8] = {
   DiffRemove = {
     provider = 'DiffRemove',
     -- condition = condition.hide_in_width,
     icon = '  ',
-    highlight = {colors.red, colors.bg}
-  }
+    highlight = {colors.red, colors.bg},
+  },
 }
 
 gls.right[1] = {
-  DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = '  ',
-    highlight = {colors.red, colors.bg}
-  }
+  DiagnosticError = {provider = 'DiagnosticError', icon = '  ', highlight = {colors.red, colors.bg}},
 }
 gls.right[2] = {
-  DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '  ',
-    highlight = {colors.orange, colors.bg}
-  }
+  DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '  ', highlight = {colors.orange, colors.bg}},
 }
 
 gls.right[3] = {
-  DiagnosticHint = {
-    provider = 'DiagnosticHint',
-    icon = '  ',
-    highlight = {colors.blue, colors.bg}
-  }
+  DiagnosticHint = {provider = 'DiagnosticHint', icon = '  ', highlight = {colors.blue, colors.bg}},
 }
 
 gls.right[4] = {
-  DiagnosticInfo = {
-    provider = 'DiagnosticInfo',
-    icon = '  ',
-    highlight = {colors.blue, colors.bg}
-  }
+  DiagnosticInfo = {provider = 'DiagnosticInfo', icon = '  ', highlight = {colors.blue, colors.bg}},
 }
 
 gls.right[6] = {
@@ -170,8 +154,8 @@ gls.right[6] = {
     provider = 'LineColumn',
     separator = '  ',
     separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.grey, colors.bg}
-  }
+    highlight = {colors.grey, colors.bg},
+  },
 }
 
 gls.right[7] = {
@@ -179,8 +163,8 @@ gls.right[7] = {
     provider = 'LinePercent',
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.grey, colors.bg, 'bold'}
-  }
+    highlight = {colors.grey, colors.bg, 'bold'},
+  },
 }
 
 gls.short_line_left[2] = {
@@ -190,6 +174,6 @@ gls.short_line_left[2] = {
     end,
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.grey, colors.bg, 'bold'}
-  }
+    highlight = {colors.grey, colors.bg, 'bold'},
+  },
 }

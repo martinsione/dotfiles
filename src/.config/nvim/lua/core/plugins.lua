@@ -20,18 +20,10 @@ return packer.startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   -- Auto-pairs
-  use {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = [[require('plugin.nvim-autopairs')]]
-  }
+  use {'windwp/nvim-autopairs', event = 'InsertEnter', config = [[require('nvim-autopairs').setup() ]]}
 
   -- Bufferline
-  use {
-    'akinsho/nvim-bufferline.lua',
-    event = 'BufRead',
-    config = [[require('plugin.nvim-bufferline')]]
-  }
+  use {'akinsho/nvim-bufferline.lua', event = 'BufRead', config = [[require('plugin.nvim-bufferline')]]}
 
   -- Colorizer
   use {'norcalli/nvim-colorizer.lua', event = 'BufRead', config = [[require('plugin.colorizer')]]}
@@ -55,7 +47,7 @@ return packer.startup(function()
   use {
     'mattn/emmet-vim',
     event = 'InsertEnter',
-    ft = {'html', 'css', 'javascript', 'javascriptreact', 'vue', 'typescript', 'typescriptreact'}
+    ft = {'html', 'css', 'javascript', 'javascriptreact', 'vue', 'typescript', 'typescriptreact'},
   }
 
   -- Git
@@ -63,7 +55,7 @@ return packer.startup(function()
     'lewis6991/gitsigns.nvim',
     event = {'BufRead', 'BufNewFile'},
     config = [[require('plugin.gitsigns')]],
-    requires = {{'nvim-lua/plenary.nvim', opt = true}}
+    requires = {{'nvim-lua/plenary.nvim', opt = true}},
   }
 
   -- Icons
@@ -74,7 +66,7 @@ return packer.startup(function()
     'lukas-reineke/indent-blankline.nvim',
     branch = 'lua',
     event = {'BufRead'},
-    config = [[require('plugin.indentline')]]
+    config = [[require('plugin.indentline')]],
   }
 
   -- Lsp
@@ -86,8 +78,8 @@ return packer.startup(function()
       {'kabouzeid/nvim-lspinstall'},
       {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugin.compe')]]},
       {'glepnir/lspsaga.nvim', opt = true}, {'onsails/lspkind-nvim', opt = true},
-      {'jose-elias-alvarez/nvim-lsp-ts-utils', opt = true}
-    }
+      {'jose-elias-alvarez/nvim-lsp-ts-utils', opt = true},
+    },
   }
 
   -- Profiling
@@ -110,8 +102,8 @@ return packer.startup(function()
       {'nvim-lua/popup.nvim', opt = true}, {'nvim-lua/plenary.nvim', opt = true},
       {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
       {'nvim-telescope/telescope-fzf-writer.nvim', opt = true},
-      {'nvim-telescope/telescope-media-files.nvim', opt = true}
-    }
+      {'nvim-telescope/telescope-media-files.nvim', opt = true},
+    },
   }
 
   -- Terminal
@@ -139,8 +131,8 @@ return packer.startup(function()
     config = [[require('plugin.treesitter')]],
     requires = {
       {'p00f/nvim-ts-rainbow', opt = true}, {'windwp/nvim-ts-autotag', event = 'InsertEnter'},
-      {'JoosepAlviste/nvim-ts-context-commentstring', opt = true}
-    }
+      {'JoosepAlviste/nvim-ts-context-commentstring', opt = true},
+    },
   }
 
 end)

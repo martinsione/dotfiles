@@ -4,7 +4,7 @@ local eslint = {
   lintStdin = true,
   lintFormats = {'%f:%l:%c: %m'},
   formatCommand = 'eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}',
-  formatStdin = true
+  formatStdin = true,
 }
 
 local prettier = {formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true}
@@ -22,5 +22,5 @@ return {
   scss = {prettier},
   typescript = {prettier, eslint},
   typescriptreact = {prettier, eslint},
-  yaml = {prettier}
+  yaml = {prettier},
 }

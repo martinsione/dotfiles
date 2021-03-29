@@ -6,9 +6,7 @@ if not packer_plugins['plenary.nvim'].loaded then
   vim.cmd [[packadd telescope-media-files.nvim]]
 end
 
-if not pcall(require, 'telescope') then
-  return
-end
+if not pcall(require, 'telescope') then return end
 
 local actions = require('telescope.actions')
 
@@ -28,13 +26,13 @@ require('telescope').setup {
     qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
     mappings = {
       i = {['<C-j>'] = actions.move_selection_next, ['<C-k>'] = actions.move_selection_previous},
-      n = {['<C-c>'] = actions.close}
-    }
+      n = {['<C-c>'] = actions.close},
+    },
   },
   extensions = {
     fzy_native = {override_generic_sorter = false, override_file_sorter = true},
-    media_files = {filetypes = {'png', 'jpg', 'jpeg', 'mp4', 'webm', 'pdf'}, find_cmd = 'fd'}
-  }
+    media_files = {filetypes = {'png', 'jpg', 'jpeg', 'mp4', 'webm', 'pdf'}, find_cmd = 'fd'},
+  },
 
 }
 
@@ -47,7 +45,7 @@ function M.find_dotfiles()
   require('telescope.builtin').find_files {
     prompt_title = ' Dotfiles ',
     find_command = {'rg', '--files', '--hidden', '--ignore', '--sort=path'},
-    cwd = '~/dotfiles'
+    cwd = '~/dotfiles',
   }
 end
 

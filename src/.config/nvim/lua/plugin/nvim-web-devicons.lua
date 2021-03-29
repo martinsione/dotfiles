@@ -13,6 +13,6 @@ require'nvim-web-devicons'.setup {
     ts = {icon = 'ﯤ', color = '#519ABA', name = 'ts'},
     xz = {icon = '', color = '#EBCB8B', name = 'xz'},
     zip = {icon = '', color = '#EBCB8B', name = 'zip'},
-    zsh = {icon = '', color = '#428850', name = 'Zsh'}
-  }
+    zsh = {icon = '', color = '#428850', name = 'Zsh'},
+  },
 }
