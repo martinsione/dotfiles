@@ -54,6 +54,7 @@ static const Rule rules[] = {
 	{ "Brave-browser",  NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "zoom",           NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "mpv",            NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "Zathura",        NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Thunderbird",    NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Gimp",           NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Steam",          NULL,       NULL,       1 << 4,       0,           -1 },
