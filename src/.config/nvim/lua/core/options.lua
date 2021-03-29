@@ -1,6 +1,8 @@
 -- TODO: REMOVE when https://github.com/neovim/neovim/pull/13479 comes
 local opt = vim.opt
 
+opt.colorcolumn = 80
+
 -- Appearance
 opt.cmdheight = 1
 opt.cursorline = true
