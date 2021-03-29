@@ -20,16 +20,16 @@ local servers = {
       Lua = {
         diagnostics = {enable = true, globals = {'vim', 'packer_plugins'}},
         runtime = {version = 'LuaJIT'},
-        workspace = {library = vim.list_extend({[vim.fn.expand('$VIMRUNTIME/lua')] = true}, {})}
-      }
-    }
+        workspace = {library = vim.list_extend({[vim.fn.expand('$VIMRUNTIME/lua')] = true}, {})},
+      },
+    },
   },
   efm = {
     init_options = {documentFormatting = true, codeAction = true},
     root_dir = lspconfig.util.root_pattern({'.git/', 'vim.fn.getcwd()'}),
     filetypes = vim.tbl_keys(languages),
-    settings = {languages = languages, log_level = 1, log_file = '~/efm.log'}
-  }
+    settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
+  },
 }
 
 for server, config in pairs(servers) do

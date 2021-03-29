@@ -1,4 +1,3 @@
--- local imap = utils.keymap.imap
 require'compe'.setup {
   enabled = true,
   autocomplete = true,
@@ -15,8 +14,6 @@ require'compe'.setup {
     nvim_lua = true,
     spell = true,
     tags = true,
-    snippets_nvim = true
-  }
+    snippets_nvim = true,
+  },
 }
-
--- imap('<CR>', 'compe#confirm("<CR>")', {expr = true})

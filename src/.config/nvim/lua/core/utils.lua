@@ -6,13 +6,13 @@ local os_name = vim.loop.os_uname().sysname
 
 function utils.os:load_variables()
   self.home = os.getenv('HOME')
+  self.data = vim.fn.stdpath('data')
+  self.cache = vim.fn.stdpath('cache')
   self.name = os_name
   self.is_mac = os_name == 'Darwin'
   self.is_linux = os_name == 'Linux'
   self.is_windows = os_name == 'Windows'
   self.is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
-self.data = vim.fn.stdpath('data')
-self.cache = vim.fn.stdpath('cache')
 end
 utils.os:load_variables()
 
@@ -28,9 +28,7 @@ utils.keymap = {}
 
 local function make_map(scope, mode, lhs, rhs, opts)
   local options = {noremap = true, silent = true}
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
+  if opts then options = vim.tbl_extend('force', options, opts) end
   if scope == 'buffer' then
     vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
   else
@@ -62,13 +60,12 @@ function utils.keymap.cmap(lhs, rhs)
   -- { silent } need to be false to work
   return make_map('', 'c', lhs, rhs, {silent = false})
 end
+
 -------------
 -- Vim opt --
 -------------
 local if_nil = function(a, b)
-  if a == nil then
-    return b
-  end
+  if a == nil then return b end
   return a
 end
 
@@ -86,21 +83,15 @@ end
 
 local convert_vimoption_to_lua = function(option, val)
   -- Short circuit if we've already converted!
-  if type(val) == 'table' then
-    return val
-  end
+  if type(val) == 'table' then return val end
 
-  if singular_values[type(val)] then
-    return val
-  end
+  if singular_values[type(val)] then return val end
 
   if type(val) == 'string' then
     if string.find(val, ':') then
       local result = {}
       local items = vim.split(val, ',')
-      for _, item in ipairs(items) do
-        set_key_value(result, item)
-      end
+      for _, item in ipairs(items) do set_key_value(result, item) end
 
       return result
     else
@@ -115,9 +106,7 @@ end
 
 local concat_key_values = function(t, sep, divider)
   local final = {}
-  for k, v in pairs(t) do
-    table.insert(final, string.format('%s%s%s', k, divider, v))
-  end
+  for k, v in pairs(t) do table.insert(final, string.format('%s%s%s', k, divider, v)) end
 
   table.sort(final)
   return table.concat(final, sep)
@@ -125,9 +114,7 @@ end
 
 local remove_duplicate_values = function(t)
   local result = {}
-  for _, v in ipairs(t) do
-    result[v] = true
-  end
+  for _, v in ipairs(t) do result[v] = true end
 
   return vim.tbl_keys(result)
 end
@@ -135,15 +122,9 @@ end
 local remove_value = function(t, val)
   if vim.tbl_islist(t) then
     local remove_index = nil
-    for i, v in ipairs(t) do
-      if v == val then
-        remove_index = i
-      end
-    end
+    for i, v in ipairs(t) do if v == val then remove_index = i end end
 
-    if remove_index then
-      table.remove(t, remove_index)
-    end
+    if remove_index then table.remove(t, remove_index) end
   else
     t[val] = nil
   end
@@ -153,8 +134,8 @@ end
 
 local add_value = function(current, new)
   if singular_values[type(current)] then
-    error('This is not possible to do. Please do something different: ' .. tostring(current) ..
-            ' // ' .. tostring(new))
+    error('This is not possible to do. Please do something different: ' .. tostring(current) .. ' // ' ..
+            tostring(new))
   end
 
   if type(new) == 'string' then
@@ -192,9 +173,7 @@ local convert_lua_to_vimoption = function(t)
 end
 
 local clean_value = function(v)
-  if singular_values[type(v)] then
-    return v
-  end
+  if singular_values[type(v)] then return v end
 
   local result = v:gsub('^,', '')
 
@@ -205,17 +184,13 @@ local opt_mt
 
 opt_mt = {
   __index = function(t, k)
-    if k == '_value' then
-      return rawget(t, k)
-    end
+    if k == '_value' then return rawget(t, k) end
 
     return setmetatable({_option = k}, opt_mt)
   end,
 
   __newindex = function(t, k, v)
-    if k == '_value' then
-      return rawset(t, k, v)
-    end
+    if k == '_value' then return rawset(t, k, v) end
 
     if type(v) == 'table' then
       local new_value
@@ -230,9 +205,7 @@ opt_mt = {
       return
     end
 
-    if v == nil then
-      v = ''
-    end
+    if v == nil then v = '' end
 
     -- @bfredl said he will fix this for me, so I can just use nvim_set_option
     if type(v) == 'boolean' then
@@ -254,15 +227,11 @@ opt_mt = {
     --]]
 
     assert(left._option, 'must have an option key')
-    if left._option == 'foldcolumn' then
-      error('not implemented for foldcolumn.. use a string')
-    end
+    if left._option == 'foldcolumn' then error('not implemented for foldcolumn.. use a string') end
 
     local existing = if_nil(left._value, vim.o[left._option])
     local current = convert_vimoption_to_lua(left._option, existing)
-    if not current then
-      left._value = convert_vimoption_to_lua(right)
-    end
+    if not current then left._value = convert_vimoption_to_lua(right) end
 
     left._value = add_value(current, right)
     return left
@@ -273,13 +242,11 @@ opt_mt = {
 
     local existing = if_nil(left._value, vim.o[left._option])
     local current = convert_vimoption_to_lua(left._option, existing)
-    if not current then
-      return left
-    end
+    if not current then return left end
 
     left._value = remove_value(current, right)
     return left
-  end
+  end,
 }
 
 vim.opt = setmetatable({}, opt_mt)

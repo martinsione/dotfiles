@@ -1,6 +1,4 @@
-if not packer_plugins['plenary.nvim'].loaded then
-  vim.cmd [[packadd plenary.nvim]]
-end
+if not packer_plugins['plenary.nvim'].loaded then vim.cmd [[packadd plenary.nvim]] end
 
 require('gitsigns').setup {
   signs = {
@@ -8,7 +6,7 @@ require('gitsigns').setup {
     change = {hl = 'GitSignsChange', text = '▎'},
     delete = {hl = 'GitSignsDelete', text = '契'},
     topdelete = {hl = 'GitSignsDelete', text = '契'},
-    changedelete = {hl = 'GitSignsChange', text = '▎'}
+    changedelete = {hl = 'GitSignsChange', text = '▎'},
   },
   keymaps = {
     -- Default keymap options
@@ -16,7 +14,7 @@ require('gitsigns').setup {
     buffer = true,
 
     ['n ]g'] = {expr = true, '&diff ? \']g\' : \'<cmd>lua require"gitsigns".next_hunk()<CR>\''},
-    ['n [g'] = {expr = true, '&diff ? \'[g\' : \'<cmd>lua require"gitsigns".prev_hunk()<CR>\''}
+    ['n [g'] = {expr = true, '&diff ? \'[g\' : \'<cmd>lua require"gitsigns".prev_hunk()<CR>\''},
 
     -- ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
     -- ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
@@ -27,5 +25,5 @@ require('gitsigns').setup {
     -- Text objects
     -- ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
     -- ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
-  }
+  },
 }
