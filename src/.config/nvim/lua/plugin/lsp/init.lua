@@ -24,14 +24,14 @@ local servers = {
   },
 }
 
--- local function setup_servers()
-lspinstall.setup()
-local installed = lspinstall.installed_servers()
-for _, server in pairs(installed) do
-  local config = servers[server] or {}
-  config.on_attach = on_attach
-  lspconfig[server].setup(config)
+local function setup_servers()
+  lspinstall.setup()
+  local installed = lspinstall.installed_servers()
+  for _, server in pairs(installed) do
+    local config = servers[server] or {}
+    config.on_attach = on_attach
+    lspconfig[server].setup(config)
+  end
 end
--- end
 
--- setup_servers()
+setup_servers()
