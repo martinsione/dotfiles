@@ -92,6 +92,16 @@ nmap('ss', '<Plug>Yssurround', {noremap = false})
 nmap('SS', '<Plug>YSsurround', {noremap = false})
 xmap('s', '<Plug>VSurround', {noremap = false})
 xmap('S', '<Plug>VgSurround', {noremap = false})
+-- Nvim miniyank
+nmap('p', '<Plug>(miniyank-autoput)', {noremap = false})
+nmap('P', '<Plug>(miniyank-autoPut)', {noremap = false})
+nmap('<leader>p', '<Plug>(miniyank-startput)', {noremap = false})
+nmap('<leader>P', '<Plug>(miniyank-startPut)', {noremap = false})
+nmap(']a', '<Plug>(miniyank-cycle)', {noremap = false})
+nmap('[a', '<Plug>(miniyank-cycleback)', {noremap = false})
+nmap('<Leader>c', '<Plug>(miniyank-tochar)', {noremap = false})
+nmap('<Leader>l', '<Plug>(miniyank-toline)', {noremap = false})
+nmap('<Leader>b', '<Plug>(miniyank-toblock)', {noremap = false})
 
 vim.cmd [[command! PackerDelete :silent !rm  -rf ~/.local/share/nvim/site/pack/packer <CR>]]
 vim.cmd [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
