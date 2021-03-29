@@ -1,23 +1,22 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.local/share/oh-my-zsh"
+export ZSH_DIR=$HOME/.config/zsh/
+export ALIAS_DIR=$ZSH_DIR/custom/alias/
+export LIB_DIR=$ZSH_DIR/custom/lib/
+export SCRIPTS_DIR=$ZSH_DIR/custom/scripts/
+export PLUGINS_DIR=$ZSH_DIR/custom/plugins/
 
-ZSH_THEME="robbyrussell"
+[ -f $ZSH_DIR ] && source source $ZSH_DIR/custom/export.zsh
+[ -d $ALIAS_DIR ] && for file ($ALIAS_DIR/*) source $file
+[ -d $LIB_DIR ] && for file ($LIB_DIR/*) source $file
+[ -d $SCRIPTS_DIR ] && for file ($SCRIPTS_DIR/*) source $file
+[ -d $PLUGINS_DIR ] && for file ($PLUGINS_DIR/*) source $file
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+autoload -U colors && colors	# Load colors
+unsetopt BEEP
+unsetopt PROMPT_SP
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# Load Prompt
+eval "$(starship init zsh)"
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line if you want to disable marking untracked files as dirty
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-plugins=(vi-mode)
-
-source $ZSH/oh-my-zsh.sh
-
-# Source all files under custom/
-for file (~/.config/zsh/custom/**/**) source $file
+# Load Plugins
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
