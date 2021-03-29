@@ -1,3 +1,7 @@
+augroup vimrc
+  au!
+augroup end
+
 augroup ftplugin
   au!
   au FileType man setlocal laststatus=0 noruler

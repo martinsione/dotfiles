@@ -1,16 +1,14 @@
 local execute = vim.api.nvim_command
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
+local install_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
   execute 'packadd packer.nvim'
 end
 
-vim.cmd [[packadd packer.nvim]]
-vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
+vim.cmd [[packadd packer.nvim | au BufWritePost plugins.lua PackerCompile]]
 
 local packer = require('packer')
-local packer_compiled = fn.stdpath('data') .. '/site/plugin/packer_compiled.vim'
+local packer_compiled = vim.fn.stdpath('data') .. '/site/plugin/packer_compiled.vim'
 
 return packer.startup(function()
   local use = packer.use
@@ -24,6 +22,9 @@ return packer.startup(function()
 
   -- Bufferline
   use {'akinsho/nvim-bufferline.lua', event = 'BufRead', config = [[require('plugin.nvim-bufferline')]]}
+
+  -- Clipboard
+  use {'bfredl/nvim-miniyank'}
 
   -- Colorizer
   use {'norcalli/nvim-colorizer.lua', event = 'BufRead', config = [[require('plugin.colorizer')]]}
