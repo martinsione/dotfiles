@@ -1,14 +1,12 @@
 local packer_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
-  vim.cmd 'packadd packer.nvim'
-else
-  vim.cmd [[packadd packer.nvim | au BufWritePost plugins.lua PackerCompile]]
 end
+vim.cmd 'packadd packer.nvim | au BufWritePost plugins.lua PackerCompile'
 
 local packer = require('packer')
 local packer_compiled = utils.os.data .. '/site/plugin/packer_compiled.vim'
-local plugins_path = utils.os.data .. '/site/pack/packer/start'
+local plugins_path = utils.os.data .. '/site/pack/packer/'
 
 return packer.startup(function(use)
   packer.init({compile_path = packer_compiled})
