@@ -1,7 +1,8 @@
 env:
   TERM: xterm-256color
 
-  # Set colorscheme colors:
+# Set colorscheme
+colors:
   cursor:
     text: "#191919"
     cursor: "#d8dee9"
@@ -42,10 +43,10 @@ font:
     family: "Cascadia Code PL"
     style: Italic
   bold_italic:
-    family: "Cascadia Code PL"
     style: Bold Italic
+    family: "Cascadia Code PL"
 
-  size: 13.0
+  size: 15.0
 
   glyph_offset:
     x: 0
@@ -53,11 +54,11 @@ font:
 
   offset:
     x: 0
-    y: 3
+    y: 0
 
 window:
   padding:
-    x: 2
+    x: 0
     y: 0
 
 scrolling:
