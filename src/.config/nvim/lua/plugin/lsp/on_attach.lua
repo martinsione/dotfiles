@@ -11,6 +11,9 @@ local function mappings()
   nmap('ca', 'vim.lsp.buf.code_action()')
   nmap('<space>gh', 'vim.lsp.buf.signature_help()')
   nmap('<space>rn', 'require("lspsaga.rename").rename()')
+
+  nmap('[d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()')
+  nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
 end
 
 return function(client)

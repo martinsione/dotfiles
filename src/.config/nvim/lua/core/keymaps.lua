@@ -11,6 +11,7 @@ xmap('<leader>', '<Nop>')
 -- Normal
 nmap('Q', '<Nop>')
 nmap('q:', '<Nop>')
+nmap('<C-c>', '<Esc>')
 nmap('Y', 'y$')
 nmap('yil', '0y$')
 nmap('<CR>', '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true})

@@ -66,26 +66,26 @@ gls.left[1] = {
   },
 }
 
-gls.left[2] = {
-  FileIcon = {
-    provider = 'FileIcon',
-    -- condition = condition.buffer_not_empty
-    condition = condition.hide_in_width,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg},
-  },
-}
+-- gls.left[2] = {
+--   FileIcon = {
+--     provider = 'FileIcon',
+--     -- condition = condition.buffer_not_empty
+--     condition = condition.hide_in_width,
+--     highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg},
+--   },
+-- }
 
-gls.left[3] = {
-  FullPath = {
-    provider = function()
-      return vim.fn.expand('%:F')
-    end,
-    condition = condition.hide_in_width,
-    separator = '  ',
-    separator_highlight = {'NONE', colors.bg},
-    highlight = {colors.grey, colors.bg, 'bold'},
-  },
-}
+-- gls.left[3] = {
+--   FullPath = {
+--     provider = function()
+--       return vim.fn.expand('%:F')
+--     end,
+--     condition = condition.hide_in_width,
+--     separator = '  ',
+--     separator_highlight = {'NONE', colors.bg},
+--     highlight = {colors.grey, colors.bg, 'bold'},
+--   },
+-- }
 
 gls.left[4] = {
   GitIcon = {
