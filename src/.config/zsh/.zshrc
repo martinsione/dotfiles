@@ -1,23 +1,29 @@
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.local/share/oh-my-zsh"
+ZSH=$HOME/.config/zsh
+EXPORTS=$ZSH/config/export.zsh
 
-ZSH_THEME="robbyrussell"
+# Source config files
+[ -f $EXPORTS ] && source $EXPORTS
+[ -d $ALIAS ] && for file ($ALIAS/*.zsh) source $file
+[ -d $CONFIG ] && for file ($CONFIG/*.zsh) source $file
+[ -d $SCRIPTS ] && for file ($SCRIPTS/*.zsh) source $file
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Disable bell
+unsetopt BEEP
+unsetopt PROMPT_SP
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# Load compinit
+autoload -U compinit
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Load plugins
+source $PLUGIN/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $PLUGIN/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Uncomment the following line if you want to disable marking untracked files as dirty
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Save the location of the current completion dump file.
+if [ -z "$ZSH_COMPDUMP" ]; then
+  ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${ZSH_VERSION}"
+fi
 
-plugins=(vi-mode)
+compinit -u -C -d "${ZSH_COMPDUMP}"
 
-source $ZSH/oh-my-zsh.sh
-
-# Source all files under custom/
-for file (~/.config/zsh/custom/**/**) source $file
+# Load Prompt
+eval "$(starship init zsh)"
