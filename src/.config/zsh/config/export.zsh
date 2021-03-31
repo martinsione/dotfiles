@@ -2,10 +2,11 @@
 export LANG=en_US.UTF-8
 
 # ZSH VARS
-export ALIAS=$ZSH/custom/alias/
-export LIB=$ZSH/custom/lib/
-export SCRIPTS=$ZSH/custom/scripts/
-export PLUGINS=$ZSH/custom/plugins/
+export ZSH_CONFIG=$ZSH/config
+export ALIAS=$ZSH_CONFIG/alias
+export CONFIG=$ZSH_CONFIG/core
+export PLUGIN=$ZSH/plugins
+export SCRIPTS=$ZSH/scripts
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
