@@ -71,6 +71,9 @@ if [[ $COMPLETION_WAITING_DOTS = true ]]; then
   bindkey -M vicmd "^I" expand-or-complete-with-dots
 fi
 
+# Same colors as ls
+eval "$(dircolors)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # automatically load bash completion functions
 autoload -U +X bashcompinit && bashcompinit
-# compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
