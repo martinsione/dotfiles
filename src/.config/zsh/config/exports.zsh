@@ -1,13 +1,6 @@
 # Set encoding
 export LANG=en_US.UTF-8
 
-# ZSH VARS
-export ZSH_CONFIG=$ZSH/config
-export ALIAS=$ZSH_CONFIG/alias
-export CONFIG=$ZSH_CONFIG/core
-export PLUGIN=$ZSH/plugins
-export SCRIPTS=$ZSH/scripts
-
 # Path
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar:$PATH"

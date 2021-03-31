@@ -1,29 +1,42 @@
-ZSH=$HOME/.config/zsh
-EXPORTS=$ZSH/config/export.zsh
+# https://github.com/akinsho/dotfiles/blob/main/zsh/.zshrc
+# https://github.com/wincent/wincent/blob/master/aspects/dotfiles/files/.zshrc
+# NOTE: -z returns true if a string value has a length of 0
 
-# Source config files
-[ -f $EXPORTS ] && source $EXPORTS
-[ -d $ALIAS ] && for file ($ALIAS/*.zsh) source $file
-[ -d $CONFIG ] && for file ($CONFIG/*.zsh) source $file
-[ -d $SCRIPTS ] && for file ($SCRIPTS/*.zsh) source $file
+# Create a hash table for globally stashing variables without polluting main
+# scope with a bunch of identifiers.
+typeset -A __MARTIN
+__MARTIN[ITALIC_ON]=$'\e[3m'
+__MARTIN[ITALIC_OFF]=$'\e[23m'
 
-# Disable bell
-unsetopt BEEP
-unsetopt PROMPT_SP
+## Load ZSH VARS
+export ZSH=$HOME/.config/zsh
+export ZSH_CONFIG=$ZSH/config
+export ZSH_CACHE=$HOME/.cache/zsh
+export ZSH_ALIAS=$ZSH_CONFIG/alias
+export ZSH_PLUGIN=$ZSH/plugins
 
-# Load compinit
+
+## Source config files
+[ -f $ZSH_CONFIG/exports.zsh ] && source $ZSH_CONFIG/exports.zsh
+[ -f $ZSH_CONFIG/completion.zsh ] && source $ZSH_CONFIG/completion.zsh
+[ -f $ZSH_CONFIG/keymaps.zsh ] && source $ZSH_CONFIG/keymaps.zsh
+[ -f $ZSH_CONFIG/options.zsh ] && source $ZSH_CONFIG/options.zsh
+[ -f $ZSH_CONFIG/functions.zsh ] && source $ZSH_CONFIG/functions.zsh
+[ -d $ZSH_ALIAS ] && for file ($ZSH_ALIAS/*.zsh) source $file
+
+## Load compinit
 autoload -U compinit
 
-# Load plugins
-source $PLUGIN/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $PLUGIN/zsh-autosuggestions/zsh-autosuggestions.zsh
+## Plugins
+source $ZSH_PLUGIN/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_PLUGIN/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# Save the location of the current completion dump file.
-if [ -z "$ZSH_COMPDUMP" ]; then
-  ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${ZSH_VERSION}"
-fi
-
+## Set zcompdump file path
+ZSH_COMPDUMP="$ZSH_CACHE/zcompdump-${ZSH_VERSION}"
 compinit -u -C -d "${ZSH_COMPDUMP}"
 
-# Load Prompt
+## Auto-startx
+auto-startx
+
+## Load Prompt
 eval "$(starship init zsh)"
