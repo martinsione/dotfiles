@@ -1,7 +1,6 @@
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Builtins
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Standard-Widgets
-export KEYTIMEOUT=1 # Reduce vi timeout
 
 # Make sure that the terminal is in application mode when zle is active, since
 # only then values from $terminfo are valid
@@ -115,32 +114,18 @@ bindkey ' ' magic-space                               # [Space] - don't do histo
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '\C-x\C-e' edit-command-line
+bindkey '^e' edit-command-line
 
 # file rename magick
 bindkey "^[m" copy-prev-shell-word
 
-# consider emacs keybindings:
-
-#bindkey -e  ## emacs key bindings
-#
-#bindkey '^[[A' up-line-or-search
-#bindkey '^[[B' down-line-or-search
-#bindkey '^[^[[C' emacs-forward-word
-#bindkey '^[^[[D' emacs-backward-word
-#
-#bindkey -s '^X^Z' '%-^M'
-#bindkey '^[e' expand-cmd-path
-#bindkey '^[^I' reverse-menu-complete
-#bindkey '^X^N' accept-and-infer-next-history
-#bindkey '^W' kill-region
-#bindkey '^I' complete-word
-## Fix weird sequence that rxvt produces
-#bindkey -s '^[[Z' '\t'
-#
+bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'
 
 # Vim keys to move in completion menu
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v                                        # Vi mode
+
+# Vi mode
+bindkey -v

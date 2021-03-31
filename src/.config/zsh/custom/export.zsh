@@ -1,6 +1,12 @@
 # Set encoding
 export LANG=en_US.UTF-8
 
+# ZSH VARS
+export ALIAS=$ZSH/custom/alias/
+export LIB=$ZSH/custom/lib/
+export SCRIPTS=$ZSH/custom/scripts/
+export PLUGINS=$ZSH/custom/plugins/
+
 # Path
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar:$PATH"
@@ -38,10 +44,10 @@ export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export STARSHIP_CONFIG=~/.config/zsh/starship
 
 # Other program settings:
-export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-export LESSHISTFILE=-                       # Disable hist files
-export MANPAGER="nvim -c 'set ft=man'"
 export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
+export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
+export KEYTIMEOUT=1 # Reduce vi timeout
+export LESSHISTFILE=-                       # Disable hist files
+export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
+export MANPAGER="nvim -c 'set ft=man'"
 export _JAVA_AWT_WM_NONREPARENTING=1        # Fix for Java applications in dwm
-
