@@ -8,7 +8,7 @@ vim.cmd [[packadd lspsaga.nvim | packadd lspkind-nvim | packadd nvim-lsp-ts-util
 local servers = {
   efm = {
     init_options = {documentFormatting = true, codeAction = true},
-    root_dir = lspconfig.util.root_pattern({'.git/', 'vim.fn.getcwd()'}),
+    root_dir = lspconfig.util.root_pattern({'.git/', '.'}),
     filetypes = vim.tbl_keys(languages),
     settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
   },
@@ -28,7 +28,7 @@ local function setup_servers()
   lspinstall.setup()
   local installed = lspinstall.installed_servers()
   for _, server in pairs(installed) do
-    local config = servers[server] or {}
+    local config = servers[server] or {root_dir = lspconfig.util.root_pattern({'.git/', '.'})}
     config.on_attach = on_attach
     lspconfig[server].setup(config)
   end
