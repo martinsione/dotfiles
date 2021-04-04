@@ -17,8 +17,7 @@ nmap('yil', '0y$')
 nmap('<CR>', '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true})
 nmap('<C-s>', '<cmd>w<CR>')
 -- Buffers
-nmap('<Tab>', '<cmd>bnext<CR>')
-nmap('<S-Tab>', '<cmd>bprevious<CR>')
+nmap('<Tab>', '<cmd>Telescope buffers<CR>')
 nmap('<space>bd', '<cmd>bd<CR>')
 -- Window
 nmap('<C-h>', '<cmd>wincmd h<CR>')

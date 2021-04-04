@@ -7,8 +7,8 @@ opt.colorcolumn = 80
 opt.cmdheight = 1
 opt.cursorline = true
 opt.foldmethod = 'marker'
-opt.nu = true
-opt.rnu = true
+opt.number = true
+opt.relativenumber = true
 opt.ruler = false -- My statusline take care of that
 opt.showmode = false
 opt.signcolumn = 'yes'
@@ -37,6 +37,7 @@ opt.splitright = true
 opt.timeoutlen = 1000
 opt.updatetime = 100
 opt.virtualedit = 'block'
+opt.iskeyword = opt.iskeyword + '-'
 
 -- Performance
 opt.lazyredraw = true
@@ -45,8 +46,7 @@ opt.lazyredraw = true
 opt.inccommand = 'nosplit' -- show substitutions incrementally
 opt.ignorecase = true
 opt.smartcase = true
-opt.wildignore =
-  '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**';
+opt.wildignore = '.git,**/node_modules/**';
 opt.wildignorecase = true
 
 -- Tabs
@@ -55,7 +55,6 @@ opt.shiftwidth = 2
 opt.softtabstop = 0
 opt.tabstop = 2
 
-opt.iskeyword = opt.iskeyword + '-'
 opt.formatoptions = opt.formatoptions - 'a' -- Auto formatting is BAD.
 opt.formatoptions = opt.formatoptions - 't' -- Don't auto format my code. I got linters for that.
 opt.formatoptions = opt.formatoptions - 'c' -- In general, I like it when comments respect textwidth

@@ -26,49 +26,47 @@ end
 -- Keybindings
 utils.keymap = {}
 
-local function make_map(scope, mode, lhs, rhs, opts)
+local function make_map(mode, lhs, rhs, opts, scope)
   local options = {noremap = true, silent = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
-  if scope == 'buffer' then
-    vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
-  else
+  if scope == nil then
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  else
+    vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
   end
 end
 
 function utils.keymap.buf_map(mode, lhs, rhs, opts)
-  return make_map('buffer', mode, lhs, rhs, opts)
+  return make_map(mode, lhs, rhs, opts, 'buffer')
 end
 
 function utils.keymap.nmap(lhs, rhs, opts)
-  return make_map('', 'n', lhs, rhs, opts)
+  return make_map('n', lhs, rhs, opts)
 end
 
 function utils.keymap.imap(lhs, rhs, opts)
-  return make_map('', 'i', lhs, rhs, opts)
+  return make_map('i', lhs, rhs, opts)
 end
 
 function utils.keymap.xmap(lhs, rhs, opts)
-  return make_map('', 'x', lhs, rhs, opts)
+  return make_map('x', lhs, rhs, opts)
 end
 
 function utils.keymap.tmap(lhs, rhs, opts)
-  return make_map('', 't', lhs, rhs, opts)
+  return make_map('t', lhs, rhs, opts)
 end
 
 function utils.keymap.cmap(lhs, rhs)
-  -- { silent } need to be false to work
-  return make_map('', 'c', lhs, rhs, {silent = false})
+  return make_map('c', lhs, rhs, {silent = false, noremap = false})
 end
 
 -- Tab completion confirm
-
 if pcall(function()
   vim.cmd [[packadd nvim-autopairs]]
 end) then
   local autopairs = require('nvim-autopairs')
   vim.g.completion_confirm_key = ''
-  utils.completion_confirm = function()
+  function utils.completion_confirm()
     if vim.fn.pumvisible() ~= 0 then
       if vim.fn.complete_info()['selected'] ~= -1 then
         vim.fn['compe#confirm']()

@@ -14,7 +14,7 @@ return packer.startup(function(use)
   use {'wbthomason/packer.nvim', opt = true}
 
   -- Auto-pairs
-  use {'windwp/nvim-autopairs', event = 'InsertEnter', config = [[require('nvim-autopairs').setup() ]]}
+  use {'windwp/nvim-autopairs', event = 'InsertEnter', config = [[require('nvim-autopairs').setup()]]}
 
   -- Bufferline
   use {'akinsho/nvim-bufferline.lua', event = 'BufRead', config = [[require('plugin.nvim-bufferline')]]}
@@ -28,6 +28,7 @@ return packer.startup(function(use)
   -- Colorscheme
   use {'ChristianChiarulli/nvcode-color-schemes.vim'}
   use {'glepnir/zephyr-nvim'}
+  use {'Mofiqul/vim-code-dark'}
   -- use {'morhetz/gruvbox'}
   use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 
