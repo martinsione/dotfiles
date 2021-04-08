@@ -3,7 +3,7 @@ local lspinstall = require('lspinstall')
 local languages = require('plugin.lsp.format')
 local on_attach = require('plugin.lsp.on_attach')
 
-vim.cmd [[packadd lspsaga.nvim | packadd lspkind-nvim | packadd nvim-lsp-ts-utils]]
+vim.cmd [[packadd lspsaga.nvim | packadd nvim-lsp-ts-utils]]
 
 local servers = {
   efm = {

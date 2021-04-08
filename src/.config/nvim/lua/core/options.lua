@@ -31,7 +31,6 @@ opt.hidden = true
 opt.joinspaces = false
 opt.mouse = 'a'
 opt.scrolloff = 8
-opt.shortmess = 'filnxtToOFAcIW'
 opt.splitbelow = true
 opt.splitright = true
 opt.timeoutlen = 1000
@@ -55,6 +54,13 @@ opt.shiftwidth = 2
 opt.softtabstop = 0
 opt.tabstop = 2
 
+-- Shortmess
+vim.o.shortmess = vim.o.shortmess .. 'A'
+vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.shortmess = vim.o.shortmess .. 'I'
+vim.o.shortmess = vim.o.shortmess .. 'W'
+
+-- Format options
 opt.formatoptions = opt.formatoptions - 'a' -- Auto formatting is BAD.
 opt.formatoptions = opt.formatoptions - 't' -- Don't auto format my code. I got linters for that.
 opt.formatoptions = opt.formatoptions - 'c' -- In general, I like it when comments respect textwidth

@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/martin/.gtkrc-2.0.mine"
-gtk-theme-name="Materia-dark"
+gtk-theme-name="Arc-Dark"
 gtk-icon-theme-name="Papirus-Dark"
 gtk-font-name="Sans 10"
 gtk-cursor-theme-name="Adwaita"

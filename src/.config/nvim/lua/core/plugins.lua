@@ -27,9 +27,8 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use {'ChristianChiarulli/nvcode-color-schemes.vim'}
-  use {'glepnir/zephyr-nvim'}
   use {'Mofiqul/vim-code-dark'}
-  -- use {'morhetz/gruvbox'}
+  use {'glepnir/zephyr-nvim'}
   use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 
   -- Cursor
@@ -60,12 +59,7 @@ return packer.startup(function(use)
   use {'kyazdani42/nvim-web-devicons', config = [[require('plugin.nvim-web-devicons')]]}
 
   -- Indent line
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    branch = 'lua',
-    event = {'BufRead'},
-    config = [[require('plugin.indentline')]],
-  }
+  use {'lukas-reineke/indent-blankline.nvim', branch = 'lua', config = [[require('plugin.indentline')]]}
 
   -- Lsp
   use {
@@ -75,8 +69,7 @@ return packer.startup(function(use)
     requires = {
       {'kabouzeid/nvim-lspinstall'},
       {'hrsh7th/nvim-compe', event = 'InsertEnter', config = [[require('plugin.compe')]]},
-      {'glepnir/lspsaga.nvim', opt = true}, {'onsails/lspkind-nvim', opt = true},
-      {'jose-elias-alvarez/nvim-lsp-ts-utils', opt = true},
+      {'glepnir/lspsaga.nvim', opt = true}, {'jose-elias-alvarez/nvim-lsp-ts-utils', opt = true},
     },
   }
 
@@ -99,8 +92,6 @@ return packer.startup(function(use)
     requires = {
       {'nvim-lua/popup.nvim', opt = true}, {'nvim-lua/plenary.nvim', opt = true},
       {'nvim-telescope/telescope-fzy-native.nvim', opt = true},
-      {'nvim-telescope/telescope-fzf-writer.nvim', opt = true},
-      {'nvim-telescope/telescope-media-files.nvim', opt = true},
     },
   }
 
@@ -113,9 +104,7 @@ return packer.startup(function(use)
   -- Tpope
   use {'tpope/vim-commentary', event = {'BufReadPre', 'BufNewFile'}}
   use {'tpope/vim-surround', event = {'BufReadPre', 'BufNewFile'}}
-  use {'tpope/vim-eunuch', event = {'BufReadPre', 'BufNewFile'}}
   use {'tpope/vim-fugitive'}
-  use {'tpope/vim-rhubarb'}
 
   -- Tree
   use {'kyazdani42/nvim-tree.lua', cmd = 'NvimTreeToggle', config = [[require('plugin.nvim-tree')]]}
