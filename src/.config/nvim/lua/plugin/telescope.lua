@@ -2,8 +2,6 @@ if not packer_plugins['plenary.nvim'].loaded then
   vim.cmd [[packadd plenary.nvim]]
   vim.cmd [[packadd popup.nvim]]
   vim.cmd [[packadd telescope-fzy-native.nvim]]
-  vim.cmd [[packadd telescope-fzf-writer.nvim]]
-  vim.cmd [[packadd telescope-media-files.nvim]]
 end
 
 if not pcall(require, 'telescope') then return end
@@ -15,7 +13,7 @@ require('telescope').setup {
     layout_strategy = 'horizontal',
     -- layout_defaults = {
     --   horizontal = {width_padding = 0.1, height_padding = 0.1, preview_width = 0.6},
-    --   vertical = {width_padding = 0.15, height_padding = 0.1, preview_height = 0.6}
+    --   vertical = {width_padding = 0.15, height_padding = 0.1, preview_height = 0.6},
     -- },
     prompt_prefix = '😎 ',
     prompt_position = 'bottom',
@@ -37,7 +35,6 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('media_files')
 
 local M = {}
 
