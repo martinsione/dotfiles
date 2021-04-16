@@ -31,6 +31,7 @@ alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
 alias bld="make && sudo make clean install"
 alias cl="clear"
 alias ka="killall"
+alias ex="extract"
 alias startx="startx $XINITRC"
 alias vs="nvim --startuptime now.log && nvim now.log && rm -rf now.log"
 
