@@ -35,8 +35,7 @@ source $ZSH_PLUGIN/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_COMPDUMP="$ZSH_CACHE/zcompdump-${ZSH_VERSION}"
 compinit -u -C -d "${ZSH_COMPDUMP}"
 
-## Auto-startx
-auto-startx
-
 ## Load Prompt
 eval "$(starship init zsh)"
+
+remap

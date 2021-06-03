@@ -27,7 +27,6 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use {'ChristianChiarulli/nvcode-color-schemes.vim'}
-  use {'Mofiqul/vim-code-dark'}
   use {'glepnir/zephyr-nvim'}
   use {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}}
 

@@ -22,13 +22,18 @@ alias ll="exa -la --group-directories-first"
 alias ls="exa --icons -a --group-directories-first"
 
 # Packages
-alias p="sudo pacman"
-alias upg="paru -Syu --noconfirm"
-alias vupg="cd ~/.local/src/neovim && git pull && sudo make clean install && cd -"
-alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
+if [[ $DISTRO == "Arch" ]]; then
+  alias p="sudo pacman"
+  alias upg="paru -Syu --noconfirm"
+  alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
+elif [[ $DISTRO == "Ubuntu" ]]; then
+  alias upg="sudo apt update && sudo apt upgrade && sudo snap refresh --list"
+fi
+
+alias vupg="cd ~/.local/src/neovim && git pull && sudo make install && cd -"
 
 # System
-alias bld="make && sudo make clean install"
+alias bld="make && sudo make install"
 alias cl="clear"
 alias ka="killall"
 alias ex="extract"
