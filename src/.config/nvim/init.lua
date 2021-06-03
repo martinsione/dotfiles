@@ -25,3 +25,4 @@ require('core.plugins')
 require('core.options')
 require('core.keymaps')
 require('core.colors')
+vim.cmd [[let &fcs='eob: ']]

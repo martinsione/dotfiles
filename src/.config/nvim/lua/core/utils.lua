@@ -83,9 +83,9 @@ end) then
   end
 end
 
--------------
--- Vim opt --
--------------
+---------------
+---- Vim opt --
+---------------
 local if_nil = function(a, b)
   if a == nil then return b end
   return a

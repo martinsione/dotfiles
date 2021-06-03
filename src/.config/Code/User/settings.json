@@ -2,22 +2,20 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontLigatures": true,
-  "editor.fontSize": 14,
+  "editor.fontSize": 16,
   "editor.formatOnSave": true,
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": true,
   "editor.scrollBeyondLastLine": false,
-  "editor.scrollbar.horizontalScrollbarSize": 0,
-  "editor.scrollbar.verticalScrollbarSize": 0,
+  // "editor.scrollbar.horizontalScrollbarSize": 0,
+  // "editor.scrollbar.verticalScrollbarSize": 0,
   "emmet.includeLanguages": { "javascript": "javascriptreact" },
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "git.autofetch": true,
   "keyboard.dispatch": "keyCode",
-  "terminal.external.linuxExec": "/usr/bin/kitty",
   "terminal.integrated.fontSize": 14,
-  "terminal.integrated.shell.linux": "/bin/zsh",
   "window.menuBarVisibility": "hidden",
   "window.zoomLevel": 1,
   "workbench.editor.showTabs": true,
@@ -26,15 +24,13 @@
   "workbench.startupEditor": "newUntitledFile",
   "zenMode.hideLineNumbers": false,
   "zenMode.hideTabs": false,
+  // "workbench.editor.untitled.hint": "hidden",
 
   // Plugins
-  "oneDarkPro.bold": true,
-  "oneDarkPro.editorTheme": "oneDarkProFlat",
-  "oneDarkPro.vivid": true,
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
   "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
 
-  // Colorscheme Configuration
+  // Colorscheme
   "workbench.colorCustomizations": {
     "[Default Dark+]": {
       "statusBar.background": "#2E2E2E",
@@ -43,26 +39,6 @@
       "statusBarItem.remoteForeground": "#8C8C8C",
       "activityBar.background": "#2E2E2E",
       "tab.inactiveBackground": "#2E2E2E"
-    },
-
-    // Terminal colorscheme
-    "terminal.foreground": "#D8DEE9",
-    "terminal.ansiBlack": "#3B4252",
-    "terminal.ansiBrightBlack": "#3B4252",
-    "terminal.ansiRed": "#D54646",
-    "terminal.ansiBrightRed": "#D54646",
-    "terminal.ansiGreen": "#23D18B",
-    "terminal.ansiBrightGreen": "#23D18B",
-    "terminal.ansiYellow": "#D7BA7D",
-    "terminal.ansiBrightYellow": "#D7BA7D",
-    "terminal.ansiBlue": "#569CD6",
-    "terminal.ansiBrightBlue": "#569CD6",
-    "terminal.ansiMagenta": "#C586C0",
-    "terminal.ansiBrightMagenta": "#C586C0",
-    "terminal.ansiCyan": "#29B8DB",
-    "terminal.ansiBrightCyan": "#29B8DB",
-    "terminal.ansiWhite": "#abb2bf",
-    "terminal.ansiBrightWhite": "#ECEFF4"
-  },
-  "workbench.activityBar.visible": false
+    }
+  }
 }

@@ -1,25 +1,26 @@
 # Set encoding
 export LANG=en_US.UTF-8
 
-# Path
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/bin/statusbar:$PATH"
-export PATH="$XDG_DATA_HOME/go/bin:$PATH"
-
 # Default Programs
 export BROWSER="brave"
 export EDITOR="nvim"
 export FILE="ranger"
 export GEDITOR="codium"
-export GFILE="pcmanfm"
+export GFILE="nautilus"
 export MAIL="thunderbird"
 export READER="zathura"
 export TERMINAL="kitty"
-
+export DISTRO="$(lsb_release -is)"
 # XDG paths
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
+
+# Path
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin/statusbar:$PATH"
+export PATH="$XDG_DATA_HOME/go/bin:$PATH"
+export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 
 # ~/ Clean-up:
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
