@@ -23,6 +23,7 @@ export ZSH_PLUGIN=$ZSH/plugins
 [ -f $ZSH_CONFIG/options.zsh ] && source $ZSH_CONFIG/options.zsh
 [ -f $ZSH_CONFIG/functions.zsh ] && source $ZSH_CONFIG/functions.zsh
 [ -d $ZSH_ALIAS ] && for file ($ZSH_ALIAS/*.zsh) source $file
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 ## Load compinit
 autoload -U compinit

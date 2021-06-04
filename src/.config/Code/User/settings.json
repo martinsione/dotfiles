@@ -1,4 +1,21 @@
 {
+  // Colorscheme
+  "workbench.colorCustomizations": {
+    "[Default Dark+]": {
+      "statusBar.background": "#2E2E2E",
+      "statusBar.foreground": "#8C8C8C",
+      "statusBarItem.remoteBackground": "#2E2E2E",
+      "statusBarItem.remoteForeground": "#8C8C8C",
+      "activityBar.background": "#2E2E2E",
+      "tab.inactiveBackground": "#2E2E2E"
+    }
+  },
+
+  // Plugins
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
+  //"vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
+
+  // Editor
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontLigatures": true,
@@ -17,28 +34,13 @@
   "keyboard.dispatch": "keyCode",
   "terminal.integrated.fontSize": 14,
   "window.menuBarVisibility": "hidden",
-  "window.zoomLevel": 1,
   "workbench.editor.showTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.list.automaticKeyboardNavigation": false,
+  "workbench.sideBar.location": "right",
   "workbench.startupEditor": "newUntitledFile",
   "zenMode.hideLineNumbers": false,
   "zenMode.hideTabs": false,
   // "workbench.editor.untitled.hint": "hidden",
-
-  // Plugins
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
-
-  // Colorscheme
-  "workbench.colorCustomizations": {
-    "[Default Dark+]": {
-      "statusBar.background": "#2E2E2E",
-      "statusBar.foreground": "#8C8C8C",
-      "statusBarItem.remoteBackground": "#2E2E2E",
-      "statusBarItem.remoteForeground": "#8C8C8C",
-      "activityBar.background": "#2E2E2E",
-      "tab.inactiveBackground": "#2E2E2E"
-    }
-  }
+  "window.zoomLevel": 1
 }
