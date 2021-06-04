@@ -5,7 +5,7 @@ export LANG=en_US.UTF-8
 export BROWSER="brave"
 export EDITOR="nvim"
 export FILE="ranger"
-export GEDITOR="codium"
+export GEDITOR="code"
 export GFILE="nautilus"
 export MAIL="thunderbird"
 export READER="zathura"
@@ -21,8 +21,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/bin/statusbar:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin:$PATH"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
-
 # ~/ Clean-up:
+export NVM_DIR="$HOME/.config/nvm"
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/inputrc"
