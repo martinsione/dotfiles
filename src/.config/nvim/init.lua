@@ -3,12 +3,14 @@ local load_plugins = function()
   -- Dependencies
   plugin_require('plenary.nvim')
   plugin_require('popup.nvim')
+  -- Icons
+  plugin_require('nvim-web-devicons')
   -- Autopairs
   plugin_require('nvim-autopairs')
   -- Bufferline
-  plugin_require('nvim-bufferline')
+  plugin_require('nvim-bufferline.lua')
   -- Colorizer
-  plugin_require('nvim-colorizer')
+  plugin_require('nvim-colorizer.lua')
   -- Comments
   plugin_require('vim-commentary')
   -- Dashboard
@@ -16,10 +18,8 @@ local load_plugins = function()
   -- File explorer
   plugin_require('nvim-tree.lua')
   -- Git
+  plugin_require('gitsigns.nvim')
   plugin_require('vim-fugitive')
-  plugin_require('gitsigns')
-  -- Icons
-  plugin_require('nvim-web-devicons')
   -- Indentline
   plugin_require('indent-blankline.nvim')
   -- Lsp
@@ -39,10 +39,11 @@ local load_plugins = function()
   plugin_require('telescope-fzy-native.nvim')
   -- Terminal
   plugin_require('nvim-toggleterm.lua')
+  -- Treesitter
   plugin_require('nvim-treesitter')
   plugin_require('nvim-ts-rainbow')
   plugin_require('nvim-ts-autotag')
-  plugin_require('nvim-ts-context-commentstring')
+  -- plugin_require('nvim-ts-context-commentstring')
 end
 
 require('core.utils')
