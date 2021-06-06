@@ -5,18 +5,15 @@ utils.os = {
   home = os.getenv('HOME'),
   data = vim.fn.stdpath('data'),
   cache = vim.fn.stdpath('cache'),
+  config = vim.fn.stdpath('config'),
   name = vim.loop.os_uname().sysname,
-  is_mac = utils.os.name == 'Darwin',
-  is_linux = utils.os.name == 'Linux',
-  is_windows = utils.os.name == 'Windows',
   is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1'),
 }
-
-local fmt = string.format
 
 utils.plugin = {}
 
 function utils.plugin.require(plugin)
+  local fmt = string.format
   local plugin_name = utils.os.data .. '/site/pack/packer/opt/' .. plugin .. '/'
   local ok, err, code = os.rename(plugin_name, plugin_name)
   if not ok then
@@ -34,7 +31,6 @@ function utils.plugin.require(plugin)
       require(fmt('plugin.%s', fdot))
     end)
   end
-
   return ok, err, code
 end
 

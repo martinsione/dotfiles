@@ -36,7 +36,7 @@ elif [[ $DISTRO == "Ubuntu" ]]; then
   sudo apt install git
 fi
 
-git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
+git clone --recursive https://github.com/martinsione/dotfiles.git ~/dotfiles
 
 mkdir -p Downloads Documents Pictures Workspace ~/.config/Code/User ~/.local/share ~/.local/bin ~/.local/src ~/.cache/zsh
 cd ~/dotfiles
