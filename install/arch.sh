@@ -51,7 +51,7 @@ mkfs.ext4 /dev/${disk}2     # Make the second partition(left space on the drive)
 
 mount /dev/${disk}2 /mnt
 
-pacstrap /mnt base linux-lts linux-firmware --needed base-devel
+pacstrap /mnt base linux-lts linux-firmware lsb-release --needed base-devel
 
 genfstab -U /mnt >> /mnt/etc/fstab
 

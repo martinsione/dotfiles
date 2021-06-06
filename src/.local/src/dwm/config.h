@@ -42,7 +42,7 @@ static const unsigned int alphas[][3]      = {
 
 /* tagging */
 /* static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }; */
-static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
+static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -54,8 +54,8 @@ static const Rule rules[] = {
 	{ "Brave-browser",  NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "zoom",           NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "mpv",            NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "Zathura",        NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "Thunderbird",    NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Zathura",        NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "Spotify",        NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Gimp",           NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Steam",          NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "Virt-manager",   NULL,       NULL,       1 << 6,       0,           -1 },
@@ -224,6 +224,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,	 	   SHCMD("$TERMINAL") },
 	{ MODKEY,                       XK_p, 	   spawn,		   {.v = dmenucmd } },
 	{ MODKEY,                       XK_d,      spawn,	 	   SHCMD("discord") },
+	{ MODKEY,                       XK_s,      spawn,		   SHCMD("com.spotify.Client") },
 	{ MODKEY,                       XK_w,      spawn,	 	   SHCMD("$BROWSER") },
 	{ MODKEY,                       XK_v,      spawn,	 	   SHCMD("$GEDITOR") },
 	{ MODKEY,                       XK_e,      spawn,	 	   SHCMD("$GFILE") },

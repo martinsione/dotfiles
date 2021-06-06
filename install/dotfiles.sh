@@ -28,11 +28,9 @@ if [[ $DISTRO == "Arch" ]]; then
   install_aur_helper
 
   # Install packages
-  # TODO: Update download directory to be remote with curl
   yes | sudo -u $(whoami) $aurhelper -S libxft-bgra-git >/dev/null 2>&1   # otherwise it doesn't install due to conflicts
-  sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/dotfiles/backup/arch/pac.list ))
-  ${aurhelper} -S --noconfirm --needed $(comm -12 <(${aurhelper} -Slq | sort) <(sort ~/dotfiles/backup/arch/aur.list ))
-
+  sudo pacman -S --noconfirm --needed $(comm -12 <(pacman -Slq | sort) <(sort | curl https://raw.githubusercontent.com/martinsione/dotfiles/master/install/packages/arch/pac.list ))
+  ${aurhelper} -S --noconfirm --needed $(comm -12 <(${aurhelper} -Slq | sort) <(sort | curl https://raw.githubusercontent.com/martinsione/dotfiles/master/install/packages/arch/aur.list ))
 elif [[ $DISTRO == "Ubuntu" ]]; then
   sudo apt update && sudo apt upgrade
   sudo apt install git
@@ -40,7 +38,7 @@ fi
 
 git clone https://github.com/martinsione/dotfiles.git ~/dotfiles
 
-mkdir -p ~/.config/VSCodium/User ~/.local/share ~/.local/bin ~/.local/src ~/.cache/zsh
+mkdir -p Downloads Documents Pictures Workspace ~/.config/Code/User ~/.local/share ~/.local/bin ~/.local/src ~/.cache/zsh
 cd ~/dotfiles
 stow src
 
@@ -62,6 +60,13 @@ echo 'cookie-file = /tmp/pulse-cookie' | sudo tee -a /etc/pulse/client.conf
 
 # Auto mount the hard drive
 # echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0	/mnt/storage	ext4		rw,relatime	0 2' | sudo tee -a /etc/fstab
+
+
+# Install fonts
+mkdir -p ~/.local/share/fonts/JetBrainsMono
+curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip -o ~/.local/share/fonts/JetBrainsMono.zip
+unzip ~/.local/share/fonts/JetBrainsMono.zip -d ~/.local/share/fonts/JetBrainsMono
+rm -rf ~/.local/share/fonts/*.zip
 
 # Change shell to zsh
 chsh -s $(which zsh)
