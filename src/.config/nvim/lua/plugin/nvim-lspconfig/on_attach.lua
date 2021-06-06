@@ -11,7 +11,6 @@ local function mappings()
   nmap('ca', 'vim.lsp.buf.code_action()')
   nmap('<space>gh', 'vim.lsp.buf.signature_help()')
   nmap('<space>rn', 'require("lspsaga.rename").rename()')
-
   nmap('[d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()')
   nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
 end
@@ -29,7 +28,5 @@ return function(client)
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
   end
-
-  require('illuminate').on_attach(client)
 
 end

@@ -1,4 +1,4 @@
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 require'colorizer'.setup({'*'}, {
   RGB = true, -- #RGB hex codes
   RRGGBB = true, -- #RRGGBB hex codes
