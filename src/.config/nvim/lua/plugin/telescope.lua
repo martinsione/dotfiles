@@ -1,11 +1,3 @@
-if not packer_plugins['plenary.nvim'].loaded then
-  vim.cmd [[packadd plenary.nvim]]
-  vim.cmd [[packadd popup.nvim]]
-  vim.cmd [[packadd telescope-fzy-native.nvim]]
-end
-
-if not pcall(require, 'telescope') then return end
-
 local actions = require('telescope.actions')
 
 require('telescope').setup {

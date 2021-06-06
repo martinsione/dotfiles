@@ -1,28 +1,54 @@
-local disable_builtin_plugins = function()
-  vim.g.loaded_gzip = 1
-  vim.g.loaded_tar = 1
-  vim.g.loaded_tarPlugin = 1
-  vim.g.loaded_zip = 1
-  vim.g.loaded_zipPlugin = 1
-  vim.g.loaded_getscript = 1
-  vim.g.loaded_getscriptPlugin = 1
-  vim.g.loaded_vimball = 1
-  vim.g.loaded_vimballPlugin = 1
-  vim.g.loaded_matchit = 1
-  vim.g.loaded_matchparen = 1
-  vim.g.loaded_2html_plugin = 1
-  vim.g.loaded_logiPat = 1
-  vim.g.loaded_rrhelper = 1
-  vim.g.loaded_netrw = 1
-  vim.g.loaded_netrwPlugin = 1
-  vim.g.loaded_netrwSettings = 1
-  vim.g.loaded_netrwFileHandlers = 1
+local load_plugins = function()
+  local plugin_require = utils.plugin.require
+  -- Dependencies
+  plugin_require('plenary.nvim')
+  plugin_require('popup.nvim')
+  -- Autopairs
+  plugin_require('nvim-autopairs')
+  -- Bufferline
+  plugin_require('nvim-bufferline')
+  -- Colorizer
+  plugin_require('nvim-colorizer')
+  -- Comments
+  plugin_require('vim-commentary')
+  -- Dashboard
+  plugin_require('dashboard-nvim')
+  -- File explorer
+  plugin_require('nvim-tree.lua')
+  -- Git
+  plugin_require('vim-fugitive')
+  plugin_require('gitsigns')
+  -- Icons
+  plugin_require('nvim-web-devicons')
+  -- Indentline
+  plugin_require('indent-blankline.nvim')
+  -- Lsp
+  plugin_require('nvim-lspinstall')
+  plugin_require('nvim-lspconfig')
+  plugin_require('nvim-compe')
+  plugin_require('nvim-lsp-ts-utils')
+  plugin_require('lspsaga.nvim')
+  -- Profiling
+  plugin_require('startuptime.vim')
+  -- Statusline
+  plugin_require('galaxyline.nvim')
+  -- Surround
+  plugin_require('vim-surround')
+  -- Telescope
+  plugin_require('telescope.nvim')
+  plugin_require('telescope-fzy-native.nvim')
+  -- Terminal
+  plugin_require('nvim-toggleterm.lua')
+  plugin_require('nvim-treesitter')
+  plugin_require('nvim-ts-rainbow')
+  plugin_require('nvim-ts-autotag')
+  plugin_require('nvim-ts-context-commentstring')
 end
 
-disable_builtin_plugins()
 require('core.utils')
 require('core.plugins')
-require('core.options')
+load_plugins()
 require('core.keymaps')
-require('core.colors')
-vim.cmd [[let &fcs='eob: ']]
+require('core.options')
+
+utils.colorscheme('nvcode')
