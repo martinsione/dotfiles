@@ -17,7 +17,8 @@ nmap('yil', '0y$')
 nmap('<CR>', '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', {expr = true})
 nmap('<C-s>', '<cmd>w<CR>')
 -- Buffers
-nmap('<Tab>', '<cmd>Telescope buffers<CR>')
+nmap('<Tab>', '<cmd>bn<CR>')
+nmap('<S-Tab>', '<cmd>bp<CR>')
 nmap('<space>bd', '<cmd>bd<CR>')
 -- Window
 nmap('<C-h>', '<cmd>wincmd h<CR>')
@@ -36,7 +37,7 @@ imap('<S-CR>', '<Esc>o')
 imap('<C-CR>', '<Esc>O')
 imap('<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 imap('<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
--- imap('<CR>', 'v:lua.utils.completion_confirm()', {expr = true})
+imap('<CR>', 'v:lua.utils.completion_confirm()', {expr = true})
 
 -- Visual
 xmap('<', '<gv')
@@ -76,8 +77,8 @@ nmap('<space>fb', '<cmd>Telescope buffers<CR>')
 nmap('<space>fh', '<cmd>Telescope help_tags<CR>')
 nmap('<space>fr', '<cmd>Telescope oldfiles<CR>')
 nmap('<space>fw', '<cmd>Telescope live_grep<CR>')
+nmap('<space>fa', '<cmd>Telescope fd<CR>')
 nmap('<space>fd', '<cmd>lua require("plugin.telescope").find_dotfiles()<CR>')
-nmap('<space>fa', '<cmd>lua require("plugin.telescope").find_all_files()<CR>')
 -- Tree
 nmap('<C-n>', '<cmd>NvimTreeToggle<CR>')
 -- Toggle background

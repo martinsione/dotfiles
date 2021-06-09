@@ -24,13 +24,14 @@ alias ls="exa --icons -a --group-directories-first"
 # Packages
 if [[ $DISTRO == "Arch" ]]; then
   alias p="sudo pacman"
+  alias paru="paru --bottomup"
   alias upg="paru -Syu --noconfirm"
   alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
 elif [[ $DISTRO == "Ubuntu" ]]; then
   alias upg="sudo apt update && sudo apt upgrade && sudo snap refresh --list"
 fi
 
-alias vupg="cd ~/.local/src/neovim && git pull && sudo make install && cd -"
+alias vupg="cd ~/.local/src/neovim && git pull && make && sudo make install && cd -"
 
 # System
 alias bld="make && sudo make install"

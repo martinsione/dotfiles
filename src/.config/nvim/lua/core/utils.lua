@@ -12,28 +12,6 @@ utils.os = {
 
 utils.plugin = {}
 
-function utils.plugin.require(plugin)
-  local fmt = string.format
-  local plugin_name = utils.os.data .. '/site/pack/packer/opt/' .. plugin .. '/'
-  local ok, err, code = os.rename(plugin_name, plugin_name)
-  if not ok then
-    if code == 13 then
-      -- Permission denied, but it exists
-      return true
-    end
-  end
-  if ok then
-    vim.cmd('packadd ' .. plugin)
-    -- Regex to remove after a dot | f stands for fuckin dot
-    local fdot = string.gsub(plugin, '%.[^.]*$', '')
-    -- Require plugin config if exists
-    pcall(function()
-      require(fmt('plugin.%s', fdot))
-    end)
-  end
-  return ok, err, code
-end
-
 -- Colorscheme
 function utils.colorscheme(name)
   pcall(function()
