@@ -1,14 +1,15 @@
 #!/bin/sh
 
-remap &               # Key remappings
+# xrandr --output HDMI-0 --auto --mode 1920x1080 --scale 1x1 --output DVI-I-0 --auto --scale 1x1 --left-of HDMI-0
 xrdb -load ~/.config/X11/xresources &
 xcompmgr &            # Compositor
 lxsession &           # Polkit
 dunst &               # Notifications
 unclutter &           # Remove mouse when idle
 nitrogen --restore &  # Wallpaper
+remap &               # Key remappings
+redshift-gtk &
 dwmblocks &           # status bar
-xrandr --output HDMI-0 --auto --mode 1920x1080 --scale 1x1 --output DVI-I-0 --auto --scale 1x1 --left-of HDMI-0
 
 while true; do
 	dwm >/dev/null 2>&1

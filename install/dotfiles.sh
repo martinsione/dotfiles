@@ -24,6 +24,7 @@ export DISTRO="$(lsb_release -is)"
 
 if [[ $DISTRO == "Arch" ]]; then
   echo -e '[multilib]\nInclude = /etc/pacman.d/mirrorlist' | sudo tee -a /etc/pacman.conf
+  echo -e '[options]\nColor' | sudo tee -a /etc/pacman.conf
   sudo pacman -Sy && sudo pacman -S --noconfirm --needed base-devel git
   install_aur_helper
 

@@ -23,7 +23,6 @@ require('telescope').setup {
     fzy_native = {override_generic_sorter = false, override_file_sorter = true},
     media_files = {filetypes = {'png', 'jpg', 'jpeg', 'mp4', 'webm', 'pdf'}, find_cmd = 'fd'},
   },
-
 }
 
 require('telescope').load_extension('fzy_native')
@@ -33,13 +32,9 @@ local M = {}
 function M.find_dotfiles()
   require('telescope.builtin').find_files {
     prompt_title = ' Dotfiles ',
-    find_command = {'rg', '--files', '--hidden', '--ignore', '--sort=path'},
-    cwd = '~/dotfiles',
+    find_command = {'rg', '--files', '--hidden', '--sort=path'},
+    cwd = '$HOME/dotfiles',
   }
-end
-
-function M.find_all_files()
-  require('telescope.builtin').find_files {find_command = {'rg', '--no-ignore', '--files'}}
 end
 
 return M

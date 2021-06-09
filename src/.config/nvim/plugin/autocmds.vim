@@ -4,8 +4,9 @@ augroup end
 
 augroup ftplugin
   au!
-  au FileType man setlocal laststatus=0 noruler
-  au TermOpen term://* setlocal nornu nonu nocul so=0 scl=no
+  au FileType man setl laststatus=0 noruler
+  au FileType NvimTree setl scl=no
+  au TermOpen term://* setl nornu nonu nocul so=0 scl=no
 augroup end
 
 augroup my_cmds
@@ -17,7 +18,7 @@ augroup on_save
   au!
   au BufWritePre * %s/\s\+$//e                  " Remove whitespace on save
   au BufWritePre * %s/\n\+\%$//e                " remove trailing newline
-  au BufWritePost *.lua :luafile %
+  au BufWritePost *.lua :source %
   au BufWritePost *.vim :source %
 augroup end
 
