@@ -1,7 +1,7 @@
 local lspconfig = require('lspconfig')
 local lspinstall = require('lspinstall')
 local languages = require('plugin.nvim-lspconfig.format')
-local on_attach = require('plugin.nvim-lspconfig.on_attach')
+local on_attach = require('plugin.nvim-lspconfig.on-attach')
 
 local servers = {
   efm = {

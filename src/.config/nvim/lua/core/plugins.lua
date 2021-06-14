@@ -3,7 +3,8 @@ if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
 end
 vim.cmd 'packadd packer.nvim | au BufWritePost plugins.lua PackerCompile'
-vim.cmd [[set rtp+=~/.local/share/nvim/site/pack/packer/opt/*]]
+vim.opt.rtp = vim.opt.rtp + '~/.local/share/nvim/site/pack/packer/opt/*'
+vim.cmd [[packadd nvim-compe]]
 
 local packer = require('packer')
 local plugin_path = utils.os.data .. '/site/pack/packer/opt/'
@@ -36,13 +37,11 @@ return packer.startup(function(use)
   -- Indentline
   use {'lukas-reineke/indent-blankline.nvim', branch = 'lua', setup = [[require('plugin.indent-blankline')]]}
   -- Lsp
+  use {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]]}
   use {
     'neovim/nvim-lspconfig',
     setup = [[require('plugin.nvim-lspconfig')]],
-    requires = {
-      {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]]}, 'kabouzeid/nvim-lspinstall',
-      'glepnir/lspsaga.nvim', 'jose-elias-alvarez/nvim-lsp-ts-utils',
-    },
+    requires = {'kabouzeid/nvim-lspinstall', 'glepnir/lspsaga.nvim', 'jose-elias-alvarez/nvim-lsp-ts-utils'},
   }
   -- Profiling
   use 'tweekmonster/startuptime.vim'
