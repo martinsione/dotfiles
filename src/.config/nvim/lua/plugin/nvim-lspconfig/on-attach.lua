@@ -15,9 +15,16 @@ local function mappings()
   nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
 end
 
+-- TODO: Implement this
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.resolveSupport = {
+--   properties = {'documentation', 'detail', 'additionalTextEdits'},
+-- }
+
 return function(client)
 
-  vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+  -- vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
   mappings()
 
