@@ -77,7 +77,6 @@ nmap('<space>fb', '<cmd>Telescope buffers<CR>')
 nmap('<space>fh', '<cmd>Telescope help_tags<CR>')
 nmap('<space>fr', '<cmd>Telescope oldfiles<CR>')
 nmap('<space>fw', '<cmd>Telescope live_grep<CR>')
-nmap('<space>fa', '<cmd>Telescope fd<CR>')
 nmap('<space>fd', '<cmd>lua require("plugin.telescope").find_dotfiles()<CR>')
 -- Tree
 nmap('<C-n>', '<cmd>NvimTreeToggle<CR>')

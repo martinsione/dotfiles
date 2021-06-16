@@ -2,6 +2,9 @@
 # https://github.com/wincent/wincent/blob/master/aspects/dotfiles/files/.zshrc
 # NOTE: -z returns true if a string value has a length of 0
 
+## Source recursively
+# [ -d $FILE ] && for file ($FILE/*.zsh) source $file
+
 # Create a hash table for globally stashing variables without polluting main
 # scope with a bunch of identifiers.
 typeset -A __MARTIN
@@ -9,12 +12,10 @@ __MARTIN[ITALIC_ON]=$'\e[3m'
 __MARTIN[ITALIC_OFF]=$'\e[23m'
 
 ## Load ZSH VARS
-export ZSH=$HOME/.config/zsh
-export ZSH_CONFIG=$ZSH/config
+export ZSH_DIR=$HOME/.config/zsh
+export ZSH_CONFIG=$ZSH_DIR/config
 export ZSH_CACHE=$HOME/.cache/zsh
-export ZSH_ALIAS=$ZSH_CONFIG/alias
-export ZSH_PLUGIN=$ZSH/plugins
-
+export ZSH_PLUGIN=$ZSH_DIR/plugins
 
 ## Source config files
 [ -f $ZSH_CONFIG/exports.zsh ] && source $ZSH_CONFIG/exports.zsh
@@ -22,8 +23,7 @@ export ZSH_PLUGIN=$ZSH/plugins
 [ -f $ZSH_CONFIG/keymaps.zsh ] && source $ZSH_CONFIG/keymaps.zsh
 [ -f $ZSH_CONFIG/options.zsh ] && source $ZSH_CONFIG/options.zsh
 [ -f $ZSH_CONFIG/functions.zsh ] && source $ZSH_CONFIG/functions.zsh
-[ -d $ZSH_ALIAS ] && for file ($ZSH_ALIAS/*.zsh) source $file
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -f $ZSH_CONFIG/alias.zsh ] && source $ZSH_CONFIG/alias.zsh
 
 ## Load compinit
 autoload -U compinit
@@ -40,3 +40,5 @@ compinit -u -C -d "${ZSH_COMPDUMP}"
 eval "$(starship init zsh)"
 
 remap
+auto-startx
+auto-tmux
