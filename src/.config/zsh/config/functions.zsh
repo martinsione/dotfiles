@@ -1,5 +1,5 @@
 ################################################################################
-## Change cursor shape for different vi modes. Thanks @lukesmith               #
+## Change cursor shape for different vi modes. Thanks @lukesmith
 ################################################################################
 function zle-keymap-select () {
     case $KEYMAP in
@@ -71,7 +71,7 @@ function extract {
   }
 
 ################################################################################
-# Auto startx if tty = /dev/tty1                                               #
+## Auto startx if tty = /dev/tty1
 ################################################################################
 function auto-startx() {
   if pacman -Qs libxft-bgra >/dev/null 2>&1; then
@@ -82,4 +82,14 @@ function auto-startx() {
     \033[32mparu -S libxft-bgra-git\033[0m
   and replace \`libxft\`. Afterwards, you may start the graphical server by running \`startx\`."
   fi
+}
+
+################################################################################
+## Auto start tmux if not in tmux
+################################################################################
+function auto-tmux() {
+  [ -z "${TMUX}" ] && tmux new -As0
+
+  ## This one gives problem when opening a term inside vim
+  # [ -z "${TMUX}" ] && tmux attach || tmux new
 }
