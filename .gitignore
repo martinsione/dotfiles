@@ -7,3 +7,4 @@ src/.config/zsh/plugins
 *.rej
 *log
 *.zcompdump*
+*__pycache__
