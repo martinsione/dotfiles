@@ -24,4 +24,4 @@ require('core.utils')
 require('core.plugins')
 require('core.options')
 require('core.keymaps')
-utils.colorscheme('tokyonight')
+vim.cmd [[colo tokyonight]]

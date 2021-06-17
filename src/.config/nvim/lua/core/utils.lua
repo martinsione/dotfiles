@@ -1,7 +1,7 @@
-_G.utils = {}
+U = {}
 
 -- Os
-utils.os = {
+U.os = {
   home = os.getenv('HOME'),
   data = vim.fn.stdpath('data'),
   cache = vim.fn.stdpath('cache'),
@@ -10,17 +10,8 @@ utils.os = {
   is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1'),
 }
 
-utils.plugin = {}
-
--- Colorscheme
-function utils.colorscheme(name)
-  pcall(function()
-    vim.cmd('colorscheme ' .. name)
-  end)
-end
-
 -- Keybindings
-utils.keymap = {}
+U.keymap = {}
 
 local function make_map(mode, lhs, rhs, opts, scope)
   local options = {noremap = true, silent = true}
@@ -32,26 +23,26 @@ local function make_map(mode, lhs, rhs, opts, scope)
   end
 end
 
-function utils.keymap.buf_map(mode, lhs, rhs, opts)
-  return make_map(mode, lhs, rhs, opts, 'buffer')
+function U.keymap.buf_nmap(lhs, rhs, opts)
+  return make_map('n', lhs, rhs, opts, 'buffer')
 end
 
-function utils.keymap.nmap(lhs, rhs, opts)
+function U.keymap.nmap(lhs, rhs, opts)
   return make_map('n', lhs, rhs, opts)
 end
 
-function utils.keymap.imap(lhs, rhs, opts)
+function U.keymap.imap(lhs, rhs, opts)
   return make_map('i', lhs, rhs, opts)
 end
 
-function utils.keymap.xmap(lhs, rhs, opts)
+function U.keymap.xmap(lhs, rhs, opts)
   return make_map('x', lhs, rhs, opts)
 end
 
-function utils.keymap.tmap(lhs, rhs, opts)
+function U.keymap.tmap(lhs, rhs, opts)
   return make_map('t', lhs, rhs, opts)
 end
 
-function utils.keymap.cmap(lhs, rhs)
+function U.keymap.cmap(lhs, rhs)
   return make_map('c', lhs, rhs, {silent = false, noremap = false})
 end

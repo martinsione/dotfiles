@@ -47,9 +47,9 @@ opt.wildignorecase = true
 
 -- Tabs
 opt.expandtab = true
-opt.shiftwidth = 2
-opt.softtabstop = 0
-opt.tabstop = 2
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.tabstop = 4
 
 -- Shortmess
 opt.shortmess = opt.shortmess + 'A' + 'c' + 'I' + 'W'
