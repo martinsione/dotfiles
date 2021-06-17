@@ -1,18 +1,20 @@
-local nmap = function(lhs, rhs, opts)
-  utils.keymap.buf_map('n', lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
+local buf_nmap = U.keymap.buf_nmap
+local function lua_nmap(lhs, rhs, opts)
+  buf_nmap(lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts)
 end
 
+-- All of these are buffer mappings
 local function mappings()
-  nmap('K', 'require("lspsaga.hover").render_hover_doc()')
-  nmap('gd', 'vim.lsp.buf.definition()')
-  nmap('gD', 'vim.lsp.buf.declaration()')
-  nmap('gi', 'vim.lsp.buf.implementation()')
-  nmap('gr', 'vim.lsp.buf.references()')
-  nmap('ca', 'vim.lsp.buf.code_action()')
-  nmap('<space>gh', 'vim.lsp.buf.signature_help()')
-  nmap('<space>rn', 'require("lspsaga.rename").rename()')
-  nmap('[d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()')
-  nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
+  lua_nmap('K', 'require("lspsaga.hover").render_hover_doc()')
+  lua_nmap('gd', 'vim.lsp.buf.definition()')
+  lua_nmap('gD', 'vim.lsp.buf.declaration()')
+  lua_nmap('gi', 'vim.lsp.buf.implementation()')
+  lua_nmap('gr', 'vim.lsp.buf.references()')
+  lua_nmap('ca', 'vim.lsp.buf.code_action()')
+  lua_nmap('<space>gh', 'vim.lsp.buf.signature_help()')
+  lua_nmap('<space>rn', 'require("lspsaga.rename").rename()')
+  lua_nmap('[d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()')
+  lua_nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
 end
 
 -- TODO: Implement this
@@ -31,6 +33,10 @@ return function(client)
   if client.name ~= 'efm' then client.resolved_capabilities.document_formatting = false end
 
   -- if client.name == 'typescript' then require('nvim-lsp-ts-utils').setup {} end
+
+  if client.name == 'cpp' then
+    buf_nmap('<F8>', '<cmd>w<CR> <cmd>!g++ %<CR> <cmd>TermExec cmd=./a.out<CR> <cmd>wincmd l<CR>')
+  end
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]

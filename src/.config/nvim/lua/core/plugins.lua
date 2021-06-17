@@ -1,14 +1,13 @@
-local packer_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
+local packer_path = U.os.data .. '/site/pack/packer/opt/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
 end
 vim.cmd 'packadd packer.nvim | au BufWritePost plugins.lua PackerCompile'
 vim.opt.rtp = vim.opt.rtp + '~/.local/share/nvim/site/pack/packer/opt/*'
-vim.cmd [[packadd nvim-compe]]
 
 local packer = require('packer')
-local plugin_path = utils.os.data .. '/site/pack/packer/opt/'
-local packer_compiled = utils.os.data .. '/site/plugin/packer_compiled.vim'
+local plugin_path = U.os.data .. '/site/pack/packer/opt/'
+local packer_compiled = U.os.data .. '/site/plugin/packer_compiled.vim'
 
 return packer.startup(function(use)
   packer.init({compile_path = packer_compiled, opt_default = true})
@@ -37,7 +36,7 @@ return packer.startup(function(use)
   -- Indentline
   use {'lukas-reineke/indent-blankline.nvim', branch = 'lua', setup = [[require('plugin.indent-blankline')]]}
   -- Lsp
-  use {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]]}
+  use {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]], event = 'InsertEnter'}
   use {
     'neovim/nvim-lspconfig',
     setup = [[require('plugin.nvim-lspconfig')]],

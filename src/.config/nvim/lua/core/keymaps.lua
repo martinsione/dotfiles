@@ -1,8 +1,8 @@
-local nmap = utils.keymap.nmap
-local imap = utils.keymap.imap
-local tmap = utils.keymap.tmap
-local cmap = utils.keymap.cmap
-local xmap = utils.keymap.xmap
+local nmap = U.keymap.nmap
+local imap = U.keymap.imap
+local tmap = U.keymap.tmap
+local cmap = U.keymap.cmap
+local xmap = U.keymap.xmap
 
 vim.g.mapleader = ' '
 nmap('<leader>', '<Nop>')
@@ -37,7 +37,7 @@ imap('<S-CR>', '<Esc>o')
 imap('<C-CR>', '<Esc>O')
 imap('<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 imap('<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
-imap('<CR>', 'v:lua.utils.completion_confirm()', {expr = true})
+imap('<CR>', 'v:lua.U.completion_confirm()', {expr = true})
 
 -- Visual
 xmap('<', '<gv')
@@ -68,7 +68,7 @@ cmap('<C-f>', '<C-R>=expand("%:p")<CR>')
 -- Git
 nmap('<space>gs', '<cmd>G<CR>')
 -- Telescope
-if utils.os.is_git_dir == 0 then
+if U.os.is_git_dir == 0 then
   nmap('<C-p>', '<cmd>Telescope git_files<CR>')
 else
   nmap('<C-p>', '<cmd>Telescope find_files<CR>')
