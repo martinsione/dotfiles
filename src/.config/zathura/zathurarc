@@ -1,34 +1,22 @@
-set sandbox none
+set font "inconsolata 12"
+set sandbox none                    # Fix some weird link issue
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
 set selection-clipboard clipboard
+set guioptions v
+set window-title-page               # Display page number
+set window-title-basename           # Display just the file name
+# set statusbar-basename            # Display just the file name
+
+set default-bg '#1d2021'
 
 unmap r
-unmap [fullscreen] r
-
 map u scroll half-up
 map d scroll half-down
 map D toggle_page_mode
+map r recolor
 map R rotate
-map K zoom in
-map J zoom out
-map <C-j> navigate next
-map <C-k> navigate previous
-map i recolor
-map p print
 map b toggle_statusbar
-map f toggle_fullscreen
-
-map [fullscreen] u scroll half-up
-map [fullscreen] d scroll half-down
-map [fullscreen] D toggle_page_mode
-map [fullscreen] R rotate
-map [fullscreen] K zoom in
-map [fullscreen] J zoom out
-map [fullscreen] <C-j> navigate next
-map [fullscreen] <C-k> navigate previous
-map [fullscreen] i recolor
-map [fullscreen] p print
-map [fullscreen] b toggle_statusbar
-map [fullscreen] f toggle_fullscreen
+map <C-j> zoom out
+map <C-k> zoom in
