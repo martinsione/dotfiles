@@ -1,61 +1,61 @@
-local opt = vim.opt
+local o = vim.opt
 
 -- Appearance
-opt.cmdheight = 1
-opt.cursorline = true
-opt.foldmethod = 'marker'
-opt.number = true
-opt.relativenumber = true
-opt.ruler = false -- My statusline take care of that
-opt.showmode = false
-opt.signcolumn = 'yes'
-opt.termguicolors = true
-opt.wrap = false
+o.cmdheight = 1
+o.cursorline = true
+-- opt.foldmethod = 'marker'
+o.number = true
+o.relativenumber = true
+o.ruler = false -- My statusline take care of that
+o.showmode = false
+o.signcolumn = 'yes'
+o.termguicolors = true
+o.wrap = false
 
 -- Backups
-opt.backup = false
-opt.writebackup = false
-opt.swapfile = false
+o.backup = false
+o.writebackup = false
+o.swapfile = false
 
 -- Completion
-opt.completeopt = 'menuone,noselect'
-opt.pumheight = 8
-opt.pumblend = 10
+o.completeopt = 'menuone,noselect'
+o.pumheight = 6
+o.pumblend = 10
 
 -- General
-opt.clipboard = 'unnamedplus'
-opt.hidden = true
-opt.joinspaces = false
-opt.mouse = 'a'
-opt.scrolloff = 8
-opt.splitbelow = true
-opt.splitright = true
-opt.timeoutlen = 1000
-opt.updatetime = 100
-opt.virtualedit = 'block'
-opt.iskeyword = opt.iskeyword + '-'
+o.clipboard = 'unnamedplus'
+o.hidden = true
+o.joinspaces = false
+o.mouse = 'a'
+o.scrolloff = 8
+o.splitbelow = true
+o.splitright = true
+o.timeoutlen = 1000
+o.updatetime = 100
+o.virtualedit = 'block'
+o.iskeyword = o.iskeyword + '-'
 
 -- Performance
-opt.lazyredraw = true
+o.lazyredraw = true
 
 -- Search
-opt.inccommand = 'nosplit' -- show substitutions incrementally
-opt.ignorecase = true
-opt.smartcase = true
-opt.wildignore = '.git,**/node_modules/**';
-opt.wildignorecase = true
+o.inccommand = 'nosplit' -- show substitutions incrementally
+o.ignorecase = true
+o.smartcase = true
+o.wildignore = '.git,**/node_modules/**';
+o.wildignorecase = true
 
 -- Tabs
-opt.expandtab = true
-opt.shiftwidth = 4
-opt.softtabstop = 4
-opt.tabstop = 4
+o.expandtab = true
+o.shiftwidth = 4
+-- opt.softtabstop = 4
+-- opt.tabstop = 4
 
 -- Shortmess
-opt.shortmess = opt.shortmess + 'A' + 'c' + 'I' + 'W'
+o.shortmess = o.shortmess + 'A' + 'c' + 'I' + 'W'
 
 -- Format options
-opt.formatoptions = opt.formatoptions + 'j' -- Auto-remove comments when combining lines ( <C-J> )
+o.formatoptions = o.formatoptions + 'j' -- Auto-remove comments when combining lines ( <C-J> )
 + 'n' -- Indent past the formatlistpat, not underneath it.
 + 'q' -- Allow formatting comments w/ gq
 - 'c' -- In general, I like it when comments respect textwidth

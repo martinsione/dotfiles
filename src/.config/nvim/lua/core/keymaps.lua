@@ -80,8 +80,6 @@ nmap('<space>fw', '<cmd>Telescope live_grep<CR>')
 nmap('<space>fd', '<cmd>lua require("plugin.telescope").find_dotfiles()<CR>')
 -- Tree
 nmap('<C-n>', '<cmd>NvimTreeToggle<CR>')
--- Toggle background
-nmap('<space>bg', '<cmd>call Toggle_transparent_background()<CR>')
 -- Vim surround ( noremap need to be false to work)
 nmap('ds', '<Plug>Dsurround', {noremap = false})
 nmap('cs', '<Plug>Csurround', {noremap = false})

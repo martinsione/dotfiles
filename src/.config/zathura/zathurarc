@@ -1,4 +1,4 @@
-set font "inconsolata 12"
+set font "inconsolata 10"
 set sandbox none                    # Fix some weird link issue
 set statusbar-h-padding 0
 set statusbar-v-padding 0
