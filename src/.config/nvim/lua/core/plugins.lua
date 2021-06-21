@@ -36,11 +36,13 @@ return packer.startup(function(use)
   -- Indentline
   use {'lukas-reineke/indent-blankline.nvim', branch = 'lua', setup = [[require('plugin.indent-blankline')]]}
   -- Lsp
-  use {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]], event = 'InsertEnter'}
   use {
     'neovim/nvim-lspconfig',
     setup = [[require('plugin.nvim-lspconfig')]],
-    requires = {'kabouzeid/nvim-lspinstall', 'glepnir/lspsaga.nvim', 'jose-elias-alvarez/nvim-lsp-ts-utils'},
+    requires = {
+      {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]], event = 'InsertEnter'},
+      'kabouzeid/nvim-lspinstall', 'glepnir/lspsaga.nvim', 'jose-elias-alvarez/nvim-lsp-ts-utils',
+    },
   }
   -- Profiling
   use 'tweekmonster/startuptime.vim'
@@ -68,7 +70,7 @@ return packer.startup(function(use)
   -- Which Key
   use {'folke/which-key.nvim', setup = [[require('plugin.which-key')]]}
 
-  -- Autoinstall/compile  plugins
+  -- Autoinstall/compile plugins
   if vim.fn.isdirectory(vim.fn.glob(plugin_path)) > 0 then packer.install() end
   if vim.fn.empty(vim.fn.glob(packer_compiled)) > 0 then packer.compile() end
 end)

@@ -10,6 +10,21 @@ U.os = {
   is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1'),
 }
 
+-- Autocmds
+function U.nvim_create_augroup(definitions) -- {{{1
+  for group_name, definition in pairs(definitions) do
+    vim.cmd('augroup ' .. group_name)
+    vim.cmd('autocmd!')
+
+    for _, def in pairs(definition) do
+      local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
+      vim.cmd(command)
+    end
+
+    vim.cmd('augroup END')
+  end
+end
+
 -- Keybindings
 U.keymap = {}
 
