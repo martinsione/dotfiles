@@ -35,7 +35,7 @@ return function(client)
   -- if client.name == 'typescript' then require('nvim-lsp-ts-utils').setup {} end
 
   if client.name == 'cpp' then
-    buf_nmap('<F8>', '<cmd>w<CR> <cmd>!g++ %<CR> <cmd>TermExec cmd=./a.out<CR> <cmd>wincmd l<CR>')
+    lua_nmap('<space>cc', 'U.term_wrapper("g++ %s && ./a.out", vim.fn.expand("%"))')
   end
 
   if client.resolved_capabilities.document_formatting then

@@ -10,6 +10,24 @@ U.os = {
   is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1'),
 }
 
+function U.term_wrapper(command, argument)
+  local term_style, buffercmd
+  -- term_style = 'horizontal'
+  if term_style == 'horizontal' then
+    buffercmd = 'new' -- Horizontal
+  else
+    buffercmd = 'vnew' -- Vertical
+  end
+  vim.cmd(buffercmd)
+  -- NOTE: Run command accepts 2 params
+  -- 1: Default terminal command, between quotes
+  -- 2: Optional: a string format argument with %
+  -- Eg: term_wrapper('echo I am editing %s', vim.fn.expand("%"))
+  vim.cmd('term ' .. string.format(command, argument))
+  vim.cmd('setl nornu nonu nocul so=0 scl=no') -- Sets for terminal
+  vim.cmd('startinsert')
+end
+
 -- Autocmds
 function U.nvim_create_augroup(definitions) -- {{{1
   for group_name, definition in pairs(definitions) do
