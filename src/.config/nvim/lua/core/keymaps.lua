@@ -68,14 +68,10 @@ cmap('<C-f>', '<C-R>=expand("%:p")<CR>')
 -- Git
 nmap('<space>gs', '<cmd>G<CR>')
 -- Telescope
-if U.os.is_git_dir == 0 then
-  nmap('<C-p>', '<cmd>Telescope git_files<CR>')
-else
-  nmap('<C-p>', '<cmd>Telescope find_files<CR>')
-end
+nmap('<space>ff', '<cmd>lua require("plugin.telescope").project_files()<CR>')
 nmap('<space>fb', '<cmd>Telescope buffers<CR>')
 nmap('<space>fh', '<cmd>Telescope help_tags<CR>')
-nmap('<space>fr', '<cmd>Telescope oldfiles<CR>')
+nmap('<space>fo', '<cmd>Telescope oldfiles<CR>')
 nmap('<space>fw', '<cmd>Telescope live_grep<CR>')
 nmap('<space>fd', '<cmd>lua require("plugin.telescope").find_dotfiles()<CR>')
 -- Tree

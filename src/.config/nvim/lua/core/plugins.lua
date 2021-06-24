@@ -21,7 +21,9 @@ return packer.startup(function(use)
   -- Colorizer
   use {'norcalli/nvim-colorizer.lua', setup = [[require('plugin.nvim-colorizer')]]}
   -- Colorschemes
-  use {'ChristianChiarulli/nvcode-color-schemes.vim', 'glepnir/zephyr-nvim', 'folke/tokyonight.nvim'}
+  use {
+    'ChristianChiarulli/nvcode-color-schemes.vim', 'glepnir/zephyr-nvim', 'folke/tokyonight.nvim',
+  }
   -- Comments
   use 'tpope/vim-commentary'
   -- Dashboard
@@ -34,7 +36,11 @@ return packer.startup(function(use)
   -- Icons
   use {'kyazdani42/nvim-web-devicons', setup = [[require('plugin.nvim-web-devicons')]]}
   -- Indentline
-  use {'lukas-reineke/indent-blankline.nvim', branch = 'lua', setup = [[require('plugin.indent-blankline')]]}
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    branch = 'lua',
+    setup = [[require('plugin.indent-blankline')]],
+  }
   -- Lsp
   use {
     'neovim/nvim-lspconfig',
@@ -54,7 +60,9 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     setup = [[require('plugin.telescope')]],
-    requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim'},
+    requires = {
+      'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim',
+    },
   }
   -- Terminal
   use {'akinsho/nvim-toggleterm.lua', setup = [[require('plugin.nvim-toggleterm')]]}
@@ -64,7 +72,8 @@ return packer.startup(function(use)
     run = ':TSUpdate',
     setup = [[require('plugin.nvim-treesitter')]],
     requires = {
-      'p00f/nvim-ts-rainbow', 'windwp/nvim-ts-autotag', 'JoosepAlviste/nvim-ts-context-commentstring',
+      'p00f/nvim-ts-rainbow', 'windwp/nvim-ts-autotag',
+      'JoosepAlviste/nvim-ts-context-commentstring',
     },
   }
   -- Which Key
