@@ -68,7 +68,7 @@ function extract {
       fi
     done
     fi
-  }
+}
 
 ################################################################################
 ## Auto startx if tty = /dev/tty1
@@ -92,4 +92,17 @@ function auto-tmux() {
 
   ## This one gives problem when opening a term inside vim
   # [ -z "${TMUX}" ] && tmux attach || tmux new
+}
+
+
+################################################################################
+## Auto start tmux if not in tmux
+################################################################################
+function install_nerd_fonts() {
+    for font in $@
+    do
+        curl -L --create-dirs https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/$font.zip -o ~/.local/share/fonts/$font.zip
+        unzip ~/.local/share/fonts/$font.zip -d ~/.local/share/fonts/$font
+        rm -rf ~/.local/share/fonts/$font.zip
+    done
 }
