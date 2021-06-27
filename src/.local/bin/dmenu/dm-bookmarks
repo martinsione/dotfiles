@@ -6,34 +6,23 @@
 
 set -euo pipefail
 
-_bookmark_file="$HOME/.config/bookmarks/urls"
-
 main() {
-
-  local list=""
-
-  if [[ -f ${_bookmark_file} ]]; then
-    local bmlist='' 
-    bmlist=$(awk '{print $2" - "$1}' "${_bookmark_file}")
-    [[ -n "${bmlist}" ]] && list="$(printf '%s\n' "${list}" "${bmlist}")"
-  fi
+  local bookmark_file="$HOME/.config/bookmarks/urls.conf"
+  local list=$(awk '!/^ *#/ && NF {print $1 " - " $NF}' "${bookmark_file}")
+  local list_size=$(awk '!/^ *#/ && NF {print $1}' "${bookmark_file}" | wc -l)
 
   # Piping the lists into dmenu.
-  # We use "printf '%s\n'" to format the array one item to a line.
-  # The URLs are listed quickmarks, bookmarks and lastly history
-  local choice=$( printf '%s\n' "${list}" | sed '/^[[:space:]]*$/d' | ${DMENU} -i -l 20 -p "${BROWSER} open:" "$@" )
+  # local choice=$( printf '%s\n' "${list}" | ${DMENU} -i -l 10 -p "${BROWSER} open:" "$@" )
+  local choice=$( printf '%s\n' "${list}" | ${DMENU} -i -p "${BROWSER} open: [${list_size}]" "$@" )
 
-  # What to do if the separator is chosen from the list.
-  # We simply launch qutebrowser without any URL arguments.
+  # Launch $BROWSER with URL argument.
   if [ -n "$choice" ]; then
-    # What to do when/if we choose a URL to view.
     url=$(echo "${choice}" | awk '{print $NF}') || exit 1
     nohup "${BROWSER}" "${url}" >/dev/null 2>&1 &
   else
-      # What to do if we just escape without choosing anything.
-      echo "Program terminated." && exit 1
+    # What to do if we just escape without choosing anything.
+    echo "Program terminated." && exit 1
   fi
 }
-
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
