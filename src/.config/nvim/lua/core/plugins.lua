@@ -37,7 +37,7 @@ return packer.startup(function(use)
   -- File explorer
   use {'kyazdani42/nvim-tree.lua', setup = [[require('plugin.nvim-tree')]]}
   -- Git
-  use 'tpope/vim-fugitive'
+  use 'tpope/vim-fugitive' -- TODO: Replace it with neogit
   use {'lewis6991/gitsigns.nvim', setup = [[require('plugin.gitsigns')]]}
   -- Icons
   use {'kyazdani42/nvim-web-devicons', setup = [[require('plugin.nvim-web-devicons')]]}
