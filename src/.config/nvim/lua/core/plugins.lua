@@ -24,6 +24,12 @@ return packer.startup(function(use)
   use {
     'ChristianChiarulli/nvcode-color-schemes.vim', 'glepnir/zephyr-nvim', 'folke/tokyonight.nvim',
   }
+  -- Completion
+  use {
+    {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]], event = 'InsertEnter'},
+    -- Snippets
+    {'hrsh7th/vim-vsnip', event = 'InsertEnter', requires = {use 'rafamadriz/friendly-snippets'}},
+  }
   -- Comments
   use 'tpope/vim-commentary'
   -- Dashboard
@@ -46,7 +52,6 @@ return packer.startup(function(use)
     'neovim/nvim-lspconfig',
     setup = [[require('plugin.nvim-lspconfig')]],
     requires = {
-      {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]], event = 'InsertEnter'},
       'kabouzeid/nvim-lspinstall', 'glepnir/lspsaga.nvim', 'jose-elias-alvarez/nvim-lsp-ts-utils',
     },
   }

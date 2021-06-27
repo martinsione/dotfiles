@@ -1,7 +1,8 @@
 U.nvim_create_augroup({
   ftplugin = {
-    {'FileType', 'man', 'setl laststatus=0 noruler'}, {'FileType', 'NvimTree', 'setl scl=no'},
-    {'FileType', 'vim,lua,css,javascript', 'setl sw=2'},
+    {'BufRead', 'NvimTree', 'setl scl=no'}, -- TODO: fix this
+    {'FileType', 'man', 'setl laststatus=0 noruler'},
+    {'FileType', 'vim,lua,css,javascript,sh', 'setl sw=2'},
     {'TermOpen', 'term://*', 'setl nornu nonu nocul so=0 scl=no'},
   },
   on_save = {
@@ -11,7 +12,7 @@ U.nvim_create_augroup({
   },
   general = {
     {'TextYankPost', '*', 'silent! lua vim.highlight.on_yank { timeout = 150 }'},
-    {'FileType', '*', 'set fo-=cro'}, -- Avoid newline continuation of comments
+    {'FileType', '*', 'set formatoptions-=cro'}, -- Avoid newline continuation of comments
   },
 })
 
