@@ -6,7 +6,7 @@
 
 set -euo pipefail
 
-_bookmark_file="$HOME/bookmarks"
+_bookmark_file="$HOME/.config/bookmarks/urls"
 
 main() {
 

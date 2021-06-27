@@ -1,4 +1,4 @@
-# Programs
+## Programs
 alias r="$FILE"
 alias sr="sudo $FILE"
 alias v="$EDITOR"
@@ -7,7 +7,7 @@ alias code="$GEDITOR"
 ## Color
 alias diff="diff --color=auto"
 alias grep="grep --color=auto"
-## Files manipulation
+## File manipulation
 alias mkd="mkdir -pv"
 alias cp="cp -iv"
 alias mv="mv -iv"

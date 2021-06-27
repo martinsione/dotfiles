@@ -12,10 +12,10 @@ __MARTIN[ITALIC_ON]=$'\e[3m'
 __MARTIN[ITALIC_OFF]=$'\e[23m'
 
 ## Load ZSH VARS
-export ZSH_DIR=$HOME/.config/zsh
-export ZSH_CONFIG=$ZSH_DIR/config
-export ZSH_CACHE=$HOME/.cache/zsh
-export ZSH_PLUGIN=$ZSH_DIR/plugins
+export ZDOTDIR="$HOME/.config/zsh"
+export ZSH_CONFIG="$ZDOTDIR/config"
+export ZSH_PLUGIN="$ZDOTDIR/plugins"
+export ZSH_CACHE="$HOME/.cache/zsh"
 
 ## Source config files
 [ -f $ZSH_CONFIG/exports.zsh ] && source $ZSH_CONFIG/exports.zsh
@@ -39,6 +39,7 @@ compinit -u -C -d "${ZSH_COMPDUMP}"
 ## Load Prompt
 eval "$(starship init zsh)"
 
+## Call custom functions
 remap
 auto-startx
 auto-tmux
