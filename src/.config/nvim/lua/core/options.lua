@@ -19,8 +19,8 @@ o.swapfile = false
 
 -- Completion
 o.completeopt = 'menuone,noselect'
-o.pumheight = 6
-o.pumblend = 10
+o.pumblend = 0 -- Popup menu transparency
+o.pumheight = 6 -- Popup menu height
 
 -- General
 o.clipboard = 'unnamedplus'
@@ -48,8 +48,8 @@ o.wildignorecase = true
 -- Tabs
 o.expandtab = true
 o.shiftwidth = 4
--- opt.softtabstop = 4
--- opt.tabstop = 4
+o.softtabstop = 4
+o.tabstop = 4
 
 -- Shortmess
 o.shortmess = o.shortmess + 'A' + 'c' + 'I' + 'W'
