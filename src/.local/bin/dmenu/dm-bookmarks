@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Script name: dm-bookmarks
+# Description: Search your bookmarks.
+# Dependencies: dmenu, browser
+
+set -euo pipefail
+
+_bookmark_file="$HOME/bookmarks"
+
+main() {
+
+  local list=""
+
+  if [[ -f ${_bookmark_file} ]]; then
+    local bmlist='' 
+    bmlist=$(awk '{print $2" - "$1}' "${_bookmark_file}")
+    [[ -n "${bmlist}" ]] && list="$(printf '%s\n' "${list}" "${bmlist}")"
+  fi
+
+  # Piping the lists into dmenu.
+  # We use "printf '%s\n'" to format the array one item to a line.
+  # The URLs are listed quickmarks, bookmarks and lastly history
+  local choice=$( printf '%s\n' "${list}" | sed '/^[[:space:]]*$/d' | ${DMENU} -i -l 20 -p "${BROWSER} open:" "$@" )
+
+  # What to do if the separator is chosen from the list.
+  # We simply launch qutebrowser without any URL arguments.
+  if [ -n "$choice" ]; then
+    # What to do when/if we choose a URL to view.
+    url=$(echo "${choice}" | awk '{print $NF}') || exit 1
+    nohup "${BROWSER}" "${url}" >/dev/null 2>&1 &
+  else
+      # What to do if we just escape without choosing anything.
+      echo "Program terminated." && exit 1
+  fi
+}
+
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

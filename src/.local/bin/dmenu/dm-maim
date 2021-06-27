@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Script name: dm-maim
+# Description: Choose type of screenshot to take with maim.
+# Dependencies: dmenu, maim, tee, xdotool, xclip, xrandr
+
+set -euo pipefail
+
+get_timestamp() {
+  date '+%Y-%m-%d_%H%M%S'
+}
+
+
+main() {
+  local _maim_args=""
+  local _file_type=""
+  # Makes sure the directory exists.
+  # shellcheck disable=SC2154
+  mkdir -p "${XDG_PICTURES_HOME}"
+
+  declare -a modes=(
+  "Fullscreen"
+  "Active window"
+  "Selected region"
+  )
+  # Get monitors and their settings for maim
+  _displays=$(xrandr --listactivemonitors | grep '+' | awk '{print $4, $3}' | awk -F'[x/+* ]' '{print $1,$2"x"$4"+"$6"+"$7}')
+
+
+  # Add monitor data
+  IFS=$'\n'
+  declare -A _display_mode
+  for i in ${_displays}; do
+    name=$(echo "${i}" | awk '{print $1}')
+    rest="$(echo "${i}" | awk '{print $2}')"
+    modes[${#modes[@]}]="${name}"
+    _display_mode[${name}]="${rest}"
+  done
+  unset IFS
+
+  target=$(printf '%s\n' "${modes[@]}" | ${DMENU} -i -l 20 -p 'Take screenshot of:' "$@") || exit 1
+  case "$target" in
+    'Fullscreen')
+    ;;
+    'Active window')
+      active_window=$(xdotool getactivewindow)
+      _maim_args="-i ${active_window}"
+    ;;
+    'Selected region')
+      _maim_args="-s"
+    ;;
+    *)
+      _maim_args="-g ${_display_mode[${target}]}"
+      _file_type="${target}"
+    ;;
+  esac
+
+  maim ${_maim_args} | tee "${XDG_PICTURES_HOME}/$(get_timestamp).png" | xclip -selection clipboard -t image/png
+  notify-send "Saved Screenshot" "${XDG_PICTURES_HOME} And Clipboard"
+}
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

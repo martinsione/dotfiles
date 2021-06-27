@@ -118,6 +118,7 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+
 /* Include Audio controls */
 #include <X11/XF86keysym.h>
 
@@ -229,6 +230,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_v,      spawn,	 	   SHCMD("$GEDITOR") },
 	{ MODKEY,                       XK_e,      spawn,	 	   SHCMD("$GFILE") },
 	{ MODKEY,                       XK_m,      spawn,	 	   SHCMD("$MAIL") },
+	{ ControlMask|ShiftMask,        XK_b,      spawn,	 	   SHCMD("dm-bookmarks") },
 	{ MODKEY,                       XK_r,      spawn,	 	   SHCMD(TERMINAL " -e $FILE") },
 
 	// Alt + Ctrl + Key
@@ -237,7 +239,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_p ,     spawn,	 	   SHCMD(TERMINAL " -e pulsemixer") },
 
 	// Screenshot
-	{ 0,                            XK_Print,  spawn,       SHCMD("maimpick") },
+	{ 0,                            XK_Print,  spawn,       SHCMD("dm-maim") },
 	{ ShiftMask,                    XK_Print,  spawn,       SHCMD("maim -i $(xdotool getactivewindow) ~/Pictures/$(date '+%Y-%m-%d_%H%M%S').png") },
 
 	//-------------------------- Hardware ------------------------------
