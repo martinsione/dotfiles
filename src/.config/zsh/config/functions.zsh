@@ -75,12 +75,9 @@ function extract {
 ################################################################################
 function auto-startx() {
   if pacman -Qs libxft-bgra >/dev/null 2>&1; then
-    [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx $XINITRC
+    [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx $XINITRC >/dev/null 2>&1
   else
-    echo "\033[31mIMPORTANT\033[0m: Note that \033[32m\`libxft-bgra\`\033[0m must be installed for this build of dwm.
-  Please run:
-    \033[32mparu -S libxft-bgra-git\033[0m
-  and replace \`libxft\`. Afterwards, you may start the graphical server by running \`startx\`."
+    echo "Please install libxft-bgra-git from the aur"
   fi
 }
 
@@ -99,10 +96,10 @@ function auto-tmux() {
 ## Auto start tmux if not in tmux
 ################################################################################
 function install_nerd_fonts() {
-    for font in $@
+    for font in "$@"
     do
-        curl -L --create-dirs https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/$font.zip -o ~/.local/share/fonts/$font.zip
-        unzip ~/.local/share/fonts/$font.zip -d ~/.local/share/fonts/$font
-        rm -rf ~/.local/share/fonts/$font.zip
+        curl -L --create-dirs https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/$font.zip -o ~/.local/share/fonts/"${font}".zip
+        unzip ~/.local/share/fonts/"${font}".zip -d ~/.local/share/fonts/"${font}"
+        rm -rf ~/.local/share/fonts/"${font}".zip
     done
 }
