@@ -4,7 +4,7 @@ local tmap = U.keymap.tmap
 local cmap = U.keymap.cmap
 local xmap = U.keymap.xmap
 
-vim.g.mapleader = '<Space>'
+vim.g.mapleader = ' '
 nmap('<leader>', '<Nop>')
 xmap('<leader>', '<Nop>')
 
