@@ -9,6 +9,7 @@ require'bufferline'.setup {
     max_prefix_length = 15, -- prefix used when a buffer is deduplicated
     tab_size = 25,
     -- diagnostics = false | "nvim_lsp"
+    offsets = {{filetype = 'NvimTree'}},
     show_buffer_close_icons = false,
     show_close_icon = false,
     show_tab_indicators = true,

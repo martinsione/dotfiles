@@ -96,10 +96,16 @@ function auto-tmux() {
 ## Auto start tmux if not in tmux
 ################################################################################
 function install_nerd_fonts() {
+    local install() {
+        curl -L --create-dirs "${download_path}" -o "${font_path}.zip"
+        unzip "${font_path}.zip" -d "${font_path}"
+        rm -rf "${font_path}.zip" 
+    }
+
     for font in "$@"
     do
-        curl -L --create-dirs https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/$font.zip -o ~/.local/share/fonts/"${font}".zip
-        unzip ~/.local/share/fonts/"${font}".zip -d ~/.local/share/fonts/"${font}"
-        rm -rf ~/.local/share/fonts/"${font}".zip
+        local font_path="$HOME/.local/share/fonts/${font}"
+        local download_path="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/${font}.zip"
+        [ ! -d "${font_path}" ] && echo "Installing ${font} font." && install >/dev/null 2>&1 && echo "Done." || echo "${font} is already on your system"
     done
 }
