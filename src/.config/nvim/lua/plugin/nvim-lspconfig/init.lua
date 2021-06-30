@@ -22,11 +22,18 @@ local servers = {
   },
 }
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {'documentation', 'detail', 'additionalTextEdits'},
+}
+
 local function setup_servers()
   lspinstall.setup()
   local installed = lspinstall.installed_servers()
   for _, server in pairs(installed) do
     local config = servers[server] or {root_dir = lspconfig.util.root_pattern({'.git/', '.'})}
+    config.capabilities = capabilities
     config.on_attach = on_attach
     lspconfig[server].setup(config)
   end

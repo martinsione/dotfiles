@@ -2,8 +2,9 @@ local o = vim.opt
 
 -- Appearance
 o.cmdheight = 1
+o.colorcolumn = '80'
 o.cursorline = true
--- opt.foldmethod = 'marker'
+-- o.foldmethod = 'marker'
 o.number = true
 o.relativenumber = true
 o.ruler = false -- My statusline take care of that
@@ -20,7 +21,7 @@ o.swapfile = false
 -- Completion
 o.completeopt = 'menuone,noselect'
 o.pumblend = 0 -- Popup menu transparency
-o.pumheight = 6 -- Popup menu height
+o.pumheight = 10 -- Popup menu height
 
 -- General
 o.clipboard = 'unnamedplus'
@@ -62,3 +63,4 @@ o.formatoptions = o.formatoptions + 'j' -- Auto-remove comments when combining l
 - 'r' -- But do continue when pressing enter.
 - 'o' -- O and o, don't continue comments
 - 't' -- Don't auto format my code. I got linters for that.
+o.fo = o.fo - 'cro'

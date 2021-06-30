@@ -22,7 +22,9 @@ return packer.startup(function(use)
   use {'norcalli/nvim-colorizer.lua', setup = [[require('plugin.nvim-colorizer')]]}
   -- Colorschemes
   use {
-    'ChristianChiarulli/nvcode-color-schemes.vim', 'glepnir/zephyr-nvim', 'folke/tokyonight.nvim',
+    'ChristianChiarulli/nvcode-color-schemes.vim',
+    'glepnir/zephyr-nvim',
+    'folke/tokyonight.nvim',
   }
   -- Completion
   use {
@@ -52,7 +54,9 @@ return packer.startup(function(use)
     'neovim/nvim-lspconfig',
     setup = [[require('plugin.nvim-lspconfig')]],
     requires = {
-      'kabouzeid/nvim-lspinstall', 'glepnir/lspsaga.nvim', 'jose-elias-alvarez/nvim-lsp-ts-utils',
+      'kabouzeid/nvim-lspinstall',
+      'glepnir/lspsaga.nvim',
+      'jose-elias-alvarez/nvim-lsp-ts-utils',
     },
   }
   -- Profiling
@@ -66,7 +70,9 @@ return packer.startup(function(use)
     'nvim-telescope/telescope.nvim',
     setup = [[require('plugin.telescope')]],
     requires = {
-      'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-fzy-native.nvim',
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim',
     },
   }
   -- Terminal
@@ -77,7 +83,8 @@ return packer.startup(function(use)
     run = ':TSUpdate',
     setup = [[require('plugin.nvim-treesitter')]],
     requires = {
-      'p00f/nvim-ts-rainbow', 'windwp/nvim-ts-autotag',
+      'p00f/nvim-ts-rainbow',
+      'windwp/nvim-ts-autotag',
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
   }
