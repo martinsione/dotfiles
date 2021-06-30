@@ -33,12 +33,10 @@ function U.nvim_create_augroup(definitions) -- {{{1
   for group_name, definition in pairs(definitions) do
     vim.cmd('augroup ' .. group_name)
     vim.cmd('autocmd!')
-
     for _, def in pairs(definition) do
       local command = table.concat(vim.tbl_flatten {'autocmd', def}, ' ')
       vim.cmd(command)
     end
-
     vim.cmd('augroup END')
   end
 end
@@ -56,26 +54,16 @@ local function make_map(mode, lhs, rhs, opts, scope)
   end
 end
 
-function U.keymap.buf_nmap(lhs, rhs, opts)
-  return make_map('n', lhs, rhs, opts, 'buffer')
-end
+function U.keymap.buf_nmap(lhs, rhs, opts) return make_map('n', lhs, rhs, opts, 'buffer') end
 
-function U.keymap.nmap(lhs, rhs, opts)
-  return make_map('n', lhs, rhs, opts)
-end
+function U.keymap.nmap(lhs, rhs, opts) return make_map('n', lhs, rhs, opts) end
 
-function U.keymap.imap(lhs, rhs, opts)
-  return make_map('i', lhs, rhs, opts)
-end
+function U.keymap.imap(lhs, rhs, opts) return make_map('i', lhs, rhs, opts) end
 
-function U.keymap.xmap(lhs, rhs, opts)
-  return make_map('x', lhs, rhs, opts)
-end
+function U.keymap.xmap(lhs, rhs, opts) return make_map('x', lhs, rhs, opts) end
 
-function U.keymap.tmap(lhs, rhs, opts)
-  return make_map('t', lhs, rhs, opts)
-end
+function U.keymap.tmap(lhs, rhs, opts) return make_map('t', lhs, rhs, opts) end
 
-function U.keymap.cmap(lhs, rhs)
-  return make_map('c', lhs, rhs, {silent = false, noremap = false})
-end
+function U.keymap.smap(lhs, rhs, opts) return make_map('s', lhs, rhs, opts) end
+
+function U.keymap.cmap(lhs, rhs) return make_map('c', lhs, rhs, {silent = false, noremap = false}) end

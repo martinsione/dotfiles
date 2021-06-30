@@ -37,7 +37,6 @@ imap('<S-CR>', '<Esc>o')
 imap('<C-CR>', '<Esc>O')
 imap('<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', {expr = true})
 imap('<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', {expr = true})
-imap('<CR>', 'v:lua.U.completion_confirm()', {expr = true})
 
 -- Visual
 xmap('<', '<gv')

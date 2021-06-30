@@ -89,9 +89,7 @@ gls.left[1] = {
 
 gls.left[4] = {
   GitIcon = {
-    provider = function()
-      return ' '
-    end,
+    provider = function() return ' ' end,
     condition = condition.check_git_workspace,
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
@@ -135,18 +133,34 @@ gls.left[8] = {
 }
 
 gls.right[1] = {
-  DiagnosticError = {provider = 'DiagnosticError', icon = '  ', highlight = {colors.red, colors.bg}},
+  DiagnosticError = {
+    provider = 'DiagnosticError',
+    icon = '  ',
+    highlight = {colors.red, colors.bg},
+  },
 }
 gls.right[2] = {
-  DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '  ', highlight = {colors.orange, colors.bg}},
+  DiagnosticWarn = {
+    provider = 'DiagnosticWarn',
+    icon = '  ',
+    highlight = {colors.orange, colors.bg},
+  },
 }
 
 gls.right[3] = {
-  DiagnosticHint = {provider = 'DiagnosticHint', icon = '  ', highlight = {colors.blue, colors.bg}},
+  DiagnosticHint = {
+    provider = 'DiagnosticHint',
+    icon = '  ',
+    highlight = {colors.blue, colors.bg},
+  },
 }
 
 gls.right[4] = {
-  DiagnosticInfo = {provider = 'DiagnosticInfo', icon = '  ', highlight = {colors.blue, colors.bg}},
+  DiagnosticInfo = {
+    provider = 'DiagnosticInfo',
+    icon = '  ',
+    highlight = {colors.blue, colors.bg},
+  },
 }
 
 gls.right[6] = {
@@ -169,9 +183,7 @@ gls.right[7] = {
 
 gls.short_line_left[2] = {
   LeftEnd = {
-    provider = function()
-      return '▊ ' .. vim.fn.expand('%:F')
-    end,
+    provider = function() return '▊ ' .. vim.fn.expand('%:F') end,
     separator = ' ',
     separator_highlight = {'NONE', colors.bg},
     highlight = {colors.grey, colors.bg, 'bold'},
