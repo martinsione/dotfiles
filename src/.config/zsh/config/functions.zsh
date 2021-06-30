@@ -109,3 +109,7 @@ function install_nerd_fonts() {
         [ ! -d "${font_path}" ] && echo "Installing ${font} font." && install >/dev/null 2>&1 && echo "Done." || echo "${font} is already on your system"
     done
 }
+
+function zathura-tabbed() {
+    (tabbed -c zathura "$@" -e & disown) >/dev/null 2>&1
+}
