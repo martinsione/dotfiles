@@ -68,7 +68,7 @@ cmap('<C-f>', '<C-R>=expand("%:p")<CR>')
 nmap('<space>gs', '<cmd>G<CR>')
 -- Telescope
 nmap('<space>ff', '<cmd>lua require("plugin.telescope").project_files()<CR>')
-nmap('<space>fb', '<cmd>Telescope buffers<CR>')
+nmap('<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
 nmap('<space>fh', '<cmd>Telescope help_tags<CR>')
 nmap('<space>fo', '<cmd>Telescope oldfiles<CR>')
 nmap('<space>fw', '<cmd>Telescope live_grep<CR>')
