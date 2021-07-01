@@ -1,5 +1,5 @@
-local buf_nmap = U.keymap.buf_nmap
-local function lua_nmap(lhs, rhs, opts) buf_nmap(lhs, '<cmd>lua  ' .. rhs .. '<CR>', opts) end
+local function nmap(key, cmd, opts) U.keymap.buf_map('n', key, cmd, opts) end
+local function lua_nmap(key, cmd, opts) nmap(key, '<cmd>lua  ' .. cmd .. '<CR>', opts) end
 
 -- All of these are buffer mappings
 local function mappings()
@@ -17,7 +17,7 @@ end
 
 local function config_cpp()
   lua_nmap('<space>co', 'U.term_wrapper("g++ %s && ./a.out", vim.fn.expand("%"))')
-  buf_nmap('<space>cs', '<cmd>0r ~/.config/nvim/templates/cpp/skeleton.cpp<CR>')
+  nmap('<space>cs', '<cmd>0r ~/.config/nvim/templates/cpp/skeleton.cpp<CR>')
 end
 
 local function config_typescript()
@@ -31,7 +31,7 @@ return function(client)
   if client.name == 'cpp' then config_cpp() end
   if client.name == 'typescript' then config_typescript() end
 
-  -- So the only client with format capabilities is efm
+  -- So that the only client with format capabilities is efm
   if client.name ~= 'efm' then client.resolved_capabilities.document_formatting = false end
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]

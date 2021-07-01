@@ -63,4 +63,3 @@ o.formatoptions = o.formatoptions + 'j' -- Auto-remove comments when combining l
 - 'r' -- But do continue when pressing enter.
 - 'o' -- O and o, don't continue comments
 - 't' -- Don't auto format my code. I got linters for that.
-o.fo = o.fo - 'cro'

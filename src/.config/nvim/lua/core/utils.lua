@@ -10,20 +10,13 @@ U.os = {
   is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1'),
 }
 
-function U.term_wrapper(command, argument)
-  local term_style, buffercmd
-  -- term_style = 'horizontal'
-  if term_style == 'horizontal' then
-    buffercmd = 'new' -- Horizontal
-  else
-    buffercmd = 'vnew' -- Vertical
-  end
-  vim.cmd(buffercmd)
+function U.term_wrapper(cmd, fmt)
   -- NOTE: Run command accepts 2 params
   -- 1: Default terminal command, between quotes
   -- 2: Optional: a string format argument with %
   -- Eg: term_wrapper('echo I am editing %s', vim.fn.expand("%"))
-  vim.cmd('term ' .. string.format(command, argument))
+  vim.cmd('vnew')
+  vim.cmd('term ' .. string.format(cmd, fmt))
   vim.cmd('setl nornu nonu nocul so=0 scl=no') -- Sets for terminal
   vim.cmd('startinsert')
 end
@@ -44,26 +37,14 @@ end
 -- Keybindings
 U.keymap = {}
 
-local function make_map(mode, lhs, rhs, opts, scope)
+function U.keymap.buf_map(mode, key, cmd, opts)
   local options = {noremap = true, silent = true}
   if opts then options = vim.tbl_extend('force', options, opts) end
-  if scope == nil then
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-  else
-    vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
-  end
+  vim.api.nvim_buf_set_keymap(0, mode, key, cmd, options)
 end
 
-function U.keymap.buf_nmap(lhs, rhs, opts) return make_map('n', lhs, rhs, opts, 'buffer') end
-
-function U.keymap.nmap(lhs, rhs, opts) return make_map('n', lhs, rhs, opts) end
-
-function U.keymap.imap(lhs, rhs, opts) return make_map('i', lhs, rhs, opts) end
-
-function U.keymap.xmap(lhs, rhs, opts) return make_map('x', lhs, rhs, opts) end
-
-function U.keymap.tmap(lhs, rhs, opts) return make_map('t', lhs, rhs, opts) end
-
-function U.keymap.smap(lhs, rhs, opts) return make_map('s', lhs, rhs, opts) end
-
-function U.keymap.cmap(lhs, rhs) return make_map('c', lhs, rhs, {silent = false, noremap = false}) end
+function U.keymap.map(mode, key, cmd, opts)
+  local options = {noremap = true, silent = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, key, cmd, options)
+end
