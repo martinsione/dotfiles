@@ -3,7 +3,7 @@ if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
 end
 vim.cmd 'packadd packer.nvim | au BufWritePost plugins.lua PackerCompile'
-vim.opt.rtp = vim.opt.rtp + '~/.local/share/nvim/site/pack/packer/opt/*'
+vim.opt.rtp = vim.opt.rtp + (U.os.data .. '/site/pack/packer/opt/*')
 
 local packer = require('packer')
 local plugin_path = U.os.data .. '/site/pack/packer/opt/'

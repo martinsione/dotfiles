@@ -3,11 +3,9 @@ local sorters = require 'telescope.sorters'
 
 require('telescope').setup {
   defaults = {
-    layout_strategy = 'horizontal',
     prompt_prefix = '❯ ',
     selection_caret = '❯ ',
-    prompt_position = 'bottom',
-    sorting_strategy = 'descending',
+    layout_config = {horizontal = {preview_width = 0.5}},
     file_sorter = sorters.get_fzy_sorter,
     mappings = {
       i = {['<C-j>'] = actions.move_selection_next, ['<C-k>'] = actions.move_selection_previous},
