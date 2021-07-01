@@ -12,13 +12,3 @@ vim.g.nvim_tree_bindings = {
   {key = 'v', cb = ':lua require"nvim-tree".on_keypress("vsplit")<CR>'},
   {key = 's', cb = ':lua require"nvim-tree".on_keypress("split")<CR>'},
 }
--- vim.g.nvim_tree_bindings = {
---   ['h'] = ':lua require"nvim-tree".on_keypress("close_node")<CR>',
---   ['l'] = ':lua require"nvim-tree".on_keypress("edit")<CR>',
--- }
--- vim.g.nvim_tree_icons = {
---   default = '',
---   symlink = '',
---   git = {unstaged = '', staged = '✓', unmerged = '', renamed = '➜', untracked = ''},
---   folder = {default = '', open = '', empty = '', empty_open = '', symlink = ''},
--- }

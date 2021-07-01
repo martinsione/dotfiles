@@ -68,9 +68,9 @@ _G.s_tab_complete = function()
   end
 end
 
-U.keymap.imap('<Tab>', 'v:lua.tab_complete()', {expr = true})
-U.keymap.smap('<Tab>', 'v:lua.tab_complete()', {expr = true})
-U.keymap.imap('<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
-U.keymap.smap('<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
-U.keymap.imap('<C-Space>', 'compe#complete()', {expr = true})
-U.keymap.imap('<C-e>', 'compe#close()', {expr = true})
+U.keymap.map('i', '<Tab>', 'v:lua.tab_complete()', {expr = true})
+U.keymap.map('s', '<Tab>', 'v:lua.tab_complete()', {expr = true})
+U.keymap.map('i', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
+U.keymap.map('s', '<S-Tab>', 'v:lua.s_tab_complete()', {expr = true})
+U.keymap.map('i', '<C-Space>', 'compe#complete()', {expr = true})
+U.keymap.map('i', '<C-e>', 'compe#close()', {expr = true})
