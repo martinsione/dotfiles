@@ -22,9 +22,10 @@ return packer.startup(function(use)
   use {'norcalli/nvim-colorizer.lua', setup = [[require('plugin.nvim-colorizer')]]}
   -- Colorschemes
   use {
-    'ChristianChiarulli/nvcode-color-schemes.vim',
-    'glepnir/zephyr-nvim',
+    {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}},
     'folke/tokyonight.nvim',
+    'glepnir/zephyr-nvim',
+    -- 'ChristianChiarulli/nvcode-color-schemes.vim',
   }
   -- Completion
   use {
@@ -39,16 +40,12 @@ return packer.startup(function(use)
   -- File explorer
   use {'kyazdani42/nvim-tree.lua', setup = [[require('plugin.nvim-tree')]]}
   -- Git
-  use 'tpope/vim-fugitive' -- TODO: Replace it with neogit
+  use {'TimUntersberger/neogit', setup = [[require('plugin.neogit')]]}
   use {'lewis6991/gitsigns.nvim', setup = [[require('plugin.gitsigns')]]}
   -- Icons
   use {'kyazdani42/nvim-web-devicons', setup = [[require('plugin.nvim-web-devicons')]]}
   -- Indentline
-  use {
-    'lukas-reineke/indent-blankline.nvim',
-    branch = 'lua',
-    setup = [[require('plugin.indent-blankline')]],
-  }
+  use {'lukas-reineke/indent-blankline.nvim', setup = [[require('plugin.indent-blankline')]]}
   -- Lsp
   use {
     'neovim/nvim-lspconfig',

@@ -75,7 +75,7 @@ function extract {
 ################################################################################
 function auto-startx() {
   if pacman -Qs libxft-bgra >/dev/null 2>&1; then
-    [ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx $XINITRC >/dev/null 2>&1
+    [ "$(tty)" = "/dev/tty1" ] && (! pidof -s Xorg && exec startx $XINITRC) >/dev/null 2>&1
   else
     echo "Please install libxft-bgra-git from the aur"
   fi
