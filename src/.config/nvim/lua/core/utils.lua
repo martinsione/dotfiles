@@ -21,6 +21,17 @@ function U.term_wrapper(cmd, fmt)
   vim.cmd('startinsert')
 end
 
+local is_transparent = true
+function U.toogle_background()
+  if is_transparent == true then
+    vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
+    is_transparent = false
+  else
+    vim.cmd [[ set background=dark ]]
+    is_transparent = true
+  end
+end
+
 -- Autocmds
 function U.nvim_create_augroup(definitions) -- {{{1
   for group_name, definition in pairs(definitions) do

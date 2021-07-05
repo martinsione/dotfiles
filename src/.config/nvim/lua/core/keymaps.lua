@@ -65,9 +65,9 @@ cmap('<C-d>', '<Del>')
 cmap('<C-f>', '<C-R>=expand("%:p")<CR>')
 
 -- Git
-nmap('<space>gs', '<cmd>G<CR>')
+nmap('<space>gs', '<cmd>Neogit<CR>')
 -- Telescope
-nmap('<space>ff', '<cmd>lua require("plugin.telescope").project_files()<CR>')
+nmap('<space>fp', '<cmd>lua require("plugin.telescope").find_project()<CR>')
 nmap('<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
 nmap('<space>fh', '<cmd>Telescope help_tags<CR>')
 nmap('<space>fo', '<cmd>Telescope oldfiles<CR>')

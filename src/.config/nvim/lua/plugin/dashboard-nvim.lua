@@ -17,7 +17,7 @@ vim.g.dashboard_disable_statusline = 1
 vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
   find_files = {
-    description = {'  Find  Files                             CTRL p '},
+    description = {'  Find  Files                             SPC f p '},
     command = 'Telescope find_files',
   },
   find_history = {
