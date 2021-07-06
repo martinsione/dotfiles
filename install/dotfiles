@@ -2,32 +2,7 @@
 
 set -e
 
-export repo_host="https://github.com"
-export repo_path="/martinsione/dotfiles"
-export repo_branch="master"
-export dotfiles_dir="$HOME/.dotfiles"
-export symlinks_file="${dotfiles_dir}/links.conf"
-
-_symlinks=(
-  .config/alacritty
-  .config/git
-  .config/htop
-  .config/kitty
-  .config/luaformatter
-  .config/nvim
-  .config/ranger
-  .config/tmux
-  .config/zsh
-  .zprofile
-)
-
-_dirs=(
-  ~/Documents
-  ~/Downloads
-  ~/Pictures
-  ~/Workspace
-  ~/.cache/zsh
-)
+[ -f ./dotfiles.conf.sh ] && source ./dotfiles.conf.sh || error 1
 
 clone_repo() {
   if [ -d "$HOME/dotfiles" ]; then
@@ -43,7 +18,7 @@ clone_repo() {
 
 symlink_files() {
   for name in "${_symlinks[@]}"; do
-    if [ ! -e "$name" ]; then;
+    if [ ! -e "$name" ]; then
       ln -srfv "${dotfiles_dir}/src/${name}" "$HOME/${name}"
     else
       echo "${name} already exists."
@@ -68,10 +43,6 @@ install_nerd_fonts() {
     fi
   done
 }
-
-# install_packages() {
-#   # https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#List_of_installed_packages
-# }
 
 add_echo_cancelation() {
 sudo tee -a /etc/pulse/default.pa > /dev/null <<EOT
