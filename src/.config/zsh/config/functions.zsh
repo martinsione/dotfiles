@@ -1,7 +1,7 @@
 ################################################################################
 ## Change cursor shape for different vi modes. Thanks @lukesmith
 ################################################################################
-function zle-keymap-select () {
+function zle-keymap-select() {
     case $KEYMAP in
         vicmd) echo -ne '\e[1 q';;      # block
         viins|main) echo -ne '\e[5 q';; # beam
@@ -33,7 +33,7 @@ bindkey '^Z' fg-bg
 ################################################################################
 ## Toggle fg and bg with CTRL-Z
 ################################################################################
-function extract {
+function extract() {
   if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -101,9 +101,7 @@ function install_nerd_fonts() {
         unzip "${font_path}.zip" -d "${font_path}"
         rm -rf "${font_path}.zip" 
     }
-
-    for font in "$@"
-    do
+    for font in "$@"; do
         local font_path="$HOME/.local/share/fonts/${font}"
         local download_path="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/${font}.zip"
         [ ! -d "${font_path}" ] && echo "Installing ${font} font." && install >/dev/null 2>&1 && echo "Done." || echo "${font} is already on your system"

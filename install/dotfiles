@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Script name: dotfiles
+# Description: Script to deploy my dotfiles easily.
+# Dependencies: git, curl, zsh
+
 export repo_host="https://github.com"
 export repo_path="/martinsione/dotfiles"
 export dotfiles_dir="$HOME/.dotfiles"
@@ -23,13 +27,6 @@ _symlinks=(
   .config/zsh
   .zshrc
 )
-
-_fonts=(
-  FiraCode
-  JetBrainsMono
-  UbuntuMono
-)
-
 
 ## End of configuration
 set -e
@@ -60,20 +57,6 @@ create_dirs() {
   for name in "${_dirs[@]}"; do mkdir -p "${name}"; done
 }
 
-install_nerd_fonts() {
-  for font in "${_fonts}"; do
-    local font_path="$HOME/.local/share/fonts/${font}"
-    local download_path="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/${font}.zip"
-    if [ ! -d ${font_path} ]; then
-      curl -L --create-dirs "${download_path}" -o "${font_path}.zip"
-      unzip "${font_path}.zip" -d "${font_path}"
-      rm -rf "${font_path}.zip" 
-    else
-      echo "${font} is already on your system"
-    fi
-  done
-}
-
 add_echo_cancelation() {
 sudo tee -a /etc/pulse/default.pa > /dev/null <<EOT
 load-module module-echo-cancel aec_method=webrtc source_name=noechosource sink_name=noechosink
@@ -94,6 +77,7 @@ mount_drive() {
 
 change_shell() {
   chsh -s $(which zsh)
+  sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 }
 
 
@@ -102,6 +86,5 @@ clone_repo
 create_dirs
 symlink_files
 add_echo_cancelation
-install_nerd_fonts
 mount_drive
 change_shell
