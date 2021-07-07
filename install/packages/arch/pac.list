@@ -17,7 +17,6 @@ dnsmasq
 docker
 dosfstools
 dunst
-ebtables
 edk2-ovmf
 efibootmgr
 exa
@@ -26,6 +25,7 @@ fd
 file
 findutils
 firefox
+flatpak
 flex
 fuse2
 fzf
@@ -48,10 +48,12 @@ libreoffice-fresh
 libtool
 libva-vdpau-driver
 linux-firmware
-linux-headers
 linux-lts
+linux-lts-headers
+lsb-release
 lua
 luarocks
+lxappearance
 lxsession
 m4
 maim
@@ -71,6 +73,7 @@ nvidia-lts
 nvidia-settings
 nvidia-utils
 obs-studio
+octave
 os-prober
 otf-cascadia-code
 pacman
@@ -85,17 +88,18 @@ python-pip
 python-pynvim
 qemu
 ranger
+redshift
 ripgrep
 sed
 steam
 stow
 sudo
 sxiv
+telegram-desktop
 texinfo
 tmux
 trash-cli
 tree
-tree-sitter
 ttf-dejavu
 ttf-joypixels
 ttf-liberation
@@ -120,5 +124,3 @@ yarn
 zathura
 zathura-pdf-mupdf
 zsh
-zsh-autosuggestions
-zsh-syntax-highlighting
