@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+export repo_host="https://github.com"
+export repo_path="/martinsione/dotfiles"
+export dotfiles_dir="$HOME/.dotfiles"
+
+_dirs=(
+  ~/Documents
+  ~/Downloads
+  ~/Pictures
+  ~/Workspace
+  ~/.cache/zsh
+)
+
+_symlinks=(
+  .config/git
+  .config/htop
+  .config/kitty
+  .config/luaformatter
+  .config/nvim
+  .config/ranger
+  .config/tmux
+  .config/zsh
+  .zshrc
+)
+
+_fonts=(
+  FiraCode
+  JetBrainsMono
+  UbuntuMono
+)
+
+
+## End of configuration
+set -e
+
+clone_repo() {
+  if [ -d "$HOME/dotfiles" ]; then
+    mv "$HOME/dotfiles" "${dotfiles_dir}";
+  elif [ ! -d "${dotfiles_dir}" ]; then
+    git clone "${repo_host}${repo_path}" "${dotfiles_dir}"
+  fi
+
+  if [ -d "${dotfiles_dir}" ]; then 
+    cd ${dotfiles_dir} && git submodule update --init --recursive
+  fi
+}
+
+symlink_files() {
+  for name in "${_symlinks[@]}"; do
+    if [ ! -e "$name" ]; then
+      ln -srfv "${dotfiles_dir}/src/${name}" "$HOME/${name}"
+    else
+      echo "${name} already exists."
+    fi
+  done
+}
+
+create_dirs() {
+  for name in "${_dirs[@]}"; do mkdir -p "${name}"; done
+}
+
+install_nerd_fonts() {
+  for font in "${_fonts}"; do
+    local font_path="$HOME/.local/share/fonts/${font}"
+    local download_path="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/${font}.zip"
+    if [ ! -d ${font_path} ]; then
+      curl -L --create-dirs "${download_path}" -o "${font_path}.zip"
+      unzip "${font_path}.zip" -d "${font_path}"
+      rm -rf "${font_path}.zip" 
+    else
+      echo "${font} is already on your system"
+    fi
+  done
+}
+
+add_echo_cancelation() {
+sudo tee -a /etc/pulse/default.pa > /dev/null <<EOT
+load-module module-echo-cancel aec_method=webrtc source_name=noechosource sink_name=noechosink
+set-default-source noechosource
+set-default-sink noechosink
+EOT
+}
+
+mount_drive() {
+  read -p "Do you want to mount disk to /mnt/s (y/n): " -n 1 -r
+  echo -e '\n'
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    sudo mkdir -p /mnt/s
+    echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0 /mnt/s ext4 rw,relatime 0 2' | sudo tee -a /etc/fstab
+    echo -e 'Mounted drive correctly.\n' 
+  fi
+}
+
+change_shell() {
+  chsh -s $(which zsh)
+}
+
+
+## Start of the script
+clone_repo
+create_dirs
+symlink_files
+add_echo_cancelation
+install_nerd_fonts
+mount_drive
+change_shell
