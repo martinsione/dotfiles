@@ -40,5 +40,4 @@ compinit -u -C -d "${ZSH_COMPDUMP}"
 eval "$(starship init zsh)"
 
 ## Call custom functions
-auto-startx
 auto-tmux
