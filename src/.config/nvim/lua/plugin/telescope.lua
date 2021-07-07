@@ -23,7 +23,7 @@ function M.find_dotfiles()
   require('telescope.builtin').find_files {
     prompt_title = ' Dotfiles ',
     find_command = {'rg', '--files', '--hidden', '--sort=path'},
-    cwd = '$HOME/dotfiles',
+    cwd = '$HOME/.dotfiles',
   }
 end
 

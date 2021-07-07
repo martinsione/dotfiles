@@ -108,6 +108,21 @@ function install_nerd_fonts() {
     done
 }
 
+build_neovim() {
+    local current="$(pwd)"
+    local install_path="$HOME/.local/src/neovim"
+    if [ ! -d "${install_path}" ]; then
+        sudo apt install -y ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+        mkdir -p "$HOME/.local/src"
+        git clone git@github.com:neovim/neovim.git "${install_path}"
+    fi
+    cd "${install_path}"
+    git pull
+    make CMAKE_BUILD_TYPE=Release CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/.local/src/neovim"
+    make install
+    cd "${current}"
+}
+
 function zathura-tabbed() {
     (tabbed -c zathura "$@" -e & disown) >/dev/null 2>&1
 }

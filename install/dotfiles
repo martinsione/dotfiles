@@ -26,6 +26,7 @@ _symlinks=(
   .config/ranger
   .config/tmux
   .config/zsh
+  .local/bin
   .zshrc
 )
 

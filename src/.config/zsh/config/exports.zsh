@@ -20,6 +20,7 @@ export XDG_SCRIPTS_HOME="$HOME/.local/bin"
 export XDG_PICTURES_HOME="$HOME/Pictures"
 
 # Path
+export PATH="$HOME/.local/src/neovim/bin:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin:$PATH"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 export PATH="$XDG_SCRIPTS_HOME/dmenu:$PATH"

@@ -26,7 +26,6 @@ alias startx="startx $XINITRC"
 
 ## Packages
 alias vst="nvim --startuptime test.tmp -c :q && nvim test.tmp && rm -rf test.tmp"
-alias vupg="cd ~/.local/src/neovim && git pull && make && sudo make install && cd -"
 if [[ $DISTRO == "Arch" ]]; then
   alias p="sudo pacman"
   alias paru="paru --bottomup"
@@ -64,7 +63,7 @@ alias tls="tmux ls"
 alias tks="tmux kill-session -t"
 
 ## Directories
-alias d="$HOME/dotfiles"
+alias d="$HOME/.dotfiles"
 alias D="$HOME/Downloads"
 alias P="$HOME/Pictures"
 alias W="$HOME/Workspace"
