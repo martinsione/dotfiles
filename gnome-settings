@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# https://askubuntu.com/questions/1195081/increase-number-of-workspace-with-shortcuts-on-ubuntu-18-04
+# dconf write /org/gnome/mutter/dynamic-workspaces false
+# dconf write /org/gnome/desktop/wm/preferences/num-workspaces 6
+
+gsettings set org.gnome.mutter dynamic-workspaces false
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
+
+# 1
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Alt>1']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-1 "['<Ctrl><Alt>1']"
+# 2
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Alt>2']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-2 "['<Ctrl><Alt>2']"
+# 3
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Alt>3']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-3 "['<Ctrl><Alt>3']"
+# 4
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Alt>4']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-4 "['<Ctrl><Alt>4']"
+# 5
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Alt>5']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 "['<Ctrl><Alt>5']"
+# 6
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Alt>6']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 "['<Ctrl><Alt>6']"
+
