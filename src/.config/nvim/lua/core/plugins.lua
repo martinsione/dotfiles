@@ -13,7 +13,7 @@ return packer.startup(function(use)
   packer.init({compile_path = packer_compiled, opt_default = true})
 
   -- Plugin Manager
-  use 'wbthomason/packer.nvim'
+  use {'wbthomason/packer.nvim', opt = true}
   -- Autopairs
   use {'windwp/nvim-autopairs', setup = [[require('plugin.nvim-autopairs')]]}
   -- Buffer Tabs
@@ -40,8 +40,11 @@ return packer.startup(function(use)
   -- File explorer
   use {'kyazdani42/nvim-tree.lua', setup = [[require('plugin.nvim-tree')]]}
   -- Git
-  use {'TimUntersberger/neogit', setup = [[require('plugin.neogit')]]}
-  use {'lewis6991/gitsigns.nvim', setup = [[require('plugin.gitsigns')]]}
+  use {
+    {'lewis6991/gitsigns.nvim', setup = [[require('plugin.gitsigns')]]},
+    {'TimUntersberger/neogit', setup = [[require('plugin.neogit')]]},
+    'sindrets/diffview.nvim'
+  }
   -- Icons
   use {'kyazdani42/nvim-web-devicons', setup = [[require('plugin.nvim-web-devicons')]]}
   -- Indentline
@@ -56,8 +59,6 @@ return packer.startup(function(use)
       'jose-elias-alvarez/nvim-lsp-ts-utils',
     },
   }
-  -- Profiling
-  use 'tweekmonster/startuptime.vim'
   -- Statusline
   use {'glepnir/galaxyline.nvim', setup = [[require('plugin.galaxyline')]]}
   -- Surround
@@ -72,8 +73,6 @@ return packer.startup(function(use)
       'nvim-telescope/telescope-fzy-native.nvim',
     },
   }
-  -- Terminal
-  use {'akinsho/nvim-toggleterm.lua', setup = [[require('plugin.nvim-toggleterm')]]}
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -85,8 +84,6 @@ return packer.startup(function(use)
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
   }
-  -- Which Key
-  use {'folke/which-key.nvim', setup = [[require('plugin.which-key')]]}
 
   -- Autoinstall/compile plugins
   if vim.fn.isdirectory(vim.fn.glob(plugin_path)) > 0 then packer.install() end

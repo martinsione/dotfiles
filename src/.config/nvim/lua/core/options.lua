@@ -56,10 +56,12 @@ o.tabstop = 4
 o.shortmess = o.shortmess + 'A' + 'c' + 'I' + 'W'
 
 -- Format options
-o.formatoptions = o.formatoptions + 'j' -- Auto-remove comments when combining lines ( <C-J> )
-+ 'n' -- Indent past the formatlistpat, not underneath it.
-+ 'q' -- Allow formatting comments w/ gq
-- 'c' -- In general, I like it when comments respect textwidth
-- 'r' -- But do continue when pressing enter.
-- 'o' -- O and o, don't continue comments
-- 't' -- Don't auto format my code. I got linters for that.
+o.formatoptions = {
+  j = true,     -- Auto-remove comments when combining lines ( <C-J> )
+  n = true,     -- Indent past the formatlistpat, not underneath it.
+  q = true,     -- Allow formatting comments w/ gq
+  c = false,    -- In general, I like it when comments respect textwidth
+  r = false,    -- But do continue when pressing enter.
+  o = false,    -- O and o, don't continue comments
+  t = false     -- Don't auto format my code. I got linters for that.
+}
