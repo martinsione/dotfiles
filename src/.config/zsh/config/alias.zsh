@@ -31,8 +31,8 @@ if [[ $DISTRO == "Arch" ]]; then
   alias paru="paru --bottomup"
   alias upg="paru -Syu --noconfirm"
   alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
-elif [[ $DISTRO == "Ubuntu" ]]; then
-  alias upg="sudo apt update && sudo apt upgrade && sudo snap refresh --list"
+elif [[ $DISTRO == "Ubuntu" || $DISTRO == 'Pop' ]]; then
+  alias upg="sudo apt update && sudo apt upgrade -y"
 fi
 
 ## Git
@@ -70,8 +70,8 @@ alias W="$HOME/Workspace"
 alias sc="$HOME/.local/bin"
 alias sb="$HOME/.local/bin/statusbar"
 alias src="$HOME/.local/src"
-alias sto="/mnt/storage"
-alias cs="/mnt/storage/Martin/Study/Courses/"
-alias fc="/mnt/storage/Martin/Study/Facu"
-alias fc1="/mnt/storage/Martin/Study/Facu/Cuatrimestres/1"
-alias fcp="/mnt/storage/Martin/Study/Facu/Cuatrimestres/1/FuPro/Ejercicios/Cpp"
+alias sto="/mnt/s"
+alias cs="/mnt/s/Martin/Study/Courses/"
+alias fc="/mnt/s/Martin/Study/Facu"
+alias fc1="/mnt/s/Martin/Study/Facu/Cuatrimestres/1"
+alias fcp="/mnt/s/Martin/Study/Facu/Cuatrimestres/1/FuPro/Ejercicios/Cpp"
