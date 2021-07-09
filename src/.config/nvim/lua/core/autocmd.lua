@@ -2,7 +2,7 @@ U.nvim_create_augroup({
   ftplugin = {
     {'BufRead', 'NvimTree', 'setl scl=no'}, -- TODO: fix this
     {'FileType', 'man', 'setl laststatus=0 noruler'},
-    {'FileType', 'vim,lua,css,javascript,sh', 'setl sw=2'},
+    {'FileType', 'vim,lua,css,javascript,sh,zsh', 'setl sw=2'},
     {'TermOpen', 'term://*', 'setl nornu nonu nocul so=0 scl=no'},
   },
   on_save = {
