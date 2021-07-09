@@ -1,5 +1,6 @@
 # Vi mode
-bindkey -v
+# bindkey -v
+bindkey -e
 
 bindkey '^[[Z' reverse-menu-complete              # [Shift-Tab] - move through the completion menu backwards
 
@@ -24,7 +25,7 @@ bindkey -s '^f' 'cd "$(dirname "$(fzf)")"\n'      # [Ctrl-f] - Cd to selected fi
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^e' edit-command-line
+bindkey '^x^x' edit-command-line
 
 # Select completion and display next
 bindkey -M menuselect '^o' accept-and-infer-next-history

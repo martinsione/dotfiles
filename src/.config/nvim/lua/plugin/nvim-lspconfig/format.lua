@@ -7,7 +7,7 @@ local eslint = {
   formatStdin = true,
 }
 
-local prettier = {formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true}
+local prettier = {formatCommand = 'npx prettier --stdin-filepath ${INPUT}', formatStdin = true}
 
 local luaformatter = {formatCommand = 'lua-format -i', formatStdin = true}
 

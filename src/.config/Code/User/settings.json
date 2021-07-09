@@ -12,8 +12,13 @@
   },
 
   // Plugins
-  "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
-  //"vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
+  "vscode-neovim.neovimExecutablePaths.linux": "/home/martin/.local/src/neovim/bin/nvim",
+  "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
+  // "vim.enableNeovim": true,
+  // "vim.neovimPath": "/home/martin/.local/src/neovim/bin/nvim",
+  // "vim.neovimUseConfigFile": true,
+  // "vim.neovimConfigPath": "/home/martin/.config/nvim/vscode/init.vim",
+  // "vim.useSystemClipboard": true
 
   // Editor
   "editor.defaultFormatter": "esbenp.prettier-vscode",

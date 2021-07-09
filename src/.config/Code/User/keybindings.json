@@ -1,7 +1,9 @@
+// Place your key bindings in this file to override the defaults
 [
-  //------------------------------------------------------------------//
-  //------------------------ Completion menu -------------------------//
-  //------------------------------------------------------------------//
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
   {
     "key": "tab",
     "command": "selectNextSuggestion",
@@ -22,83 +24,20 @@
     "command": "workbench.action.quickOpenNavigatePrevious",
     "when": "inQuickOpen"
   },
-  //------------------------------------------------------------------//
-  //------------------------ Explorer navigation ---------------------//
-  //------------------------------------------------------------------//
-  {
-    "key": "ctrl+n",
-    "command": "workbench.action.toggleSidebarVisibility"
-  },
-  {
-    "key": "ctrl+l",
-    "when": "sideBarFocus",
-    "command": "workbench.action.focusActiveEditorGroup"
-  },
-  // hjkl navigation
-  {
-    "key": "j",
-    "command": "list.focusDown",
-    "when": "listFocus && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
-  },
-  {
-    "key": "k",
-    "command": "list.focusUp",
-    "when": "listFocus && explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
-  },
-  {
-    "key": "h",
-    "command": "list.collapse",
-    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-  },
-  {
-    "key": "l",
-    "command": "list.select",
-    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-  },
-  // Creating files and renaming
-  {
-    "key": "a",
-    "command": "explorer.newFile",
-    "when": "filesExplorerFocus && !inputFocus"
-  },
-  {
-    "key": "shift+a",
-    "command": "explorer.newFolder",
-    "when": "filesExplorerFocus && !inputFocus"
-  },
-  {
-    "key": "r",
-    "command": "renameFile",
-    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-  },
-  //------------------------------------------------------------------//
-  //------------------------ General ---------------------------------//
-  //------------------------------------------------------------------//
-  {
-    "key": "ctrl+.",
-    "command": "workbench.action.openGlobalKeybindings"
-  },
-  //------------------------------------------------------------------//
-  //------------------------ Toggle terminal -------------------------//
-  //------------------------------------------------------------------//
+  // Open terminal
   {
     "key": "ctrl+t",
     "command": "workbench.action.togglePanel"
   },
-  {
-    "key": "shift+ctrl+t",
-    "command": "workbench.action.terminal.focus"
-  },
-  //------------------------------------------------------------------//
-  //------------------------ Remove defaults -------------------------//
-  //------------------------------------------------------------------//
+  // Disable default conflicting keybinds
   {
     "key": "escape",
     "command": "-list.clear",
     "when": "listFocus && listHasSelectionOrFocus && !inputFocus"
   },
   {
-    "key": "ctrl+j",
-    "command": "-workbench.action.togglePanel"
+    "key": "ctrl+h",
+    "command": "-editor.action.startFindReplaceAction",
+    "when": "editorFocus || editorIsOpen"
   }
 ]
