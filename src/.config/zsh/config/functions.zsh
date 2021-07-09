@@ -127,3 +127,5 @@ build_neovim() {
 function zathura-tabbed() {
   (tabbed -c zathura "$@" -e & disown) >/dev/null 2>&1
 }
+
+

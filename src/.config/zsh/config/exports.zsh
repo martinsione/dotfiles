@@ -32,7 +32,7 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
 export INPUTRC="$XDG_CONFIG_HOME/zsh/inputrc"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config"
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+# export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 # XDG_DATA_HOME
@@ -43,7 +43,7 @@ export KODI_DATA="$XDG_DATA_HOME/kodi"
 export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
 # XDG_RUNTIMER_DIR
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
-export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+# export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"   # May break a login manager
 
 # Other program settings:
 export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
