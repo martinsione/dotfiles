@@ -41,3 +41,4 @@ eval "$(starship init zsh)"
 
 ## Call custom functions
 auto-tmux
+remap
