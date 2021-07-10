@@ -1,91 +1,81 @@
-local packer_path = U.os.data .. '/site/pack/packer/opt/packer.nvim'
+local packer_path = U.os.data .. "/site/pack/packer/opt/packer.nvim"
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
-  vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
+  vim.cmd("!git clone https://github.com/wbthomason/packer.nvim " .. packer_path)
 end
-vim.cmd 'packadd packer.nvim | au BufWritePost plugins.lua PackerCompile'
-vim.opt.rtp = vim.opt.rtp + (U.os.data .. '/site/pack/packer/opt/*')
-
-local packer = require('packer')
-local plugin_path = U.os.data .. '/site/pack/packer/opt/'
-local packer_compiled = U.os.data .. '/site/plugin/packer_compiled.vim'
+vim.cmd "packadd packer.nvim"
+vim.opt.rtp = vim.opt.rtp + (U.os.data .. "/site/pack/packer/opt/*")
+local packer = require "packer"
+local packer_compiled = U.os.data .. "/site/plugin/packer_compiled.vim"
 
 return packer.startup(function(use)
-  packer.init({compile_path = packer_compiled, opt_default = true})
+  packer.init { compile_path = packer_compiled, opt_default = true }
 
-  -- Plugin Manager
-  use {'wbthomason/packer.nvim', opt = true}
-  -- Autopairs
-  use {'windwp/nvim-autopairs', setup = [[require('plugin.nvim-autopairs')]]}
-  -- Buffer Tabs
-  use {'akinsho/nvim-bufferline.lua', setup = [[require('plugin.nvim-bufferline')]]}
-  -- Colorizer
-  use {'norcalli/nvim-colorizer.lua', setup = [[require('plugin.nvim-colorizer')]]}
-  -- Colorschemes
+  use { "wbthomason/packer.nvim", opt = true }
+  use { "akinsho/nvim-bufferline.lua", setup = [[require('plugin.nvim-bufferline')]] }
+  use { "glepnir/dashboard-nvim", setup = [[require('plugin.dashboard-nvim')]] }
+  use { "glepnir/galaxyline.nvim", setup = [[require('plugin.galaxyline')]] }
+  use { "kyazdani42/nvim-tree.lua", setup = [[require('plugin.nvim-tree')]] }
+  use { "kyazdani42/nvim-web-devicons", setup = [[require('plugin.nvim-web-devicons')]] }
+  use { "lukas-reineke/indent-blankline.nvim", setup = [[require('plugin.indent-blankline')]] }
+  use { "norcalli/nvim-colorizer.lua", setup = [[require('plugin.nvim-colorizer')]] }
+  use { "windwp/nvim-autopairs", setup = [[require('plugin.nvim-autopairs')]] }
+  use "tpope/vim-commentary"
+  use "tpope/vim-surround"
   use {
-    {'npxbr/gruvbox.nvim', requires = {'rktjmp/lush.nvim'}},
-    'folke/tokyonight.nvim',
-    'glepnir/zephyr-nvim',
+    -- Colorschemes
+    { "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } },
+    "folke/tokyonight.nvim",
+    "glepnir/zephyr-nvim",
     -- 'ChristianChiarulli/nvcode-color-schemes.vim',
   }
-  -- Completion
   use {
-    {'hrsh7th/nvim-compe', setup = [[require('plugin.nvim-compe')]], event = 'InsertEnter'},
-    -- Snippets
-    {'hrsh7th/vim-vsnip', event = 'InsertEnter', requires = {use 'rafamadriz/friendly-snippets'}},
+    -- Git
+    { "lewis6991/gitsigns.nvim", setup = [[require('plugin.gitsigns')]] },
+    { "TimUntersberger/neogit", setup = [[require('plugin.neogit')]] },
+    "sindrets/diffview.nvim",
   }
-  -- Comments
-  use 'tpope/vim-commentary'
-  -- Dashboard
-  use {'glepnir/dashboard-nvim', setup = [[require('plugin.dashboard-nvim')]]}
-  -- File explorer
-  use {'kyazdani42/nvim-tree.lua', setup = [[require('plugin.nvim-tree')]]}
-  -- Git
   use {
-    {'lewis6991/gitsigns.nvim', setup = [[require('plugin.gitsigns')]]},
-    {'TimUntersberger/neogit', setup = [[require('plugin.neogit')]]},
-    'sindrets/diffview.nvim'
-  }
-  -- Icons
-  use {'kyazdani42/nvim-web-devicons', setup = [[require('plugin.nvim-web-devicons')]]}
-  -- Indentline
-  use {'lukas-reineke/indent-blankline.nvim', setup = [[require('plugin.indent-blankline')]]}
-  -- Lsp
-  use {
-    'neovim/nvim-lspconfig',
+    -- Lsp
+    "neovim/nvim-lspconfig",
     setup = [[require('plugin.nvim-lspconfig')]],
     requires = {
-      'kabouzeid/nvim-lspinstall',
-      'glepnir/lspsaga.nvim',
-      'jose-elias-alvarez/nvim-lsp-ts-utils',
+      "glepnir/lspsaga.nvim",
+      "jose-elias-alvarez/nvim-lsp-ts-utils",
+      "kabouzeid/nvim-lspinstall",
+      { "hrsh7th/nvim-compe", setup = [[require('plugin.nvim-compe')]], event = "InsertEnter" },
+      { -- Snippets
+        "hrsh7th/vim-vsnip",
+        event = "InsertEnter",
+        requires = {
+          "rafamadriz/friendly-snippets",
+          "dsznajder/vscode-es7-javascript-react-snippets",
+        },
+      },
     },
   }
-  -- Statusline
-  use {'glepnir/galaxyline.nvim', setup = [[require('plugin.galaxyline')]]}
-  -- Surround
-  use 'tpope/vim-surround'
-  -- Telescope
   use {
-    'nvim-telescope/telescope.nvim',
+    -- Telescope
+    "nvim-telescope/telescope.nvim",
     setup = [[require('plugin.telescope')]],
     requires = {
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim',
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-fzy-native.nvim",
     },
   }
-  -- Treesitter
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    -- Treesitter
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
     setup = [[require('plugin.nvim-treesitter')]],
     requires = {
-      'p00f/nvim-ts-rainbow',
-      'windwp/nvim-ts-autotag',
-      'JoosepAlviste/nvim-ts-context-commentstring',
+      "p00f/nvim-ts-rainbow",
+      "windwp/nvim-ts-autotag",
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
   }
 
   -- Autoinstall/compile plugins
-  if vim.fn.isdirectory(vim.fn.glob(plugin_path)) > 0 then packer.install() end
-  if vim.fn.empty(vim.fn.glob(packer_compiled)) > 0 then packer.compile() end
+  packer.install()
+  packer.compile()
 end)

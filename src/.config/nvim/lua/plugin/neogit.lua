@@ -1,4 +1,4 @@
-local neogit = require('neogit')
+local neogit = require "neogit"
 
 neogit.setup {
   disable_signs = false,
@@ -13,6 +13,6 @@ neogit.setup {
   },
   integrations = {
     -- 'sindrets/diffview.nvim'
-    diffview = true
+    diffview = true,
   },
 }
