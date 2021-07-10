@@ -21,8 +21,8 @@ o.swapfile = false
 
 -- Completion
 o.completeopt = "menuone,noselect"
-o.pumblend = 0 -- Popup menu transparency
-o.pumheight = 10 -- Popup menu height
+o.pumblend = 10 -- Popup menu transparency
+o.pumheight = 8 -- Popup menu height
 
 -- General
 o.clipboard = "unnamedplus"
@@ -44,7 +44,7 @@ o.lazyredraw = true
 o.inccommand = "nosplit" -- show substitutions incrementally
 o.ignorecase = true
 o.smartcase = true
-o.wildignore = ".git,**/node_modules/**"
+o.wildignore = { ".git/*", "node_modules/*" }
 o.wildignorecase = true
 
 -- Tabs
@@ -54,15 +54,18 @@ o.softtabstop = 4
 o.tabstop = 4
 
 -- Shortmess
-o.shortmess = o.shortmess + "A" + "c" + "I" + "W"
+o.shortmess = o.shortmess
+  + {
+    A = true, -- don't give the "ATTENTION" message when an existing swap file is found.
+    I = true, -- don't give the intro message when starting Vim |:intro|.
+    W = true, -- don't give "written" or "[w]" when writing a file
+    c = true, -- don't give |ins-completion-menu| messages
+    m = true, -- use "[+]" instead of "[Modified]"
+  }
 
 -- Format options
-o.formatoptions = {
-  j = true, -- Auto-remove comments when combining lines ( <C-J> )
-  n = true, -- Indent past the formatlistpat, not underneath it.
-  q = true, -- Allow formatting comments w/ gq
-  c = false, -- In general, I like it when comments respect textwidth
-  r = false, -- But do continue when pressing enter.
-  o = false, -- O and o, don't continue comments
-  t = false, -- Don't auto format my code. I got linters for that.
-}
+o.formatoptions = o.formatoptions
+  + {
+    o = false, -- O and o, don't continue comments
+    r = true, -- Pressing Enter will continue comments
+  }

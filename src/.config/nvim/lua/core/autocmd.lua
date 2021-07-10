@@ -12,6 +12,6 @@ U.nvim_create_augroup {
   },
   general = {
     { "TextYankPost", "*", "silent! lua vim.highlight.on_yank { timeout = 150 }" },
-    { "FileType", "*", "set formatoptions-=cro" }, -- Avoid newline continuation of comments
+    -- { "FileType", "*", "setl formatoptions-=ro" }, -- Avoid newline continuation of comments
   },
 }
