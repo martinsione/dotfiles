@@ -1,7 +1,5 @@
-.git/
 src/.local/src/dwm/dwm
 src/.local/src/dwmblocks/dwmblocks
-src/.config/zsh/plugins
 *.o
 *.orig
 *.rej
