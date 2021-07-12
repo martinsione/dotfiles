@@ -23,17 +23,16 @@ return function()
                 override_file_sorter = true,
             },
             fzf = {
-                fuzzy = true,                    -- false will only do exact matching
+                fuzzy = true, -- false will only do exact matching
                 override_generic_sorter = false, -- override the generic sorter
-                override_file_sorter = true,     -- override the file sorter
-                case_mode = "smart_case",        --  "ignore_case" / "respect_case" / "smart_case" (default)
-            }
+                override_file_sorter = true, -- override the file sorter
+                case_mode = 'smart_case', --  "ignore_case" / "respect_case" / "smart_case" (default)
+            },
         },
     })
 
-
-    pcall(require("telescope").load_extension, "fzy_native")
-    pcall(require("telescope").load_extension, "fzf")
+    pcall(require('telescope').load_extension, 'fzy_native')
+    pcall(require('telescope').load_extension, 'fzf')
 
     local M = {}
 
