@@ -133,10 +133,10 @@ return packer.startup(function(use)
         'nvim-telescope/telescope.nvim',
         config = require('modules.config.telescope'),
         requires = {
-            {'nvim-telescope/telescope-fzy-native.nvim'},
-            {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+            { 'nvim-telescope/telescope-fzy-native.nvim' },
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         },
-        event = 'BufEnter'
+        event = 'BufEnter',
         -- cmd = 'Telescope'
     })
 
@@ -166,7 +166,7 @@ return packer.startup(function(use)
         'neovim/nvim-lspconfig',
         config = require('modules.config.nvim-lspconfig'),
         requires = {
-            {'kabouzeid/nvim-lspinstall', module = 'lspinstall' },
+            { 'kabouzeid/nvim-lspinstall', module = 'lspinstall' },
             { 'glepnir/lspsaga.nvim', module = 'lspsaga' },
             { 'jose-elias-alvarez/nvim-lsp-ts-utils', module = 'nvim-lsp-ts-utils' },
         },
