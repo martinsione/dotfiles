@@ -11,20 +11,6 @@ return function()
         nmap(key, '<cmd>lua  ' .. cmd .. '<CR>', opts)
     end
 
-    -- All of these are buffer mappings
-    local function mappings()
-        lua_nmap('K', 'require("lspsaga.hover").render_hover_doc()')
-        lua_nmap('gd', 'vim.lsp.buf.definition()')
-        lua_nmap('gD', 'vim.lsp.buf.declaration()')
-        lua_nmap('gi', 'vim.lsp.buf.implementation()')
-        lua_nmap('gr', 'vim.lsp.buf.references()')
-        lua_nmap('ca', 'vim.lsp.buf.code_action()')
-        lua_nmap('<space>gh', 'vim.lsp.buf.signature_help()')
-        lua_nmap('<space>rn', 'require("lspsaga.rename").rename()')
-        lua_nmap('[d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()')
-        lua_nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
-    end
-
     local function config_cpp()
         lua_nmap(
             '<space>co',
@@ -42,7 +28,15 @@ return function()
     end
 
     local function on_attach(client)
-        mappings()
+        lua_nmap('K', 'require("lspsaga.hover").render_hover_doc()')
+        lua_nmap('gd', 'vim.lsp.buf.definition()')
+        lua_nmap('gi', 'vim.lsp.buf.implementation()')
+        lua_nmap('gr', 'vim.lsp.buf.references()')
+        lua_nmap('ca', 'require("lspsaga.codeaction").code_action()')
+        lua_nmap('<space>gh', 'require("lspsaga.signaturehelp").signature_help()')
+        lua_nmap('<space>rn', 'require("lspsaga.rename").rename()')
+        lua_nmap('[d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()')
+        lua_nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
 
         if client.name == 'cpp' then
             config_cpp()
@@ -58,7 +52,7 @@ return function()
         end
         if client.resolved_capabilities.document_formatting then
             vim.cmd(
-                [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+                [[au! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
             )
         end
     end
@@ -99,17 +93,43 @@ return function()
         properties = { 'documentation', 'detail', 'additionalTextEdits' },
     }
 
-    local function setup_servers()
-        lspinstall.setup()
-        local installed = lspinstall.installed_servers()
-        for _, server in pairs(installed) do
-            local config = servers[server]
-                or { root_dir = lspconfig.util.root_pattern({ '.git/', '.' }) }
-            config.capabilities = capabilities
-            config.on_attach = on_attach
-            lspconfig[server].setup(config)
-        end
+    -- Setup servers
+    lspinstall.setup()
+    local installed = lspinstall.installed_servers()
+    for _, server in pairs(installed) do
+        local config = servers[server]
+            or { root_dir = lspconfig.util.root_pattern({ '.git/', '.' }) }
+        config.capabilities = capabilities
+        config.on_attach = on_attach
+        lspconfig[server].setup(config)
     end
 
-    setup_servers()
+    -- symbols for autocomplete
+    vim.lsp.protocol.CompletionItemKind = {
+        '   (Text) ',
+        '   (Method)',
+        '   (Function)',
+        '   (Constructor)',
+        ' ﴲ  (Field)',
+        '[] (Variable)',
+        '   (Class)',
+        ' ﰮ  (Interface)',
+        '   (Module)',
+        ' 襁 (Property)',
+        '   (Unit)',
+        '   (Value)',
+        ' 練 (Enum)',
+        '   (Keyword)',
+        '   (Snippet)',
+        '   (Color)',
+        '   (File)',
+        '   (Reference)',
+        '   (Folder)',
+        '   (EnumMember)',
+        ' ﲀ  (Constant)',
+        ' ﳤ  (Struct)',
+        '   (Event)',
+        '   (Operator)',
+        '   (TypeParameter)',
+    }
 end
