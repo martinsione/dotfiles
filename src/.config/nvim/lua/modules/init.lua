@@ -55,12 +55,11 @@ return packer.startup(function(use)
 
     -- Colorschemes
     use({
-        -- { 'npxbr/gruvbox.nvim', requires = { 'rktjmp/lush.nvim', module = 'lush' } },
-        'folke/tokyonight.nvim',
-        opt = false,
-        -- 'glepnir/zephyr-nvim',
-        -- 'ChristianChiarulli/nvcode-color-schemes.vim',
+        'npxbr/gruvbox.nvim',
+        event = 'ColorSchemePre',
+        requires = { { 'rktjmp/lush.nvim', module = 'lush' } },
     })
+    use({ 'folke/tokyonight.nvim', event = 'ColorSchemePre' })
 
     -- Icons
     use({
