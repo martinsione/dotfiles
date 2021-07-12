@@ -1,7 +1,7 @@
 return function()
-
     local lspconfig = require('lspconfig')
     local lspinstall = require('lspinstall')
+    local format_config = require('modules.config.format')
 
     local function nmap(key, cmd, opts)
         require('core.utils').keymap.buf_map('n', key, cmd, opts)
@@ -51,9 +51,28 @@ return function()
         if client.name == 'typescript' then
             config_typescript()
         end
+
+        -- So that the only client with format capabilities is efm
+        if client.name ~= 'efm' then
+            client.resolved_capabilities.document_formatting = false
+        end
+        if client.resolved_capabilities.document_formatting then
+            vim.cmd(
+                [[autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+            )
+        end
     end
 
+    -- Setup servers
     local servers = {
+        efm = {
+            init_options = { documentFormatting = true, codeAction = true },
+            root_dir = lspconfig.util.root_pattern({ '.git/', '.' }),
+            filetypes = vim.tbl_keys(format_config),
+            settings = {
+                languages = format_config,
+            },
+        },
         lua = {
             settings = {
                 Lua = {
@@ -93,5 +112,4 @@ return function()
     end
 
     setup_servers()
-
 end
