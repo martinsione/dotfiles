@@ -13,21 +13,7 @@ local prettier = {
 }
 
 -- local luaformatter = { formatCommand = "lua-format -i", formatStdin = true }
--- local stylua = { formatCommand = "stylua --stdin-filepath ${INPUT}", formatStdin = true }
-local stylua = {
-    formatCommand = string.format('stylua %s', vim.fn.expand('%')),
-    formatStdin = true,
-}
-
--- cmd = {
--- 	function(file)
--- 		return fmt(
--- 			'stylua --config-path ~/.config/stylua/stylua.toml %s',
--- 			file
---
--- 		)
--- 	end,
--- },
+-- local stylua = { formatCommand = "stylua ${INPUT}", formatStdin = true }
 
 return {
     css = { prettier },
