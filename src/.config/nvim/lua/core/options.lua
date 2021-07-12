@@ -1,14 +1,14 @@
 local o = vim.opt
 -- Appearance
 o.cmdheight = 1
-o.colorcolumn = "80"
+o.colorcolumn = '80'
 o.cursorline = true
 -- o.foldmethod = 'marker'
 o.number = true
 o.relativenumber = true
 o.ruler = false -- My statusline take care of that
 o.showmode = false
-o.signcolumn = "yes"
+o.signcolumn = 'yes'
 o.termguicolors = true
 o.wrap = false
 
@@ -19,31 +19,31 @@ o.swapfile = false
 -- o.autoread = true -- Automatically read a file when it has been changed from outside vim
 
 -- Completion
-o.completeopt = "menuone,noselect"
+o.completeopt = 'menuone,noselect'
 o.pumblend = 10 -- Popup menu transparency
 o.pumheight = 8 -- Popup menu height
 
 -- General
-o.clipboard = "unnamedplus"
+o.clipboard = 'unnamedplus'
 o.hidden = true
 o.joinspaces = false
-o.mouse = "a"
+o.mouse = 'a'
 o.scrolloff = 8
 o.splitbelow = true
 o.splitright = true
 o.timeoutlen = 1000
 o.updatetime = 100
-o.virtualedit = "block"
-o.iskeyword = o.iskeyword + "-"
+o.virtualedit = 'block'
+o.iskeyword = o.iskeyword + '-'
 
 -- Performance
 o.lazyredraw = true
 
 -- Search
-o.inccommand = "nosplit" -- show substitutions incrementally
+o.inccommand = 'nosplit' -- show substitutions incrementally
 o.ignorecase = true
 o.smartcase = true
-o.wildignore = { ".git/*", "node_modules/*" }
+o.wildignore = { '.git/*', 'node_modules/*' }
 o.wildignorecase = true
 
 -- Tabs
@@ -65,6 +65,7 @@ o.shortmess = o.shortmess
 -- Format options
 o.formatoptions = o.formatoptions
     + {
+        c = false,
         o = false, -- O and o, don't continue comments
         r = true, -- Pressing Enter will continue comments
     }

@@ -1,3 +1,4 @@
+src/.config/zsh/plugins
 src/.local/src/dwm/dwm
 src/.local/src/dwmblocks/dwmblocks
 *.o

@@ -1,6 +1,5 @@
-require "core.utils"
-require "core.plugins"
-require "core.options"
-require "core.keymaps"
-require "core.autocmd"
-require "core.colors"
+require('modules')
+require('core.options')
+require('core.keymaps')
+require('core.autocmd')
+require('core.colors')
