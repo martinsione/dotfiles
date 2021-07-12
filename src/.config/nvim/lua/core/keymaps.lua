@@ -1,17 +1,17 @@
 local function nmap(key, cmd, opts)
-  U.keymap.map("n", key, cmd, opts)
+    U.keymap.map("n", key, cmd, opts)
 end
 local function imap(key, cmd, opts)
-  U.keymap.map("i", key, cmd, opts)
+    U.keymap.map("i", key, cmd, opts)
 end
 local function xmap(key, cmd, opts)
-  U.keymap.map("x", key, cmd, opts)
+    U.keymap.map("x", key, cmd, opts)
 end
 local function tmap(key, cmd, opts)
-  U.keymap.map("t", key, cmd, opts)
+    U.keymap.map("t", key, cmd, opts)
 end
 local function cmap(key, cmd)
-  U.keymap.map("c", key, cmd, { silent = false })
+    U.keymap.map("c", key, cmd, { silent = false })
 end
 
 vim.g.mapleader = " "
