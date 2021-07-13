@@ -8,7 +8,7 @@ require('core.utils').nvim_create_augroup({
     on_save = {
         -- {'BufWritePre', '*', '%s/\s\+$//e'},            -- Remove whitespace on save
         -- {'BufWritePre', '*', '%s/\s\+$//e'},            -- Remove whitespace on save
-        { 'BufWritePost', '*.vim,*.lua', 'source %' },
+        -- { 'BufWritePost', '*.vim,*.lua', 'source %' },
     },
     general = {
         {

@@ -168,6 +168,7 @@ return packer.startup(function(use)
         requires = {
             { 'kabouzeid/nvim-lspinstall', module = 'lspinstall' },
             { 'glepnir/lspsaga.nvim', module = 'lspsaga' },
+            { 'ray-x/lsp_signature.nvim', module = 'lsp_signature' },
             {
                 'jose-elias-alvarez/nvim-lsp-ts-utils',
                 module = 'nvim-lsp-ts-utils',
@@ -181,9 +182,6 @@ return packer.startup(function(use)
         'hrsh7th/nvim-compe',
         config = require('modules.config.nvim-compe'),
         event = 'InsertEnter',
-        requires = {
-            { 'ray-x/lsp_signature.nvim', module = 'lsp_signature' },
-        },
     })
 
     -- Snippets
