@@ -33,16 +33,4 @@ return function()
 
     pcall(require('telescope').load_extension, 'fzy_native')
     pcall(require('telescope').load_extension, 'fzf')
-
-    local M = {}
-
-    function M.find_dotfiles()
-        require('telescope.builtin').find_files({
-            prompt_title = ' Dotfiles ',
-            find_command = { 'rg', '--files', '--hidden', '--sort=path' },
-            cwd = '$HOME/.dotfiles',
-        })
-    end
-
-    return M
 end

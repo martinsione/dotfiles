@@ -69,18 +69,18 @@ map('c', '<C-f>', '<C-R>=expand("%:p")<CR>', { silent = false })
 map('n', '<space>gs', '<cmd>Neogit<CR>')
 -- Telescope
 if utils.os.is_git_dir == 0 then
-    map('n', '<C-p>', '<cmd>Telescope git_files<CR>')
+    map('n', '<C-p>', '<cmd>lua require"telescope.builtin".git_files()<CR>')
 else
-    map('n', '<C-p>', '<cmd>Telescope find_files<CR>')
+    map('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')
 end
 map('n', '<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
-map('n', '<space>fh', '<cmd>Telescope help_tags<CR>')
-map('n', '<space>fo', '<cmd>Telescope oldfiles<CR>')
-map('n', '<space>fw', '<cmd>Telescope live_grep<CR>')
+map('n', '<space>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>')
+map('n', '<space>fo', '<cmd>lua require"telescope.builtin".oldfiles()<CR>')
+map('n', '<space>fw', '<cmd>lua require"telescope.builtin".live_grep()<CR>')
 map(
     'n',
     '<space>fd',
-    '<cmd>lua require("modules.config.telescope").find_dotfiles()<CR>'
+    '<cmd>lua require"telescope.builtin".git_files({cwd = "$HOME/.dotfiles" })<CR>'
 )
 -- Tree
 map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')

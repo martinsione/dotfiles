@@ -137,8 +137,7 @@ return packer.startup(function(use)
             { 'nvim-telescope/telescope-fzy-native.nvim' },
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         },
-        event = 'BufEnter',
-        -- cmd = 'Telescope'
+        module = 'telescope',
     })
 
     -----[[-------------]]-----
