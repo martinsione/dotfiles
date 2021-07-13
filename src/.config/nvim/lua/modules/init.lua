@@ -1,16 +1,17 @@
 local utils = require('core.utils')
+local packer_url = 'https://github.com/wbthomason/packer.nvim'
 local packer_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
-    vim.cmd(
-        '!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path
-    )
+    print('Downloading plugin manager...')
+    vim.cmd('silent! !git clone ' .. packer_url .. ' ' .. packer_path)
 end
-vim.cmd('packadd packer.nvim ')
+vim.cmd('packadd packer.nvim')
 
 local packer = require('packer')
 return packer.startup(function(use)
     packer.init({
-        compile_path = utils.os.data .. '/site/plugin/packer_compiled.lua',
+        -- compile_path = utils.os.data .. '/site/plugin/packer_compiled.lua',
+        compile_path = utils.os.config .. '/lua/packer_compiled.lua',
         opt_default = true,
         profile = { enable = true },
     })

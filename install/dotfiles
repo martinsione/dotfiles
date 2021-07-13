@@ -9,7 +9,7 @@ export repo_path="/martinsione/dotfiles"
 export dotfiles_dir="$HOME/.dotfiles"
 export DISTRO=$(lsb_release -is)
 
-_dirs=(
+dirs=(
   ~/.cache/zsh
   ~/.config/Code/User
   ~/Documents
@@ -18,14 +18,13 @@ _dirs=(
   ~/Workspace
 )
 
-_symlinks=(
+symlinks=(
   .config/Code/User/keybindings.json
   .config/Code/User/settings.json
   .config/git
   .config/gtk-3.0/bookmarks
   .config/htop
   .config/kitty
-  .config/luaformatter
   .config/nvim
   .config/ranger
   .config/tmux
@@ -55,7 +54,7 @@ clone_repo() {
 }
 
 symlink_files() {
-  for name in "${_symlinks[@]}"; do
+  for name in "${symlinks[@]}"; do
     if [ ! -e "$name" ]; then
       ln -srfv "${dotfiles_dir}/src/${name}" "$HOME/${name}"
     else
@@ -65,7 +64,7 @@ symlink_files() {
 }
 
 create_dirs() {
-  for name in "${_dirs[@]}"; do mkdir -p "${name}"; done
+  for name in "${dirs[@]}"; do mkdir -p "${name}"; done
 }
 
 add_echo_cancelation() {

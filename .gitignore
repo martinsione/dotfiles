@@ -7,3 +7,4 @@ src/.local/src/dwmblocks/dwmblocks
 *log
 *.zcompdump*
 *__pycache__
+*packer_compiled*

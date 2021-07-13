@@ -16,6 +16,8 @@ map(
     '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()',
     { expr = true }
 )
+map('n', 'x', '"_x')
+map('n', 'X', '"_X')
 map('n', '<C-s>', '<cmd>w<CR>')
 -- Buffers
 map('n', '<Tab>', '<cmd>bn<CR>')
@@ -96,7 +98,7 @@ map('x', 's', '<Plug>VSurround', { noremap = false })
 map('x', 'S', '<Plug>VgSurround', { noremap = false })
 
 vim.cmd(
-    [[command! PackerDelete :silent !rm  -rf ~/.local/share/nvim/site <CR>]]
+    [[command! PackerDelete silent! !rm  -rf ~/.local/share/nvim/site <CR>]]
 )
 vim.cmd(
     [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
