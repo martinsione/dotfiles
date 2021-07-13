@@ -33,4 +33,18 @@ return function()
 
     pcall(require('telescope').load_extension, 'fzy_native')
     pcall(require('telescope').load_extension, 'fzf')
+
+    -- function _G.find_dotfiles()
+    --     require('telescope.builtin').git_files({
+    --         prompt_title = ' Dotfiles ',
+    --         cwd = '$HOME/.dotfiles',
+    --     })
+    -- end
+
+    -- function _G.find_project()
+    --     local ok = pcall(require('telescope.builtin').git_files)
+    --     if not ok then
+    --         require('telescope.builtin').find_files()
+    --     end
+    -- end
 end
