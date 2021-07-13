@@ -1,7 +1,9 @@
 local utils = require('core.utils')
 local packer_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
-    vim.cmd('!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
+    vim.cmd(
+        '!git clone https://github.com/wbthomason/packer.nvim ' .. packer_path
+    )
 end
 vim.cmd('packadd packer.nvim ')
 
@@ -167,7 +169,10 @@ return packer.startup(function(use)
         requires = {
             { 'kabouzeid/nvim-lspinstall', module = 'lspinstall' },
             { 'glepnir/lspsaga.nvim', module = 'lspsaga' },
-            { 'jose-elias-alvarez/nvim-lsp-ts-utils', module = 'nvim-lsp-ts-utils' },
+            {
+                'jose-elias-alvarez/nvim-lsp-ts-utils',
+                module = 'nvim-lsp-ts-utils',
+            },
         },
         event = 'ColorScheme',
     })
@@ -177,6 +182,9 @@ return packer.startup(function(use)
         'hrsh7th/nvim-compe',
         config = require('modules.config.nvim-compe'),
         event = 'InsertEnter',
+        requires = {
+            { 'ray-x/lsp_signature.nvim', module = 'lsp_signature' },
+        },
     })
 
     -- Snippets

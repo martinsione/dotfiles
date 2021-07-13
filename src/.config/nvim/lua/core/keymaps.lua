@@ -10,7 +10,12 @@ map('n', 'Q', '<Nop>')
 map('n', 'q:', '<Nop>')
 map('n', '<C-c>', '<Esc>')
 map('n', 'Y', 'y$')
-map('n', '<CR>', '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
+map(
+    'n',
+    '<CR>',
+    '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()',
+    { expr = true }
+)
 map('n', '<C-s>', '<cmd>w<CR>')
 -- Buffers
 map('n', '<Tab>', '<cmd>bn<CR>')
@@ -72,7 +77,11 @@ map('n', '<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
 map('n', '<space>fh', '<cmd>Telescope help_tags<CR>')
 map('n', '<space>fo', '<cmd>Telescope oldfiles<CR>')
 map('n', '<space>fw', '<cmd>Telescope live_grep<CR>')
-map('n', '<space>fd', '<cmd>lua require("modules.config.telescope").find_dotfiles()<CR>')
+map(
+    'n',
+    '<space>fd',
+    '<cmd>lua require("modules.config.telescope").find_dotfiles()<CR>'
+)
 -- Tree
 map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
 -- Vim surround ( noremap need to be false to work)
@@ -86,7 +95,9 @@ map('n', 'SS', '<Plug>YSsurround', { noremap = false })
 map('x', 's', '<Plug>VSurround', { noremap = false })
 map('x', 'S', '<Plug>VgSurround', { noremap = false })
 
-vim.cmd([[command! PackerDelete :silent !rm  -rf ~/.local/share/nvim/site <CR>]])
+vim.cmd(
+    [[command! PackerDelete :silent !rm  -rf ~/.local/share/nvim/site <CR>]]
+)
 vim.cmd(
     [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
 )

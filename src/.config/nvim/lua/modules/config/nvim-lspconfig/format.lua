@@ -13,7 +13,7 @@ local prettier = {
 }
 
 -- local luaformatter = { formatCommand = "lua-format -i", formatStdin = true }
--- local stylua = { formatCommand = "stylua ${INPUT}", formatStdin = true }
+local stylua = { formatCommand = 'stylua -s -', formatStdin = true }
 
 return {
     css = { prettier },
@@ -21,7 +21,7 @@ return {
     javascript = { prettier, eslint },
     javascriptreact = { prettier, eslint },
     json = { prettier },
-    --     lua = { stylua },
+    lua = { stylua },
     markdown = { prettier },
     scss = { prettier },
     typescript = { prettier, eslint },
