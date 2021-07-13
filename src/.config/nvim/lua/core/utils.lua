@@ -7,7 +7,9 @@ M.os = {
     cache = vim.fn.stdpath('cache'),
     config = vim.fn.stdpath('config'),
     name = vim.loop.os_uname().sysname,
-    is_git_dir = os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1'),
+    is_git_dir = os.execute(
+        'git rev-parse --is-inside-work-tree >> /dev/null 2>&1'
+    ),
 }
 
 function M.term_wrapper(cmd, fmt)
@@ -38,7 +40,10 @@ function M.nvim_create_augroup(definitions) -- {{{1
         vim.cmd('augroup ' .. group_name)
         vim.cmd('autocmd!')
         for _, def in pairs(definition) do
-            local command = table.concat(vim.tbl_flatten({ 'autocmd', def }), ' ')
+            local command = table.concat(
+                vim.tbl_flatten({ 'autocmd', def }),
+                ' '
+            )
             vim.cmd(command)
         end
         vim.cmd('augroup END')
