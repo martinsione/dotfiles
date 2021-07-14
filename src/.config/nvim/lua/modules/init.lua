@@ -30,20 +30,30 @@ return packer.startup(function(use)
         module = 'popup',
     })
 
+    --[[ Template for adding a plugin
+        use ({
+             'plugin/name'
+             config = require('modules.config.plugin_name')
+             event|cmd|module --> way to lazy load the plugin
+             run = 'If it needs to run a command'
+             requires = {}
+        })
+    --]]
+
     -----[[------------]]-----
     ---     Essentials     ---
     -----]]------------[[-----
     -- Treesitter
     use({
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
         config = require('modules.config.nvim-treesitter'),
+        event = 'BufRead',
+        run = ':TSUpdate',
         requires = {
             'p00f/nvim-ts-rainbow',
             'windwp/nvim-ts-autotag',
             'JoosepAlviste/nvim-ts-context-commentstring',
         },
-        event = 'BufRead',
     })
 
     -----[[------------]]-----
@@ -124,7 +134,7 @@ return packer.startup(function(use)
         event = 'BufEnter',
     })
 
-    -- Should be included in vim core
+    -- Should be in vim core
     use({
         'tpope/vim-surround',
         event = 'BufEnter',
@@ -134,11 +144,11 @@ return packer.startup(function(use)
     use({
         'nvim-telescope/telescope.nvim',
         config = require('modules.config.telescope'),
+        module = 'telescope',
         requires = {
             { 'nvim-telescope/telescope-fzy-native.nvim' },
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         },
-        module = 'telescope',
     })
 
     -----[[-------------]]-----
@@ -153,10 +163,10 @@ return packer.startup(function(use)
     use({
         'TimUntersberger/neogit',
         config = require('modules.config.neogit'),
+        cmd = 'Neogit',
         requires = {
             { 'sindrets/diffview.nvim', module = 'diffview' },
         },
-        cmd = 'Neogit',
     })
 
     -----[[------------]]-----
@@ -166,6 +176,7 @@ return packer.startup(function(use)
     use({
         'neovim/nvim-lspconfig',
         config = require('modules.config.nvim-lspconfig'),
+        event = 'ColorScheme',
         requires = {
             { 'kabouzeid/nvim-lspinstall', module = 'lspinstall' },
             { 'glepnir/lspsaga.nvim', module = 'lspsaga' },
@@ -175,7 +186,6 @@ return packer.startup(function(use)
                 module = 'nvim-lsp-ts-utils',
             },
         },
-        event = 'ColorScheme',
     })
 
     -- Completion plugin
@@ -188,11 +198,11 @@ return packer.startup(function(use)
     -- Snippets
     use({
         'hrsh7th/vim-vsnip',
+        after = 'nvim-compe',
         requires = {
             'rafamadriz/friendly-snippets',
             'dsznajder/vscode-es7-javascript-react-snippets',
         },
-        after = 'nvim-compe',
     })
 
     -----[[-------------]]-----
