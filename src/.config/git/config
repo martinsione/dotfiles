@@ -3,17 +3,17 @@
 	name = Martin Sione
 
 [alias]
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-  st = status --short --branch -M
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+    st = status --short --branch -M
 
 [core]
-  editor = nvim
+    editor = nvim
 
 [pull]
-  rebase = true
+    rebase = true
 
 [rebase]
-  autoStash = true
+    autoStash = true
 
 [push]
-  default = current
+    default = current

@@ -15,7 +15,8 @@ dirs=(
   ~/Documents
   ~/Downloads
   ~/Pictures
-  ~/Workspace
+  ~/Repos/Personal
+  ~/Repos/Work
 )
 
 symlinks=(
