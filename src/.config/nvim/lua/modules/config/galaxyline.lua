@@ -8,7 +8,7 @@ return function()
 
     if vim.g.colors_name == 'gruvbox' then
         colors = {
-            bg = '#404040',
+            bg = '#303030',
             yellow = '#d79921',
             cyan = '#83a598',
             green = '#b8bb26',
