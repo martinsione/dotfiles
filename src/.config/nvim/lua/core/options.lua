@@ -69,3 +69,7 @@ o.formatoptions = o.formatoptions
         o = false, -- O and o, don't continue comments
         r = true, -- Pressing Enter will continue comments
     }
+
+-- Remove builtin plugins
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

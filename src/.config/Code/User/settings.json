@@ -46,7 +46,6 @@
   "workbench.startupEditor": "newUntitledFile",
   "zenMode.hideLineNumbers": false,
   "zenMode.hideTabs": false,
-  // "workbench.editor.untitled.hint": "hidden",
-  "window.zoomLevel": 1,
-  "tabnine.experimentalAutoImports": true
+  "tabnine.experimentalAutoImports": true,
+  "window.zoomLevel": 1
 }

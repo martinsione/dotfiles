@@ -25,15 +25,18 @@ local function config_typescript()
 end
 
 return function(client)
-    lua_nmap('K', 'require"lspsaga.hover".render_hover_doc()')
+    vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    lua_nmap('K', 'vim.lsp.buf.hover()')
     lua_nmap('gd', 'vim.lsp.buf.definition()')
+    lua_nmap('gD', 'vim.lsp.buf.declaration()')
     lua_nmap('gi', 'vim.lsp.buf.implementation()')
     lua_nmap('gr', 'vim.lsp.buf.references()')
-    lua_nmap('ca', 'require"lspsaga.codeaction".code_action()')
-    lua_nmap('<space>gh', 'require"lspsaga.signaturehelp".signature_help()')
-    lua_nmap('<space>rn', 'require"lspsaga.rename".rename()')
-    lua_nmap('[d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_prev()')
-    lua_nmap(']d', 'require"lspsaga.diagnostic".lsp_jump_diagnostic_next()')
+    lua_nmap('<space>ca', 'vim.lsp.buf.code_action()')
+    lua_nmap('<space>gh', 'vim.lsp.buf.signature_help()')
+    lua_nmap('<space>rn', 'vim.lsp.buf.rename()')
+    lua_nmap('[d', 'vim.lsp.diagnostic.goto_prev()')
+    lua_nmap(']d', 'vim.lsp.diagnostic.goto_next()')
 
     require('lsp_signature').on_attach()
 
@@ -54,7 +57,7 @@ return function(client)
         vim.cmd([[
             augroup Format
               au! * <buffer>
-              au BufWritePost <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+              au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
             augroup END
         ]])
     end

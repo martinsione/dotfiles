@@ -85,14 +85,7 @@ return packer.startup(function(use)
     use({
         'kyazdani42/nvim-tree.lua',
         config = require('modules.config.nvim-tree'),
-        cmd = {
-            'NvimTreeClipboard',
-            'NvimTreeClose',
-            'NvimTreeFindFile',
-            'NvimTreeOpen',
-            'NvimTreeRefresh',
-            'NvimTreeToggle',
-        },
+        module = 'nvim-tree',
     })
 
     -- Statusline
@@ -150,6 +143,17 @@ return packer.startup(function(use)
             { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         },
     })
+
+    -- -- TODO: Configure nvim-dap
+    -- -- Debug
+    -- use({
+    --     'mfussenegger/nvim-dap',
+    --     config = require('nvim-dap'),
+    --     event = 'ColorScheme',
+    --     requires = {
+    --         { 'rcarriga/nvim-dap-ui', module = 'dapui' },
+    --     },
+    -- })
 
     -----[[-------------]]-----
     ---     GIT RELATED     ---

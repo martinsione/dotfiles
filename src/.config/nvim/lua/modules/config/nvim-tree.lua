@@ -1,6 +1,8 @@
 return function()
+    local tree_cb = require('nvim-tree.config').nvim_tree_callback
+
     vim.g.nvim_tree_side = 'right'
-    vim.g.nvim_tree_width = 40
+    vim.g.nvim_tree_width = 30
     vim.g.nvim_tree_ignore = {
         '.git',
         'node_modules',
@@ -14,12 +16,9 @@ return function()
     vim.g.nvim_tree_hide_dotfiles = 0
     vim.g.nvim_tree_indent_markers = 0
     vim.g.nvim_tree_bindings = {
-        {
-            key = 'h',
-            cb = ':lua require"nvim-tree".on_keypress("close_node")<CR>',
-        },
-        { key = 'l', cb = ':lua require"nvim-tree".on_keypress("edit")<CR>' },
-        { key = 'v', cb = ':lua require"nvim-tree".on_keypress("vsplit")<CR>' },
-        { key = 's', cb = ':lua require"nvim-tree".on_keypress("split")<CR>' },
+        { key = 'h', cb = tree_cb('close_node') },
+        { key = 'l', cb = tree_cb('edit') },
+        { key = 'v', cb = tree_cb('vsplit') },
+        { key = 's', cb = tree_cb('split') },
     }
 end
