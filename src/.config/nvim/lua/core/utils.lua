@@ -1,5 +1,9 @@
 local M = {}
 
+function P(cmd)
+    print(vim.inspect(cmd))
+end
+
 -- Os
 M.os = {
     home = os.getenv('HOME'),
@@ -26,7 +30,7 @@ function M.term_wrapper(cmd, fmt)
 end
 
 local is_transparent = true
-function M.toogle_background()
+function M.toggle_background()
     if is_transparent == true then
         vim.cmd([[ hi Normal guibg=NONE ctermbg=NONE ]])
         is_transparent = false

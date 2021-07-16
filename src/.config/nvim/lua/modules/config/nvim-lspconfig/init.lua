@@ -3,34 +3,13 @@ return function()
     local lspinstall = require('lspinstall')
     local on_attach = require('modules.config.nvim-lspconfig.on-attach')
     local format_config = require('modules.config.nvim-lspconfig.format')
+    require('modules.config.nvim-lspconfig.ui').symbols_override()
+    require('modules.config.nvim-lspconfig.ui').disable_virtual_text()
 
-    -- symbols for completion
-    vim.lsp.protocol.CompletionItemKind = {
-        '   (Text) ',
-        '   (Method)',
-        '   (Function)',
-        '   (Constructor)',
-        ' ﴲ  (Field)',
-        '[] (Variable)',
-        '   (Class)',
-        ' ﰮ  (Interface)',
-        '   (Module)',
-        ' 襁 (Property)',
-        '   (Unit)',
-        '   (Value)',
-        ' 練 (Enum)',
-        '   (Keyword)',
-        '   (Snippet)',
-        '   (Color)',
-        '   (File)',
-        '   (Reference)',
-        '   (Folder)',
-        '   (EnumMember)',
-        ' ﲀ  (Constant)',
-        ' ﳤ  (Struct)',
-        '   (Event)',
-        '   (Operator)',
-        '   (TypeParameter)',
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = { 'documentation', 'detail', 'additionalTextEdits' },
     }
 
     local servers = {
@@ -58,12 +37,6 @@ return function()
                 },
             },
         },
-    }
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = { 'documentation', 'detail', 'additionalTextEdits' },
     }
 
     -- Setup servers
