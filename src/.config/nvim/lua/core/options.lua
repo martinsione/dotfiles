@@ -29,6 +29,7 @@ o.hidden = true
 o.joinspaces = false
 o.mouse = 'a'
 o.scrolloff = 8
+o.sidescrolloff = 8
 o.splitbelow = true
 o.splitright = true
 o.timeoutlen = 1000

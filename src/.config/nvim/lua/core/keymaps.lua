@@ -10,12 +10,7 @@ map('n', 'Q', '<Nop>')
 map('n', 'q:', '<Nop>')
 map('n', '<C-c>', '<Esc>')
 map('n', 'Y', 'y$')
-map(
-    'n',
-    '<CR>',
-    '{-> v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()',
-    { expr = true }
-)
+map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 map('n', '<C-s>', '<cmd>w<CR>')

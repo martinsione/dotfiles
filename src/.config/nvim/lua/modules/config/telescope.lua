@@ -17,34 +17,5 @@ return function()
                 n = { ['<C-c>'] = actions.close },
             },
         },
-        extensions = {
-            fzy_native = {
-                override_generic_sorter = true,
-                override_file_sorter = true,
-            },
-            fzf = {
-                fuzzy = true, -- false will only do exact matching
-                override_generic_sorter = false, -- override the generic sorter
-                override_file_sorter = true, -- override the file sorter
-                case_mode = 'smart_case', --  "ignore_case" / "respect_case" / "smart_case" (default)
-            },
-        },
     })
-
-    pcall(require('telescope').load_extension, 'fzy_native')
-    pcall(require('telescope').load_extension, 'fzf')
-
-    -- function _G.find_dotfiles()
-    --     require('telescope.builtin').git_files({
-    --         prompt_title = ' Dotfiles ',
-    --         cwd = '$HOME/.dotfiles',
-    --     })
-    -- end
-
-    -- function _G.find_project()
-    --     local ok = pcall(require('telescope.builtin').git_files)
-    --     if not ok then
-    --         require('telescope.builtin').find_files()
-    --     end
-    -- end
 end
