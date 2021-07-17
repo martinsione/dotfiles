@@ -10,8 +10,7 @@ vim.cmd('packadd packer.nvim')
 local packer = require('packer')
 return packer.startup(function(use)
     packer.init({
-        -- compile_path = utils.os.data .. '/site/plugin/packer_compiled.lua',
-        compile_path = utils.os.config .. '/lua/packer_compiled.lua',
+        compile_path = utils.os.data .. '/site/lua/packer_compiled.lua',
         opt_default = true,
         profile = { enable = true },
     })
@@ -138,10 +137,6 @@ return packer.startup(function(use)
         'nvim-telescope/telescope.nvim',
         config = require('modules.config.telescope'),
         module = 'telescope',
-        requires = {
-            { 'nvim-telescope/telescope-fzy-native.nvim' },
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        },
     })
 
     -- -- TODO: Configure nvim-dap
