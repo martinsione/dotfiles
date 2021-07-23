@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # https://askubuntu.com/questions/1195081/increase-number-of-workspace-with-shortcuts-on-ubuntu-18-04
-# dconf write /org/gnome/mutter/dynamic-workspaces false
-# dconf write /org/gnome/desktop/wm/preferences/num-workspaces 6
+# https://blog.programster.org/using-the-cli-to-set-custom-keyboard-shortcuts
+
+
+gsettings set org.gnome.desktop.wm.keybindings close "['<Alt>q']"
 
 gsettings set org.gnome.mutter dynamic-workspaces false
-gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
-
+gsettings set org.gnome.desktop.wm.preferences num-workspaces 5
 # 1
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Alt>1']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-1 "['<Ctrl><Alt>1']"
@@ -22,7 +23,26 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-4 "['<Ctrl><Alt
 # 5
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Alt>5']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 "['<Ctrl><Alt>5']"
-# 6
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Alt>6']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 "['<Ctrl><Alt>6']"
 
+
+## Set custom keybindings
+BEGINNING="gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
+"['$KEY_PATH/custom0/', '$KEY_PATH/custom1/', '$KEY_PATH/custom2/']"
+
+# Launch Terminal
+$BEGINNING/custom0/ name "Kitty"
+$BEGINNING/custom0/ command "kitty"
+$BEGINNING/custom0/ binding "<Alt>Return"
+
+# screenshot the current active window
+$BEGINNING/custom1/ name "Browser"
+$BEGINNING/custom1/ command "brave"
+$BEGINNING/custom1/ binding "<Alt>w"
+
+# Open up file browser
+$BEGINNING/custom2/ name "Nautilus"
+$BEGINNING/custom2/ command "nautilus --new-window"
+$BEGINNING/custom2/ binding "<Alt>e"
