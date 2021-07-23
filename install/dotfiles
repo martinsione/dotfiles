@@ -4,8 +4,8 @@
 # Description: Script to deploy my dotfiles easily.
 # Dependencies: git, curl, zsh
 
-export repo_host="https://github.com"
-export repo_path="/martinsione/dotfiles"
+export repo_host="https://github.com/"
+export repo_path="martinsione/dotfiles.git"
 export dotfiles_dir="$HOME/.dotfiles"
 export DISTRO=$(lsb_release -is)
 
@@ -46,11 +46,13 @@ clone_repo() {
   if [ -d "$HOME/dotfiles" ]; then
     mv "$HOME/dotfiles" "${dotfiles_dir}";
   elif [ ! -d "${dotfiles_dir}" ]; then
-    git clone "${repo_host}${repo_path}" "${dotfiles_dir}"
+    git clone "${repo_host}/${repo_path}" "${dotfiles_dir}"
   fi
 
   if [ -d "${dotfiles_dir}" ]; then 
     cd ${dotfiles_dir} && git submodule update --init --recursive
+    ## Change to ssh url
+    git remote set-url origin git@github.com:${repo_path}
   fi
 }
 
