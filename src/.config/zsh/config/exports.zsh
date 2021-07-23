@@ -24,7 +24,7 @@ export XDG_PICTURES_HOME="$HOME/Pictures"
 ## XDG_CONFIG_HOME
 export INPUTRC="$XDG_CONFIG_HOME/zsh/inputrc"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/config.toml"
 # export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"

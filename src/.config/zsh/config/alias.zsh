@@ -25,7 +25,7 @@ alias ex="extract"
 alias startx="startx $XINITRC"
 
 ## Packages
-alias vst="nvim --startuptime test.tmp -c :q && nvim test.tmp && rm -rf test.tmp"
+alias vst="nvim --startuptime test.tmp -c q && nvim test.tmp -c norm\ G && rm -rf test.tmp"
 if [[ $DISTRO == "Arch" ]]; then
   alias p="sudo pacman"
   alias paru="paru --bottomup"
