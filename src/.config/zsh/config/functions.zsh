@@ -128,4 +128,6 @@ function zathura-tabbed() {
   (tabbed -c zathura "$@" -e & disown) >/dev/null 2>&1
 }
 
-
+burn() {
+  sudo dd bs=4M if="$1" of="$2" status=progress && sync
+}
