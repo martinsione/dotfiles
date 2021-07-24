@@ -24,6 +24,14 @@
     "command": "workbench.action.quickOpenNavigatePrevious",
     "when": "inQuickOpen"
   },
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditor"
+  },
   // Open terminal
   {
     "key": "ctrl+t",

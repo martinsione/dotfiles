@@ -8,7 +8,7 @@ alias code="$GEDITOR"
 alias diff="diff --color=auto"
 alias grep="grep --color=auto"
 ## File manipulation
-alias mkd="mkdir -pv"
+alias md="mkdir -pv"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
@@ -16,7 +16,6 @@ alias rmln="find . -xtype l -delete"
 ## Listing
 alias l="exa -l --group-directories-first"
 alias ll="exa -la --group-directories-first"
-alias ls="exa --icons -a --group-directories-first"
 ## System
 alias bld="make && sudo make install"
 alias cl="clear"
@@ -25,10 +24,10 @@ alias ex="extract"
 alias startx="startx $XINITRC"
 
 ## Packages
+alias npmg='npm i --prefix $HOME/.local/bin/npm'
 alias vst="nvim --startuptime test.tmp -c q && nvim test.tmp -c norm\ G && rm -rf test.tmp"
 if [[ $DISTRO == "Arch" ]]; then
-  alias p="sudo pacman"
-  alias paru="paru --bottomup"
+  alias p="paru --bottomup"
   alias upg="paru -Syu --noconfirm"
   alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
 elif [[ $DISTRO == "Ubuntu" || $DISTRO == 'Pop' ]]; then

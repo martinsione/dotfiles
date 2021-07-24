@@ -27,6 +27,7 @@ ripgrep
 authy
 brave-bin
 zoom
+visual-studio-code-bin
 
 ## ssh-keys
 ssh-keygen -t rsa -b 4096 -C martinsione03@gmail.com

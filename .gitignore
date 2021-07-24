@@ -1,4 +1,5 @@
 src/.config/zsh/plugins
+src/.local/bin/npm/package-lock.json
 src/.local/src/dwm/dwm
 src/.local/src/dwmblocks/dwmblocks
 *.o
@@ -8,3 +9,4 @@ src/.local/src/dwmblocks/dwmblocks
 *.zcompdump*
 *__pycache__
 *packer_compiled*
+node_modules
