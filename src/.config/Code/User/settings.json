@@ -12,7 +12,7 @@
   },
 
   // Plugins
-  "vscode-neovim.neovimExecutablePaths.linux": "/home/martin/.local/src/neovim/bin/nvim",
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
   "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/vscode/init.vim",
   // "vim.enableNeovim": true,
   // "vim.neovimPath": "/home/martin/.local/src/neovim/bin/nvim",
@@ -47,5 +47,6 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.hideTabs": false,
   "tabnine.experimentalAutoImports": true,
-  "window.zoomLevel": 1
+  "window.zoomLevel": 1,
+  "liveServer.settings.donotShowInfoMsg": true
 }

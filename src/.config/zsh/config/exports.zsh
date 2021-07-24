@@ -41,6 +41,7 @@ export PATH="$HOME/.local/src/neovim/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$CARGO_HOME/bin:$PATH"
 export PATH="$XDG_SCRIPTS_HOME/dmenu:$PATH"
+export PATH="$XDG_SCRIPTS_HOME/npm/node_modules/.bin:$PATH"
 export PATH="$XDG_SCRIPTS_HOME/scripts:$PATH"
 export PATH="$XDG_SCRIPTS_HOME/statusbar:$PATH"
 

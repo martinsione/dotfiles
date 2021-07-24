@@ -72,6 +72,7 @@ return packer.startup(function(use)
         requires = { { 'rktjmp/lush.nvim', module = 'lush' } },
     })
     use({ 'folke/tokyonight.nvim', event = 'ColorSchemePre' })
+    use({ 'LunarVim/Colorschemes', event = 'ColorSchemePre' })
 
     -- Icons
     use({

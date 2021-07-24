@@ -74,3 +74,5 @@ o.formatoptions = o.formatoptions
 -- Remove builtin plugins
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_zip = 1
