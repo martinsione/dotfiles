@@ -103,11 +103,11 @@ return packer.startup(function(use)
     })
 
     -- Indent Lines
-    use({
-        'lukas-reineke/indent-blankline.nvim',
-        config = require('modules.config.indent-blankline'),
-        event = 'ColorScheme',
-    })
+    -- use({
+    --     'lukas-reineke/indent-blankline.nvim',
+    --     config = require('modules.config.indent-blankline'),
+    --     event = 'ColorScheme',
+    -- })
 
     -----[[--------------]]-----
     ---     IDE features     ---

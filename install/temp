@@ -37,3 +37,6 @@ xclip -sel clip < ~/.ssh/id_rsa.pub
 
 ## Workaround for redshift
 redshift-gtk -l -34.6:-58.3 & disown
+
+## Pacman.conf
+echo -e '[options]\nColor\nParallelDownloads = 12\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | sudo tee -a /etc/pacman.conf

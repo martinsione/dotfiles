@@ -1,8 +1,8 @@
 ## Programs
 alias r="$FILE"
-alias sr="sudo $FILE"
+alias sr="sudo -E $FILE"
 alias v="$EDITOR"
-alias sv="sudo $EDITOR"
+alias sv="sudo -E $EDITOR"
 alias code="$GEDITOR"
 ## Color
 alias diff="diff --color=auto"
@@ -71,6 +71,4 @@ alias sb="$HOME/.local/bin/statusbar"
 alias src="$HOME/.local/src"
 alias sto="/mnt/s"
 alias cs="/mnt/s/Martin/Study/Courses/"
-alias fc="/mnt/s/Martin/Study/Facu"
-alias fc1="/mnt/s/Martin/Study/Facu/Cuatrimestres/1"
-alias fcp="/mnt/s/Martin/Study/Facu/Cuatrimestres/1/FuPro/Ejercicios/Cpp"
+alias fc="/mnt/s/Martin/Study/Facu/Materias"
