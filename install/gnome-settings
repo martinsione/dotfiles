@@ -24,6 +24,8 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-4 "['<Ctrl><Alt
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Alt>5']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 "['<Ctrl><Alt>5']"
 
+# Switch caps to ctrl
+gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
 ## Set custom keybindings
 BEGINNING="gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"

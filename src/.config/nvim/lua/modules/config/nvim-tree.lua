@@ -2,7 +2,7 @@ return function()
     local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
     vim.g.nvim_tree_side = 'right'
-    vim.g.nvim_tree_width = 30
+    vim.g.nvim_tree_width = 35
     vim.g.nvim_tree_ignore = {
         '.git',
         'node_modules',
