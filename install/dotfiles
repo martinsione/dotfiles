@@ -11,7 +11,6 @@ export DISTRO=$(lsb_release -is)
 
 dirs=(
   ~/.cache/zsh
-  ~/.config/Code/User
   ~/Documents
   ~/Downloads
   ~/Pictures
@@ -20,8 +19,6 @@ dirs=(
 )
 
 symlinks=(
-  .config/Code/User/keybindings.json
-  .config/Code/User/settings.json
   .config/git
   .config/gtk-3.0/bookmarks
   .config/htop

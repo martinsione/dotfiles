@@ -1,5 +1,6 @@
 " General
 " set timeoutlen=1000
+silent! packadd vim-surround 
 set hlsearch
 set ignorecase
 set smartcase
