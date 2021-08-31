@@ -1,3 +1,7 @@
+
+
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
 ## Programs
 alias r="$FILE"
 alias sr="sudo -E $FILE"
@@ -21,7 +25,8 @@ alias bld="make && sudo make install"
 alias cl="clear"
 alias ka="killall"
 alias ex="extract"
-alias startx="startx $XINITRC"
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
 ## Packages
 alias npmg='npm i --prefix $HOME/.local/bin/npm'

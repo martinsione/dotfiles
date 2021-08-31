@@ -129,5 +129,6 @@ function zathura-tabbed() {
 }
 
 burn() {
+  # @params $1=Iso directory / $2=Flash drive mount point
   sudo dd bs=4M if="$1" of="$2" status=progress && sync
 }

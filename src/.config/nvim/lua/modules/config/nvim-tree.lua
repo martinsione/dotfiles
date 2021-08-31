@@ -14,7 +14,7 @@ return function()
     vim.g.nvim_tree_auto_open = 0
     vim.g.nvim_tree_follow = 1
     vim.g.nvim_tree_hide_dotfiles = 0
-    vim.g.nvim_tree_indent_markers = 0
+    vim.g.nvim_tree_indent_markers = 1
     vim.g.nvim_tree_bindings = {
         { key = 'h', cb = tree_cb('close_node') },
         { key = 'l', cb = tree_cb('edit') },
