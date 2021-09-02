@@ -42,4 +42,3 @@ eval "$(starship init zsh)"
 ## Call custom functions
 cursor-shape
 auto-tmux
-remap
