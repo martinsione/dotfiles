@@ -14,6 +14,7 @@ map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 map('n', '<C-s>', '<cmd>w<CR>')
+map('n', '<leader>c', '<cmd>lua require"core.compiler".compile_and_run()<CR>')
 -- Buffers
 map('n', '<Tab>', '<cmd>bn<CR>')
 map('n', '<S-Tab>', '<cmd>bp<CR>')
@@ -91,6 +92,12 @@ map('n', 'ss', '<Plug>Yssurround', { noremap = false })
 map('n', 'SS', '<Plug>YSsurround', { noremap = false })
 map('x', 's', '<Plug>VSurround', { noremap = false })
 map('x', 'S', '<Plug>VgSurround', { noremap = false })
+
+-- Filetypes
+local filetype = vim.bo.filetype
+if filetype == 'cpp' then
+    nmap('<space>s', '<cmd>0r ~/.config/nvim/templates/cpp/skeleton.cpp<CR>')
+end
 
 vim.cmd(
     [[command! PackerDelete silent! !rm  -rf ~/.local/share/nvim/site <CR>]]
