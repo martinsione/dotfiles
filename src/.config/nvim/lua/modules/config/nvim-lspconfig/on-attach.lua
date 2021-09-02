@@ -8,22 +8,6 @@ local function lua_nmap(key, cmd, opts)
     nmap(key, '<cmd>lua  ' .. cmd .. '<CR>', opts)
 end
 
-local function config_cpp()
-    lua_nmap(
-        '<F9>',
-        'require("core.utils").term_wrapper("g++ %s && ./a.out", vim.fn.expand("%"))'
-    )
-    nmap('<space>cs', '<cmd>0r ~/.config/nvim/templates/cpp/skeleton.cpp<CR>')
-end
-
-local function config_typescript()
-    lua_nmap(
-        '<F9>',
-        'require("core.utils").term_wrapper("node %s", vim.fn.expand("%"))'
-    )
-    require('nvim-lsp-ts-utils').setup({})
-end
-
 return function(client)
     vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
 
@@ -40,12 +24,8 @@ return function(client)
 
     require('lsp_signature').on_attach()
 
-    if client.name == 'cpp' then
-        config_cpp()
-    end
-
     if client.name == 'typescript' then
-        config_typescript()
+        require('nvim-lsp-ts-utils').setup({})
     end
 
     -- So that the only client with format capabilities is efm

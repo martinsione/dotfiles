@@ -38,6 +38,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 
 ## Path
 PATH="$CARGO_HOME/bin:$PATH"
+PATH="$GOPATH/bin:$PATH"
 PATH="$XDG_BIN_HOME/:$PATH"
 PATH="$XDG_BIN_HOME/dmenu:$PATH"
 PATH="$XDG_BIN_HOME/npm/node_modules/.bin:$PATH"
