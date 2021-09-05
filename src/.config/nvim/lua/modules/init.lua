@@ -1,9 +1,9 @@
 local utils = require('core.utils')
-local packer_url = 'https://github.com/wbthomason/packer.nvim'
+local packer_repo = 'https://github.com/wbthomason/packer.nvim'
 local packer_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
 if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
     print('Downloading plugin manager...')
-    vim.cmd('silent! !git clone ' .. packer_url .. ' ' .. packer_path)
+    vim.cmd('silent! !git clone ' .. packer_repo .. ' ' .. packer_path)
 end
 vim.cmd('packadd packer.nvim')
 vim.opt.rtp:append(utils.os.data .. '/site/pack/packer/opt/*')
@@ -21,7 +21,6 @@ return packer.startup(function(use)
 
     -- Common dependencies
     use({ 'nvim-lua/plenary.nvim' })
-
     use({ 'nvim-lua/popup.nvim' })
 
     -----[[------------]]-----
@@ -48,10 +47,7 @@ return packer.startup(function(use)
     })
 
     -- Colorschemes
-    use({
-        'npxbr/gruvbox.nvim',
-        requires = { { 'rktjmp/lush.nvim' } },
-    })
+    use({ 'npxbr/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } })
     use({ 'folke/tokyonight.nvim' })
     use({ 'LunarVim/Colorschemes' })
 
@@ -91,7 +87,7 @@ return packer.startup(function(use)
     -- Autopairs
     use({
         'windwp/nvim-autopairs',
-        after = 'nvim-compe',
+        after = 'nvim-cmp',
         setup = require('modules.config.nvim-autopairs'),
     })
 
@@ -142,7 +138,6 @@ return packer.startup(function(use)
         setup = require('modules.config.nvim-lspconfig'),
         requires = {
             { 'kabouzeid/nvim-lspinstall' },
-            { 'glepnir/lspsaga.nvim' },
             { 'ray-x/lsp_signature.nvim' },
             { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
         },
@@ -150,18 +145,16 @@ return packer.startup(function(use)
 
     -- Completion plugin
     use({
-        'hrsh7th/nvim-compe',
-        setup = require('modules.config.nvim-compe'),
+        'hrsh7th/nvim-cmp',
+        setup = require('modules.config.nvim-cmp'),
         event = 'InsertEnter',
-    })
-
-    -- Snippets
-    use({
-        'hrsh7th/vim-vsnip',
-        after = 'nvim-compe',
         requires = {
-            'rafamadriz/friendly-snippets',
-            'dsznajder/vscode-es7-javascript-react-snippets',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-emoji',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-vsnip',
+            { 'hrsh7th/vim-vsnip', requires = { 'rafamadriz/friendly-snippets' } },
         },
     })
 

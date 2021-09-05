@@ -1,13 +1,13 @@
 local M = {}
 local fmt = string.format
 
-local term_wrapper = function(cmd, fmt)
+local term_wrapper = function(command, file)
     -- NOTE: Run command accepts 2 params
     -- 1: Default terminal command, between quotes
-    -- 2: Optional: a string format argument with %
+    -- 2: Optional: a fmt argument with %
     -- Eg: term_wrapper('echo I am editing %s', vim.fn.expand("%"))
     vim.cmd('vnew')
-    vim.cmd('term ' .. fmt(cmd, fmt))
+    vim.cmd('term ' .. fmt(command, file))
     vim.cmd('silent! file CompileAndRun')
     vim.cmd('set nobuflisted')
     vim.cmd('setl nornu nonu nocul so=0 scl=no')
@@ -22,10 +22,7 @@ local commands = {
 M.compile_and_run = function()
     local filetype = vim.bo.filetype
     if commands[filetype] then
-        require('core.utils').term_wrapper(
-            commands[filetype],
-            vim.fn.expand('%')
-        )
+        term_wrapper(commands[filetype], vim.fn.expand('%'))
     else
         print(fmt('Filetype "%s" is not yet supported.', filetype))
     end
