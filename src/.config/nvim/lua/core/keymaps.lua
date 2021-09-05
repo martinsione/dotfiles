@@ -1,4 +1,4 @@
-local utils = require('core.utils')
+local utils = require 'core.utils'
 local map = utils.keymap.map
 
 vim.g.mapleader = ' '
@@ -67,19 +67,15 @@ map('c', '<C-f>', '<C-R>=expand("%:p")<CR>', { silent = false })
 map('n', '<space>gs', '<cmd>Neogit<CR>')
 -- Telescope
 if utils.os.is_git_dir == 0 then
-    map('n', '<C-p>', '<cmd>lua require"telescope.builtin".git_files()<CR>')
+  map('n', '<C-p>', '<cmd>lua require"telescope.builtin".git_files()<CR>')
 else
-    map('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')
+  map('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')
 end
 map('n', '<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
 map('n', '<space>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>')
 map('n', '<space>fo', '<cmd>lua require"telescope.builtin".oldfiles()<CR>')
 map('n', '<space>fw', '<cmd>lua require"telescope.builtin".live_grep()<CR>')
-map(
-    'n',
-    '<space>fd',
-    '<cmd>lua require"telescope.builtin".git_files({cwd = "$HOME/.dotfiles" })<CR>'
-)
+map('n', '<space>fd', '<cmd>lua require"telescope.builtin".git_files({cwd = "$HOME/.dotfiles" })<CR>')
 -- Tree
 map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
 -- Vim surround ( noremap need to be false to work)
@@ -96,12 +92,8 @@ map('x', 'S', '<Plug>VgSurround', { noremap = false })
 -- Filetypes
 local filetype = vim.bo.filetype
 if filetype == 'cpp' then
-    nmap('<space>s', '<cmd>0r ~/.config/nvim/templates/cpp/skeleton.cpp<CR>')
+  nmap('<space>s', '<cmd>0r ~/.config/nvim/templates/cpp/skeleton.cpp<CR>')
 end
 
-vim.cmd(
-    [[command! PackerDelete silent! !rm  -rf ~/.local/share/nvim/site <CR>]]
-)
-vim.cmd(
-    [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
-)
+vim.cmd [[command! PackerDelete silent! !rm  -rf ~/.local/share/nvim/site <CR>]]
+vim.cmd [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
