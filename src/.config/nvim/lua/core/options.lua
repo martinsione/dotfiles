@@ -55,21 +55,21 @@ o.tabstop = 4
 
 -- Shortmess
 o.shortmess = o.shortmess
-    + {
-        A = true, -- don't give the "ATTENTION" message when an existing swap file is found.
-        I = true, -- don't give the intro message when starting Vim |:intro|.
-        W = true, -- don't give "written" or "[w]" when writing a file
-        c = true, -- don't give |ins-completion-menu| messages
-        m = true, -- use "[+]" instead of "[Modified]"
-    }
+  + {
+    A = true, -- don't give the "ATTENTION" message when an existing swap file is found.
+    I = true, -- don't give the intro message when starting Vim |:intro|.
+    W = true, -- don't give "written" or "[w]" when writing a file
+    c = true, -- don't give |ins-completion-menu| messages
+    m = true, -- use "[+]" instead of "[Modified]"
+  }
 
 -- Format options
 o.formatoptions = o.formatoptions
-    + {
-        c = false,
-        o = false, -- O and o, don't continue comments
-        r = true, -- Pressing Enter will continue comments
-    }
+  + {
+    c = false,
+    o = false, -- O and o, don't continue comments
+    r = true, -- Pressing Enter will continue comments
+  }
 
 -- Remove builtin plugins
 vim.g.loaded_netrw = 1

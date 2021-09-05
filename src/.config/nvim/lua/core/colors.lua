@@ -6,5 +6,5 @@ vim.g.tokyonight_italic_functions = true
 vim.g.tokyonight_style = 'night'
 
 pcall(function()
-    vim.cmd('colorscheme ' .. colorscheme)
+  vim.cmd('colorscheme ' .. colorscheme)
 end)
