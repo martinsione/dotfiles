@@ -14,7 +14,7 @@ map('n', '<CR>', '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 map('n', '<C-s>', '<cmd>w<CR>')
-map('n', '<leader>c', '<cmd>lua require"core.compiler".compile_and_run()<CR>')
+map('n', '<F9>', '<cmd>lua require"core.compiler".compile_and_run()<CR>')
 -- Buffers
 map('n', '<Tab>', '<cmd>bn<CR>')
 map('n', '<S-Tab>', '<cmd>bp<CR>')
