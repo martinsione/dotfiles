@@ -20,7 +20,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_PICTURES_HOME="$HOME/Pictures"
 
-## ~/ Clean-up:
+## $HOME directory clean-up:
 ## XDG_CONFIG_HOME
 export INPUTRC="$XDG_CONFIG_HOME/zsh/inputrc"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
@@ -37,13 +37,13 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"   # May break a login manager
 
 ## Path
-PATH="$CARGO_HOME/bin:$PATH"
-PATH="$GOPATH/bin:$PATH"
-PATH="$XDG_BIN_HOME/:$PATH"
-PATH="$XDG_BIN_HOME/dmenu:$PATH"
-PATH="$XDG_BIN_HOME/npm/node_modules/.bin:$PATH"
-PATH="$XDG_BIN_HOME/scripts:$PATH"
-PATH="$XDG_BIN_HOME/statusbar:$PATH"
+PATH="$PATH:$CARGO_HOME/bin"
+PATH="$PATH:$GOPATH/bin"
+PATH="$PATH:$XDG_BIN_HOME"
+PATH="$PATH:$XDG_BIN_HOME/dmenu"
+PATH="$PATH:$XDG_BIN_HOME/npm/node_modules/.bin"
+PATH="$PATH:$XDG_BIN_HOME/scripts"
+PATH="$PATH:$XDG_BIN_HOME/statusbar"
 
 # Other program settings:
 export AWT_TOOLKIT="MToolkit wmname LG3D"	  #May have to install wmname
@@ -51,7 +51,7 @@ export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
 export KEYTIMEOUT=1 # Reduce vi timeout
 export LESSHISTFILE=-                       # Disable hist files
 export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
-export MANPAGER="nvim -c 'set ft=man'"
+export MANPAGER="nvim +Man!"
 export _JAVA_AWT_WM_NONREPARENTING=1        # Fix for Java applications in dwm
 
 ## NVM

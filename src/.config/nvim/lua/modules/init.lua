@@ -95,7 +95,7 @@ return packer.startup(function(use)
   use { 'tpope/vim-commentary' }
 
   -- Should be in vim core...
-  use { 'tpope/vim-surround' }
+  use { 'tpope/vim-surround', requires = { 'tpope/vim-repeat' } }
 
   -- Fuzzy finding / Ctrl + p
   use {
