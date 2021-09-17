@@ -19,12 +19,8 @@ return packer.startup(function(use)
   -- Plugin manager
   use { 'wbthomason/packer.nvim' }
 
-  -- Common dependencies
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'nvim-lua/popup.nvim' }
-
   -----[[------------]]-----
-  ---     Essentials     ---
+  ---     UI Related     ---
   -----]]------------[[-----
   -- Treesitter
   use {
@@ -37,9 +33,6 @@ return packer.startup(function(use)
     },
   }
 
-  -----[[------------]]-----
-  ---     UI Related     ---
-  -----]]------------[[-----
   -- Start Screen
   use {
     'glepnir/dashboard-nvim',
@@ -101,6 +94,7 @@ return packer.startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     setup = require 'modules.config.telescope',
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   -- -- TODO: Configure nvim-dap
@@ -119,6 +113,7 @@ return packer.startup(function(use)
   use {
     'lewis6991/gitsigns.nvim',
     setup = require 'modules.config.gitsigns',
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
@@ -126,6 +121,7 @@ return packer.startup(function(use)
     setup = require 'modules.config.neogit',
     requires = {
       { 'sindrets/diffview.nvim' },
+      { 'nvim-lua/plenary.nvim' },
     },
   }
 
