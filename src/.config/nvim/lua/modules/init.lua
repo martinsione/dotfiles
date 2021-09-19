@@ -8,6 +8,10 @@ end
 vim.cmd 'packadd packer.nvim'
 vim.opt.rtp:append(utils.os.data .. '/site/pack/packer/opt/*')
 
+local function conf(name)
+  return require(string.format('modules.config.%s', name))
+end
+
 local packer = require 'packer'
 return packer.startup(function(use)
   packer.init {
@@ -25,7 +29,7 @@ return packer.startup(function(use)
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
-    setup = require 'modules.config.nvim-treesitter',
+    setup = conf 'nvim-treesitter',
     requires = {
       'p00f/nvim-ts-rainbow',
       'windwp/nvim-ts-autotag',
@@ -36,7 +40,7 @@ return packer.startup(function(use)
   -- Start Screen
   use {
     'glepnir/dashboard-nvim',
-    setup = require 'modules.config.dashboard-nvim',
+    setup = conf 'dashboard-nvim',
   }
 
   -- Colorschemes
@@ -47,31 +51,31 @@ return packer.startup(function(use)
   -- Icons
   use {
     'kyazdani42/nvim-web-devicons',
-    setup = require 'modules.config.nvim-web-devicons',
+    setup = conf 'nvim-web-devicons',
   }
 
   -- File tree
   use {
     'kyazdani42/nvim-tree.lua',
-    setup = require 'modules.config.nvim-tree',
+    setup = conf 'nvim-tree',
   }
 
   -- Statusline
   use {
     'glepnir/galaxyline.nvim',
-    setup = require 'modules.config.galaxyline',
+    setup = conf 'galaxyline',
   }
 
   -- Tabline
   use {
     'akinsho/nvim-bufferline.lua',
-    setup = require 'modules.config.nvim-bufferline',
+    setup = conf 'nvim-bufferline',
   }
 
   -- Indent Lines
   use {
     'lukas-reineke/indent-blankline.nvim',
-    setup = require 'modules.config.indent-blankline',
+    setup = conf 'indent-blankline',
   }
 
   -----[[--------------]]-----
@@ -81,7 +85,7 @@ return packer.startup(function(use)
   use {
     'windwp/nvim-autopairs',
     after = 'nvim-cmp',
-    setup = require 'modules.config.nvim-autopairs',
+    setup = conf 'nvim-autopairs',
   }
 
   -- Commenting
@@ -93,7 +97,7 @@ return packer.startup(function(use)
   -- Fuzzy finding / Ctrl + p
   use {
     'nvim-telescope/telescope.nvim',
-    setup = require 'modules.config.telescope',
+    setup = conf 'telescope',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
@@ -112,13 +116,13 @@ return packer.startup(function(use)
   -----]]-------------[[-----
   use {
     'lewis6991/gitsigns.nvim',
-    setup = require 'modules.config.gitsigns',
+    setup = conf 'gitsigns',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
     'TimUntersberger/neogit',
-    setup = require 'modules.config.neogit',
+    setup = conf 'neogit',
     requires = {
       { 'sindrets/diffview.nvim' },
       { 'nvim-lua/plenary.nvim' },
@@ -131,7 +135,7 @@ return packer.startup(function(use)
   -- Built-in lsp
   use {
     'neovim/nvim-lspconfig',
-    setup = require 'modules.config.nvim-lspconfig',
+    setup = conf 'nvim-lspconfig',
     requires = {
       { 'kabouzeid/nvim-lspinstall' },
       { 'ray-x/lsp_signature.nvim' },
@@ -142,7 +146,7 @@ return packer.startup(function(use)
   -- Completion plugin
   use {
     'hrsh7th/nvim-cmp',
-    setup = require 'modules.config.nvim-cmp',
+    setup = conf 'nvim-cmp',
     event = 'InsertEnter',
     requires = {
       'hrsh7th/cmp-buffer',
@@ -159,7 +163,7 @@ return packer.startup(function(use)
   -----]]-------------[[-----
   use {
     'norcalli/nvim-colorizer.lua',
-    setup = require 'modules.config.nvim-colorizer',
+    setup = conf 'nvim-colorizer',
   }
 
   packer.install()
