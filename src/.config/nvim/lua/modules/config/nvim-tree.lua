@@ -1,24 +1,28 @@
 return function()
-  local tree_cb = require('nvim-tree.config').nvim_tree_callback
+  local map = require('nvim-tree.config').nvim_tree_callback
 
-  vim.g.nvim_tree_side = 'right'
-  vim.g.nvim_tree_width = 35
-  vim.g.nvim_tree_ignore = {
-    '.git',
-    'node_modules',
-    '.cache',
-    '.next',
-    '*.out',
-  }
-  vim.g.nvim_tree_auto_ignore_ft = { 'dashboard' }
-  vim.g.nvim_tree_auto_open = 0
-  vim.g.nvim_tree_follow = 1
-  vim.g.nvim_tree_hide_dotfiles = 0
-  vim.g.nvim_tree_indent_markers = 1
-  vim.g.nvim_tree_bindings = {
-    { key = 'h', cb = tree_cb 'close_node' },
-    { key = 'l', cb = tree_cb 'edit' },
-    { key = 'v', cb = tree_cb 'vsplit' },
-    { key = 's', cb = tree_cb 'split' },
+  vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache', '.next', '*.out' }
+
+  require('nvim-tree').setup {
+    ignore_ft_on_setup = { 'dashboard' }, -- will not open on setup if the filetype is in this list
+    view = {
+      width = 35,
+      side = 'right',
+      -- -- if true the tree will resize itself after opening a file
+      -- auto_resize = false,
+      mappings = {
+        custom_only = true, -- `custom_only = false` will merge list of mappings with defaults
+        list = {
+          { key = '<C-R>', cb = map 'refresh' },
+          { key = 'h', cb = map 'close_node' },
+          { key = 'l', cb = map 'edit' },
+          { key = 'r', cb = map 'rename' },
+          { key = 's', cb = map 'split' },
+          { key = 'v', cb = map 'vsplit' },
+          { key = 'Y', cb = map 'copy_path' },
+          { key = 'y', cb = map 'copy_name' },
+        },
+      },
+    },
   }
 end
