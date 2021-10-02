@@ -4,7 +4,6 @@ return function()
   local on_attach = require 'modules.config.nvim-lspconfig.on-attach'
   local format_config = require 'modules.config.nvim-lspconfig.format'
   require('modules.config.nvim-lspconfig.ui').symbols_override()
-  require('modules.config.nvim-lspconfig.ui').disable_virtual_text()
 
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -24,13 +23,8 @@ return function()
         Lua = {
           diagnostics = { globals = { 'vim' } },
           completion = { keywordSnippet = 'Both' },
-          runtime = {
-            version = 'LuaJIT',
-            path = vim.split(package.path, ';'),
-          },
-          workspace = {
-            library = vim.list_extend({ [vim.fn.expand '$VIMRUNTIME/lua'] = true }, {}),
-          },
+          runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+          workspace = { library = vim.list_extend({ [vim.fn.expand '$VIMRUNTIME/lua'] = true }, {}) },
         },
       },
     },
@@ -39,8 +33,8 @@ return function()
   -- Setup servers
   local function setup_servers()
     lspinstall.setup()
-    local installed = lspinstall.installed_servers()
-    for _, server in pairs(installed) do
+    local installed_servers = lspinstall.installed_servers()
+    for _, server in pairs(installed_servers) do
       local config = servers[server] or { root_dir = lspconfig.util.root_pattern { '.git/', '.' } }
       config.capabilities = capabilities
       config.on_attach = on_attach

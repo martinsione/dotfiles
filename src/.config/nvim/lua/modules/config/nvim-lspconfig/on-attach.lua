@@ -19,6 +19,7 @@ return function(client)
   lua_nmap('<space>ca', 'vim.lsp.buf.code_action()')
   lua_nmap('<space>gh', 'vim.lsp.buf.signature_help()')
   lua_nmap('<space>rn', 'vim.lsp.buf.rename()')
+  lua_nmap('<space>td', 'require"modules.config.nvim-lspconfig.ui".toggle_virtual_text()')
   lua_nmap('[d', 'vim.lsp.diagnostic.goto_prev()')
   lua_nmap(']d', 'vim.lsp.diagnostic.goto_next()')
 
@@ -35,10 +36,10 @@ return function(client)
 
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[
-          augroup Format
-            au! * <buffer>
-            au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
-          augroup END
-        ]]
+        augroup Format
+          au! * <buffer>
+          au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+        augroup END
+      ]]
   end
 end

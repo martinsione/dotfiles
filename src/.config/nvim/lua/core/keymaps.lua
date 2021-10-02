@@ -15,7 +15,9 @@ map('n', 'x', '"_x')
 map('n', 'X', '"_X')
 map('n', '<C-s>', '<cmd>w<CR>')
 map('n', '<F9>', '<cmd>lua require"core.compiler".compile_and_run()<CR>')
-map('n', '<space>fp', '<cmd>let @*=fnamemodify(expand("%"), ":~:.")<CR>') -- Copy relative filepath
+-- stylua: ignore
+-- Copy relative filepath eg: from nvim folder this would look like: "lua/core/keymaps.lua" copied to clipboard
+map( 'n', '<space>fp', '<cmd>let @*=fnamemodify(expand("%"), ":~:.") | echo( \'"\' . (fnamemodify(expand("%"), ":~:.")) . \'" copied to clipboard\')<CR>')
 -- Buffers
 map('n', '<Tab>', '<cmd>bn<CR>')
 map('n', '<S-Tab>', '<cmd>bp<CR>')

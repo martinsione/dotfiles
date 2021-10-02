@@ -1,5 +1,5 @@
 local g = vim.g
-local colorscheme = 'tokyonight'
+local colorscheme = 'gruvbox'
 
 g.gruvbox_contrast_dark = 'hard'
 g.gruvbox_invert_selection = false

@@ -37,6 +37,11 @@ o.updatetime = 100
 o.virtualedit = 'block'
 o.iskeyword = o.iskeyword + '-'
 
+-- -- Listchars
+-- vim.opt.list = true
+-- vim.opt.listchars:append 'eol:↴'
+-- vim.opt.listchars:append 'space:⋅'
+
 -- Performance
 o.lazyredraw = true
 
