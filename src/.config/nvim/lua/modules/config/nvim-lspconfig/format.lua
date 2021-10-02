@@ -7,15 +7,12 @@ local eslint = {
   formatStdin = true,
 }
 
-local prettier = {
-  formatCommand = 'prettier --stdin-filepath ${INPUT}',
-  formatStdin = true,
-}
-
--- local luaformatter = { formatCommand = "lua-format -i", formatStdin = true }
+local clang_format = { formatCommand = 'clang-format -style=LLVM ${INPUT}', formatStdin = true }
+local prettier = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true }
 local stylua = { formatCommand = 'stylua -s -', formatStdin = true }
 
 return {
+  cpp = { clang_format },
   css = { prettier },
   html = { prettier },
   javascript = { prettier, eslint },
