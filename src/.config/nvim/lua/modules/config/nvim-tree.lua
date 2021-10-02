@@ -14,6 +14,8 @@ return function()
         custom_only = true, -- `custom_only = false` will merge list of mappings with defaults
         list = {
           { key = '<C-R>', cb = map 'refresh' },
+          { key = 'a', cb = map 'create' },
+          { key = 'd', cb = map 'remove' },
           { key = 'h', cb = map 'close_node' },
           { key = 'l', cb = map 'edit' },
           { key = 'r', cb = map 'rename' },

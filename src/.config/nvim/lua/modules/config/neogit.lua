@@ -1,7 +1,5 @@
 return function()
-  local neogit = require 'neogit'
-
-  neogit.setup {
+  require('neogit').setup {
     disable_signs = false,
     disable_context_highlighting = false,
     disable_commit_confirmation = false,
@@ -12,9 +10,6 @@ return function()
       item = { '>', 'v' },
       hunk = { '', '' },
     },
-    integrations = {
-      -- 'sindrets/diffview.nvim'
-      diffview = true,
-    },
+    integrations = { diffview = true },
   }
 end
