@@ -48,12 +48,6 @@ return function()
         's',
       }),
     },
-    sources = {
-      { name = 'buffer' },
-      { name = 'emoji' },
-      { name = 'nvim_lsp' },
-      { name = 'path' },
-      { name = 'vsnip' },
-    },
+    sources = { { name = 'buffer' }, { name = 'emoji' }, { name = 'nvim_lsp' }, { name = 'path' }, { name = 'vsnip' } },
   }
 end
