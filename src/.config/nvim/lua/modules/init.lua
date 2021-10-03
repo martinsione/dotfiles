@@ -37,11 +37,11 @@ return packer.startup(function(use)
     },
   }
 
-  -- Start Screen
-  use {
-    'glepnir/dashboard-nvim',
-    setup = conf 'dashboard-nvim',
-  }
+  -- -- Start Screen
+  -- use {
+  --   'glepnir/dashboard-nvim',
+  --   setup = conf 'dashboard-nvim',
+  -- }
 
   -- Colorschemes
   use { 'npxbr/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }

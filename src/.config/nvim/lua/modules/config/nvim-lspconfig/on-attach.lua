@@ -1,11 +1,7 @@
-local utils = require 'core.utils'
-
-local function nmap(key, cmd, opts)
-  utils.keymap.buf_map('n', key, cmd, opts)
-end
+local buf_map = require('core.utils').keymap.buf_map
 
 local function lua_nmap(key, cmd, opts)
-  nmap(key, '<cmd>lua  ' .. cmd .. '<CR>', opts)
+  buf_map('n', key, '<cmd>lua ' .. cmd .. '<CR>', opts)
 end
 
 return function(client)

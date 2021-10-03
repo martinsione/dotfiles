@@ -17,6 +17,7 @@ return function()
           { key = 'a', cb = map 'create' },
           { key = 'd', cb = map 'remove' },
           { key = 'h', cb = map 'close_node' },
+          { key = 'I', cb = map 'toggle_ignored' },
           { key = 'l', cb = map 'edit' },
           { key = 'r', cb = map 'rename' },
           { key = 's', cb = map 'split' },
