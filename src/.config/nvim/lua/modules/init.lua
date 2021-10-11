@@ -1,12 +1,12 @@
 local utils = require 'core.utils'
-local packer_repo = 'https://github.com/wbthomason/packer.nvim'
-local packer_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
-if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
+local install_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   print 'Downloading plugin manager...'
-  vim.cmd('silent! !git clone ' .. packer_repo .. ' ' .. packer_path)
+  packer_bootstrap = vim.cmd('silent! !git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  -- packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 vim.cmd 'packadd packer.nvim'
-vim.opt.rtp:append(utils.os.data .. '/site/pack/packer/opt/*')
+-- vim.opt.rtp:append(utils.os.data .. '/site/pack/packer/opt/*')
 
 local function conf(name)
   return require(string.format('modules.config.%s', name))
@@ -16,12 +16,12 @@ local packer = require 'packer'
 return packer.startup(function(use)
   packer.init {
     compile_path = utils.os.data .. '/site/lua/packer_compiled.lua',
-    opt_default = true,
+    -- opt_default = true,
     profile = { enable = true },
   }
 
   -- Plugin manager
-  use { 'wbthomason/packer.nvim' }
+  use { 'wbthomason/packer.nvim', opt = true }
 
   -----[[------------]]-----
   ---     UI Related     ---
@@ -29,7 +29,7 @@ return packer.startup(function(use)
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
-    setup = conf 'nvim-treesitter',
+    config = require 'modules.config.nvim-treesitter',
     requires = {
       'p00f/nvim-ts-rainbow',
       'windwp/nvim-ts-autotag',
@@ -40,7 +40,7 @@ return packer.startup(function(use)
   -- -- Start Screen
   -- use {
   --   'glepnir/dashboard-nvim',
-  --   setup = conf 'dashboard-nvim',
+  --   config = require'modules.config.dashboard-nvim',
   -- }
 
   -- Colorschemes
@@ -51,31 +51,31 @@ return packer.startup(function(use)
   -- Icons
   use {
     'kyazdani42/nvim-web-devicons',
-    setup = conf 'nvim-web-devicons',
+    config = require 'modules.config.nvim-web-devicons',
   }
 
   -- File tree
   use {
     'kyazdani42/nvim-tree.lua',
-    setup = conf 'nvim-tree',
+    config = require 'modules.config.nvim-tree',
   }
 
   -- Statusline
   use {
     'glepnir/galaxyline.nvim',
-    setup = conf 'galaxyline',
+    config = require 'modules.config.galaxyline',
   }
 
   -- Tabline
   use {
     'akinsho/nvim-bufferline.lua',
-    setup = conf 'nvim-bufferline',
+    config = require 'modules.config.nvim-bufferline',
   }
 
   -- Indent Lines
   use {
     'lukas-reineke/indent-blankline.nvim',
-    setup = conf 'indent-blankline',
+    config = require 'modules.config.indent-blankline',
   }
 
   -----[[--------------]]-----
@@ -85,7 +85,7 @@ return packer.startup(function(use)
   use {
     'windwp/nvim-autopairs',
     after = 'nvim-cmp',
-    setup = conf 'nvim-autopairs',
+    config = require 'modules.config.nvim-autopairs',
   }
 
   -- Commenting
@@ -97,7 +97,7 @@ return packer.startup(function(use)
   -- Fuzzy finding / Ctrl + p
   use {
     'nvim-telescope/telescope.nvim',
-    setup = conf 'telescope',
+    config = require 'modules.config.telescope',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
@@ -105,7 +105,7 @@ return packer.startup(function(use)
   -- -- Debug
   -- use({
   --     'mfussenegger/nvim-dap',
-  --     setup = require('nvim-dap'),
+  --     config = require('nvim-dap'),
   --     requires = {
   --         { 'rcarriga/nvim-dap-ui' },
   --     },
@@ -116,13 +116,13 @@ return packer.startup(function(use)
   -----]]-------------[[-----
   use {
     'lewis6991/gitsigns.nvim',
-    setup = conf 'gitsigns',
+    config = require 'modules.config.gitsigns',
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
   use {
     'TimUntersberger/neogit',
-    setup = conf 'neogit',
+    config = require 'modules.config.neogit',
     requires = {
       { 'sindrets/diffview.nvim' },
       { 'nvim-lua/plenary.nvim' },
@@ -135,7 +135,7 @@ return packer.startup(function(use)
   -- Built-in lsp
   use {
     'neovim/nvim-lspconfig',
-    setup = conf 'nvim-lspconfig',
+    config = require 'modules.config.nvim-lspconfig',
     requires = {
       { 'kabouzeid/nvim-lspinstall' },
       { 'ray-x/lsp_signature.nvim' },
@@ -146,8 +146,8 @@ return packer.startup(function(use)
   -- Completion plugin
   use {
     'hrsh7th/nvim-cmp',
-    setup = conf 'nvim-cmp',
-    event = 'InsertEnter',
+    config = require 'modules.config.nvim-cmp',
+    -- event = 'InsertEnter',
     requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-emoji',
@@ -163,9 +163,10 @@ return packer.startup(function(use)
   -----]]-------------[[-----
   use {
     'norcalli/nvim-colorizer.lua',
-    setup = conf 'nvim-colorizer',
+    config = require 'modules.config.nvim-colorizer',
   }
 
-  packer.install()
-  packer.compile()
+  if pncker_bootstrap then
+    require('packer').sync()
+  end
 end)

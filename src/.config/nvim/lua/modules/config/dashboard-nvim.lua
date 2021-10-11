@@ -1,11 +1,4 @@
 return function()
-  function _G._TelescopePersonal()
-    if require('core.utils').os.is_git_dir == 0 then
-      return 'lua require"telescope.builtin".git_files()'
-    else
-      return 'lua require"telescope.builtin".find_files()'
-    end
-  end
   vim.g.dashboard_footer_icon = '🐬 '
   vim.g.dashboard_preview_file_height = 12
   vim.g.dashboard_preview_file_width = 80
