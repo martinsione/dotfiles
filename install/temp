@@ -1,45 +1,15 @@
 useradd -mg wheel martin
 passwd martin
-
 # echo '%wheel ALL=(ALL) ALL' 
 
 ## gnome base install
-curl
-exa 
 firefox 
 gdm 
-git 
 gnome-shell 
 gnome-control-center
-kitty 
-nautilus 
-neovim 
-nvidia-lts 
-openssh 
-tmux 
-xorg 
-zsh 
-redshift
-discord
-ripgrep
-
-## Aur
-authy
-brave-bin
-zoom
-visual-studio-code-bin
-
-## ssh-keys
-ssh-keygen -t rsa -b 4096 -C martinsione03@gmail.com
-eval $(ssh-agent -s)
-
-xclip -sel clip < ~/.ssh/id_rsa.pub
 
 ## Workaround for redshift
 redshift-gtk -l -34.6:-58.3 & disown
-
-## Pacman.conf
-echo -e '[options]\nColor\nParallelDownloads = 12\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | sudo tee -a /etc/pacman.conf
 
 
 ## Get nvim clipboard in wsl to work

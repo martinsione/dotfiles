@@ -7,7 +7,6 @@
 export repo_host="https://github.com/"
 export repo_path="martinsione/dotfiles.git"
 export dotfiles_dir="$HOME/.dotfiles"
-export DISTRO=$(lsb_release -is)
 
 dirs=(
   ~/.cache/zsh
@@ -36,8 +35,9 @@ symlinks=(
 set -e
 
 install_dependencies() {
-  [ $DISTRO == "Arch" ] && sudo pacman -Syy && sudo pacman -S --noconfirm git curl zsh && return
-  [ $DISTRO == "Ubuntu" ] || [ $DISTRO == "Pop" ] && sudo apt update && sudo apt install -y git curl zsh && return
+  local progs="git curl zsh"
+  [ -x "$(command -v pacman)" ] && sudo pacman -Syy && sudo pacman -S --noconfirm "$progs" && return
+  [ -x "$(command -v apt-get)" ] && sudo apt update && sudo apt install -y "$progs" && return
 }
 
 clone_repo() {
@@ -68,24 +68,6 @@ create_dirs() {
   for name in "${dirs[@]}"; do mkdir -p "${name}"; done
 }
 
-add_echo_cancelation() {
-sudo tee -a /etc/pulse/default.pa > /dev/null <<EOT
-load-module module-echo-cancel aec_method=webrtc source_name=noechosource sink_name=noechosink
-set-default-source noechosource
-set-default-sink noechosink
-EOT
-}
-
-mount_drive() {
-  read -p "Do you want to mount disk to /mnt/s (y/n): " -n 1 -r
-  echo -e '\n'
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
-    sudo mkdir -p /mnt/s
-    echo 'UUID=0492de4e-821d-48d4-970f-7a7ccb869fe0 /mnt/s ext4 rw,relatime 0 2' | sudo tee -a /etc/fstab
-    echo -e 'Mounted drive correctly.\n' 
-  fi
-}
-
 change_shell() {
   chsh -s $(which zsh)
   sh -c "$(curl -fsSL https://starship.rs/install.sh)"
@@ -93,10 +75,7 @@ change_shell() {
 
 
 ## Start of the script
-install_dependencies
 clone_repo
 create_dirs
 symlink_files
-add_echo_cancelation
-mount_drive
 change_shell

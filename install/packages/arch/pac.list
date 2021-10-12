@@ -10,6 +10,7 @@ bison
 cloc
 cmake
 ctags
+curl
 dialog
 discord
 dmenu
@@ -63,6 +64,7 @@ materia-gtk-theme
 mpv
 mtools
 neofetch
+neovim
 networkmanager
 ninja
 nitrogen
@@ -95,7 +97,6 @@ steam
 stow
 sudo
 sxiv
-telegram-desktop
 texinfo
 tmux
 trash-cli
