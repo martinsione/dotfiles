@@ -1,5 +1,5 @@
 local g = vim.g
-local colorscheme = 'gruvbox'
+local colorscheme = 'darkplus'
 
 g.gruvbox_contrast_dark = 'hard'
 g.gruvbox_invert_selection = false
