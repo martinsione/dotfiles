@@ -37,8 +37,8 @@ map('n', '<space>=', '<cmd>wincmd =<CR>')
 map('i', '<C-c>', '<Esc>')
 map('i', '<S-CR>', '<Esc>o')
 map('i', '<C-CR>', '<Esc>O')
-map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true })
-map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true })
+-- map('i', '<Tab>', 'pumvisible() ? "\\<C-n>" : "\\<Tab>"', { expr = true })
+-- map('i', '<S-Tab>', 'pumvisible() ? "\\<C-p>" : "\\<Tab>"', { expr = true })
 
 -- Visual
 map('x', '<', '<gv')

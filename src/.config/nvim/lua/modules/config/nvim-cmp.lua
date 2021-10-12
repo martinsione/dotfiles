@@ -1,4 +1,5 @@
 return function()
+  vim.opt.completeopt = 'menu,menuone,noselect'
   local cmp = require 'cmp'
 
   local check_back_space = function()
@@ -48,6 +49,12 @@ return function()
         's',
       }),
     },
-    sources = { { name = 'buffer' }, { name = 'emoji' }, { name = 'nvim_lsp' }, { name = 'path' }, { name = 'vsnip' } },
+    sources = {
+      { name = 'buffer' },
+      { name = 'emoji' },
+      { name = 'nvim_lsp' },
+      { name = 'path' },
+      { name = 'vsnip' },
+    },
   }
 end
