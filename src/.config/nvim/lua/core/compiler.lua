@@ -9,8 +9,7 @@ local term_wrapper = function(command, file)
   vim.cmd 'vnew'
   vim.cmd('term ' .. fmt(command, file))
   vim.cmd 'silent! file CompileAndRun'
-  vim.cmd 'set nobuflisted'
-  vim.cmd 'setl nornu nonu nocul so=0 scl=no'
+  vim.cmd 'setl nobuflisted nornu nonu nocursorline scrolloff=0 signcolumn=no'
   vim.cmd 'startinsert'
 end
 

@@ -92,5 +92,4 @@ map('n', 'SS', '<Plug>YSsurround', { noremap = false })
 map('x', 's', '<Plug>VSurround', { noremap = false })
 map('x', 'S', '<Plug>VgSurround', { noremap = false })
 
-vim.cmd [[command! PackerDelete silent! !rm  -rf ~/.local/share/nvim/site <CR>]]
 vim.cmd [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]

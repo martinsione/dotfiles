@@ -1,21 +1,12 @@
 return function()
   vim.opt.completeopt = 'menu,menuone,noselect'
   local cmp = require 'cmp'
-
-  local check_back_space = function()
-    local col = vim.fn.col '.' - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s' ~= nil
-  end
-
-  local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-  end
+  local luasnip = require 'luasnip'
 
   cmp.setup {
-    preselect = 'item',
     snippet = {
       expand = function(args)
-        vim.fn['vsnip#anonymous'](args.body)
+        require('luasnip').lsp_expand(args.body)
       end,
     },
     mapping = {
@@ -23,12 +14,10 @@ return function()
       ['<CR>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<Tab>'] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(t '<C-n>', 'n')
-        elseif vim.fn.call('vsnip#available', { 1 }) == 1 then
-          vim.fn.feedkeys(t '<Plug>(vsnip-expand-or-jump)', '')
-        elseif check_back_space() then
-          vim.fn.feedkeys(t '<Tab>', 'n')
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
         else
           fallback()
         end
@@ -36,25 +25,23 @@ return function()
         'i',
         's',
       }),
+
       ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(t '<C-p>', 'n')
-        elseif vim.fn.call('vsnip#jumpable', { -1 }) == 1 then
-          vim.fn.feedkeys(t '<Plug>(vsnip-jump-prev)', '')
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           fallback()
         end
-      end, {
-        'i',
-        's',
-      }),
+      end),
     },
     sources = {
       { name = 'buffer' },
       { name = 'emoji' },
+      { name = 'luasnip' },
       { name = 'nvim_lsp' },
       { name = 'path' },
-      { name = 'vsnip' },
     },
   }
 end
