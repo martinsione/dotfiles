@@ -23,19 +23,21 @@ alias ll="exa -la --group-directories-first"
 ## System
 alias bld="make && sudo make install"
 alias cl="clear"
-alias ka="killall"
+alias df='df -h'  
 alias ex="extract"
+alias free='free -m'   
+alias ka="killall"
 # Use $XINITRC variable if file exists.
 [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
 ## Packages
 alias npmg='npm i --prefix $HOME/.local/bin/npm'
 alias vst="nvim --startuptime test.tmp -c q && nvim test.tmp -c norm\ G && rm -rf test.tmp"
-if [[ $DISTRO == "Arch" ]]; then
+if [ -x "$(command -v pacman)" ]; then
   alias p="paru --bottomup"
   alias upg="paru -Syu --noconfirm"
   alias cleanup="sudo pacman -Rns $(pacman -Qtdq)"
-elif [[ $DISTRO == "Ubuntu" || $DISTRO == 'Pop' ]]; then
+elif [ -x "$(command -v apt-get)" ]; then
   alias upg="sudo apt update && sudo apt upgrade -y"
 fi
 

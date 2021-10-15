@@ -1,19 +1,20 @@
-local utils = require 'core.utils'
-local install_path = utils.os.data .. '/site/pack/packer/opt/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+local data = require('core.utils').os.data
+local packer_path = data .. '/site/pack/packer/opt/packer.nvim'
+if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
   print 'Downloading plugin manager...'
-  _G.packer_bootstrap = vim.cmd('silent! !git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.cmd('sil! !git clone https://github.com/wbthomason/packer.nvim ' .. packer_path)
 end
 vim.cmd 'packadd packer.nvim'
-vim.opt.rtp:append(utils.os.data .. '/site/pack/packer/opt/*')
+vim.opt.rtp:append(data .. '/site/pack/packer/opt/*')
 
 local function conf(name)
   return require(string.format('modules.config.%s', name))
 end
 
-return require('packer').startup(function(use)
-  require('packer').init {
-    compile_path = utils.os.data .. '/site/plugin/packer_compiled.lua',
+local packer = require 'packer'
+return packer.startup(function(use)
+  packer.init {
+    compile_path = data .. '/site/plugin/packer_compiled.lua',
     opt_default = true,
     profile = { enable = true },
   }
@@ -45,6 +46,12 @@ return require('packer').startup(function(use)
   use { 'npxbr/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } }
   use { 'folke/tokyonight.nvim' }
   use { 'LunarVim/Colorschemes' }
+
+  -- Colorizer
+  use {
+    'norcalli/nvim-colorizer.lua',
+    setup = conf 'nvim-colorizer',
+  }
 
   -- Icons
   use {
@@ -99,7 +106,7 @@ return require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' },
   }
 
-  -- -- TODO: setupure nvim-dap
+  -- -- TODO: setup nvim-dap
   -- -- Debug
   -- use({
   --     'mfussenegger/nvim-dap',
@@ -121,10 +128,7 @@ return require('packer').startup(function(use)
   use {
     'TimUntersberger/neogit',
     setup = conf 'neogit',
-    requires = {
-      { 'sindrets/diffview.nvim' },
-      { 'nvim-lua/plenary.nvim' },
-    },
+    requires = { { 'sindrets/diffview.nvim' }, { 'nvim-lua/plenary.nvim' } },
   }
 
   -----[[------------]]-----
@@ -144,27 +148,15 @@ return require('packer').startup(function(use)
   -- Completion plugin
   use {
     'hrsh7th/nvim-cmp',
-    setup = conf 'nvim-cmp',
     event = 'InsertEnter',
+    setup = conf 'nvim-cmp',
     requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-emoji',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-vsnip',
-      { 'hrsh7th/vim-vsnip', requires = { 'rafamadriz/friendly-snippets' } },
+      { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' } },
     },
   }
-
-  -----[[-------------]]-----
-  ---     Web dev         ---
-  -----]]-------------[[-----
-  use {
-    'norcalli/nvim-colorizer.lua',
-    setup = conf 'nvim-colorizer',
-  }
-
-  if packer_bootstrap then
-    require('packer').sync()
-  end
 end)
