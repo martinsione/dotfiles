@@ -7,11 +7,8 @@ export EDITOR="nvim"
 export FILE="ranger"
 export GEDITOR="code"
 export GFILE="pcmanfm"
-export MAIL="thunderbird"
 export READER="zathura"
 export TERMINAL="kitty"
-export DMENU="dmenu"
-export DISTRO="$(lsb_release -is)"
 
 # XDG paths
 export XDG_CONFIG_HOME="$HOME/.config"

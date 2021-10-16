@@ -1,6 +1,5 @@
-
-
-[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+[ -x "$(command -v nvim)" ] && alias vim="nvim" 
+alias vimdiff="nvim -d"
 
 ## Programs
 alias r="$FILE"
@@ -76,6 +75,3 @@ alias W="$HOME/Workspace"
 alias sc="$HOME/.local/bin"
 alias sb="$HOME/.local/bin/statusbar"
 alias src="$HOME/.local/src"
-alias sto="/mnt/s"
-alias cs="/mnt/s/Martin/Study/Courses/"
-alias fc="/mnt/s/Martin/Study/Facu/Materias"

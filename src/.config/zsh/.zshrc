@@ -41,5 +41,4 @@ eval "$(starship init zsh)"
 
 ## Call custom functions
 cursor-shape
-auto-tmux
-nvm use 14.17.6 >/dev/null 2>&1
+# nvm use 14.17.6 >/dev/null 2>&1
