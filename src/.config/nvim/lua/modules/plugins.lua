@@ -59,13 +59,13 @@ return {
   { -- Git related
     {
       'lewis6991/gitsigns.nvim',
-      config = 'gitsigns',
+      config = conf 'gitsigns',
       requires = { 'nvim-lua/plenary.nvim' },
     },
     { -- Like magit
       'TimUntersberger/neogit',
-      conf = 'neogit',
-      requires = { 'sindrets/diffview.nvim', 'nvim-lua/plenary.nvim' },
+      config = conf 'neogit',
+      requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
     },
   },
   { -- Comments
