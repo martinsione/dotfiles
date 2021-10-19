@@ -1,5 +1,10 @@
-return function()
-  require('nvim-autopairs').setup {}
+local ok, autopairs = safe_require 'nvim-autopairs'
+if not ok then
+  return
+end
+
+autopairs.setup {}
+if package.loaded['cmp'] then
   require('nvim-autopairs.completion.cmp').setup {
     map_cr = true, --  map <CR> on insert mode
     map_complete = true, -- it will auto insert `(` (map_char) after select function or method item

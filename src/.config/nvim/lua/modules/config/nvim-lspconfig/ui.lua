@@ -1,6 +1,6 @@
 local M = {}
 
-function M.symbols_override()
+local function symbols_override()
   -- Diagnostic signs
   local diagnostic_signs = { Error = '', Warning = '', Hint = '', Information = '' }
   for type, icon in pairs(diagnostic_signs) do
@@ -9,12 +9,12 @@ function M.symbols_override()
   end
 end
 
-function M.disable_virtual_text()
-  vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = false, signs = true, underline = true, update_in_insert = true }
-  )
-end
+-- local function disable_virtual_text()
+--   vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+--     vim.lsp.diagnostic.on_publish_diagnostics,
+--     { virtual_text = false, signs = true, underline = true, update_in_insert = true }
+--   )
+-- end
 
 local is_virtual_text_active = true
 function M.toggle_virtual_text()
@@ -25,6 +25,10 @@ function M.toggle_virtual_text()
     is_virtual_text_active = true
     vim.lsp.diagnostic.redraw(0)
   end
+end
+
+function M.setup()
+  symbols_override()
 end
 
 return M
