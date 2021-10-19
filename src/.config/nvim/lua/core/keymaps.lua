@@ -1,5 +1,4 @@
-local utils = require 'core.utils'
-local map = utils.keymap.map
+local map = require('core.utils').keymap.map
 
 vim.g.mapleader = ' '
 map('n', '<leader>', '<Nop>')
@@ -69,7 +68,7 @@ map('c', '<C-f>', '<C-R>=expand("%:p")<CR>', { silent = false })
 -- Git
 map('n', '<space>gs', '<cmd>Neogit<CR>')
 -- Telescope
-if utils.os.is_git_dir == 0 then
+if is_git_dir == 0 then
   map('n', '<C-p>', '<cmd>lua require"telescope.builtin".git_files()<CR>')
 else
   map('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')

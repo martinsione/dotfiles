@@ -19,7 +19,7 @@ return function(client)
 
   require('lsp_signature').on_attach()
 
-  if client.name == 'typescript' then
+  if client.name == 'tsserver' then
     require('nvim-lsp-ts-utils').setup {}
   end
 
