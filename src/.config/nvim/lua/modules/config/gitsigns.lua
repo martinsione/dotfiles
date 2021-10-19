@@ -1,3 +1,4 @@
+local map = require('core.utils').keymap.map
 local ok, gitsigns = safe_require 'gitsigns'
 if not ok then
   return
@@ -11,22 +12,8 @@ gitsigns.setup {
     topdelete = { hl = 'GitSignsDelete', text = '契' },
     changedelete = { hl = 'GitSignsChange', text = '▎' },
   },
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-    buffer = true,
-
-    ['n ]g'] = { expr = true, "&diff ? ']g' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
-    ['n [g'] = { expr = true, "&diff ? '[g' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
-
-    -- ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    -- ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    -- ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    -- ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    -- ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
-
-    -- Text objects
-    -- ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
-    -- ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
-  },
 }
+
+map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
+map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
+-- map('n', '', 'Gitsigns blame_line')

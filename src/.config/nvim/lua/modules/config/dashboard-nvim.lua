@@ -1,7 +1,6 @@
 vim.g.dashboard_footer_icon = '🐬 '
 vim.g.dashboard_preview_file_height = 12
 vim.g.dashboard_preview_file_width = 80
-vim.g.dashboard_disable_statusline = 1
 vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
   find_files = {
