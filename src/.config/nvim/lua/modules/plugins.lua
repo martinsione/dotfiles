@@ -5,6 +5,7 @@ end
 return {
   { 'wbthomason/packer.nvim' },
   { -- Colorschemes
+    'olimorris/onedarkpro.nvim',
     'folke/tokyonight.nvim',
     'LunarVim/Colorschemes',
     config = conf 'colors',
@@ -39,9 +40,9 @@ return {
     'neovim/nvim-lspconfig',
     config = conf 'nvim-lspconfig',
     requires = {
-      { 'williamboman/nvim-lsp-installer' },
-      { 'ray-x/lsp_signature.nvim' },
-      { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
+      'williamboman/nvim-lsp-installer',
+      'ray-x/lsp_signature.nvim',
+      'jose-elias-alvarez/nvim-lsp-ts-utils',
     },
   },
   { -- Autocompletion plugin
@@ -51,8 +52,10 @@ return {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-emoji',
       'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-vsnip',
+      'onsails/lspkind-nvim', -- Enables icons on completions
       { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' } },
     },
   },
