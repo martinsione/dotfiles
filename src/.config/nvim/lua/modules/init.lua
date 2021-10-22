@@ -29,6 +29,7 @@ function M:init()
 end
 
 function M:load(plugins)
+  self:init()
   return self.packer.startup(function(use)
     for _, plugin in ipairs(plugins) do
       use(plugin)
