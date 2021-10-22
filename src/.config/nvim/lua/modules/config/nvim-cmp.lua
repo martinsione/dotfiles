@@ -1,6 +1,7 @@
 local cmp_ok, cmp = safe_require 'cmp'
 local luasnip_ok, luasnip = safe_require 'luasnip'
-if not cmp_ok or not luasnip_ok then
+local lspkind_ok, lspkind = safe_require 'lspkind'
+if not cmp_ok or not luasnip_ok or not lspkind_ok then
   return
 end
 
@@ -11,6 +12,22 @@ cmp.setup {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
+  },
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = false,
+      menu = {
+        buffer = '[buf]',
+        nvim_lsp = '[LSP]',
+        nvim_lua = '[api]',
+        path = '[path]',
+        luasnip = '[snip]',
+      },
+    },
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
   },
   mapping = {
     ['<C-e>'] = cmp.mapping.close(),
@@ -38,11 +55,13 @@ cmp.setup {
       end
     end),
   },
+  -- Sources order are actually their priority order
   sources = {
-    { name = 'buffer' },
-    { name = 'emoji' },
-    { name = 'luasnip' },
+    { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
+    { name = 'luasnip', keyword_length = 2 },
+    { name = 'buffer', keyword_length = 5 },
     { name = 'path' },
+    { name = 'emoji' },
   },
 }
