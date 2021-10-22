@@ -17,10 +17,17 @@ return function(client)
   lua_nmap('[d', 'vim.lsp.diagnostic.goto_prev()')
   lua_nmap(']d', 'vim.lsp.diagnostic.goto_next()')
 
-  require('lsp_signature').on_attach()
+  local lsp_signature_ok, lsp_signature = safe_require 'lsp_signature'
+  if lsp_signature_ok then
+    lsp_signature.on_attach()
+  end
 
   if client.name == 'tsserver' then
-    require('nvim-lsp-ts-utils').setup {}
+    local ts_utils_ok, ts_utils = safe_require 'nvim-lsp-ts-utils'
+    if ts_utils_ok then
+      ts_utils.setup {}
+      ts_utils.setup_client(client)
+    end
   end
 
   -- So that the only client with format capabilities is efm
