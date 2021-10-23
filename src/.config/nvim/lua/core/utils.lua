@@ -4,24 +4,8 @@ function P(cmd)
   print(vim.inspect(cmd))
 end
 
-function _G.get_config_dir()
-  return vim.fn.stdpath 'config'
-end
-
-function _G.get_data_dir()
-  return vim.fn.stdpath 'data'
-end
-
-function _G.get_cache_dir()
-  return vim.fn.stdpath 'cache'
-end
-
 function _G.is_git_dir()
   return os.execute 'git rev-parse --is-inside-work-tree >> /dev/null 2>&1'
-end
-
-function _G.os_name()
-  return vim.loop.os_uname().sysname
 end
 
 function _G.safe_require(module)

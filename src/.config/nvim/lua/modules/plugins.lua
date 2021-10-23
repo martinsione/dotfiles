@@ -3,7 +3,6 @@ local function conf(name)
 end
 
 return {
-  { 'wbthomason/packer.nvim' },
   { -- Colorschemes
     'olimorris/onedarkpro.nvim',
     'folke/tokyonight.nvim',

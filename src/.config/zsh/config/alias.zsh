@@ -1,4 +1,5 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim" 
+alias min="nvim -u $HOME/.config/nvim/min.lua"
 alias vimdiff="nvim -d"
 
 ## Programs
