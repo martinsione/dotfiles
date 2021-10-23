@@ -1,9 +1,8 @@
 local o = vim.opt
-local utils = require 'core.utils'
-local map = utils.keymap.map
+local map = require('core.utils').keymap.map
 
-vim.opt.rtp:remove(get_data_dir() .. '/site')
-vim.opt.rtp:remove(get_data_dir() .. '/site/after')
+vim.opt.rtp:remove(vim.fn.stdpath 'data' .. '/site')
+vim.opt.rtp:remove(vim.fn.stdpath 'data' .. '/site/after')
 vim.cmd [[let &packpath = &runtimepath]]
 -- vim.cmd [[silent! packadd vim-surround]]
 o.backup = false
