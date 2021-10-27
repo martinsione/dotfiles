@@ -4,9 +4,9 @@ end
 
 return {
   { -- Colorschemes
-    'olimorris/onedarkpro.nvim',
     'folke/tokyonight.nvim',
-    'LunarVim/Colorschemes',
+    -- 'martinsione/darkplus.nvim',
+    '~/Repos/Personal/darkplus.nvim',
     config = conf 'colors',
   },
   { -- Start screen
