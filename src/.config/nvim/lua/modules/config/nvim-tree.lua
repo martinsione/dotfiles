@@ -9,11 +9,12 @@ return function()
 
   nvim_tree.setup {
     ignore_ft_on_setup = { 'dashboard' }, -- will not open on setup if the filetype is in this list
+    -- -- TODO: Fix "update_focused_file"
+    -- update_focused_file = { enable = true },
     view = {
       width = 35,
       side = 'right',
-      -- -- if true the tree will resize itself after opening a file
-      -- auto_resize = false,
+      hide_root_folder = true,
       mappings = {
         custom_only = true, -- `custom_only = false` will merge list of mappings with defaults
         list = {
