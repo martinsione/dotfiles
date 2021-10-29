@@ -1,7 +1,6 @@
 local M = {}
 
 local function symbols_override()
-  -- Diagnostic signs
   local diagnostic_signs = { Error = '', Warning = '', Hint = '', Information = '' }
   for type, icon in pairs(diagnostic_signs) do
     local hl = 'LspDiagnosticsSign' .. type
