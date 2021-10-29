@@ -16,6 +16,7 @@ end
 local commands = {
   cpp = 'g++ %s && ./a.out',
   javascript = 'node %s',
+  lua = 'lua %s',
 }
 
 M.compile_and_run = function()
