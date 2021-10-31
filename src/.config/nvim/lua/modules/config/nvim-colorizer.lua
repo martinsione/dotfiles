@@ -1,6 +1,6 @@
 return function()
-  local ok, colorizer = safe_require 'colorizer'
-  if not ok then
+  local colorizer = safe_require 'colorizer'
+  if not colorizer then
     return
   end
   vim.opt.termguicolors = true

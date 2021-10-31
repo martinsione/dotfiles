@@ -1,6 +1,6 @@
 return function()
-  local ok, treesitter = safe_require 'nvim-treesitter.configs'
-  if not ok then
+  local treesitter = safe_require 'nvim-treesitter.configs'
+  if not treesitter then
     return
   end
 

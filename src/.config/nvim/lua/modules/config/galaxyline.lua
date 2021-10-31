@@ -1,6 +1,6 @@
 return function()
-  local ok, gl = safe_require 'galaxyline'
-  if not ok then
+  local gl = safe_require 'galaxyline'
+  if not gl then
     return
   end
   local gls = gl.section

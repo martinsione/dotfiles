@@ -1,6 +1,6 @@
 return function()
-  local ok, neogit = safe_require 'neogit'
-  if not ok then
+  local neogit = safe_require 'neogit'
+  if not neogit then
     return
   end
 

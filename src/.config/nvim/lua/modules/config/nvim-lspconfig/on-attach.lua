@@ -17,14 +17,14 @@ return function(client)
   lua_nmap('[d', 'vim.lsp.diagnostic.goto_prev()')
   lua_nmap(']d', 'vim.lsp.diagnostic.goto_next()')
 
-  local lsp_signature_ok, lsp_signature = safe_require 'lsp_signature'
-  if lsp_signature_ok then
+  local lsp_signature = safe_require 'lsp_signature'
+  if lsp_signature then
     lsp_signature.on_attach()
   end
 
   if client.name == 'tsserver' then
-    local ts_utils_ok, ts_utils = safe_require 'nvim-lsp-ts-utils'
-    if ts_utils_ok then
+    local ts_utils = safe_require 'nvim-lsp-ts-utils'
+    if ts_utils then
       ts_utils.setup {}
       ts_utils.setup_client(client)
     end

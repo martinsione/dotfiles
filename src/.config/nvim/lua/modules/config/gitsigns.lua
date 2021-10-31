@@ -1,7 +1,7 @@
 return function()
   local map = require('core.utils').keymap.map
-  local ok, gitsigns = safe_require 'gitsigns'
-  if not ok then
+  local gitsigns = safe_require 'gitsigns'
+  if not gitsigns then
     return
   end
 
