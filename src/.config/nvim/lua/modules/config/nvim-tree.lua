@@ -3,14 +3,16 @@ return function()
   if not nvim_tree then
     return
   end
-
   local map = require('nvim-tree.config').nvim_tree_callback
-  vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache', '.next', '*.out' }
 
   nvim_tree.setup {
     ignore_ft_on_setup = { 'dashboard' }, -- will not open on setup if the filetype is in this list
     -- -- TODO: Fix "update_focused_file"
     -- update_focused_file = { enable = true },
+    filters = {
+      dotfiles = false,
+      custom = { '.git' }, -- Files to hide
+    },
     view = {
       width = 35,
       side = 'right',
