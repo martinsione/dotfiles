@@ -87,8 +87,8 @@ return {
     config = conf 'nvim-bufferline',
   },
   { -- Statusline
-    'glepnir/galaxyline.nvim',
-    config = conf 'galaxyline',
+    'nvim-lualine/lualine.nvim',
+    config = conf 'lualine',
   },
   { -- Colorizer
     'norcalli/nvim-colorizer.lua',
