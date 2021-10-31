@@ -7,5 +7,6 @@ else
   require 'core.options'
   require 'core.keymaps'
   require 'core.autocmd'
-  vim.cmd 'colorscheme darkplus'
+  -- vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
+  vim.cmd 'colorscheme tokyonight'
 end

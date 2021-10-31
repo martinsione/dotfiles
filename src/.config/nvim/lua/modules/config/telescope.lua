@@ -1,6 +1,6 @@
 return function()
-  local ok, telescope = safe_require 'telescope'
-  if not ok then
+  local telescope = safe_require 'telescope'
+  if not telescope then
     return
   end
 

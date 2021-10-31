@@ -1,6 +1,6 @@
 return function()
-  local ok, lspconfig = safe_require 'lspconfig'
-  if not ok then
+  local lspconfig = safe_require 'lspconfig'
+  if not lspconfig then
     return
   end
 

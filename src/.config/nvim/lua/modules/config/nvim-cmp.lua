@@ -1,8 +1,8 @@
 return function()
-  local cmp_ok, cmp = safe_require 'cmp'
-  local luasnip_ok, luasnip = safe_require 'luasnip'
-  local lspkind_ok, lspkind = safe_require 'lspkind'
-  if not cmp_ok or not luasnip_ok or not lspkind_ok then
+  local cmp = safe_require 'cmp'
+  local luasnip = safe_require 'luasnip'
+  local lspkind = safe_require 'lspkind'
+  if not cmp or not luasnip or not lspkind then
     return
   end
 

@@ -1,6 +1,6 @@
 return function()
-  local ok, bufferline = safe_require 'bufferline'
-  if not ok then
+  local bufferline = safe_require 'bufferline'
+  if not bufferline then
     return
   end
 
