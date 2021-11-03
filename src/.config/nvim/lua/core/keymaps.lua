@@ -1,5 +1,4 @@
 local map = require('core.utils').keymap.map
-
 vim.g.mapleader = ' '
 map('n', '<leader>', '<Nop>')
 map('x', '<leader>', '<Nop>')
