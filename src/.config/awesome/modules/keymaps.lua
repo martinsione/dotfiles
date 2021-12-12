@@ -59,6 +59,12 @@ M.mouse = gears.table.join(
 )
 
 M.globalkeys = gears.table.join(
+  awful.key({}, 'Print', function()
+    awful.spawn('flameshot gui')
+  end),
+  awful.key({ 'Shift' }, 'Print', function()
+    awful.spawn('maim -i $(xdotool getactivewindow) $HOME/Pictures/Screenshot-$(date "+%Y-%m-%d-%H%M%S").png')
+  end),
   awful.key({ modkey, 'Control' }, 'r', awesome.restart), -- Reload awesome
   awful.key({ modkey, 'Shift' }, 'q', awesome.quit), -- Quit awesome
   awful.key({ modkey }, 'Left', awful.tag.viewprev), -- view previous (tag)

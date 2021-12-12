@@ -5,8 +5,7 @@ end
 return {
   { -- Colorschemes
     'folke/tokyonight.nvim',
-    -- 'martinsione/darkplus.nvim',
-    '~/Repos/Personal/darkplus.nvim',
+    { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } },
     config = conf 'colors',
   },
   { -- Start screen

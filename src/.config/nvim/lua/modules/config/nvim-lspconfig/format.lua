@@ -8,7 +8,7 @@ local eslint = {
 }
 
 local clang_format = { formatCommand = 'clang-format -style=LLVM ${INPUT}', formatStdin = true }
-local prettier = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true }
+local prettier = { formatCommand = './node_modules/.bin/prettier --stdin-filepath ${INPUT}', formatStdin = true }
 local stylua = { formatCommand = 'stylua -s -', formatStdin = true }
 local black = { formatCommand = 'black --quiet -', formatStdin = true }
 
