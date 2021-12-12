@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e
+
+main() {
+  mkdir -p "${XDG_PICTURES_HOME}"
+  SCREENSHOT_DIR="${XDG_PICTURES_HOME}/Screenshot-$(date '+%Y-%m-%d-%H%M%S').png"
+
+  message=""
+
+  case "$@" in
+    "window")
+      maim -i $(xdotool getactivewindow) SCREENSHOT_DIR 
+      message="Window"
+      ;;
+    "fullscreen")
+      maim SCREENSHOT_DIR
+      message="Fullscreen"
+      ;;
+    *)
+      echo "Error: Unknown argument '$*'" && return 1
+      ;;
+  esac
+  
+
+  notify-send "Saved Screenshot ($message)" "${XDG_PICTURES_HOME} And Clipboard"
+}
+
+[[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"

@@ -6,6 +6,8 @@
 
 set -euo pipefail
 
+export DMENU="dmenu"
+
 get_timestamp() {
   date '+%Y-%m-%d_%H%M%S'
 }
