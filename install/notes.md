@@ -1,3 +1,4 @@
+## Create a user
 useradd -mg wheel martin
 passwd martin
 # echo '%wheel ALL=(ALL) ALL' 
@@ -21,11 +22,11 @@ rclone config
 sudo mkdir /mnt/gdrive
 sudo chmod 775 o 777 /mnt/gdrive
 rclone mount --daemon gdrive: /mnt/gdrive
-# To unmount: fusermount -uz /path/to/drive
+**To unmount:** fusermount -uz /path/to/drive
 
-## Get nvim clipboard in wsl to work
-# https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
-curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-chmod +x /tmp/win32yank.exe
-sudo mv /tmp/win32yank.exe /usr/local/bin/
+## Create ssh keys
+ssh-keygen -t rsa -b 4096 -C "name@mail.com"
+sudo systemctl restart ssh
+
+xclip -sel clip < ~/.ssh/id_rsa.pub (linux) 
+clip.exe  < ~/.ssh/id_rsa (wsl)
