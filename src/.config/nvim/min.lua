@@ -32,8 +32,8 @@ local plugins = {
   -- { 'neovim/nvim-lspconfig', requires = { 'williamboman/nvim-lsp-installer' } },
 }
 
-require('modules'):init(packer_config)
-require('modules'):load(plugins)
+require('modules.config.packer'):init(packer_config)
+require('modules.config.packer'):load(plugins)
 require 'core.options'
 require 'core.keymaps'
 require 'core.autocmd'

@@ -4,8 +4,8 @@ function M:init(opts)
   opts = opts or {}
 
   local install_path = opts.install_path or vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-  local package_root = opts.package_root or vim.fn.stdpath 'data' .. '/site/pack'
   local compile_path = opts.compile_path or vim.fn.stdpath 'data' .. '/site/plugin/packer_compiled.lua'
+  local package_root = opts.package_root or vim.fn.stdpath 'data' .. '/site/pack'
 
   if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
@@ -19,10 +19,12 @@ function M:init(opts)
   end
 
   packer.init {
-    package_root = package_root,
     compile_path = compile_path,
+    package_root = package_root,
     display = {
-      open_fn = require('packer.util').float,
+      open_fn = function()
+        return require('packer.util').float { border = 'rounded' }
+      end,
     },
   }
 
