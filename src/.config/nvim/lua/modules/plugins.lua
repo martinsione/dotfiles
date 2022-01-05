@@ -8,10 +8,6 @@ return {
     { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } },
     config = conf 'colors',
   },
-  { -- Start screen
-    'glepnir/dashboard-nvim',
-    config = conf 'dashboard-nvim',
-  },
   { -- Treesiter
     'nvim-treesitter/nvim-treesitter',
     config = conf 'nvim-treesitter',
@@ -52,9 +48,14 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-vsnip',
       'onsails/lspkind-nvim', -- Enables icons on completions
-      { 'L3MON4D3/LuaSnip', requires = { 'rafamadriz/friendly-snippets' } },
+      {
+        'L3MON4D3/LuaSnip',
+        requires = {
+          'saadparwaiz1/cmp_luasnip',
+          'rafamadriz/friendly-snippets',
+        },
+      },
     },
   },
   { -- Git related
