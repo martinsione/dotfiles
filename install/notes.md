@@ -13,6 +13,11 @@ passwd martin
 # echo '%wheel ALL=(ALL) ALL' 
 ```
 
+## Neovim dependencies
+```sh
+sudo apt-get install libtool libtool-bin autoconf automake cmake libncurses5-dev g++
+```
+
 ## Gnome base install
 ```sh
 firefox 
