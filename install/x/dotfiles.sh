@@ -36,8 +36,8 @@ set -e
 
 install_dependencies() {
   local progs="git curl zsh"
-  [ -x "$(command -v pacman)" ] && sudo pacman -Syy && sudo pacman -S --noconfirm "$progs" && return
-  [ -x "$(command -v apt-get)" ] && sudo apt update && sudo apt install -y "$progs" && return
+  [ -x "$(command -v pacman)" ] && sudo pacman -Syy && sudo pacman -S --noconfirm $progs && return
+  [ -x "$(command -v apt-get)" ] && sudo apt update && sudo apt install -y $progs && return
 }
 
 clone_repo() {
@@ -75,6 +75,7 @@ change_shell() {
 
 
 ## Start of the script
+install_dependencies
 clone_repo
 create_dirs
 symlink_files

@@ -2,8 +2,12 @@
 ```sh
 ssh-keygen -t rsa -b 4096 -C "name@mail.com"
 sudo systemctl restart ssh
-# xclip -sel clip < ~/.ssh/id_rsa.pub (linux) 
-# clip.exe  < ~/.ssh/id_rsa (wsl)
+
+# Linux
+xclip -sel clip < ~/.ssh/id_rsa.pub
+
+# WSL
+clip.exe  < ~/.ssh/id_rsa
 ```
 
 ## Create a user
