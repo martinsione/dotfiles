@@ -5,12 +5,6 @@
 export aurhelper=paru
 export package_manager=""
 
-fonts=(
-  FiraCode 
-  JetBrainsMono 
-  SourceCodePro
-)
-
 if [ -x "$(command -v pacman)" ]; then package_manager="pacman"
 elif [ -x "$(command -v apt-get)" ]; then package_manager="apt-get"; fi
 
@@ -43,19 +37,6 @@ install_packages() {
 }
 
 
-install_nerd_fonts() {
-  for font in "${fonts[@]}"; do
-    local font_path="$HOME/.local/share/fonts/${font}"
-    if [[ ! -d "${font_path}" ]]; then
-       curl -L --create-dirs "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/${font}.zip" -o "${font_path}.zip"
-       unzip "${font_path}.zip" -d "${font_path}"
-       rm -rf "${font_path}.zip" 
-    else
-      echo "${font} is already on your system"
-    fi
-  done
-}
-
 add_echo_cancelation() {
 sudo tee -a /etc/pulse/default.pa > /dev/null <<EOT
 load-module module-echo-cancel aec_method=webrtc source_name=noechosource sink_name=noechosink
@@ -74,17 +55,7 @@ mount_drive() {
   fi
 }
 
-
-
 update_system
 install_packages
-install_nerd_fonts
 add_echo_cancelation
 mount_drive
-
-
-## ssh-keys
-# ssh-keygen -t rsa -b 4096 -C "$mail"
-# eval $(ssh-agent -s)
-# ssh-add ~/.ssh/id_rsa
-# xclip -sel clip < ~/.ssh/id_rsa.pub
