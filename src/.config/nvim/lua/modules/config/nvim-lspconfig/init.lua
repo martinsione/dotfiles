@@ -5,17 +5,9 @@ return function()
   end
 
   local on_attach = require 'modules.config.nvim-lspconfig.on-attach'
-  local format_config = require 'modules.config.nvim-lspconfig.format'
   require('modules.config.nvim-lspconfig.ui').setup()
 
-  local servers = {
-    efm = {
-      filetypes = vim.tbl_keys(format_config),
-      init_options = { documentFormatting = true },
-      root_dir = lspconfig.util.root_pattern { '.git/', '.' },
-      settings = { languages = format_config },
-    },
-  }
+  local servers = {}
 
   local function get_config(server_name)
     local config = servers[server_name] or {}
