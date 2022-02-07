@@ -8,5 +8,5 @@ else
   require 'core.keymaps'
   require 'core.autocmd'
   -- vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
-  vim.cmd 'silent! colorscheme tokyonight'
+  vim.cmd 'silent! colorscheme onedarkpro'
 end

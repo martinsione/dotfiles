@@ -5,6 +5,7 @@ end
 return {
   { -- Colorschemes
     'folke/tokyonight.nvim',
+    'olimorris/onedarkpro.nvim',
     { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } },
     config = conf 'colors',
   },
@@ -29,6 +30,13 @@ return {
   { -- Icons
     'kyazdani42/nvim-web-devicons',
     config = conf 'nvim-web-devicons',
+  },
+  { -- Copilot
+    'github/copilot.vim',
+    config = function()
+      vim.cmd 'imap <silent><script><expr> <C-L> copilot#Accept()'
+      vim.g.copilot_no_tab_map = true
+    end,
   },
   { -- Lsp
     'neovim/nvim-lspconfig',
