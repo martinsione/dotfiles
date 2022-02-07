@@ -7,8 +7,11 @@ return function()
 
   nvim_tree.setup {
     ignore_ft_on_setup = { 'dashboard' }, -- will not open on setup if the filetype is in this list
-    -- -- TODO: Fix "update_focused_file"
-    -- update_focused_file = { enable = true },
+    update_focused_file = {
+      enable = true,
+      update_cwd = false,
+      ignore_list = {},
+    },
     filters = {
       dotfiles = false,
       custom = { '.git' }, -- Files to hide
