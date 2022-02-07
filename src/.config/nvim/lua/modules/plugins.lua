@@ -38,6 +38,10 @@ return {
       vim.g.copilot_no_tab_map = true
     end,
   },
+  { -- Formatter
+    'jose-elias-alvarez/null-ls.nvim',
+    config = conf 'null-ls',
+  },
   { -- Lsp
     'neovim/nvim-lspconfig',
     config = conf 'nvim-lspconfig',
