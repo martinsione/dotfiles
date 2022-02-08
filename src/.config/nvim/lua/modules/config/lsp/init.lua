@@ -4,9 +4,9 @@ return function()
     return
   end
 
-  require('modules.config.nvim-lspconfig.handlers').setup()
-  require('modules.config.nvim-lspconfig.handlers').enable_format_on_save()
-  require('modules.config.nvim-lspconfig.null-ls').setup()
+  require('modules.config.lsp.handlers').setup()
+  require('modules.config.lsp.handlers').enable_format_on_save()
+  require('modules.config.lsp.null-ls').setup()
 
   local servers = {
     -- https://github.com/pedro757/emmet
@@ -35,8 +35,8 @@ return function()
 
   require('nvim-lsp-installer').on_server_ready(function(server)
     local config = servers[server.name] or {}
-    config.capabilities = require('modules.config.nvim-lspconfig.handlers').capabilities
-    config.on_attach = require('modules.config.nvim-lspconfig.handlers').on_attach
+    config.capabilities = require('modules.config.lsp.handlers').capabilities
+    config.on_attach = require('modules.config.lsp.handlers').on_attach
     server:setup(config)
   end)
 end
