@@ -1,5 +1,4 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim" 
-alias min="nvim -u $HOME/.config/nvim/min.lua"
 alias vimdiff="nvim -d"
 # alias  py="docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp python:3 python"
 ## Programs

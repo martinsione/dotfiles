@@ -12,7 +12,7 @@ M.setup = function()
   null_ls.setup {
     sources = {
       diagnostic.eslint,
-      format.prettier,
+      format.prettierd,
       format.stylua,
     },
   }

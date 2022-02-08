@@ -97,5 +97,7 @@ map('x', 'S', '<Plug>VgSurround', { noremap = false })
 map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
 map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
 -- map('n', '', 'Gitsigns blame_line')
+-- Zen mode
+map('n', '<space>z', '<cmd>ZenMode<CR>')
 
 vim.cmd [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
