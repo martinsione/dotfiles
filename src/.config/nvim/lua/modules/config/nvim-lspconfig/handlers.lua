@@ -39,21 +39,22 @@ M.setup = function()
   })
 end
 
-local function lua_nmap(key, cmd, opts)
-  require('core.utils').keymap.buf_map('n', key, '<cmd>lua ' .. cmd .. '<CR>', opts)
-end
-
 function M.on_attach(client, bufnr)
-  lua_nmap('K', 'vim.lsp.buf.hover()')
-  lua_nmap('gd', 'vim.lsp.buf.definition()')
-  lua_nmap('gD', 'vim.lsp.buf.declaration()')
-  lua_nmap('gi', 'vim.lsp.buf.implementation()')
-  lua_nmap('gr', 'vim.lsp.buf.references()')
-  lua_nmap('<space>ca', 'vim.lsp.buf.code_action()')
-  lua_nmap('<space>gh', 'vim.lsp.buf.signature_help()')
-  lua_nmap('<space>rn', 'vim.lsp.buf.rename()')
-  lua_nmap('[d', 'vim.lsp.diagnostic.goto_prev()')
-  lua_nmap(']d', 'vim.lsp.diagnostic.goto_next()')
+  local function map(key, cmd)
+    local opts = { noremap = true, silent = true }
+    vim.api.nvim_buf_set_keymap(0, 'n', key, '<cmd>lua' .. cmd .. '<CR>', opts)
+  end
+
+  map('K', 'vim.lsp.buf.hover()')
+  map('gd', 'vim.lsp.buf.definition()')
+  map('gD', 'vim.lsp.buf.declaration()')
+  map('gi', 'vim.lsp.buf.implementation()')
+  map('gr', 'vim.lsp.buf.references()')
+  map('<space>ca', 'vim.lsp.buf.code_action()')
+  map('<space>gh', 'vim.lsp.buf.signature_help()')
+  map('<space>rn', 'vim.lsp.buf.rename()')
+  map('[d', 'vim.lsp.diagnostic.goto_prev()')
+  map(']d', 'vim.lsp.diagnostic.goto_next()')
 
   local lsp_signature = safe_require 'lsp_signature'
   if lsp_signature then

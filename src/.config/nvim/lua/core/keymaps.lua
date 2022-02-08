@@ -1,4 +1,7 @@
-local map = require('core.utils').keymap.map
+local map = function(mode, key, cmd, opts)
+  vim.api.nvim_set_keymap(mode, key, cmd, opts or { noremap = true, silent = true })
+end
+
 vim.g.mapleader = ' '
 map('n', '<leader>', '<Nop>')
 map('x', '<leader>', '<Nop>')
@@ -66,11 +69,13 @@ map('c', '<C-f>', '<C-R>=expand("%:p")<CR>', { silent = false })
 -- Git
 map('n', '<space>gs', '<cmd>Neogit<CR>')
 -- Telescope
+local is_git_dir = os.execute 'git rev-parse --is-inside-work-tree >> /dev/null 2>&1'
 if is_git_dir == 0 then
   map('n', '<C-p>', '<cmd>lua require"telescope.builtin".git_files()<CR>')
 else
   map('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')
 end
+
 map('n', '<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
 map('n', '<space>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>')
 map('n', '<space>fo', '<cmd>lua require"telescope.builtin".oldfiles()<CR>')
@@ -88,5 +93,9 @@ map('n', 'ss', '<Plug>Yssurround', { noremap = false })
 map('n', 'SS', '<Plug>YSsurround', { noremap = false })
 map('x', 's', '<Plug>VSurround', { noremap = false })
 map('x', 'S', '<Plug>VgSurround', { noremap = false })
+-- Git signs
+map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
+map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
+-- map('n', '', 'Gitsigns blame_line')
 
 vim.cmd [[command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor]]
