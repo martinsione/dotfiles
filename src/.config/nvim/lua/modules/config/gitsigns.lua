@@ -1,5 +1,4 @@
 return function()
-  local map = require('core.utils').keymap.map
   local gitsigns = safe_require 'gitsigns'
   if not gitsigns then
     return
@@ -14,8 +13,4 @@ return function()
       changedelete = { hl = 'GitSignsChange', text = '▎' },
     },
   }
-
-  map('n', ']g', '&diff ? "]g" : "<cmd>Gitsigns next_hunk<CR>"', { expr = true })
-  map('n', '[g', '&diff ? "[g" : "<cmd>Gitsigns prev_hunk<CR>"', { expr = true })
-  -- map('n', '', 'Gitsigns blame_line')
 end

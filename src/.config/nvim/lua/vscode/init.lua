@@ -1,5 +1,7 @@
 local o = vim.opt
-local map = require('core.utils').keymap.map
+local map = function(mode, key, cmd, opts)
+  vim.api.nvim_set_keymap(mode, key, cmd, opts or { noremap = true, silent = true })
+end
 
 vim.opt.rtp:remove(vim.fn.stdpath 'data' .. '/site')
 vim.opt.rtp:remove(vim.fn.stdpath 'data' .. '/site/after')
