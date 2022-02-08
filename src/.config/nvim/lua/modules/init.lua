@@ -6,7 +6,10 @@ local plugins = {
   { -- Colorschemes
     'folke/tokyonight.nvim',
     'olimorris/onedarkpro.nvim',
-    { 'ellisonleao/gruvbox.nvim', requires = { 'rktjmp/lush.nvim' } },
+    'ellisonleao/gruvbox.nvim',
+    'luisiacc/gruvbox-baby',
+    'EdenEast/nightfox.nvim',
+    'bluz71/vim-nightfly-guicolors',
     config = conf 'colors',
   },
   { -- Treesiter
@@ -41,9 +44,6 @@ local plugins = {
         window = {
           width = 100, -- width of the Zen window
           height = 1, -- height of the Zen window
-        },
-        plugins = {
-          gitsigns = { enabled = false }, -- disables git signs
         },
       }
     end,
