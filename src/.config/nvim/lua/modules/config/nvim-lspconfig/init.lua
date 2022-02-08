@@ -13,25 +13,13 @@ return function()
     -- npm i -g ls_emmet (In order to override the default emmet-ls)
     emmet_ls = {
       cmd = { 'ls_emmet', '--stdio' },
-      filetypes = {
-        'html',
-        'css',
-        'scss',
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact',
-        'haml',
-        'xml',
-        'xsl',
-        'pug',
-        'slim',
-        'sass',
-        'stylus',
-        'less',
-        'sss',
-        'hbs',
-        'handlebars',
+      filetypes = { 'html', 'css', 'scss', 'sass', 'javascript', 'javascriptreact', 'typescriptreact' },
+    },
+    jsonls = {
+      settings = {
+        json = {
+          schemas = require('schemastore').json.schemas(),
+        },
       },
     },
     sumneko_lua = {
