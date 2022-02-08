@@ -42,7 +42,7 @@ end
 function M.on_attach(client, bufnr)
   local function map(key, cmd)
     local opts = { noremap = true, silent = true }
-    vim.api.nvim_buf_set_keymap(0, 'n', key, '<cmd>lua' .. cmd .. '<CR>', opts)
+    vim.api.nvim_buf_set_keymap(0, 'n', key, '<cmd>lua ' .. cmd .. '<CR>', opts)
   end
 
   map('K', 'vim.lsp.buf.hover()')
@@ -101,6 +101,6 @@ function M.toggle_format_on_save()
   end
 end
 
-vim.cmd [[command! LspToggleAutoFormat execute 'lua require("modules.config.nvim-lspconfig.handlers").toggle_format_on_save()']]
+vim.cmd [[command! LspToggleAutoFormat execute 'lua require("modules.config.lsp.handlers").toggle_format_on_save()']]
 
 return M
