@@ -40,7 +40,7 @@ local plugins = {
   },
   { -- Lsp
     'neovim/nvim-lspconfig',
-    config = conf 'nvim-lspconfig',
+    config = conf 'lsp',
     requires = {
       'williamboman/nvim-lsp-installer',
       'jose-elias-alvarez/null-ls.nvim', -- Formatter
