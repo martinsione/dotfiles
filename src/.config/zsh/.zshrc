@@ -41,4 +41,7 @@ eval "$(starship init zsh)"
 
 ## Call custom functions
 cursor-shape
-# nvm use 14.17.6 >/dev/null 2>&1
+
+# fnm
+export PATH=/home/martin/.fnm:$PATH
+eval "`fnm env`"
