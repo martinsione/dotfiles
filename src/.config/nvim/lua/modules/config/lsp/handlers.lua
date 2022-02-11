@@ -61,6 +61,11 @@ function M.on_attach(client, bufnr)
     lsp_signature.on_attach()
   end
 
+  local illuminate = safe_require 'illuminate'
+  if illuminate then
+    illuminate.on_attach(client)
+  end
+
   if client.name ~= 'null-ls' then
     client.resolved_capabilities.document_formatting = false
   end
