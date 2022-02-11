@@ -2,7 +2,7 @@ if vim.fn.exists 'g:vscode' == 1 then
   require 'vscode'
 else
   require 'core.utils'
-  require('modules').setup()
+  require 'modules'
   require 'core.options'
   require 'core.keymaps'
   require 'core.autocmd'

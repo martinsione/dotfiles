@@ -124,26 +124,17 @@ local plugins = {
   },
 }
 
-local M = {}
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+  vim.cmd 'packadd packer.nvim'
+end
 
-function M:setup()
-  local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-  local compile_path = vim.fn.stdpath 'data' .. '/site/plugin/packer_compiled.lua'
-  local package_root = vim.fn.stdpath 'data' .. '/site/pack'
-
-  if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
-    vim.cmd 'packadd packer.nvim'
-  end
-
-  local ok, packer = pcall(require, 'packer')
-  if not ok then
-    return
-  end
-
+local packer = safe_require 'packer'
+if packer then
   packer.init {
-    compile_path = compile_path,
-    package_root = package_root,
+    compile_path = vim.fn.stdpath 'data' .. '/site/plugin/packer_compiled.lua',
+    package_root = vim.fn.stdpath 'data' .. '/site/pack',
     display = {
       open_fn = function()
         return require('packer.util').float { border = 'rounded' }
@@ -158,5 +149,3 @@ function M:setup()
     end
   end)
 end
-
-return M
