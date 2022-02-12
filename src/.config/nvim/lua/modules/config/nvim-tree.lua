@@ -41,10 +41,5 @@ return function()
         },
       },
     },
-    -- view = {
-    --   width = 35,
-    --   side = 'right',
-    --   hide_root_folder = true,
-    -- },
   }
 end
