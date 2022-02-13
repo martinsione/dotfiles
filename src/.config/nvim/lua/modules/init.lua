@@ -77,7 +77,7 @@ local plugins = {
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-path',
       'onsails/lspkind-nvim', -- Enables icons on completions
-      {
+      { -- Snippets
         'L3MON4D3/LuaSnip',
         requires = {
           'saadparwaiz1/cmp_luasnip',
