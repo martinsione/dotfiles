@@ -53,8 +53,8 @@ function M.on_attach(client, bufnr)
   map('<space>ca', 'vim.lsp.buf.code_action()')
   map('<space>gh', 'vim.lsp.buf.signature_help()')
   map('<space>rn', 'vim.lsp.buf.rename()')
-  map('[d', 'vim.lsp.diagnostic.goto_prev()')
-  map(']d', 'vim.lsp.diagnostic.goto_next()')
+  map('[d', 'vim.diagnostic.goto_prev()')
+  map(']d', 'vim.diagnostic.goto_next()')
 
   local lsp_signature = safe_require 'lsp_signature'
   if lsp_signature then
@@ -106,6 +106,18 @@ function M.toggle_format_on_save()
   end
 end
 
+local diagnostic_show = true
+function M.toggle_virtual_text()
+  if diagnostic_show then
+    vim.diagnostic.hide()
+    diagnostic_show = false
+  else
+    vim.diagnostic.show()
+    diagnostic_show = true
+  end
+end
+
 vim.cmd [[command! LspToggleAutoFormat execute 'lua require("modules.config.lsp.handlers").toggle_format_on_save()']]
+vim.cmd [[command! LspToggleVirtualText execute 'lua require("modules.config.lsp.handlers").toggle_virtual_text()']]
 
 return M
