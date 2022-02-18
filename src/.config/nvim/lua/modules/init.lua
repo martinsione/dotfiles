@@ -51,7 +51,7 @@ local plugins = {
   { -- Copilot
     'github/copilot.vim',
     config = function()
-      vim.api.nvim_set_keymap('i', '<C-l>', 'copilot#Accept("<CR>")', { expr = true, script = true, silent = true })
+      vim.cmd [[imap <silent><script><expr> <C-L> copilot#Accept("\<CR>")]]
       vim.g.copilot_no_tab_map = true
       vim.g.copilot_filetypes = {
         ['*'] = true,
