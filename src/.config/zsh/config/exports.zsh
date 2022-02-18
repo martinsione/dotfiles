@@ -34,6 +34,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 # export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"   # May break a login manager
 
 ## Path
+PATH="$PATH:/usr/local/go/bin"
 PATH="$PATH:$CARGO_HOME/bin"
 PATH="$PATH:$GOPATH/bin"
 PATH="$PATH:$XDG_BIN_HOME"
