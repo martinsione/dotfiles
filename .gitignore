@@ -5,6 +5,7 @@
 *.zcompdump*
 *__pycache__
 *packer_compiled*
+*.env
 node_modules
 src/.config/zsh/plugins
 src/.local/bin/npm/package-lock.json

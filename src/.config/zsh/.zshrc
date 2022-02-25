@@ -24,6 +24,7 @@ export ZSH_CACHE="$HOME/.cache/zsh"
 [ -f $ZSH_CONFIG/options.zsh ] && source $ZSH_CONFIG/options.zsh
 [ -f $ZSH_CONFIG/functions.zsh ] && source $ZSH_CONFIG/functions.zsh
 [ -f $ZSH_CONFIG/alias.zsh ] && source $ZSH_CONFIG/alias.zsh
+[ -f $ZSH_CONFIG/.env ] && source $ZSH_CONFIG/.env
 
 ## Load compinit
 autoload -U compinit
