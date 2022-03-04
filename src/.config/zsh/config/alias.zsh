@@ -26,6 +26,8 @@ alias df='df -h'
 alias ex="extract"
 alias free='free -m'   
 alias ka="killall"
+function kill_port() { kill -9 $(lsof -t -i:"$1"); }
+alias kp=kill_port
 # Use $XINITRC variable if file exists.
 [ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
