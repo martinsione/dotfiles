@@ -2,6 +2,7 @@
   "dependencies": {
     "@fsouza/prettierd": "^0.18.1",
     "ls_emmet": "^1.0.8",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "yarn": "^1.22.18"
   }
 }

@@ -55,7 +55,7 @@ function M.on_attach(client, bufnr)
   map('<space>rn', 'vim.lsp.buf.rename()')
   map('[d', 'vim.diagnostic.goto_prev()')
   map(']d', 'vim.diagnostic.goto_next()')
-  map('<space>ld', 'vim.diagnostic.open_float()')
+  map('<space>df', 'vim.diagnostic.open_float()')
 
   local lsp_signature = safe_require 'lsp_signature'
   if lsp_signature then
