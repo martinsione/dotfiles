@@ -5,7 +5,6 @@ return function()
   end
   local map = require('nvim-tree.config').nvim_tree_callback
 
-  vim.g.nvim_tree_indent_markers = 0
   nvim_tree.setup {
     ignore_ft_on_setup = { 'dashboard' }, -- will not open on setup if the filetype is in this list
     update_focused_file = {
@@ -18,7 +17,7 @@ return function()
       custom = { '.git' }, -- Files to hide
     },
     view = {
-      width = 30,
+      width = 35,
       height = 30,
       hide_root_folder = false,
       side = 'right',
