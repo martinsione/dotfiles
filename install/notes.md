@@ -8,7 +8,7 @@ sudo systemctl restart ssh
 xclip -sel clip < ~/.ssh/id_rsa.pub
 
 # WSL
-clip.exe  < ~/.ssh/id_rsa
+clip.exe  < ~/.ssh/id_rsa.pub
 ```
 
 ## Create a user
