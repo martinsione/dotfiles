@@ -36,8 +36,11 @@ set -e
 
 install_dependencies() {
   local progs="git curl zsh"
-  [ -x "$(command -v pacman)" ] && sudo pacman -Syy && sudo pacman -S --noconfirm $progs && return
-  [ -x "$(command -v apt-get)" ] && sudo apt update && sudo apt install -y $progs && return
+  if [ -x "$(command -v pacman)" ]; then 
+    sudo pacman -Syy && sudo pacman -S --noconfirm $progs
+  elif [ -x "$(command -v apt-get)" ]; then 
+    sudo apt update && sudo apt install -y $progs
+  fi
 }
 
 clone_repo() {
@@ -54,23 +57,27 @@ clone_repo() {
   fi
 }
 
+create_dirs() {
+  for name in "${dirs[@]}"; do mkdir -p "${name}"; done
+}
+
 symlink_files() {
   for name in "${symlinks[@]}"; do
     if [ ! -e "$name" ]; then
-      ln -srfv "${dotfiles_dir}/src/${name}" "$HOME/${name}"
+      ln -sfv "${dotfiles_dir}/src/${name}" "$HOME/${name}"
     else
       echo "${name} already exists."
     fi
   done
 }
 
-create_dirs() {
-  for name in "${dirs[@]}"; do mkdir -p "${name}"; done
-}
-
 change_shell() {
-  chsh -s $(which zsh)
-  sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+  if [ -x "$(command -v brew)" ]; then
+    brew install starship
+  else
+    chsh -s $(which zsh)
+    sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+  fi
 }
 
 
