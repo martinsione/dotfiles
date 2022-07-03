@@ -7,6 +7,9 @@ sudo systemctl restart ssh
 # Linux
 xclip -sel clip < ~/.ssh/id_rsa.pub
 
+# MacOS
+cat ~/.ssh/id_rsa.pub | pbcopy
+
 # WSL
 clip.exe  < ~/.ssh/id_rsa.pub
 ```
