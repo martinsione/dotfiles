@@ -16,8 +16,16 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path $ZSH_CACHE
 
 # Same colors as ls
-eval "$(dircolors)"
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+# export LSCOLORS="Gxfxcxdxbxegedabagacad"
+# [ -x "$(command -v dircolors)" ] && eval "$(dircolors)"
+# zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+# if whence dircolors >/dev/null; then
+#   eval "$(dircolors)"
+#   zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+# else
+#   export CLICOLOR=1
+#   zstyle ':completion:*:default' list-colors ''
+# fi
 # Categorize completion suggestions with headings:
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format %F{yellow}%B%{$__MARTIN[ITALIC_ON]%}--- %d ---%{$__MARTIN[ITALIC_OFF]%}%b%f
