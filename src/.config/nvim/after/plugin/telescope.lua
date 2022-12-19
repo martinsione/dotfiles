@@ -19,13 +19,13 @@ telescope.setup {
     },
 }
 
-local is_git_dir = os.execute 'git rev-parse --is-inside-work-tree >> /dev/null 2>&1'
-if is_git_dir == 0 then
-    vim.keymap.set('n', '<C-p>', '<cmd>lua require"telescope.builtin".git_files()<CR>')
-else
-    vim.keymap.set('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')
-end
-
+-- local is_git_dir = os.execute 'git rev-parse --is-inside-work-tree >> /dev/null 2>&1'
+-- if is_git_dir == 0 then
+--     vim.keymap.set('n', '<C-p>', '<cmd>lua require"telescope.builtin".git_files()<CR>')
+-- else
+--     vim.keymap.set('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')
+-- end
+vim.keymap.set('n', '<C-p>', '<cmd>lua require"telescope.builtin".find_files()<CR>')
 vim.keymap.set('n', '<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
 vim.keymap.set('n', '<space>fh', '<cmd>lua require"telescope.builtin".help_tags()<CR>')
 vim.keymap.set('n', '<space>fo', '<cmd>lua require"telescope.builtin".oldfiles()<CR>')
