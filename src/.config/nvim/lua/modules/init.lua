@@ -6,23 +6,15 @@ local plugins = {
   { -- Colorschemes
     'folke/tokyonight.nvim',
     'olimorris/onedarkpro.nvim',
-    'ellisonleao/gruvbox.nvim',
-    'luisiacc/gruvbox-baby',
-    'EdenEast/nightfox.nvim',
-    'bluz71/vim-nightfly-guicolors',
     config = conf 'colors',
   },
   { -- Treesiter
     'nvim-treesitter/nvim-treesitter',
     config = conf 'nvim-treesitter',
     requires = {
-      'p00f/nvim-ts-rainbow',
       'windwp/nvim-ts-autotag',
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
-  },
-  { -- Markdown
-    'preservim/vim-markdown',
   },
   { -- Finder
     'nvim-telescope/telescope.nvim',
@@ -37,29 +29,18 @@ local plugins = {
     'kyazdani42/nvim-web-devicons',
     config = conf 'nvim-web-devicons',
   },
-  { -- Zenmode
-    'folke/zen-mode.nvim',
-    config = function()
-      require('zen-mode').setup {
-        window = {
-          width = 100, -- width of the Zen window
-          height = 1, -- height of the Zen window
-        },
-      }
-    end,
-  },
-  { -- Copilot
-    'github/copilot.vim',
-    config = function()
-      vim.cmd [[imap <silent><script><expr> <C-L> copilot#Accept("\<CR>")]]
-      vim.g.copilot_no_tab_map = true
-      vim.g.copilot_filetypes = {
-        ['*'] = true,
-        gitcommit = false,
-        NeogitCommitMessage = false,
-      }
-    end,
-  },
+  -- { -- Copilot
+  --   'github/copilot.vim',
+  --   config = function()
+  --     vim.cmd [[imap <silent><script><expr> <C-L> copilot#Accept("\<CR>")]]
+  --     vim.g.copilot_no_tab_map = true
+  --     vim.g.copilot_filetypes = {
+  --       ['*'] = true,
+  --       gitcommit = false,
+  --       NeogitCommitMessage = false,
+  --     }
+  --   end,
+  -- },
   { -- Lsp
     'neovim/nvim-lspconfig',
     config = conf 'lsp',
@@ -92,16 +73,9 @@ local plugins = {
     },
   },
   { -- Git related
-    {
-      'lewis6991/gitsigns.nvim',
-      config = conf 'gitsigns',
-      requires = { 'nvim-lua/plenary.nvim' },
-    },
-    { -- Like magit
-      'TimUntersberger/neogit',
-      config = conf 'neogit',
-      requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' },
-    },
+    'lewis6991/gitsigns.nvim',
+    config = conf 'gitsigns',
+    requires = { 'nvim-lua/plenary.nvim' },
   },
   { -- Comments
     { 'tpope/vim-commentary' },
