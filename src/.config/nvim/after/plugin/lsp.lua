@@ -6,11 +6,16 @@ end
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'tsserver',
-    'eslint',
+    'css-lsp',
+    'emmet-ls',
+    'json-lsp',
     'sumneko_lua',
+    'tailwindcss-language-server',
+    'tsserver',
+    -- formatting
+    'eslint_d',
+    'prettierd',
 })
--- local servers = { 'cssls', 'emmet_ls', 'eslint', 'jsonls', 'sumneko_lua', 'tailwindcss', 'tsserver' }
 
 -- Fix Undefined global 'vim'
 lsp.configure('sumneko_lua', {
