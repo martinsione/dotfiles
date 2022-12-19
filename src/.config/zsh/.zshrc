@@ -43,6 +43,8 @@ eval "$(starship init zsh)"
 ## Call custom functions
 cursor-shape
 
+export CI_JOB_TOKEN=glpat-6Uteq_zo4Tv4nRkseXRJ
+
 # fnm
 export PATH=/home/martin/.fnm:$PATH
 eval "`fnm env`"

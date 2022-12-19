@@ -18,10 +18,8 @@ return function()
     },
     view = {
       width = 35,
-      height = 30,
       hide_root_folder = false,
       side = 'right',
-      auto_resize = false,
       signcolumn = 'no',
       mappings = {
         custom_only = true, -- `custom_only = false` will merge list of mappings with defaults
