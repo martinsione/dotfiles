@@ -4,14 +4,61 @@ vim.cmd [[colorscheme onedark]]
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-autocmd('TextYankPost', {
-    group = augroup('HighlightYank', {}),
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 150 })
-    end,
+autocmd('FileType', {
+  pattern = {
+    'vim', 'html', 'css', 'json', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'lua', 'sh', 'zsh'
+  },
+  callback = function()
+    vim.opt.shiftwidth = 2
+    vim.opt.softtabstop = 2
+    vim.opt.tabstop = 2
+  end,
 })
 
+autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.conceallevel = 2
+  end,
+})
+
+autocmd({ "BufNew" , "BufNewFile", "BufRead" }, {
+  pattern = '*.json',
+  callback = function()
+    vim.bo.filetype = 'jsonc'
+  end,
+})
+
+autocmd("TermOpen", {
+  pattern = "term://*",
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.cursorline = false
+    vim.opt_local.signcolumn = "no"
+  end,
+})
+
+autocmd('BufWinEnter', {
+  pattern = "*",
+  callback = function()
+    vim.opt.formatoptions = vim.opt.formatoptions + {
+      c = false,
+      o = false,
+      r = true,
+    }
+  end,
+})
+
+autocmd('TextYankPost', {
+  group = augroup('HighlightYank', {}),
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 150 })
+  end,
+})
 
 -- Opts
 local o = vim.opt
@@ -24,6 +71,7 @@ o.showmode = false
 o.signcolumn = 'yes'
 o.termguicolors = true
 o.updatetime = 100
+o.wrap = false
 
 o.backup = false
 o.writebackup = false
@@ -50,21 +98,21 @@ o.tabstop = 4
 
 -- Shortmess
 o.shortmess = o.shortmess
-    + {
-        A = true, -- don't give the "ATTENTION" message when an existing swap file is found.
-        I = true, -- don't give the intro message when starting Vim |:intro|.
-        W = true, -- don't give "written" or "[w]" when writing a file
-        c = true, -- don't give |ins-completion-menu| messages
-        m = true, -- use "[+]" instead of "[Modified]"
-    }
++ {
+    A = true, -- don't give the "ATTENTION" message when an existing swap file is found.
+    I = true, -- don't give the intro message when starting Vim |:intro|.
+    W = true, -- don't give "written" or "[w]" when writing a file
+    c = true, -- don't give |ins-completion-menu| messages
+    m = true, -- use "[+]" instead of "[Modified]"
+}
 
 -- Format options
 o.formatoptions = o.formatoptions
-    + {
-        c = false,
-        o = false, -- O and o, don't continue comments
-        r = true, -- Pressing Enter will continue comments
-    }
++ {
+    c = false,
+    o = false, -- O and o, don't continue comments
+    r = true, -- Pressing Enter will continue comments
+}
 
 -- Remove builtin plugins
 vim.g.loaded_netrw = 1
@@ -117,6 +165,8 @@ packer.startup(function(use)
 
     use 'tpope/vim-surround'
 
+    use 'windwp/nvim-autopairs'
+
     use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
 
     use { 'nvim-telescope/telescope.nvim', branch = '0.1.0', requires = { { 'nvim-lua/plenary.nvim' } } }
@@ -129,29 +179,33 @@ packer.startup(function(use)
 
     use { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
+        requires = {
+            'windwp/nvim-ts-autotag',
+        },
         run = function()
             pcall(require('nvim-treesitter.install').update { with_sync = true })
         end,
+    }
 
+    use { 'github/copilot.vim' }
 
-        use {
-            'VonHeikemen/lsp-zero.nvim',
-            requires = {
-                -- LSP Support
-                { 'neovim/nvim-lspconfig' },
-                { 'williamboman/mason-lspconfig.nvim' },
-                { 'williamboman/mason.nvim' },
-                -- Autocompletion
-                { 'hrsh7th/cmp-buffer' },
-                { 'hrsh7th/cmp-nvim-lsp' },
-                { 'hrsh7th/cmp-nvim-lua' },
-                { 'hrsh7th/cmp-path' },
-                { 'hrsh7th/nvim-cmp' },
-                { 'saadparwaiz1/cmp_luasnip' },
-                -- Snippets
-                { 'L3MON4D3/LuaSnip' },
-                { 'rafamadriz/friendly-snippets' },
-            }
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            { 'neovim/nvim-lspconfig' },
+            { 'williamboman/mason-lspconfig.nvim' },
+            { 'williamboman/mason.nvim' },
+            -- Autocompletion
+            -- { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
+            { 'hrsh7th/cmp-path' },
+            { 'hrsh7th/nvim-cmp' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            -- Snippets
+            { 'L3MON4D3/LuaSnip' },
+            { 'rafamadriz/friendly-snippets' },
         }
     }
 end)

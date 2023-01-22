@@ -5,16 +5,21 @@ end
 
 lsp.preset("recommended")
 
+
+-- lua print(vim.inspect(require("mason-registry").get_all_package_names()))
 lsp.ensure_installed({
-    'css-lsp',
-    'emmet-ls',
-    'json-lsp',
+    'cssls',
+    'emmet_ls',
+    'eslint',
+    'jsonls',
     'sumneko_lua',
-    'tailwindcss-language-server',
+    'tailwindcss',
     'tsserver',
-    -- formatting
-    'eslint_d',
-    'prettierd',
+    -- -- linter
+    -- 'eslint_d',
+    -- -- formatter
+    -- 'stylua',
+    -- 'prettierd',
 })
 
 -- Fix Undefined global 'vim'
@@ -30,7 +35,7 @@ lsp.configure('sumneko_lua', {
 
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -44,7 +49,12 @@ cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+    mapping = cmp_mappings,
+    sources = {
+        { name = 'path' },
+        { name = 'nvim_lsp', keyword_length = 2 },
+        { name = 'luasnip', keyword_length = 2 },
+    }
 })
 
 
@@ -59,22 +69,23 @@ lsp.set_preferences({
 })
 
 lsp.on_attach(function(client, bufnr)
-    local opts = {buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
 
     if client.name == "eslint" then
         vim.cmd.LspStop('eslint')
         return
     end
 
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
     vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
     vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
