@@ -4,11 +4,19 @@ if not ok then
 end
 
 nvim_tree.setup({
+    renderer = {
+        highlight_git = true,
+        icons = {
+            show = {
+                git = false,
+            },
+        },
+    },
     view = {
-        width = 35,
-        hide_root_folder = false,
+        width = 50,
+        hide_root_folder = true,
         side = 'right',
-        signcolumn = 'no',
+        signcolumn = 'yes',
         mappings = {
             custom_only = true, -- `custom_only = false` will merge list of mappings with defaults
             list = {
