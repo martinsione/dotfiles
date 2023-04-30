@@ -12,11 +12,7 @@ dirs=(
   ~/.cache/zsh
   ~/.config
   ~/.local
-  ~/Documents
-  ~/Downloads
-  ~/Pictures
-  ~/Repos/Personal
-  ~/Repos/Work
+  ~/Repos
 )
 
 symlinks=(
@@ -27,7 +23,7 @@ symlinks=(
   .config/ranger
   .config/tmux
   .config/zsh
-  .local/bin
+  # .local/bin
   .zshrc
 )
 
@@ -36,7 +32,9 @@ set -e
 
 install_dependencies() {
   local progs="git curl zsh"
-  if [ -x "$(command -v pacman)" ]; then 
+  if [ "$(uname)" = "Darwin" ]; then
+    echo "Skipping installation of dependencies on macOS"
+  elif [ -x "$(command -v pacman)" ]; then 
     sudo pacman -Syy && sudo pacman -S --noconfirm $progs
   elif [ -x "$(command -v apt-get)" ]; then 
     sudo apt update && sudo apt install -y $progs
@@ -72,10 +70,17 @@ symlink_files() {
 }
 
 change_shell() {
-  if [ -x "$(command -v brew)" ]; then
-    brew install starship
+  if [ "$(echo $SHELL)" = "$(which zsh)" ]; then
+    echo "zsh is already the default shell"
   else
     chsh -s $(which zsh)
+  fi
+
+  if [ -x "$(command -v starship)" ]; then
+    echo "starship is already installed"
+  elif [ -x "$(command -v brew)" ]; then
+    brew install starship
+  else
     sh -c "$(curl -fsSL https://starship.rs/install.sh)"
   fi
 }
