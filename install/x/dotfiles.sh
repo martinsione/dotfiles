@@ -34,6 +34,15 @@ install_dependencies() {
   local progs="git curl zsh"
   if [ "$(uname)" = "Darwin" ]; then
     echo "Skipping installation of dependencies on macOS"
+
+    # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    #
+    # brew install exa fnm neovim pnpm ripgrep starship tmux 
+    # brew install --cask brave-browser docker iterm2 raycast scroll-reverser slack spotify tableplus visual-studio-code zoom
+    #
+    # brew tap homebrew/cask-fonts
+    # brew install —cask font-jetbrains-mono-nerd-font
+
   elif [ -x "$(command -v pacman)" ]; then 
     sudo pacman -Syy && sudo pacman -S --noconfirm $progs
   elif [ -x "$(command -v apt-get)" ]; then 
