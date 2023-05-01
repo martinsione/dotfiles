@@ -18,6 +18,7 @@ alias rm="rm -iv"
 alias rmln="find . -xtype l -delete"
 ## Listing
 alias l="exa -l --group-directories-first"
+alias ls="exa"
 alias ll="exa -la --group-directories-first"
 ## System
 alias bld="make && sudo make install"
