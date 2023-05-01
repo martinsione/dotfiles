@@ -12,7 +12,11 @@ return {
   opts = {
     window = {
       position = "right",
-      width = 35,
+      width = 40,
+      mappings = {
+        ["h"] = "close_node",
+        ["l"] = "open",
+      },
     },
   },
   keys = {
