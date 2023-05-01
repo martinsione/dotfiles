@@ -1,7 +1,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    build = ":Copilot auth",
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()

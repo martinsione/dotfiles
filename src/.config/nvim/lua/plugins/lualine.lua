@@ -1,10 +1,8 @@
 return {
   "nvim-lualine/lualine.nvim",
-  enabled = true,
-  lazy = false,
-  event = { "BufReadPost", "BufNewFile" },
-  config = function()
-    require("lualine").setup({
+  event = "VeryLazy",
+  opts = function()
+    return {
       options = {
         theme = "auto", --"gruvbox-material",
         icons_enabled = true,
@@ -72,6 +70,6 @@ return {
       },
       tabline = {},
       extensions = { "neo-tree", "lazy" },
-    })
+    }
   end,
 }
