@@ -1,3 +1,5 @@
+local Util = require("config.util")
+
 return {
   "nvim-telescope/telescope.nvim",
   branch = "0.1.x",
@@ -20,29 +22,17 @@ return {
     },
   },
   keys = {
-    --vim.keymap.set('n', '<space>fb', '<cmd>Telescope buffers theme=get_dropdown<CR>')
-    {
-      "<C-p>",
-      "<cmd>Telescope find_files<CR>",
-      desc = "Find Files (root dir)",
-    },
+    { "<C-p>",      Util.telescope("files"),                            desc = "Find Files (root dir)" },
+    { "<leader>ff", "<cmd>Telescope find_files<CR>",                    desc = "Buffers" },
     { "<leader>fb", "<cmd>Telescope buffers show_all_buffers=true<CR>", desc = "Buffers" },
-    {
-      "<leader>fh",
-      "<cmd>Telescope help_tags<CR>",
-      desc = "Help Pages",
-    },
-    { "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Recent" },
-    { "<leader>fw", "<cmd>Telescope live_grep<CR>", desc = "Grep" },
+    { "<leader>fh", "<cmd>Telescope help_tags<CR>",                     desc = "Help Pages" },
+    { "<leader>fo", "<cmd>Telescope oldfiles<CR>",                      desc = "Recent" },
+    { "<leader>fw", "<cmd>Telescope live_grep<CR>",                     desc = "Grep" },
+    { "<leader>:",  "<cmd>Telescope command_history<CR>",               desc = "Command History" },
     {
       "<leader>fd",
       "<cmd>lua require'telescope.builtin'.git_files({ cwd = '$HOME/.dotfiles' })<CR>",
       desc = "Search dotfiles",
-    },
-    {
-      "<leader>:",
-      "<cmd>Telescope command_history<CR>",
-      desc = "Command History",
     },
   },
 }
