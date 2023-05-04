@@ -1,31 +1,14 @@
 return {
+  { "rose-pine/neovim", name = "rose-pine" },
   {
     "ellisonleao/gruvbox.nvim",
     opts = {
-      undercurl = true,
-      underline = true,
-      bold = true,
-      italic = {
-        strings = true,
-        comments = true,
-        operators = false,
-        folds = true,
-      },
-      strikethrough = true,
-      invert_selection = false,
-      invert_signs = false,
-      invert_tabline = false,
-      invert_intend_guides = false,
-      inverse = true,    -- invert background for search, diffs, statuslines and errors
       contrast = "hard", -- can be "hard", "soft" or empty string
-      palette_overrides = {},
-      overrides = {},
-      dim_inactive = false,
       transparent_mode = false,
     },
     config = function(_, opts)
       require("gruvbox").setup(opts)
-      vim.api.nvim_command("colorscheme gruvbox")
+      -- vim.api.nvim_command("colorscheme gruvbox")
     end,
   },
   {
@@ -94,22 +77,7 @@ return {
           crust = "#E7DEB7",
         },
       },
-      styles = {
-        comments = { "italic" },
-        conditionals = {},
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-      },
       transparent_background = false,
-      show_end_of_buffer = false,
       custom_highlights = function(colors)
         return {
           NormalFloat = { bg = colors.crust },
@@ -140,7 +108,7 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      -- vim.api.nvim_command("colorscheme catppuccin")
+      vim.api.nvim_command("colorscheme catppuccin")
     end,
   },
 }
