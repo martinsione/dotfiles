@@ -9,6 +9,7 @@ o.signcolumn = "yes"
 o.termguicolors = true
 o.updatetime = 100
 o.wrap = false
+o.pumheight = 8
 
 o.backup = false
 o.writebackup = false
