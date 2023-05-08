@@ -44,7 +44,17 @@ return {
         lua_ls = {
           settings = { Lua = { diagnostics = { globals = { "vim" } } } },
         },
-        tailwindcss = {},
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              experimental = {
+                classRegex = {
+                  { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                },
+              },
+            },
+          },
+        },
       },
     },
     config = function(_, opts)
@@ -60,8 +70,9 @@ return {
       )
 
       local lsp_attach = function(client, bufnr)
-        -- Keymaps
         local key_opts = { buffer = bufnr, remap = false }
+
+        -- Keymaps
         vim.keymap.set("n", "K", vim.lsp.buf.hover, key_opts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, key_opts)
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, key_opts)
@@ -204,6 +215,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "mason.nvim" },
     config = function()
+      local Util = require("config.util")
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -222,7 +234,9 @@ return {
               group = augroup,
               buffer = bufnr,
               callback = function()
-                vim.lsp.buf.format({ bufnr = bufnr })
+                if Util.format_on_save then
+                  vim.lsp.buf.format({ bufnr = bufnr })
+                end
               end,
             })
           end

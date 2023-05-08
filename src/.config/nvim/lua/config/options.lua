@@ -57,3 +57,11 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.loaded_zip = 1
+
+vim.filetype.add({
+  extension = {
+    mdx = "markdown.mdx",
+  },
+  filename = {},
+  pattern = {},
+})

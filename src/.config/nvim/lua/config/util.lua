@@ -213,4 +213,22 @@ function M.lsp_disable(server, cond)
   end)
 end
 
+M.format_on_save = true
+function M.toggle_format_on_save()
+  if vim.b.autoformat == false then
+    vim.b.autoformat = nil
+    M.format_on_save = true
+  else
+    M.format_on_save = not M.format_on_save
+  end
+
+  if M.format_on_save then
+    Util.info("Enabled format on save", { title = "Format" })
+  else
+    Util.warn("Disabled format on save", { title = "Format" })
+  end
+end
+
+vim.cmd([[command! LspToggleAutoFormat execute 'lua require("config.util").toggle_format_on_save()']])
+
 return M

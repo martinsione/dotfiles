@@ -9,6 +9,7 @@ autocmd("FileType", {
     "json",
     "javascript",
     "javascriptreact",
+    "markdown.mdx",
     "typescript",
     "typescriptreact",
     "lua",
