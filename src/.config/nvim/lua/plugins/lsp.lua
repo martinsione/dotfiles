@@ -94,7 +94,7 @@ return {
         ensure_installed = {
           "cssls",
           "emmet_ls",
-          "eslint",
+          -- "eslint",
           "jsonls",
           "lua_ls",
           "tailwindcss",
@@ -224,8 +224,8 @@ return {
         sources = {
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettierd,
-          null_ls.builtins.diagnostics.eslint_d,
-          null_ls.builtins.code_actions.eslint_d,
+          -- null_ls.builtins.diagnostics.eslint,
+          -- null_ls.builtins.code_actions.eslint,
         },
         on_attach = function(client, bufnr)
           if client.name == "null-ls" and client.supports_method("textDocument/formatting") then

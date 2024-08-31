@@ -12,9 +12,9 @@ map("n", "<CR>", '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
--- Buffers
-map("n", "<Tab>", "<cmd>bn<CR>")
-map("n", "<S-Tab>", "<cmd>bp<CR>")
+-- -- Buffers
+map("n", "]b", "<cmd>bn<CR>")
+map("n", "[b", "<cmd>bp<CR>")
 map("n", "<space>bd", "<cmd>bd<CR>")
 
 -- Visual

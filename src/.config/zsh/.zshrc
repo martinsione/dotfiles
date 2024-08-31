@@ -47,3 +47,19 @@ cursor-shape
 # fnm
 export PATH=/home/martin/.fnm:$PATH
 eval "`fnm env`"
+
+# bun completions
+[ -s "/Users/martinsione/.bun/_bun" ] && source "/Users/martinsione/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+PATH=~/.console-ninja/.bin:$PATH
+# export NODE_EXTRA_CA_CERTS="/tmp/ca.crt"
+
+# sst
+export PATH=/Users/martinsione/.sst/bin:$PATH
+
+# Turso
+export PATH="/Users/martinsione/.turso:$PATH"

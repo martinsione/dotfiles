@@ -1,10 +1,14 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = {
+    "windwp/nvim-ts-autotag",
+  },
   version = false, -- last release is way too old and doesn't work on Windows
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
   auto_install = true,
   opts = {
+    autotag = { enable = true },
     highlight = { enable = true },
     indent = { enable = true },
     context_commentstring = { enable = true, enable_autocmd = false },
