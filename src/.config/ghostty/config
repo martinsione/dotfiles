@@ -1,1 +1,15 @@
+confirm-close-surface = false
+copy-on-select = clipboard
+cursor-style = block
+font-family = TX-02
 font-size=16
+gtk-adwaita = false
+gtk-titlebar = false
+macos-titlebar-style = tabs
+shell-integration-features = no-cursor
+term=xterm-256color
+theme= tokyonight
+window-height = 100000
+window-padding-x = 10
+window-padding-y = 10
+window-width = 100000
