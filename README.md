@@ -2,7 +2,7 @@
 
 1. Set up SSH keys for github
 
-``` bash
+```bash
 
 ssh-keygen -t ed25519 -C <email>
 
@@ -12,14 +12,15 @@ pbcopy < ~/.ssh/id_ed25519.pub
 ```
 
 2. Clone repo and symlink files
+
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/martinsione/dotfiles/refs/heads/macos/install/x/macos.sh)"
 ```
 
 3. Install packages
-	a App Store
-		- Bitwarden (so that safari can use web extension)
-	b Homebrew
+   a App Store - Bitwarden (so that safari can use web extension)
+   b Homebrew
+
 ```bash
 
 # Install executable
@@ -42,21 +43,23 @@ brew install --cask \
 	zed
 
 brew install \
-	eza \
-	neovim \
-	ripgrep \
-	starship
+  eza \
+  fnm \
+  neovim \
+  ripgrep \
+  starship
 
 ```
 
 4. UI/UX tweaks
-	- Disable hot corners
-	- Automatically hide and show the Dock
-	- Replace Spotlight with Raycast
-    * Enable "Magnet" preset for window management
-	- Remap CAPS Lock to Control. (Settings > Keyboard >  Keyboard Shortcuts)
-	- Increase mouse and trackpad speed
-	- Increase Key Repetition Speed and Remove Delay
+   - Disable hot corners
+   - Automatically hide and show the Dock
+   - Replace Spotlight with Raycast
+     - Enable "Magnet" preset for window management
+   - Remap CAPS Lock to Control. (Settings > Keyboard > Keyboard Shortcuts)
+   - Increase mouse and trackpad speed
+   - Increase Key Repetition Speed and Remove Delay
+
 ```bash
 
 # Set key repeat rate to maximum (fastest)
