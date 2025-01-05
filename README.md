@@ -25,8 +25,8 @@ pbcopy < ~/.ssh/id_ed25519.pub
 # Install executable
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # After installation, make it executable
-echo >> /Users/martin/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/martin/.zprofile
+echo >> /Users/$USER/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ```
@@ -52,6 +52,8 @@ brew install \
 4. UI/UX tweaks
 	- Disable hot corners
 	- Automatically hide and show the Dock
+	- Replace Spotlight with Raycast
+    * Enable "Magnet" preset for window management
 	- Remap CAPS Lock to Control. (Settings > Keyboard >  Keyboard Shortcuts)
 	- Increase mouse and trackpad speed
 	- Increase Key Repetition Speed and Remove Delay
@@ -64,5 +66,3 @@ defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 10
 
 ```
-  - Replace Spotlight with Raycast
-    * Enable "Magnet" preset for window management
