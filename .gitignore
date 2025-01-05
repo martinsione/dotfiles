@@ -1,3 +1,4 @@
+*.env
 *.log
 *.o
 *.orig
@@ -5,8 +6,12 @@
 *.zcompdump*
 *__pycache__
 *packer_compiled*
-*.env
+.DS_Store
 node_modules
+src/.config/zed/conversations
+src/.config/zed/prompts
+src/.config/zed/themes
+src/.config/zsh/.zsh_history
 src/.config/zsh/plugins
 src/.local/bin/npm/package-lock.json
 src/.local/src/dwm/dwm

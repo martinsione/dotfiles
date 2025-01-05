@@ -1,0 +1,43 @@
+[
+  {
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-b": "workspace::ToggleRightDock",
+      "cmd-l": "assistant::ToggleFocus",
+      "ctrl-`": "workspace::ToggleBottomDock",
+      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"]
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-k": "assistant::InlineAssist"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "use_key_equivalents": true,
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "l": "project_panel::OpenPermanent",
+      "r": "project_panel::Rename",
+      "space e": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "[ b": "pane::ActivatePrevItem",
+      "] b": "pane::ActivateNextItem",
+      "g r": "editor::FindAllReferences",
+      "r n": "editor::Rename",
+      "space b d": "pane::CloseActiveItem",
+      "space b u": "pane::ReopenClosedItem",
+      "space e": "workspace::ToggleRightDock"
+    }
+  }
+]

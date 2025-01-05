@@ -1,4 +1,4 @@
-[ -x "$(command -v nvim)" ] && alias vim="nvim" 
+[ -x "$(command -v nvim)" ] && alias vim="nvim"
 alias vimdiff="nvim -d"
 # alias  py="docker run -it --rm --name my-running-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp python:3 python"
 ## Programs
@@ -17,15 +17,15 @@ alias mv="mv -iv"
 alias rm="rm -iv"
 alias rmln="find . -xtype l -delete"
 ## Listing
-alias l="exa -l --group-directories-first"
-alias ls="exa"
-alias ll="exa -la --group-directories-first"
+alias l="eza -l --group-directories-first"
+alias ls="eza"
+alias ll="eza -la --group-directories-first"
 ## System
 alias bld="make && sudo make install"
 alias cl="clear"
-alias df='df -h'  
+alias df='df -h'
 alias ex="extract"
-alias free='free -m'   
+alias free='free -m'
 alias ka="killall"
 function kill_port() { kill -9 $(lsof -t -i:"$1"); }
 alias kp=kill_port

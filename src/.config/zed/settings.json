@@ -1,0 +1,27 @@
+{
+  "chat_panel": { "button": false },
+  "collaboration_panel": { "button": false },
+  "notification_panel": { "button": false },
+  "outline_panel": { "button": false },
+  "terminal": { "button": false },
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "dock": "left",
+    "version": "2"
+  },
+  "buffer_font_size": 16,
+  "cursor_blink": false,
+  "relative_line_numbers": true,
+  "scrollbar": { "git_diff": false },
+  "project_panel": { "dock": "right" },
+  "tab_bar": { "show_nav_history_buttons": false },
+  "theme": { "mode": "system", "light": "One Light", "dark": "One Dark" },
+  "toolbar": { "breadcrumbs": false, "quick_actions": false },
+  "ui_font_size": 15,
+  "vim_mode": true,
+  "wrap_guides": [80],
+  "unstable.ui_density": "compact"
+}
