@@ -1,9 +1,4 @@
 {
-  "chat_panel": { "button": false },
-  "collaboration_panel": { "button": false },
-  "notification_panel": { "button": false },
-  "outline_panel": { "button": false },
-  "terminal": { "button": false },
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
@@ -13,15 +8,20 @@
     "version": "2"
   },
   "buffer_font_size": 16,
+  "chat_panel": { "button": false },
+  "collaboration_panel": { "button": false },
   "cursor_blink": false,
+  "notification_panel": { "button": false },
+  "outline_panel": { "button": false },
+  "project_panel": { "dock": "right" },
   "relative_line_numbers": true,
   "scrollbar": { "git_diff": false },
-  "project_panel": { "dock": "right" },
   "tab_bar": { "show_nav_history_buttons": false },
+  "terminal": { "button": false },
   "theme": { "mode": "system", "light": "One Light", "dark": "One Dark" },
   "toolbar": { "breadcrumbs": false, "quick_actions": false },
   "ui_font_size": 15,
+  "unstable.ui_density": "compact",
   "vim_mode": true,
-  "wrap_guides": [80],
-  "unstable.ui_density": "compact"
+  "wrap_guides": [80]
 }

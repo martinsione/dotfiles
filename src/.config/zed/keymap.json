@@ -33,7 +33,7 @@
     "bindings": {
       "[ b": "pane::ActivatePrevItem",
       "] b": "pane::ActivateNextItem",
-      "g r": "editor::FindAllReferences",
+      "space g r": "editor::FindAllReferences",
       "space r n": "editor::Rename",
       "space b d": "pane::CloseActiveItem",
       "space b u": "pane::ReopenClosedItem",

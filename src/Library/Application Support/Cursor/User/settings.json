@@ -1,0 +1,36 @@
+{
+    "breadcrumbs.enabled": false,
+    "editor.fontFamily": "'Zed Mono Expanded', 'JetBrainsMono Nerd Font'",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 15,
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [80],
+    "editor.wordWrap": "on",
+    "terminal.integrated.fontSize": 15,
+    "window.density.editorTabHeight": "compact",
+    "workbench.activityBar.location": "hidden",
+    "workbench.activityBar.orientation": "vertical",
+    "workbench.editor.editorActionsLocation": "hidden",
+    "workbench.layoutControl.enabled": false,
+    "workbench.sideBar.location": "right",
+    "window.commandCenter": false,
+    // VIM plugin
+    "vim.highlightedyank.duration": 150,
+    "vim.highlightedyank.enable": true,
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindings": [  
+        { "before": ["Y"], "after": ["y", "$"] },
+        { "before": ["[", "b"], "commands": ["workbench.action.previousEditor"] },
+        { "before": ["]", "b"], "commands": ["workbench.action.nextEditor"] },
+        { "before": ["K"], "commands": ["editor.action.showHover"] },
+        { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+        { "before": ["<space>", "b", "d"], "commands": ["workbench.action.closeActiveEditor"] },
+        { "before": ["<space>", "b", "u"], "commands": ["workbench.action.reopenClosedEditor"] },
+        { "before": ["<space>", "r", "n"], "commands": ["editor.action.rename"] }
+    ],
+    "vim.visualModeKeyBindings": [
+        { "before": [">"], "after": [">", "g", "v"] },
+        { "before": ["<"], "after": ["<", "g", "v"] }
+    ],
+}

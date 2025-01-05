@@ -35,19 +35,23 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ```bash
 
 brew install --cask \
-	cursor \
-	ghostty \
-	google-chrome \
-	raycast \
-	spotify \
-	zed
+    cursor \
+    discord \
+    font-zed-mono \
+    ghostty \
+    google-chrome \
+    raycast \
+    slack \
+    spotify \
+    whatsapp \
+    zed \
 
 brew install \
-  eza \
-  fnm \
-  neovim \
-  ripgrep \
-  starship
+    eza \
+    fnm \
+    neovim \
+    ripgrep \
+    starship
 
 ```
 
@@ -55,7 +59,7 @@ brew install \
    - Disable hot corners
    - Automatically hide and show the Dock
    - Replace Spotlight with Raycast
-     - Enable "Magnet" preset for window management
+      - Enable "Magnet" preset for window management
    - Remap CAPS Lock to Control. (Settings > Keyboard > Keyboard Shortcuts)
    - Increase mouse and trackpad speed
    - Increase Key Repetition Speed and Remove Delay
@@ -68,4 +72,6 @@ defaults write -g KeyRepeat -int 1
 # Set initial delay before repetition to minimum (no delay)
 defaults write -g InitialKeyRepeat -int 10
 
+# Disable press-and-hold for keys in favor of key repeat
+defaults write -g ApplePressAndHoldEnabled -bool false
 ```

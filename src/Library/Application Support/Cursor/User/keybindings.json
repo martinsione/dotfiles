@@ -1,0 +1,26 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "shift+cmd+g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "command": "workbench.action.togglePanel",
+        "key": "ctrl+`"
+    },
+    {
+        "command": "workbench.action.toggleSidebarVisibility",
+        "key": "cmd+b"
+    },
+    {
+        "when": "filesExplorerFocus && !inputFocus",
+        "command": "explorer.newFile",
+        "key": "a"
+    },
+    {
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
+        "command": "filesExplorer.openFilePreserveFocus",
+        "key": "l"
+    }
+]

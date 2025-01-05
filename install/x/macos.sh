@@ -12,6 +12,8 @@ symlinks=(
   src/.config/zed
   src/.config/zsh
   src/.zshrc
+  src/Library/Application\ Support/Cursor/User/keybindings.json
+  src/Library/Application\ Support/Cursor/User/settings.json
 )
 
 # Colors for better visibility
