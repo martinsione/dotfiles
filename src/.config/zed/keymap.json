@@ -24,7 +24,7 @@
     "bindings": {
       "a": "project_panel::NewFile",
       "l": "project_panel::OpenPermanent",
-      "r": "project_panel::Rename",
+      // "r": "project_panel::Rename",
       "space e": "workspace::ToggleRightDock"
     }
   },
@@ -34,7 +34,7 @@
       "[ b": "pane::ActivatePrevItem",
       "] b": "pane::ActivateNextItem",
       "g r": "editor::FindAllReferences",
-      "r n": "editor::Rename",
+      "space r n": "editor::Rename",
       "space b d": "pane::CloseActiveItem",
       "space b u": "pane::ReopenClosedItem",
       "space e": "workspace::ToggleRightDock"
