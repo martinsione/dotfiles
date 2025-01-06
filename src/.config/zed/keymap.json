@@ -24,7 +24,7 @@
     "bindings": {
       "a": "project_panel::NewFile",
       "l": "project_panel::OpenPermanent",
-      // "r": "project_panel::Rename",
+      "r": "project_panel::Rename",
       "space e": "workspace::ToggleRightDock"
     }
   },
