@@ -1,6 +1,7 @@
 {
     "breadcrumbs.enabled": false,
-    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Zed Mono Expanded'",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font'",
+    "editor.fontLigatures": true,
     "editor.fontSize": 15,
     "editor.glyphMargin": false,
     "editor.hideCursorInOverviewRuler": true,
@@ -39,4 +40,5 @@
         { "before": [">"], "after": [">", "g", "v"] },
         { "before": ["<"], "after": ["<", "g", "v"] }
     ],
+    "workbench.colorTheme": "Rosé Pine",
 }

@@ -18,7 +18,7 @@
   "scrollbar": { "git_diff": false },
   "tab_bar": { "show_nav_history_buttons": false },
   "terminal": { "button": false },
-  "theme": { "mode": "system", "light": "One Light", "dark": "Rosé Pine" },
+  "theme": { "mode": "dark", "light": "One Light", "dark": "Rosé Pine" },
   "toolbar": { "breadcrumbs": false, "quick_actions": false },
   "ui_font_size": 15,
   "unstable.ui_density": "compact",
