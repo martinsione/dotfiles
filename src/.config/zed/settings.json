@@ -13,7 +13,7 @@
   "cursor_blink": false,
   "notification_panel": { "button": false },
   "outline_panel": { "button": false },
-  "project_panel": { "dock": "right" },
+  "project_panel": { "dock": "right", "auto_fold_dirs": false },
   "relative_line_numbers": true,
   "scrollbar": { "git_diff": false },
   "tab_bar": { "show_nav_history_buttons": false },

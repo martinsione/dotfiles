@@ -38,13 +38,14 @@ brew install --cask \
     cursor \
     discord \
     font-zed-mono \
+    font-jetbrains-mono-nerd-font \
     ghostty \
     google-chrome \
     raycast \
     slack \
     spotify \
     whatsapp \
-    zed \
+    zed
 
 brew install \
     eza \
