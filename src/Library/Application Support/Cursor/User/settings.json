@@ -1,5 +1,5 @@
 {
-    "breadcrumbs.enabled": false,
+    // "breadcrumbs.enabled": false,
     "editor.fontFamily": "'JetBrainsMono Nerd Font'",
     "editor.fontLigatures": true,
     "editor.fontSize": 15,
@@ -40,5 +40,6 @@
         { "before": [">"], "after": [">", "g", "v"] },
         { "before": ["<"], "after": ["<", "g", "v"] }
     ],
-    "workbench.colorTheme": "Rosé Pine",
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "editor.formatOnSave": true,
 }

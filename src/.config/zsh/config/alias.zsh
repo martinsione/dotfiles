@@ -69,6 +69,7 @@ alias t="tmux -u"
 alias ta="tmux -u a"
 alias tls="tmux ls"
 alias tks="tmux kill-session -t"
+alias taleph='tmux attach-session -t aleph || tmux new-session -s aleph -c ~/Developer/aleph'
 
 ## Directories
 alias d="$HOME/.dotfiles"

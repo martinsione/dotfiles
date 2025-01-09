@@ -13,6 +13,7 @@ vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
 
+vim.o.mouse = ""
 vim.o.scrolloff = 8
 vim.o.splitbelow = true
 vim.o.splitright = true
@@ -149,3 +150,8 @@ autocmd("TermOpen", {
     vim.opt_local.signcolumn = "no"
   end,
 })
+
+vim.cmd [[
+  highlight Normal guibg=NONE ctermbg=NONE
+  highlight NonText guibg=NONE ctermbg=NONE
+]]

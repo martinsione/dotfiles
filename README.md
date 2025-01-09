@@ -35,17 +35,19 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 ```bash
 
 brew install --cask \
+    1password \
     cursor \
     discord \
-    font-zed-mono \
     font-jetbrains-mono-nerd-font \
+    font-zed-mono \
     ghostty \
     google-chrome \
     raycast \
     slack \
     spotify \
     whatsapp \
-    zed
+    zed \
+    zoom
 
 brew install \
     eza \
