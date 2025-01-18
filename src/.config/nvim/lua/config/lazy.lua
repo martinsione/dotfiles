@@ -13,7 +13,6 @@ require("lazy").setup({
 	install = { colorscheme = { "rose-pine" } },
 	checker = { enabled = true },
 	spec = {
-		-- import your plugins
 		{ import = "plugins" }, -- custom.plugins
 	},
 	change_detection = {

@@ -5,7 +5,6 @@ return {
 		keys = {
 			{ "]g", "<cmd>Gitsigns next_hunk<CR>", desc = "Next Git Hunk" },
 			{ "[g", "<cmd>Gitsigns prev_hunk<CR>", desc = "Previous Git Hunk" },
-			f,
 		},
 		opts = {
 			current_line_blame = true,
@@ -39,7 +38,6 @@ return {
 					},
 				},
 			},
-			-- hijack_netrw_behavior = "open_current",
 			window = { position = "right" },
 		},
 		dependencies = {

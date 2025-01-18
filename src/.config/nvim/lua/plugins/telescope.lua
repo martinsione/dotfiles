@@ -66,18 +66,21 @@ return {
 		},
 		config = function()
 			require("telescope").setup({
-				defaults = require("telescope.themes").get_ivy(),
-				extensions = { fzf = {} },
-				mappings = {
-					i = {
-						["<C-j>"] = "move_selection_next",
-						["<C-k>"] = "move_selection_previous",
+				defaults = require("telescope.themes").get_ivy({
+					extensions = { fzf = {} },
+					mappings = {
+						i = {
+							["<C-c>"] = false,
+							["<C-j>"] = "move_selection_next",
+							["<C-k>"] = "move_selection_previous",
+						},
+						n = {
+							["<C-c>"] = "close",
+						},
 					},
-					n = { ["<C-c>"] = "close" },
-				},
+				}),
 			})
 
-			-- Enable Telescope extensions if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 
 			local map = vim.keymap.set
