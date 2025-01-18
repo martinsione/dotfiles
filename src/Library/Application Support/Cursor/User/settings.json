@@ -9,7 +9,7 @@
   "editor.rulers": [80],
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
-  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontSize": 1,
   "window.commandCenter": false,
   "window.title": " ",
   "workbench.activityBar.location": "hidden",
