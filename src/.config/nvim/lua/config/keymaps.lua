@@ -1,9 +1,9 @@
 local map = vim.keymap.set
 
+map({ "n", "v", "x", "i" }, "<C-c>", "<Esc>")
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 map("n", "Q", "<Nop>")
 map("n", "q:", "<Nop>")
-map("n", "<C-c>", "<Esc>")
 map("n", "<C-s>", "<cmd>silent w<CR>")
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })

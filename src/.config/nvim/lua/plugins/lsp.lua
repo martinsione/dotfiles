@@ -35,25 +35,24 @@ return {
 					-- When you move your cursor, the highlights will be cleared (the second autocommand).
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-						local highlight_augroup =
-							vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+						local augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = event.buf,
-							group = highlight_augroup,
+							group = augroup,
 							callback = vim.lsp.buf.document_highlight,
 						})
 
 						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
 							buffer = event.buf,
-							group = highlight_augroup,
+							group = augroup,
 							callback = vim.lsp.buf.clear_references,
 						})
 
 						vim.api.nvim_create_autocmd("LspDetach", {
-							group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-							callback = function(event2)
+							group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+							callback = function(ev)
 								vim.lsp.buf.clear_references()
-								vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+								vim.api.nvim_clear_autocmds({ group = augroup, buffer = ev.buf })
 							end,
 						})
 					end
@@ -127,11 +126,6 @@ return {
 			{ "hrsh7th/cmp-path", lazy = true },
 			{ "saadparwaiz1/cmp_luasnip", lazy = true },
 			{
-				"zbirenbaum/copilot.lua",
-				lazy = true,
-				dependencies = { "zbirenbaum/copilot-cmp" },
-			},
-			{
 				"L3MON4D3/LuaSnip",
 				build = (function()
 					-- Build Step is needed for regex support in snippets.
@@ -166,7 +160,10 @@ return {
 						luasnip.lsp_expand(args.body)
 					end,
 				},
-				completion = { completeopt = "menu,menuone,noinsert" },
+				completion = {
+					keyword_length = 3,
+					completeopt = "menu,menuone,noinsert",
+				},
 				mapping = cmp.mapping.preset.insert({
 					["<C-n>"] = cmp.mapping.select_next_item(),
 					["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -201,7 +198,6 @@ return {
 					--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 				}),
 				sources = {
-					{ name = "copilot", group_index = 2 },
 					-- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
 					{ name = "lazydev", group_index = 0 },
 					{ name = "nvim_lsp" },
@@ -210,45 +206,5 @@ return {
 				},
 			})
 		end,
-	},
-	{ -- Autoformat
-		"stevearc/conform.nvim",
-		event = { "BufWritePre" },
-		cmd = { "ConformInfo" },
-		keys = {
-			{
-				"<space>fd",
-				function()
-					require("conform").format({ async = true, lsp_format = "fallback" })
-				end,
-				mode = "",
-				desc = "[F]ormat document",
-			},
-		},
-		opts = {
-			notify_on_error = false,
-			format_on_save = function(bufnr)
-				-- Disable "format_on_save lsp_fallback" for languages that don't
-				-- have a well standardized coding style. You can add additional
-				-- languages here or re-enable it for the disabled ones.
-				local disable_filetypes = { c = true, cpp = true }
-				local lsp_format_opt
-				if disable_filetypes[vim.bo[bufnr].filetype] then
-					lsp_format_opt = "never"
-				else
-					lsp_format_opt = "fallback"
-				end
-				return {
-					timeout_ms = 500,
-					lsp_format = lsp_format_opt,
-				}
-			end,
-			formatters_by_ft = {
-				lua = { "stylua" },
-				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
-			},
-		},
 	},
 }
