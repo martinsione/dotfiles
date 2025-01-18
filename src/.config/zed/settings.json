@@ -1,8 +1,8 @@
 {
   "assistant": {
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-3-5-sonnet"
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
     },
     "dock": "left",
     "version": "2"
@@ -18,8 +18,8 @@
   "scrollbar": { "git_diff": false },
   "tab_bar": { "show_nav_history_buttons": false },
   "terminal": { "button": false },
-  "theme": { "mode": "dark", "light": "One Light", "dark": "Rosé Pine" },
-  "toolbar": { "breadcrumbs": false, "quick_actions": false },
+  "theme": { "mode": "light", "light": "One Light", "dark": "Rosé Pine" },
+  "toolbar": { "breadcrumbs": true, "quick_actions": false },
   "ui_font_size": 15,
   "unstable.ui_density": "compact",
   "vim_mode": true,
