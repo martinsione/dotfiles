@@ -1,3 +1,16 @@
+local function ensure_installed_tools(tools)
+	local mlsp = require("mason-lspconfig")
+	local mr = require("mason-registry")
+	for _, tool in ipairs(tools) do
+		-- @see https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/blob/c5e07b8ff54187716334d585db34282e46fa2932/lua/mason-tool-installer/init.lua#L157-L165
+		local mason_name = mlsp.get_mappings().lspconfig_to_mason[tool] or tool
+		local p = mr.get_package(mason_name)
+		if not p:is_installed() then
+			p:install()
+		end
+	end
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -7,7 +20,8 @@ return {
 			"williamboman/mason.nvim",
 		},
 		config = function()
-			vim.api.nvim_create_autocmd("LspAttach", {
+			local autocmd = vim.api.nvim_create_autocmd
+			autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(event)
 					local map = function(keys, func, desc, mode)
@@ -35,19 +49,19 @@ return {
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
 						local augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							buffer = event.buf,
+						autocmd({ "CursorHold", "CursorHoldI" }, {
 							group = augroup,
+							buffer = event.buf,
 							callback = vim.lsp.buf.document_highlight,
 						})
 
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							buffer = event.buf,
+						autocmd({ "CursorMoved", "CursorMovedI" }, {
 							group = augroup,
+							buffer = event.buf,
 							callback = vim.lsp.buf.clear_references,
 						})
 
-						vim.api.nvim_create_autocmd("LspDetach", {
+						autocmd("LspDetach", {
 							group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
 							callback = function(ev)
 								vim.lsp.buf.clear_references()
@@ -76,19 +90,6 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			require("mason").setup()
-
-			local function ensure_installed_tools(tools)
-				local mlsp = require("mason-lspconfig")
-				local mr = require("mason-registry")
-				for _, tool in ipairs(tools) do
-					-- @see https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/blob/c5e07b8ff54187716334d585db34282e46fa2932/lua/mason-tool-installer/init.lua#L157-L165
-					local mason_name = mlsp.get_mappings().lspconfig_to_mason[tool] or tool
-					local p = mr.get_package(mason_name)
-					if not p:is_installed() then
-						p:install()
-					end
-				end
-			end
 
 			local servers = {
 				lua_ls = {
