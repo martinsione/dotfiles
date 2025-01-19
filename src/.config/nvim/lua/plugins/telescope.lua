@@ -85,23 +85,27 @@ return {
 
 			local map = vim.keymap.set
 			local builtin = require("telescope.builtin")
+			-- Live multigrep
+			map("n", "<space>fw", custom.live_multigrep, { desc = "Search words" })
 			map("n", "<space>ff", builtin.find_files, { desc = "Search files" })
 			map("n", "<space>fh", builtin.help_tags, { desc = "Search for help" })
 			map("n", "<C-p>", function()
-				builtin.git_files()
+				local is_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
+				if is_git_repo then
+					builtin.git_files()
+				else
+					builtin.find_files()
+				end
 			end, { desc = "Search git project" })
 
 			-- Neovim stuff
-			map("n", "<space>fnc", function()
+			map("n", "<space>fnd", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "Search neovim config" })
+			end, { desc = "Search neovim directory" })
 
 			map("n", "<space>fnp", function()
 				builtin.find_files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
 			end, { desc = "Search neovim plugins" })
-
-			-- Live multigrep
-			map("n", "<space>fw", custom.live_multigrep, { desc = "Search neovim plugins" })
 		end,
 	},
 }
