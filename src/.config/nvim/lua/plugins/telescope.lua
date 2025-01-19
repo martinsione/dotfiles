@@ -27,6 +27,35 @@ return {
 							["<C-c>"] = false,
 							["<C-j>"] = "move_selection_next",
 							["<C-k>"] = "move_selection_previous",
+							["<C-w>"] = function(prompt_bufnr)
+								local actions = require("telescope.actions")
+								local action_state = require("telescope.actions.state")
+								local current_picker = action_state.get_current_picker(prompt_bufnr)
+								local selections = current_picker:get_multi_selection()
+								-- -- if no multi-selection, leverage current selection
+								-- if vim.tbl_isempty(selections) then
+								-- 	table.insert(selections, action_state.get_selected_entry())
+								-- end
+								-- local paths = vim.tbl_map(function(e)
+								-- 	return e.path
+								-- end, selections)
+								print(vim.inspect(current_picker:get_multi_selection()))
+								actions.close(prompt_bufnr)
+								require("telescope.builtin").live_grep({
+									search_dirs = paths,
+									-- additional_args = function()
+									-- 	return {
+									-- 		"--color=never",
+									-- 		"--column",
+									-- 		"--hidden", -- include dotfiles
+									-- 		"--line-number",
+									-- 		"--no-heading",
+									-- 		"--smart-case",
+									-- 		"--with-filename",
+									-- 	}
+									-- end,
+								})
+							end,
 						},
 						n = {
 							["<C-c>"] = "close",
