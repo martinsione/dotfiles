@@ -2,14 +2,13 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason-lspconfig.nvim",
 			"williamboman/mason.nvim",
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(event)
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
@@ -76,8 +75,22 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+			require("mason").setup()
+
+			local function ensure_installed_tools(tools)
+				local mlsp = require("mason-lspconfig")
+				local mr = require("mason-registry")
+				for _, tool in ipairs(tools) do
+					-- @see https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/blob/c5e07b8ff54187716334d585db34282e46fa2932/lua/mason-tool-installer/init.lua#L157-L165
+					local mason_name = mlsp.get_mappings().lspconfig_to_mason[tool] or tool
+					local p = mr.get_package(mason_name)
+					if not p:is_installed() then
+						p:install()
+					end
+				end
+			end
+
 			local servers = {
-				vtsls = {},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -90,21 +103,18 @@ return {
 				},
 			}
 
-			-- -- You can add other tools here that you want Mason to install
-			-- -- for you, so that they are available from within Neovim.
-			-- local ensure_installed = vim.tbl_keys(servers or {})
-			-- vim.list_extend(ensure_installed, {
-			-- 	-- Typescript
-			-- 	"eslint_d",
-			-- 	"prettierd",
-			-- 	-- Lua
-			-- 	"stylua", -- Used to format Lua code
-			-- })
-			-- require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+			local ensure_installed = vim.tbl_keys(servers or {})
+			vim.list_extend(ensure_installed, {
+				"eslint_d",
+				"prettierd",
+				"stylua",
+				"tailwindcss-language-server",
+				"vtsls",
+			})
 
-			require("mason").setup()
+			ensure_installed_tools(ensure_installed)
+
 			require("mason-lspconfig").setup({
-				ensure_installed = vim.tbl_keys(servers or {}),
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
