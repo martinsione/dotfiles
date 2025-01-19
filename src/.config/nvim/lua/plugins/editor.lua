@@ -1,5 +1,10 @@
 return {
 	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = { file_types = { "markdown", "Avante" } },
+		ft = { "markdown", "Avante" },
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		event = { "VeryLazy" },
 		keys = {
@@ -29,7 +34,8 @@ return {
 		opts = {
 			close_if_last_window = true,
 			filesystem = {
-				bind_to_cwd = false,
+				bind_to_cwd = true,
+				filtered_items = { hide_dotfiles = false, hide_gitignored = false, hide_hidden = false },
 				follow_current_file = { enabled = true },
 				use_libuv_file_watcher = true,
 				window = {

@@ -26,9 +26,7 @@ pbcopy < ~/.ssh/id_ed25519.pub
 # Install executable
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # After installation, make it executable
-echo >> /Users/$USER/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
+echo >> /Users/$USER/.zprofile echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ```
 
@@ -61,6 +59,9 @@ brew install \
 4. UI/UX tweaks
    - Disable hot corners
    - Automatically hide and show the Dock
+   - Add ⌃ + number to switch desktops
+      1. Create 9 desktops
+      2. Go to System Preferences > Keyboard > Keyboard Shortcuts > Mission Control > Mission Control (enable all)
    - Replace Spotlight with Raycast
       - Enable "Magnet" preset for window management
    - Remap CAPS Lock to Control. (Settings > Keyboard > Keyboard Shortcuts)

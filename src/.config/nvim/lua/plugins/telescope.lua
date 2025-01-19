@@ -16,8 +16,12 @@ return {
 		},
 		config = function()
 			require("telescope").setup({
+				extensions = { fzf = {} },
+				pickers = {
+					git_files = { show_untracked = true },
+					live_grep = { additional_args = { "--hidden" } },
+				},
 				defaults = require("telescope.themes").get_ivy({
-					extensions = { fzf = {} },
 					mappings = {
 						i = {
 							["<C-c>"] = false,
@@ -33,77 +37,20 @@ return {
 
 			pcall(require("telescope").load_extension, "fzf")
 
-			local pickers = require("telescope.pickers")
-			local finders = require("telescope.finders")
-			local make_entry = require("telescope.make_entry")
-			local conf = require("telescope.config").values
-
-			local custom = {}
-
-			custom.live_multigrep = function(opts)
-				opts = opts or {}
-				opts.cwd = opts.cwd or vim.uv.cwd()
-
-				local finder = finders.new_async_job({
-					command_generator = function(prompt)
-						if not prompt or prompt == "" then
-							return nil
-						end
-
-						local pieces = vim.split(prompt, "  ")
-						local args = { "rg" }
-						if pieces[1] then
-							table.insert(args, "-e")
-							table.insert(args, pieces[1])
-						end
-
-						if pieces[2] then
-							table.insert(args, "-g")
-							table.insert(args, pieces[2])
-						end
-
-						---@diagnostic disable-next-line: deprecated
-						return vim.tbl_flatten({
-							args,
-							{
-								"--color=never",
-								"--no-heading",
-								"--with-filename",
-								"--line-number",
-								"--column",
-								"--smart-case",
-							},
-						})
-					end,
-					entry_maker = make_entry.gen_from_vimgrep(opts),
-					cwd = opts.cwd,
-				})
-
-				pickers
-					.new(opts, {
-						debounce = 100,
-						prompt_title = "Multi Grep",
-						finder = finder,
-						previewer = conf.grep_previewer(opts),
-						sorter = require("telescope.sorters").empty(),
-					})
-					:find()
-			end
-
 			local map = vim.keymap.set
+			local custom_pickers = require("config.telescope")
 			local builtin = require("telescope.builtin")
 			-- Live multigrep
-			map("n", "<space>fw", custom.live_multigrep, { desc = "Search words" })
+			map("n", "<space>fa", function()
+				custom_pickers.live_multigrep({ cwd = "~/Developer/aleph" })
+			end, { desc = "Search aleph" })
+			map("n", "<space>fw", custom_pickers.live_multigrep, { desc = "Search words" })
+			map("n", "<space>dd", custom_pickers.projects, { desc = "Search projects" })
+			map("n", "<space><space>", builtin.buffers, { desc = "Search buffers" })
 			map("n", "<space>ff", builtin.find_files, { desc = "Search files" })
 			map("n", "<space>fh", builtin.help_tags, { desc = "Search for help" })
-			map("n", "<C-p>", function()
-				local is_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
-				if is_git_repo then
-					builtin.git_files()
-				else
-					builtin.find_files()
-				end
-			end, { desc = "Search git project" })
+			map("n", "<space>gs", builtin.git_status, { desc = "Search for modified files" })
+			map("n", "<C-p>", custom_pickers.project_search, { desc = "Search git project" })
 
 			-- Neovim stuff
 			map("n", "<space>fnd", function()
