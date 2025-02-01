@@ -74,7 +74,7 @@ return {
 				custom_pickers.live_multigrep({ cwd = "~/Developer/aleph" })
 			end, { desc = "Search aleph" })
 			map("n", "<space>fw", custom_pickers.live_multigrep, { desc = "Search words" })
-			map("n", "<space>dd", custom_pickers.projects, { desc = "Search projects" })
+			map("n", "<space>fp", custom_pickers.projects, { desc = "Search projects" })
 			map("n", "<space><space>", builtin.buffers, { desc = "Search buffers" })
 			map("n", "<space>ff", builtin.find_files, { desc = "Search files" })
 			map("n", "<space>fh", builtin.help_tags, { desc = "Search for help" })

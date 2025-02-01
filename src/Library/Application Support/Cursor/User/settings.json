@@ -9,13 +9,19 @@
   "editor.rulers": [80],
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
-  "terminal.integrated.fontSize": 1,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.exclude": { "**/.git": false },
+  "terminal.integrated.fontSize": 15,
   "window.commandCenter": false,
   "window.title": " ",
   "workbench.activityBar.location": "hidden",
   "workbench.activityBar.orientation": "vertical",
+  "workbench.colorTheme": "Rosé Pine Dawn",
   "workbench.editor.editorActionsLocation": "hidden",
   "workbench.layoutControl.enabled": false,
+  "workbench.preferredDarkColorTheme": "Rosé Pine",
+  "workbench.preferredLightColorTheme": "Rosé Pine Dawn",
   "workbench.sideBar.location": "right",
   "workbench.statusBar.visible": false,
   // VIM plugin
@@ -44,7 +50,7 @@
     { "before": [">"], "after": [">", "g", "v"] },
     { "before": ["<"], "after": ["<", "g", "v"] }
   ],
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }
