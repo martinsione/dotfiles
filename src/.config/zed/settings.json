@@ -1,14 +1,11 @@
 {
   "assistant": {
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
-    },
+    "default_model": { "provider": "openai", "model": "o1-mini" },
     "dock": "left",
     "version": "2"
   },
-  "buffer_font_size": 16,
-  "chat_panel": { "button": false },
+  "buffer_font_size": 15.0,
+  "chat_panel": { "button": "when_in_call" },
   "collaboration_panel": { "button": false },
   "cursor_blink": false,
   "notification_panel": { "button": false },
@@ -18,7 +15,7 @@
   "scrollbar": { "git_diff": false },
   "tab_bar": { "show_nav_history_buttons": false },
   "terminal": { "button": false },
-  "theme": { "mode": "light", "light": "One Light", "dark": "Rosé Pine" },
+  "theme": { "mode": "system", "light": "One Light", "dark": "Rosé Pine" },
   "toolbar": { "breadcrumbs": true, "quick_actions": false },
   "ui_font_size": 15,
   "unstable.ui_density": "compact",

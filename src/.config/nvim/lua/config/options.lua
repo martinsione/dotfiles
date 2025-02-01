@@ -7,6 +7,7 @@ vim.g.autoformat = true
 
 local opt = vim.opt
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
+opt.cmdheight = 0
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 -- opt.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -23,7 +24,7 @@ opt.jumpoptions = "view"
 opt.laststatus = 3 -- global statusline
 opt.linebreak = true -- Wrap lines at convenient points
 opt.list = false -- Show some invisible characters (tabs... opt.number = true -- Print line number
-opt.mouse = "" -- Disable mouse
+-- opt.mouse = "" -- Disable mouse
 opt.relativenumber = true -- Relative line numbers
 opt.ruler = false -- Disable the default ruler
 opt.scrolloff = 8 -- Lines of context
