@@ -14,23 +14,23 @@
   "files.exclude": { "**/.git": false },
   "terminal.integrated.fontSize": 15,
   "window.commandCenter": false,
-  "window.title": " ",
+  "window.density.editorTabHeight": "compact",
+  "window.nativeTabs": true,
+  "window.systemColorTheme": "auto",
+  "window.title": "${folderPath}",
   "workbench.activityBar.location": "hidden",
   "workbench.activityBar.orientation": "vertical",
-  "workbench.colorTheme": "Rosé Pine Dawn",
   "workbench.editor.editorActionsLocation": "hidden",
   "workbench.layoutControl.enabled": false,
   "workbench.preferredDarkColorTheme": "Rosé Pine",
   "workbench.preferredLightColorTheme": "Rosé Pine Dawn",
   "workbench.sideBar.location": "right",
-  "workbench.statusBar.visible": false,
   // VIM plugin
   "vim.highlightedyank.duration": 150,
   "vim.highlightedyank.enable": true,
   "vim.useCtrlKeys": true,
   "vim.useSystemClipboard": true,
   "vim.normalModeKeyBindings": [
-    { "before": ["/"], "commands": ["actions.find"] },
     { "before": ["Y"], "after": ["y", "$"] },
     { "before": ["[", "b"], "commands": ["workbench.action.previousEditor"] },
     { "before": ["]", "b"], "commands": ["workbench.action.nextEditor"] },
@@ -50,7 +50,4 @@
     { "before": [">"], "after": [">", "g", "v"] },
     { "before": ["<"], "after": ["<", "g", "v"] }
   ],
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  }
 }
