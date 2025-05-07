@@ -52,7 +52,8 @@ brew install \
     fnm \
     neovim \
     ripgrep \
-    starship
+    starship \
+    tmux
 
 ```
 

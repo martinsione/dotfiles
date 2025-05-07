@@ -1,8 +1,15 @@
 {
+  // "files.exclude": { "**/.git": false },
+  "workbench.statusBar.visible": false,
+  "cursor.composer.collapsePaneInputBoxPills": true,
+  "cursor.composer.shouldAllowCustomModes": true,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
   "editor.fontFamily": "'JetBrainsMono Nerd Font'",
   "editor.fontLigatures": true,
-  "editor.fontSize": 15,
+  "editor.fontSize": 13,
+  "editor.formatOnSave": true,
   "editor.hideCursorInOverviewRuler": true,
+  "editor.lineHeight": 1.8,
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
@@ -11,8 +18,8 @@
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "files.exclude": { "**/.git": false },
-  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontSize": 13,
+  "update.releaseTrack": "prerelease",
   "window.commandCenter": false,
   "window.density.editorTabHeight": "compact",
   "window.nativeTabs": true,
@@ -20,10 +27,10 @@
   "window.title": "${folderPath}",
   "workbench.activityBar.location": "hidden",
   "workbench.activityBar.orientation": "vertical",
+  "workbench.colorTheme": "Vercel Theme",
   "workbench.editor.editorActionsLocation": "hidden",
   "workbench.layoutControl.enabled": false,
-  "workbench.preferredDarkColorTheme": "Rosé Pine",
-  "workbench.preferredLightColorTheme": "Rosé Pine Dawn",
+  "workbench.navigationControl.enabled": false,
   "workbench.sideBar.location": "right",
   // VIM plugin
   "vim.highlightedyank.duration": 150,
@@ -49,5 +56,5 @@
   "vim.visualModeKeyBindings": [
     { "before": [">"], "after": [">", "g", "v"] },
     { "before": ["<"], "after": ["<", "g", "v"] }
-  ],
+  ]
 }

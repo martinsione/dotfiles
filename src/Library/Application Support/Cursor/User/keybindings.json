@@ -22,5 +22,9 @@
         "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
         "command": "filesExplorer.openFilePreserveFocus",
         "key": "l"
+    },
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
     }
 ]
