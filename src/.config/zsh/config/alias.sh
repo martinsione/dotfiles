@@ -1,5 +1,6 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim"
 alias v="nvim"
+alias c="open $1 -a \"Cursor\""
 
 alias ..="cd .."
 alias ls="eza --group-directories-first"

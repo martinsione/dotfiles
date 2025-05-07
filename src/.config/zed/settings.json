@@ -1,4 +1,7 @@
 {
+  "features": {
+    "inline_completion_provider": "zed"
+  },
   "assistant": {
     "default_model": { "provider": "openai", "model": "o1-mini" },
     "dock": "left",
@@ -15,7 +18,7 @@
   "scrollbar": { "git_diff": false },
   "tab_bar": { "show_nav_history_buttons": false },
   "terminal": { "button": false },
-  "theme": { "mode": "system", "light": "One Light", "dark": "Rosé Pine" },
+  "theme": { "mode": "system", "light": "One Light", "dark": "Vercel Dark" },
   "toolbar": { "breadcrumbs": true, "quick_actions": false },
   "ui_font_size": 15,
   "unstable.ui_density": "compact",

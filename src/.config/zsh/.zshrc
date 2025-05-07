@@ -18,3 +18,13 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 zstyle ':completion:*' menu select
 # Initialize completion system
 autoload -Uz compinit && compinit
+
+# bun completions
+[ -s "/Users/martin-aleph/.bun/_bun" ] && source "/Users/martin-aleph/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/martin-aleph/.codeium/windsurf/bin:$PATH"
