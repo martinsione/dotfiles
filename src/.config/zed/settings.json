@@ -1,13 +1,18 @@
 {
+  "ui_font_features": {
+    "calt": 0
+  },
   "features": {
-    "inline_completion_provider": "zed"
+    "edit_prediction_provider": "zed"
   },
-  "assistant": {
-    "default_model": { "provider": "openai", "model": "o1-mini" },
-    "dock": "left",
-    "version": "2"
+  "agent": {
+    "play_sound_when_agent_done": true,
+    "single_file_review": true,
+    "always_allow_tool_actions": true,
+    "dock": "left"
   },
-  "buffer_font_size": 15.0,
+  "ui_font_size": 14,
+  "buffer_font_size": 14.0,
   "chat_panel": { "button": "when_in_call" },
   "collaboration_panel": { "button": false },
   "cursor_blink": false,
@@ -17,10 +22,9 @@
   "relative_line_numbers": true,
   "scrollbar": { "git_diff": false },
   "tab_bar": { "show_nav_history_buttons": false },
-  "terminal": { "button": false },
-  "theme": { "mode": "system", "light": "One Light", "dark": "Vercel Dark" },
+  "terminal": { "button": false, "font_size": 12 },
+  "theme": { "mode": "system", "light": "Vercel Light", "dark": "Vercel Dark" },
   "toolbar": { "breadcrumbs": true, "quick_actions": false },
-  "ui_font_size": 15,
   "unstable.ui_density": "compact",
   "vim_mode": true,
   "wrap_guides": [80]

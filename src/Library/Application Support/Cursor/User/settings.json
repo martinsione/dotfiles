@@ -1,15 +1,17 @@
 {
-  // "files.exclude": { "**/.git": false },
-  "workbench.statusBar.visible": false,
+  "files.exclude": { "**/.git": false },
   "cursor.composer.collapsePaneInputBoxPills": true,
   "cursor.composer.shouldAllowCustomModes": true,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.diffs.useCharacterLevelDiffs": true,
+  "cursor.windowSwitcher.sidebarHoverCollapsed": true,
   "editor.fontFamily": "'JetBrainsMono Nerd Font'",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
   "editor.formatOnSave": true,
   "editor.hideCursorInOverviewRuler": true,
-  "editor.lineHeight": 1.8,
+  "editor.lineHeight": 2,
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
@@ -20,18 +22,21 @@
   "explorer.confirmDragAndDrop": false,
   "terminal.integrated.fontSize": 13,
   "update.releaseTrack": "prerelease",
+  "window.autoDetectColorScheme": true,
   "window.commandCenter": false,
   "window.density.editorTabHeight": "compact",
   "window.nativeTabs": true,
-  "window.systemColorTheme": "auto",
+  // "window.title": " ",
   "window.title": "${folderPath}",
   "workbench.activityBar.location": "hidden",
   "workbench.activityBar.orientation": "vertical",
-  "workbench.colorTheme": "Vercel Theme",
   "workbench.editor.editorActionsLocation": "hidden",
   "workbench.layoutControl.enabled": false,
   "workbench.navigationControl.enabled": false,
+  "workbench.preferredDarkColorTheme": "Cursor Dark Midnight",
+  "workbench.preferredLightColorTheme": "Cursor Dark Midnight",
   "workbench.sideBar.location": "right",
+  "workbench.statusBar.visible": false,
   // VIM plugin
   "vim.highlightedyank.duration": 150,
   "vim.highlightedyank.enable": true,
@@ -56,5 +61,7 @@
   "vim.visualModeKeyBindings": [
     { "before": [">"], "after": [">", "g", "v"] },
     { "before": ["<"], "after": ["<", "g", "v"] }
-  ]
+  ],
+  // Plugins
+  "biome.suggestInstallingGlobally": false
 }

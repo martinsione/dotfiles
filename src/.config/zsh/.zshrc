@@ -28,3 +28,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by Windsurf
 export PATH="/Users/martin-aleph/.codeium/windsurf/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/martin-aleph/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export PATH="/Users/martin-aleph/.local/bin:$PATH"
+
+# opencode
+export PATH=/Users/martin-aleph/.opencode/bin:$PATH
