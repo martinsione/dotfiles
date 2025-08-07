@@ -3,12 +3,8 @@
     "use_key_equivalents": true,
     "bindings": {
       "cmd-b": "workspace::ToggleRightDock",
-      "cmd-l": "assistant::ToggleFocus",
-      "ctrl-`": "workspace::ToggleBottomDock",
-      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"]
+      "cmd-l": "workspace::ToggleLeftDock",
+      "ctrl-`": "workspace::ToggleBottomDock"
     }
   },
   {
@@ -31,7 +27,7 @@
   {
     "context": "vim_mode == normal",
     "bindings": {
-      "[ b": "pane::ActivatePrevItem",
+      "[ b": "pane::ActivatePreviousItem",
       "] b": "pane::ActivateNextItem",
       "space g r": "editor::FindAllReferences",
       "space r n": "editor::Rename",
