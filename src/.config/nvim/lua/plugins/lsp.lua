@@ -168,7 +168,6 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
-			local copilot = require("copilot")
 			luasnip.config.setup({})
 
 			cmp.setup({

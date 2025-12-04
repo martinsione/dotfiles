@@ -1,42 +1,54 @@
 // Place your key bindings in this file to override the defaults
 [
-    {
-        "key": "shift+cmd+g",
-        "command": "workbench.view.scm",
-        "when": "workbench.scm.active"
+  {
+    "key": "shift+cmd+g",
+    "command": "workbench.view.scm",
+    "when": "workbench.scm.active"
+  },
+  {
+    "command": "workbench.action.togglePanel",
+    "key": "ctrl+`"
+  },
+  {
+    "command": "workbench.action.toggleSidebarVisibility",
+    "key": "cmd+b"
+  },
+  {
+    "when": "filesExplorerFocus && !inputFocus",
+    "command": "explorer.newFile",
+    "key": "a"
+  },
+  {
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
+    "command": "filesExplorer.openFilePreserveFocus",
+    "key": "l"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "shift+cmd+h",
+    "command": "workbench.action.showPreviousWindowTab"
+  },
+  {
+    "key": "shift+cmd+l",
+    "command": "workbench.action.showNextWindowTab"
+  },
+  {
+    "key": "shift+cmd+n",
+    "command": "workbench.action.newWindowTab"
+  },
+  {
+    "key": "shift+cmd+n",
+    "command": "-workbench.action.newWindow"
+  },
+  {
+    "key": "shift+enter",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "\\\r\n"
     },
-    {
-        "command": "workbench.action.togglePanel",
-        "key": "ctrl+`"
-    },
-    {
-        "command": "workbench.action.toggleSidebarVisibility",
-        "key": "cmd+b"
-    },
-    {
-        "when": "filesExplorerFocus && !inputFocus",
-        "command": "explorer.newFile",
-        "key": "a"
-    },
-    {
-        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
-        "command": "filesExplorer.openFilePreserveFocus",
-        "key": "l"
-    },
-    {
-        "key": "cmd+i",
-        "command": "composerMode.agent"
-    },
-    {
-        "key": "cmd+e",
-        "command": "composerMode.background"
-    },
-    {
-        "key": "shift+enter",
-        "command": "workbench.action.terminal.sendSequence",
-        "args": {
-            "text": "\\\r\n"
-        },
-        "when": "terminalFocus"
-    }
+    "when": "terminalFocus"
+  }
 ]

@@ -1,17 +1,17 @@
 {
-  "ui_font_features": {
-    "calt": 0
-  },
   "features": {
     "edit_prediction_provider": "zed"
   },
   "agent": {
+    "always_allow_tool_actions": true,
+    "dock": "left",
     "play_sound_when_agent_done": true,
     "single_file_review": true,
-    "always_allow_tool_actions": true,
-    "dock": "left"
+    "use_modifier_to_send": false
   },
-  "ui_font_size": 14,
+  "git_panel": {
+    "dock": "right"
+  },
   "buffer_font_size": 14.0,
   "chat_panel": { "button": "when_in_call" },
   "collaboration_panel": { "button": false },
@@ -21,11 +21,16 @@
   "project_panel": { "dock": "right", "auto_fold_dirs": false },
   "relative_line_numbers": true,
   "scrollbar": { "git_diff": false },
-  "tab_bar": { "show_nav_history_buttons": false },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
   "terminal": { "button": false, "font_size": 12 },
   "theme": { "mode": "system", "light": "Vercel Light", "dark": "Vercel Dark" },
   "toolbar": { "breadcrumbs": true, "quick_actions": false },
+  "ui_font_size": 14,
   "unstable.ui_density": "compact",
   "vim_mode": true,
-  "wrap_guides": [80]
+  "wrap_guides": [80],
+  "use_system_window_tabs": true // For this to work, "Desktop & Dock" -> "Windows" -> Prefer tabs when opening documents
 }
