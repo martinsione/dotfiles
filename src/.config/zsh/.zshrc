@@ -41,3 +41,8 @@ export PATH="/Users/martin-aleph/.local/bin:$PATH"
 
 # opencode
 export PATH=/Users/martin-aleph/.opencode/bin:$PATH
+
+export LOCALHOST_KEY="$HOME/.certs/localhost-key.pem"
+export LOCALHOST_CERT="$HOME/.certs/localhost.pem"
+
+eval "$(fnm env --shell=zsh --use-on-cd)"

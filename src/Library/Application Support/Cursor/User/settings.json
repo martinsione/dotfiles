@@ -1,4 +1,5 @@
 {
+  "editor.tabSize": 2,
   "files.exclude": { "**/.git": false },
   "cursor.composer.collapsePaneInputBoxPills": true,
   "cursor.composer.shouldAllowCustomModes": true,
@@ -6,6 +7,7 @@
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
   "cursor.windowSwitcher.sidebarHoverCollapsed": true,
+  "diffEditor.renderSideBySide": false,
   "editor.fontFamily": "'JetBrainsMono Nerd Font'",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
@@ -26,17 +28,18 @@
   "window.commandCenter": false,
   "window.density.editorTabHeight": "compact",
   "window.nativeTabs": true,
-  // "window.title": " ",
   "window.title": "${folderPath}",
   "workbench.activityBar.location": "hidden",
   "workbench.activityBar.orientation": "vertical",
-  "workbench.editor.editorActionsLocation": "hidden",
+  // "workbench.editor.editorActionsLocation": "hidden",
   "workbench.layoutControl.enabled": false,
   "workbench.navigationControl.enabled": false,
-  "workbench.preferredDarkColorTheme": "Cursor Dark Midnight",
-  "workbench.preferredLightColorTheme": "Cursor Dark Midnight",
+  "workbench.preferredDarkColorTheme": "Cursor Dark",
+  "workbench.preferredLightColorTheme": "Cursor Light",
   "workbench.sideBar.location": "right",
-  "workbench.statusBar.visible": false,
+  // "workbench.statusBar.visible": false,
+  // Lang specific
+  "json.schemaDownload.enable": true,
   // VIM plugin
   "vim.highlightedyank.duration": 150,
   "vim.highlightedyank.enable": true,
@@ -62,6 +65,7 @@
     { "before": [">"], "after": [">", "g", "v"] },
     { "before": ["<"], "after": ["<", "g", "v"] }
   ],
-  // Plugins
-  "biome.suggestInstallingGlobally": false
+  "editor.accessibilitySupport": "off",
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.selectedModel": "opus",
 }

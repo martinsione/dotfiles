@@ -3,8 +3,15 @@
     "use_key_equivalents": true,
     "bindings": {
       "cmd-b": "workspace::ToggleRightDock",
+      "cmd-i": "agent::ToggleFocus",
       "cmd-l": "workspace::ToggleLeftDock",
       "ctrl-`": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus"
     }
   },
   {
