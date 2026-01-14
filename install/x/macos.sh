@@ -5,6 +5,9 @@ set -euo pipefail
 repo_url="https://github.com/martinsione/dotfiles.git"
 dotfiles_dir="$HOME/Developer/martinsione/dotfiles"
 symlinks=(
+  src/.claude/settings.json
+  src/.claude/statusline.sh
+  src/.claude/fetch-pricing.sh
   src/.config/ghostty
   src/.config/git
   src/.config/nvim

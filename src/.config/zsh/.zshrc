@@ -47,3 +47,6 @@ done
 
 ### Prompt
 eval "$(starship init zsh)"
+
+# bun completions
+[ -s "/Users/martin-aleph/.bun/_bun" ] && source "/Users/martin-aleph/.bun/_bun"
