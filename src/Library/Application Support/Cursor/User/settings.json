@@ -61,4 +61,5 @@
     { "before": ["<"], "after": ["<", "g", "v"] }
   ],
   "biome.suggestInstallingGlobally": false,
+  "claudeCode.preferredLocation": "panel",
 }
