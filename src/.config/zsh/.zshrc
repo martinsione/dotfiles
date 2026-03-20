@@ -50,3 +50,10 @@ eval "$(starship init zsh)"
 
 # bun completions
 [ -s "/Users/martin-aleph/.bun/_bun" ] && source "/Users/martin-aleph/.bun/_bun"
+
+# Wrangler Docker config
+export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
+export DOCKER_HOST=unix://$HOME/.docker/run/docker.sock
+
+# opencode
+export PATH=/Users/martin-aleph/.opencode/bin:$PATH

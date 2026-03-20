@@ -8,7 +8,6 @@
   "editor.fontFamily": "'JetBrainsMono Nerd Font'",
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
-  "editor.formatOnSave": true,
   "editor.hideCursorInOverviewRuler": true,
   "editor.lineHeight": 2,
   "editor.lineNumbers": "relative",
@@ -21,7 +20,7 @@
   "explorer.confirmDragAndDrop": false,
   "files.exclude": { "**/.git": false },
   "terminal.integrated.fontSize": 13,
-  "update.releaseTrack": "prerelease",
+  "update.releaseTrack": "dev",
   "window.autoDetectColorScheme": true,
   "window.commandCenter": true,
   "window.density.editorTabHeight": "compact",
@@ -62,4 +61,10 @@
   ],
   "biome.suggestInstallingGlobally": false,
   "claudeCode.preferredLocation": "panel",
+  "workbench.statusBar.visible": false,
+  "remote.SSH.remotePlatform": {
+    "devbox": "linux",
+    "martin@devbox": "linux"
+  },
+  "remote.autoForwardPortsSource": "hybrid",
 }
