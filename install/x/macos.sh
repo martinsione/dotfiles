@@ -6,14 +6,13 @@ repo_url="https://github.com/martinsione/dotfiles.git"
 dotfiles_dir="$HOME/Developer/martinsione/dotfiles"
 symlinks=(
   src/.claude/settings.json
-  src/.claude/statusline.sh
-  src/.claude/fetch-pricing.sh
   src/.config/ghostty
   src/.config/git
   src/.config/nvim
   src/.config/tmux
   src/.config/zed
   src/.config/zsh
+  src/.ssh/config
   src/.zshrc
   src/Library/Application\ Support/Cursor/User/keybindings.json
   src/Library/Application\ Support/Cursor/User/settings.json

@@ -33,8 +33,8 @@ alias gm='git merge'
 alias gs="git st"
 
 ## Tmux
-alias t="tmux -u"
-alias ta="tmux -u a"
+alias ta="tmux new-session -A -s"
 alias tls="tmux ls"
 alias tks="tmux kill-session -t"
-alias taleph='tmux attach-session -t aleph || tmux new-session -s aleph -c ~/Developer/aleph'
+
+alias claude="claude --allow-dangerously-skip-permissions"
