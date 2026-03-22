@@ -12,9 +12,6 @@ local pickers = require("telescope.pickers")
 local builtin = require("telescope.builtin")
 
 local find_projects_command = function(opts)
-	--[[ Example find command
-	find ~/Developer -type d \( -name node_modules -o -name build -o -name dist \) -prune -o \( -name .git -prune -print \) | sed 's/\/\.git$//'
-  --]]
 	opts = opts or {}
 	opts.cwd = opts.cwd or os.getenv("HOME") .. "/Developer"
 	opts.ignore = opts.ignore or { "node_modules", "dist", "build" }
@@ -73,19 +70,18 @@ M.live_multigrep = function(opts)
 				table.insert(args, pieces[2])
 			end
 
-			---@diagnostic disable-next-line: deprecated
-			return vim.tbl_flatten({
+			return vim.iter({
 				args,
 				{
 					"--color=never",
 					"--column",
-					"--hidden", -- include dotfiles
+					"--hidden",
 					"--line-number",
 					"--no-heading",
 					"--smart-case",
 					"--with-filename",
 				},
-			})
+			}):flatten():totable()
 		end,
 		entry_maker = make_entry.gen_from_vimgrep(opts),
 		cwd = opts.cwd,
@@ -111,7 +107,7 @@ M.projects = function(opts)
 				entry_maker = function(line)
 					local dir = line:gsub("/%.git$", "")
 					return {
-						display = vim.fn.fnamemodify(dir, ":~"), -- Show path relative to home
+						display = vim.fn.fnamemodify(dir, ":~"),
 						ordinal = dir,
 						value = dir,
 					}
@@ -130,31 +126,5 @@ M.projects = function(opts)
 		})
 		:find()
 end
-
-vim.keymap.set("n", "<space>ss", function()
-	builtin.find_files({
-		attach_mappings = function(prompt_bufnr)
-			local actions = require("telescope.actions")
-			local action_state = require("telescope.actions.state")
-			actions.select_default:replace(function()
-				local current_picker = action_state.get_current_picker(prompt_bufnr)
-				local selections = current_picker:get_multi_selection()
-				-- if no multi-selection, leverage current selection
-				if vim.tbl_isempty(selections) then
-					table.insert(selections, action_state.get_selected_entry())
-				end
-				local paths = vim.tbl_map(function(e)
-					return e.path
-				end, selections)
-				actions.close(prompt_bufnr)
-				builtin.live_grep({
-					search_dirs = paths,
-				})
-			end)
-			-- true: attach default mappings; false: don't attach default mappings
-			return true
-		end,
-	})
-end)
 
 return M
