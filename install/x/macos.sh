@@ -18,6 +18,15 @@ symlinks=(
   src/Library/Application\ Support/Cursor/User/settings.json
 )
 
+brew_packages=(
+  eza
+  fnm
+  ripgrep
+  starship
+  tmux
+  tree
+)
+
 # Colors for better visibility
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -30,6 +39,29 @@ log() {
 
 warn() {
     echo -e "${YELLOW}[!]${NC} $1"
+}
+
+install_deps() {
+    # Install Homebrew if not installed
+    if ! command -v brew &>/dev/null; then
+        log "Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        # Add brew to PATH for current and future sessions
+        if [[ -f /opt/homebrew/bin/brew ]]; then
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        elif [[ -f /usr/local/bin/brew ]]; then
+            echo 'eval "$(/usr/local/bin/brew shellenv)"' >> "$HOME/.zprofile"
+            eval "$(/usr/local/bin/brew shellenv)"
+        fi
+    else
+        log "Homebrew already installed"
+    fi
+
+    log "Installing brew packages..."
+    brew install "${brew_packages[@]}"
+    log "Dependencies installed!"
 }
 
 clone_repo() {
@@ -76,6 +108,19 @@ create_symlink() {
     log "Created symlink: $dst -> $src"
 }
 
+
+# Parse flags
+install_deps_flag=false
+for arg in "$@"; do
+    case "$arg" in
+        --install-deps) install_deps_flag=true ;;
+    esac
+done
+
+# Install dependencies if requested
+if $install_deps_flag; then
+    install_deps
+fi
 
 # Clone repository
 clone_repo
