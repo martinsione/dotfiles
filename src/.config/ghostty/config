@@ -1,12 +1,12 @@
 confirm-close-surface = false
-copy-on-select = clipboard
-cursor-style = block
 font-family = JetBrainsMono Nerd Font Mono
-font-size=13
-macos-titlebar-style = hidden
-shell-integration-features = no-cursor
+font-size=14
+macos-titlebar-style = tabs
 theme = light:GitHub Light Default, dark:Vercel
-window-height = 100000
 window-padding-x = 8
-window-padding-y = 8
-window-width = 100000
+window-padding-y = 0,8
+window-save-state = always
+keybind = cmd+shift+h=goto_split:left
+keybind = cmd+shift+j=goto_split:bottom
+keybind = cmd+shift+k=goto_split:top
+keybind = cmd+shift+l=goto_split:right
