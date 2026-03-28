@@ -37,4 +37,4 @@ alias ta="tmux new-session -A -s"
 alias tls="tmux ls"
 alias tks="tmux kill-session -t"
 
-alias claude="claude --allow-dangerously-skip-permissions"
+function claude() { command claude --allow-dangerously-skip-permissions --name "$(basename "$PWD")" "$@"; }
