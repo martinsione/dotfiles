@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-map({ "n", "v", "x", "i" }, "<C-c>", "<Esc>")
+map({ "n", "v", "i" }, "<C-c>", "<Esc>")
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 map("n", "Q", "<Nop>")
 map("n", "q:", "<Nop>")
@@ -26,3 +26,9 @@ map("x", "<", "<gv")
 map("x", ">", ">gv")
 map("x", "K", ":move '<-2<CR>gv-gv")
 map("x", "J", ":move '>+1<CR>gv-gv")
+
+vim.keymap.set("n", "<space>cfp", function()
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	print("Copied path: " .. path)
+end, { desc = "Copy current file path" })

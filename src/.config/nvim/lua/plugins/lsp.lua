@@ -1,18 +1,7 @@
-local function ensure_installed_tools(tools)
-  local mlsp = require("mason-lspconfig")
-  local mr = require("mason-registry")
-  for _, tool in ipairs(tools) do
-    local mason_name = mlsp.get_mappings().lspconfig_to_mason[tool] or tool
-    local p = mr.get_package(mason_name)
-    if not p:is_installed() then
-      p:install()
-    end
-  end
-end
-
 return {
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "williamboman/mason-lspconfig.nvim",
@@ -46,7 +35,7 @@ return {
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
             autocmd({ "CursorHold", "CursorHoldI" }, {
               group = augroup,
@@ -67,7 +56,7 @@ return {
             })
           end
 
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map("<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, "[T]oggle Inlay [H]ints")
@@ -75,42 +64,36 @@ return {
         end,
       })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
       require("mason").setup()
 
-      local servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = { callSnippet = "Replace" },
-              diagnostics = { globals = { "vim" } },
-            },
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      vim.lsp.config("*", { capabilities = capabilities })
+
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            completion = { callSnippet = "Replace" },
+            diagnostics = { globals = { "vim" } },
           },
         },
-      }
-
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "eslint_d",
-        "prettierd",
-        "stylua",
-        "tailwindcss-language-server",
-        "vtsls",
       })
-
-      ensure_installed_tools(ensure_installed)
 
       require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
+        ensure_installed = { "lua_ls", "vtsls", "tailwindcss" },
+        automatic_enable = true,
       })
+
+      local mr = require("mason-registry")
+      mr.refresh(function()
+        for _, tool in ipairs({ "eslint_d", "prettierd", "stylua" }) do
+          if mr.has_package(tool) then
+            local p = mr.get_package(tool)
+            if not p:is_installed() then
+              p:install()
+            end
+          end
+        end
+      end)
     end,
   },
 }

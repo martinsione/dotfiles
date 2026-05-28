@@ -1,11 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "apiKeyHelper": "security find-generic-password -a \"$USER\" -s \"ANTHROPIC_AUTH_TOKEN\" -w",
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
-  "effortLevel": "high",
-  "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true
+    "ANTHROPIC_BASE_URL": "https://ai-gateway.vercel.sh",
+    "CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK": "1",
+    "CLAUDE_CODE_ENABLE_OPUS_4_7_FAST_MODE": "1"
   },
   "permissions": {
     "allow": [
@@ -14,5 +13,13 @@
     ],
     "defaultMode": "default"
   },
-  "skipDangerousModePermissionPrompt": true
+  "model": "claude-opus-4-7",
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "slack@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
+  },
+  "effortLevel": "xhigh",
+  "skipDangerousModePermissionPrompt": true,
+  "fastMode": true
 }

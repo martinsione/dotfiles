@@ -1,40 +1,130 @@
 {
+  "cli_default_open_behavior": "existing_window",
+  "agent_ui_font_size": 11.0,
+  "agent_buffer_font_size": 11.0,
+  // "active_pane_modifiers": {
+  //   "border_size": -1.0
+  // },
+  // "centered_layout": {
+  //   "left_padding": 0.2
+  // },
+  "preview_tabs": {
+    "enable_preview_from_project_panel": true
+  },
+  "tabs": {
+    "show_close_button": "hidden",
+    "show_diagnostics": "off"
+  },
+  "title_bar": {
+    "button_layout": "platform_default",
+    "show_onboarding_banner": true,
+    "show_branch_status_icon": true
+  },
+  "diagnostics": {
+    "button": true
+  },
+  "status_bar": {
+    "show_active_file": true,
+    "cursor_position_button": true,
+    "active_encoding_button": "non_utf8",
+    "active_language_button": true
+  },
+  "tab_size": 4,
+  "vim": {
+    "toggle_relative_line_numbers": false
+  },
+  "text_rendering_mode": "platform_default",
+  "buffer_font_weight": 400.0,
+  "session": {
+    "trust_all_worktrees": false
+  },
+  "diff_view_style": "unified",
+  "preferred_line_length": 100,
+  "show_wrap_guides": true,
+  "soft_wrap": "editor_width",
+  "edit_predictions": {
+    "provider": "zed"
+  },
   "agent_servers": {
+    "claude-acp": {
+      "default_mode": "bypassPermissions",
+      "default_model": "claude-opus-4-7",
+      "default_config_options": {
+        "mode": "bypassPermissions"
+      },
+      "type": "registry"
+    },
     "cursor": {
       "type": "registry"
     }
   },
-  "features": {
-    "edit_prediction_provider": "zed",
-  },
   "agent": {
-    "always_allow_tool_actions": true,
+    "message_editor_min_lines": 4,
+    "sidebar_side": "left",
+    "limit_content_width": false,
+    "default_width": 300.0,
+    "button": false,
+    "tool_permissions": {
+      "default": "allow"
+    },
     "dock": "left",
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": "always",
     "single_file_review": true,
-    "use_modifier_to_send": false,
+    "use_modifier_to_send": false
   },
   "git_panel": {
-    "dock": "right",
+    "show_count_badge": false,
+    "diff_stats": true,
+    "folder_icons": false,
+    "file_icons": false,
+    "tree_view": true,
+    "collapse_untracked_diff": false,
+    "status_style": "icon",
+    "default_width": 300.0,
+    "dock": "right"
   },
-  "buffer_font_size": 14.0,
-  "collaboration_panel": { "button": false },
+  "buffer_font_size": 13.0,
+  "collaboration_panel": { "dock": "right", "button": false },
   "cursor_blink": false,
-  "notification_panel": { "button": false },
-  "outline_panel": { "button": false },
-  "project_panel": { "dock": "right", "auto_fold_dirs": false },
+  "outline_panel": { "file_icons": true, "dock": "right", "button": false },
+  "project_panel": {
+    "hide_root": true,
+    "indent_guides": { "show": "never" },
+    "git_status_indicator": false,
+    "diagnostic_badges": false,
+    "bold_folder_labels": false,
+    "starts_open": true,
+    "indent_size": 13.0,
+    "git_status": true,
+    "folder_icons": false,
+    "file_icons": true,
+    "entry_spacing": "standard",
+    "default_width": 300.0,
+    "button": false,
+    "dock": "right",
+    "auto_fold_dirs": false
+  },
   "relative_line_numbers": "enabled",
   "scrollbar": { "git_diff": false },
   "tab_bar": {
+    "show": true,
+    "show_pinned_tabs_in_separate_row": false,
     "show_nav_history_buttons": false,
-    "show_tab_bar_buttons": false,
+    "show_tab_bar_buttons": false
   },
-  "terminal": { "button": false, "font_size": 12 },
+  "terminal": { "font_size": 13.0 },
   "theme": { "mode": "system", "light": "Vercel Light", "dark": "Vercel Dark" },
-  "toolbar": { "breadcrumbs": true, "quick_actions": false },
-  "ui_font_size": 14,
+  "toolbar": { "selections_menu": true, "breadcrumbs": true, "quick_actions": false },
+  "ui_font_size": 13.0,
   "unstable.ui_density": "compact",
   "vim_mode": true,
-  "wrap_guides": [80],
+  "wrap_guides": [80, 100],
   "use_system_window_tabs": true, // For this to work, "Desktop & Dock" -> "Windows" -> Prefer tabs when opening documents
+  "formatter": [
+    {
+      "language_server": {
+        "name": "oxfmt"
+      }
+    }
+  ]
 }

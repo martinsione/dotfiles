@@ -209,9 +209,10 @@ function M.get(c)
 		LspInlayHint      = { fg = c.fg_dark, italic = true },
 
 		-- GitSigns
-		GitSignsAdd    = { fg = c.green },
-		GitSignsChange = { fg = c.orange },
-		GitSignsDelete = { fg = c.pink },
+		GitSignsAdd              = { fg = c.green },
+		GitSignsChange           = { fg = c.orange },
+		GitSignsDelete           = { fg = c.pink },
+		GitSignsCurrentLineBlame = { fg = c.fg_dark, italic = true },
 
 		-- Telescope
 		TelescopeNormal       = { fg = c.fg, bg = c.bg_dark },

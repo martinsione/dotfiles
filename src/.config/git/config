@@ -1,6 +1,7 @@
 [user]
 	email = martinsione03@gmail.com
 	name = Martin Sione
+	signingkey = /Users/martin-vercel/.ssh/id_ed25519.pub
 
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
@@ -17,3 +18,7 @@
 
 [push]
     default = current
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

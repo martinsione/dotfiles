@@ -8,6 +8,7 @@ export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$H
 ### Environment
 export LOCALHOST_KEY="$HOME/.certs/localhost-key.pem"
 export LOCALHOST_CERT="$HOME/.certs/localhost.pem"
+export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
 
 ### Completion (cached - only rebuild once daily)
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -53,7 +54,25 @@ eval "$(starship init zsh)"
 
 # Wrangler Docker config
 export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
-export DOCKER_HOST=unix://$HOME/.docker/run/docker.sock
 
 # opencode
 export PATH=/Users/martin-aleph/.opencode/bin:$PATH
+
+# fx CLI
+export PATH="/Users/martin-vercel/.fx/bin:$PATH"
+
+alias claude="claude --effort max --allow-dangerously-skip-permissions --model opus"
+
+# pnpm
+export PNPM_HOME="/Users/martin-vercel/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# BEGIN: socket firewall aliases (managed by Iru)
+alias npm="sfw npm"
+alias pnpm="sfw pnpm"
+alias bun="sfw bun"
+# END: socket firewall aliases (managed by Iru)

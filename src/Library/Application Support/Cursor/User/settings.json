@@ -7,20 +7,19 @@
   "diffEditor.renderSideBySide": false,
   "editor.fontFamily": "'JetBrainsMono Nerd Font'",
   "editor.fontLigatures": true,
-  "editor.fontSize": 13,
+  "editor.fontSize": 12,
   "editor.hideCursorInOverviewRuler": true,
   "editor.lineHeight": 2,
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
-  "editor.rulers": [80],
+  "editor.rulers": [80, 100],
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "files.exclude": { "**/.git": false },
   "terminal.integrated.fontSize": 13,
-  "update.releaseTrack": "dev",
   "window.autoDetectColorScheme": true,
   "window.commandCenter": true,
   "window.density.editorTabHeight": "compact",
@@ -61,10 +60,16 @@
   ],
   "biome.suggestInstallingGlobally": false,
   "claudeCode.preferredLocation": "panel",
-  "workbench.statusBar.visible": false,
   "remote.SSH.remotePlatform": {
     "devbox": "linux",
     "martin@devbox": "linux"
   },
   "remote.autoForwardPortsSource": "hybrid",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "cursor.general.fontSmoothingAntialiased": true,
 }
