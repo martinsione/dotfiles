@@ -10,13 +10,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	install = { colorscheme = { "rose-pine" } },
+	install = { colorscheme = { "vercel" } },
 	checker = { enabled = false },
-	spec = {
-		{ import = "plugins" }, -- custom.plugins
-	},
-	change_detection = {
-		enabled = false, -- automatically check for config file changes and reload the ui
-		notify = true, -- get a notification when changes are found
-	},
+	change_detection = { enabled = false },
+	spec = { { import = "plugins" } },
 })

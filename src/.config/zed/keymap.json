@@ -1,22 +1,30 @@
 [
   {
-    "use_key_equivalents": true,
+    "context": "Workspace",
     "bindings": {
       "cmd-b": "workspace::ToggleRightDock",
       "cmd-i": "agent::ToggleFocus",
       "cmd-l": "workspace::ToggleLeftDock",
-      "ctrl-`": "workspace::ToggleBottomDock"
+      "cmd-shift-g": "git_panel::ToggleFocus",
+      "cmd-t": "workspace::NewCenterTerminal",
+      "ctrl-tab": "pane::ActivateNextItem",
+      "ctrl-shift-tab": "pane::ActivatePreviousItem"
+    },
+    "unbind": {
+      "ctrl-`": "terminal_panel::Toggle",
+      "cmd-t": "project_symbols::Toggle",
+      "ctrl-tab": "tab_switcher::Toggle",
+      "ctrl-shift-tab": ["tab_switcher::Toggle", { "select_last": true }]
     }
   },
   {
-    "context": "Workspace",
-    "bindings": {
-      "cmd-shift-g": "git_panel::ToggleFocus"
+    "context": "Editor",
+    "unbind": {
+      "ctrl-cmd-p": "editor::AddSelectionAbove"
     }
   },
   {
     "context": "Editor && mode == full",
-    "use_key_equivalents": true,
     "bindings": {
       "cmd-k": "assistant::InlineAssist"
     }
@@ -40,7 +48,26 @@
       "space r n": "editor::Rename",
       "space b d": "pane::CloseActiveItem",
       "space b u": "pane::ReopenClosedItem",
-      "space e": "workspace::ToggleRightDock"
+      "space e": "workspace::ToggleRightDock",
+      "space space": "tab_switcher::OpenInActivePane"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "cmd-l": "editor::SelectLine"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-cmd-p": "git::Worktree"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-cmd-w": "git::Worktree"
     }
   }
 ]

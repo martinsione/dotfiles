@@ -58,8 +58,6 @@ brew install \
 ```
 
 4. UI/UX tweaks
-   - Disable hot corners
-   - Automatically hide and show the Dock
    - Add ⌃ + number to switch desktops
       1. Create 9 desktops
       2. Go to System Preferences > Keyboard > Keyboard Shortcuts > Mission Control > Mission Control (enable all)
@@ -67,9 +65,23 @@ brew install \
       - Enable "Magnet" preset for window management
    - Remap CAPS Lock to Control. (Settings > Keyboard > Keyboard Shortcuts)
    - Increase mouse and trackpad speed
-   - Increase Key Repetition Speed and Remove Delay
 
 ```bash
+
+# Prefer tabs when opening documents -> Always
+defaults write NSGlobalDomain AppleWindowTabbingMode -string always
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+# Disable all hot corners
+defaults write com.apple.dock wvous-tl-corner -int 0
+defaults write com.apple.dock wvous-tr-corner -int 0
+defaults write com.apple.dock wvous-bl-corner -int 0
+defaults write com.apple.dock wvous-br-corner -int 0
+
+# Apply Dock changes
+killall Dock
 
 # Set key repeat rate to maximum (fastest)
 defaults write -g KeyRepeat -int 1

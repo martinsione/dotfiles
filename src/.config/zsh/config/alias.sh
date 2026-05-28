@@ -31,10 +31,13 @@ alias gP='git pull'
 alias gr='git remote'
 alias gm='git merge'
 alias gs="git st"
+alias pr="gh pr view --web"
+alias prc="gh pr view --json url -q .url | pbcopy"
+alias prb="git branch --show-current | pbcopy"
 
 ## Tmux
 alias ta="tmux new-session -A -s"
 alias tls="tmux ls"
 alias tks="tmux kill-session -t"
 
-function claude() { command claude --allow-dangerously-skip-permissions --name "$(basename "$PWD")" "$@"; }
+function claude() { command claude --effort xhigh --allow-dangerously-skip-permissions --name "$(basename "$PWD")" "$@"; }

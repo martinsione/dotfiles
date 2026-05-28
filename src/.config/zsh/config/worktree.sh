@@ -3,94 +3,50 @@
 
 WT_BASE="$HOME/Developer/worktrees"
 WT_CONFIG_FILE=".worktree"
-
-# Validate worktree/branch name
-_wt_validate_name() {
-  local name="$1"
-
-  # Check for empty
-  [[ -z "$name" ]] && echo "Name cannot be empty" && return 1
-
-  # Check for invalid characters (git branch rules)
-  if [[ "$name" =~ [[:space:]] ]]; then
-    echo "Name cannot contain spaces"
-    return 1
-  fi
-
-  if [[ "$name" =~ [\~\^\:\?\*\[\\\] ]]; then
-    echo "Name cannot contain ~ ^ : ? * [ \\"
-    return 1
-  fi
-
-  if [[ "$name" == .* || "$name" == -* ]]; then
-    echo "Name cannot start with . or -"
-    return 1
-  fi
-
-  if [[ "$name" == *.lock ]]; then
-    echo "Name cannot end with .lock"
-    return 1
-  fi
-
-  if [[ "$name" == *..* ]]; then
-    echo "Name cannot contain .."
-    return 1
-  fi
-
-  return 0
-}
-
-# Get the repo name from the current git directory
-_wt_repo_name() {
-  local repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
-  if [[ -z "$repo_root" ]]; then
-    echo "Error: Not in a git repository" >&2
-    return 1
-  fi
-  basename "$repo_root"
-}
+WT_VERCEL_REPOS=("$HOME/Developer/vercel/v0" "$HOME/Developer/vercel/v1" "$HOME/Developer/vercel/v2")
 
 # Get the repo root (handles both main repo and worktrees)
 _wt_repo_root() {
-  local git_dir=$(git rev-parse --git-dir 2>/dev/null)
-  if [[ -z "$git_dir" ]]; then
+  local toplevel=$(git rev-parse --show-toplevel 2>/dev/null)
+  if [[ -z "$toplevel" ]]; then
     echo "Error: Not in a git repository" >&2
     return 1
   fi
 
-  # If we're in a worktree, git-dir points to .git/worktrees/<name>
+  # If we're in a worktree, show-toplevel gives the worktree path, not the main repo
+  local git_dir=$(git rev-parse --git-dir 2>/dev/null)
   if [[ "$git_dir" == *"/worktrees/"* ]]; then
-    git_dir=$(git rev-parse --git-common-dir 2>/dev/null)
+    local common_dir=$(git rev-parse --git-common-dir 2>/dev/null)
+    # Avoid cd here — chpwd hooks (fnm, etc.) would pollute the captured stdout
+    dirname "$common_dir"
+    return 0
   fi
 
-  # git_dir is .git, so parent is the repo root
-  dirname "$git_dir"
+  echo "$toplevel"
+}
+
+_wt_tmux_rename() {
+  [[ -n "$TMUX" ]] && tmux rename-window "$1" 2>/dev/null
 }
 
 # Main worktree command
 wt() {
   local cmd="${1:-}"
 
-  # No args = go to root repo
   if [[ -z "$cmd" ]]; then
     local repo_root=$(_wt_repo_root) || return 1
     cd "$repo_root"
     return 0
   fi
 
-  # wt - = cd -
-  if [[ "$cmd" == "-" ]]; then
-    cd -
-    return 0
-  fi
+  [[ "$cmd" == "-" ]] && { cd -; return 0; }
 
-  # Subcommands
   case "$cmd" in
-    ls)           shift; _wt_list "$@" ;;
-    rm)           shift; _wt_remove "$@" ;;
-    path)         shift; _wt_path "$@" ;;
-    help|--help|-h) _wt_help ;;
-    *)            _wt_checkout "$@" ;;
+    ls)              shift; _wt_list "$@" ;;
+    rm)              shift; _wt_remove "$@" ;;
+    path)            shift; _wt_path "$@" ;;
+    help|--help|-h)  _wt_help ;;
+    *)               _wt_checkout "$@" ;;
   esac
 }
 
@@ -108,13 +64,6 @@ Commands:
   wt rm <name>            Remove worktree
   wt path <name>          Print path to worktree
 
-Examples:
-  wt feature-auth         # Create worktree, install deps, cd there
-  wt hotfix main          # Create worktree from main branch
-  wt                      # Go to root repo
-  wt ls                   # List all worktrees
-  wt rm feature-auth      # Remove worktree
-
 Config: Add files to copy in .worktree (one glob pattern per line)
 Worktrees stored in: $WT_BASE/<repo-name>/<worktree-name>
 EOF
@@ -122,50 +71,58 @@ EOF
 
 _wt_checkout() {
   local name="$1"
-  local branch="$2"
+  local branch="${2:-$name}"
 
   if [[ -z "$name" ]]; then
-    echo "Error: Worktree name required"
     echo "Usage: wt <name> [branch]"
     return 1
   fi
 
-  # Validate name
-  local validation_error
-  if ! validation_error=$(_wt_validate_name "$name"); then
-    echo "Error: Invalid worktree name '$name'"
-    echo "  $validation_error"
-    return 1
-  fi
-
-  local repo_name=$(_wt_repo_name) || return 1
   local repo_root=$(_wt_repo_root) || return 1
-  local wt_path="$WT_BASE/$repo_name/$name"
+  local repo_name=$(basename "$repo_root")
+  local wt_parent="$WT_BASE/$repo_name/$name"
+  local wt_path="$wt_parent/$repo_name"
+  local is_vercel=
+  for _r in "${WT_VERCEL_REPOS[@]}"; do [[ "$repo_root" == "$_r" ]] && is_vercel=1 && break; done
 
-  # Default branch to worktree name
-  [[ -z "$branch" ]] && branch="$name"
-
-  # Check if worktree already exists
+  # Worktree already exists
   if [[ -d "$wt_path" ]]; then
     cd "$wt_path"
+    _wt_tmux_rename "$name"
     return 0
   fi
 
   echo "Creating worktree '$name' at $wt_path..."
-  mkdir -p "$WT_BASE/$repo_name"
+  mkdir -p "$wt_parent"
 
-  # Check if branch exists
-  if git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
-    echo "Using existing branch: $branch"
-    git -C "$repo_root" worktree add "$wt_path" "$branch"
-  else
-    echo "Creating new branch: $branch"
-    git -C "$repo_root" worktree add -b "$branch" "$wt_path"
+  # For vercel repos, refresh origin/main in background (new worktree uses current origin/main)
+  if [[ -n "$is_vercel" ]]; then
+    git -C "$repo_root" fetch origin main </dev/null &>/dev/null &
+    disown
   fi
 
-  if [[ $? -ne 0 ]]; then
-    echo "Error: Failed to create worktree"
-    return 1
+  # Create worktree: local branch > remote branch > new branch
+  if git -C "$repo_root" show-ref --verify --quiet "refs/heads/$branch"; then
+    if ! git -C "$repo_root" worktree add "$wt_path" "$branch" 2>/dev/null; then
+      echo "Branch '$branch' already checked out, creating 'wt/$branch'"
+      git -C "$repo_root" worktree add -b "wt/$branch" "$wt_path" "$branch" || { echo "Error: Failed to create worktree"; return 1; }
+    fi
+  elif git -C "$repo_root" show-ref --verify --quiet "refs/remotes/origin/$branch"; then
+    git -C "$repo_root" worktree add --track -b "$branch" "$wt_path" "origin/$branch" || { echo "Error: Failed to create worktree"; return 1; }
+  elif [[ -n "$is_vercel" ]]; then
+    git -C "$repo_root" worktree add -b "$branch" "$wt_path" origin/main || { echo "Error: Failed to create worktree"; return 1; }
+  else
+    git -C "$repo_root" worktree add -b "$branch" "$wt_path" || { echo "Error: Failed to create worktree"; return 1; }
+  fi
+
+  # Vercel repos: cd into worktree, deps in background
+  if [[ -n "$is_vercel" ]]; then
+    cd "$wt_path"
+    _wt_tmux_rename "$name"
+    (pnpm install && pnpm setup-env) </dev/null &>"$wt_path/.wt-setup.log" &
+    disown
+    echo "Worktree ready. Deps installing in background (log: .wt-setup.log)"
+    return 0
   fi
 
   # Copy files listed in .worktree config
@@ -175,9 +132,8 @@ _wt_checkout() {
       for file in "$repo_root"/$~pattern(N); do
         [[ -f "$file" ]] || continue
         local rel_path="${file#$repo_root/}"
-        local dest_dir="$wt_path/$(dirname "$rel_path")"
-        mkdir -p "$dest_dir"
-        cp "$file" "$dest_dir/"
+        mkdir -p "$wt_path/$(dirname "$rel_path")"
+        cp "$file" "$wt_path/$(dirname "$rel_path")/"
         echo "  Copied $rel_path"
       done
     done < "$repo_root/$WT_CONFIG_FILE"
@@ -200,58 +156,74 @@ _wt_checkout() {
     (cd "$wt_path" && $pkg_manager install)
   fi
 
-  echo ""
   echo "Worktree created: $wt_path"
   cd "$wt_path"
+  _wt_tmux_rename "$name"
 }
 
 _wt_list() {
-  local repo_name=$(_wt_repo_name) || return 1
   local repo_root=$(_wt_repo_root) || return 1
+  local repo_name=$(basename "$repo_root")
+  local cwd=$(pwd)
+  local RED=$'\e[31m' YEL=$'\e[33m' GRN=$'\e[32m' RST=$'\e[0m'
+  local wt_path head branch detached
 
-  echo "Worktrees for $repo_name:"
-  echo ""
-  git -C "$repo_root" worktree list
+  git -C "$repo_root" worktree list --porcelain | while IFS= read -r line; do
+    case "$line" in
+      "worktree "*) wt_path="${line#worktree }"; head=""; branch=""; detached= ;;
+      "HEAD "*)     head="${line#HEAD }"; head="${head:0:7}" ;;
+      "branch "*)   branch="${line#branch refs/heads/}" ;;
+      detached)     detached=1 ;;
+      "")
+        local name=""
+        if [[ "$wt_path" == "$repo_root" ]]; then
+          name="(main repo)"
+        elif [[ "$wt_path" == "$WT_BASE/$repo_name/"* ]]; then
+          local rel="${wt_path#$WT_BASE/$repo_name/}"
+          name="${rel%/$repo_name}"
+        else
+          name=$(basename "$wt_path")
+        fi
+        local ref="${branch:-(detached)}"
+        local mark=""
+        [[ "$cwd" == "$wt_path"* ]] && mark=" ${GRN}*${RST}"
+        printf "%s%s%s %s%s%s %s%s\n" "$RED" "$head" "$RST" "$YEL" "$ref" "$RST" "$name" "$mark"
+        ;;
+    esac
+  done
 }
 
 _wt_remove() {
   local name="$1"
 
   if [[ -z "$name" ]]; then
-    echo "Error: Worktree name required"
-    echo "Usage: wt remove <name>"
+    echo "Usage: wt rm <name>"
     return 1
   fi
 
-  local repo_name=$(_wt_repo_name) || return 1
   local repo_root=$(_wt_repo_root) || return 1
-  local wt_path="$WT_BASE/$repo_name/$name"
+  local repo_name=$(basename "$repo_root")
+  local wt_parent="$WT_BASE/$repo_name/$name"
+  local wt_path="$wt_parent/$repo_name"
 
   if [[ ! -d "$wt_path" ]]; then
     echo "Error: Worktree not found: $wt_path"
     return 1
   fi
 
-  if [[ "$(pwd)" == "$wt_path"* ]]; then
+  if [[ "$(pwd)" == "$wt_parent"* ]]; then
     echo "Error: Cannot remove worktree while inside it"
-    echo "Please cd to a different directory first"
     return 1
   fi
 
-  echo "Removing worktree: $wt_path"
-  git -C "$repo_root" worktree remove "$wt_path" --force
+  git -C "$repo_root" worktree remove "$wt_path" --force || { echo "Error: Failed to remove worktree"; return 1; }
+  rmdir "$wt_parent" 2>/dev/null
 
-  if [[ $? -eq 0 ]]; then
-    echo "Worktree removed"
-    echo ""
-    read -q "REPLY?Delete branch '$name' as well? [y/N] "
-    echo ""
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-      git -C "$repo_root" branch -D "$name" 2>/dev/null && echo "Branch deleted" || echo "Branch not found"
-    fi
-  else
-    echo "Error: Failed to remove worktree"
-    return 1
+  echo "Worktree removed"
+  read -q "REPLY?Delete branch '$name' as well? [y/N] "
+  echo ""
+  if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+    git -C "$repo_root" branch -D "$name" 2>/dev/null && echo "Branch deleted" || echo "Branch not found"
   fi
 }
 
@@ -259,12 +231,13 @@ _wt_path() {
   local name="$1"
 
   if [[ -z "$name" ]]; then
-    echo "Error: Worktree name required" >&2
+    echo "Usage: wt path <name>" >&2
     return 1
   fi
 
-  local repo_name=$(_wt_repo_name) || return 1
-  local wt_path="$WT_BASE/$repo_name/$name"
+  local repo_root=$(_wt_repo_root) || return 1
+  local repo_name=$(basename "$repo_root")
+  local wt_path="$WT_BASE/$repo_name/$name/$repo_name"
 
   if [[ -d "$wt_path" ]]; then
     echo "$wt_path"
@@ -276,14 +249,9 @@ _wt_path() {
 
 # Tab completion
 _wt_completion() {
-  local repo_name=$(_wt_repo_name 2>/dev/null)
-  local -a wts
-
-  if [[ -n "$repo_name" && -d "$WT_BASE/$repo_name" ]]; then
-    wts=($(command ls -t "$WT_BASE/$repo_name" 2>/dev/null))
-  fi
-
-  compadd -a wts
+  local repo_name=$(basename "$(_wt_repo_root 2>/dev/null)" 2>/dev/null)
+  [[ -n "$repo_name" && -d "$WT_BASE/$repo_name" ]] || return
+  compadd $(command ls -t "$WT_BASE/$repo_name" 2>/dev/null)
 }
 
 (( $+functions[compdef] )) && compdef _wt_completion wt

@@ -6,7 +6,6 @@ function M.load()
   end
 
   vim.g.colors_name = "vercel"
-  vim.o.termguicolors = true
 
   local palette = require("vercel.palette")
   local c = vim.o.background == "light" and palette.light or palette.dark

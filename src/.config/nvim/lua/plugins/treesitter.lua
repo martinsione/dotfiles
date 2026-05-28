@@ -1,22 +1,15 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		build = ":TSUpdate",
-		event = { "VeryLazy" },
-		lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-		init = function(plugin)
-			require("lazy.core.loader").add_to_rtp(plugin)
-			require("nvim-treesitter.query_predicates")
-		end,
-		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-		keys = {
-			{ "<c-space>", desc = "Increment Selection" },
-			{ "<bs>", desc = "Decrement Selection", mode = "x" },
-		},
-		opts = {
-			highlight = { enable = true },
-			indent = { enable = true },
-			ensure_installed = {
+		lazy = false,
+		config = function()
+			local ts = require("nvim-treesitter")
+
+			ts.setup({ install_dir = vim.fn.stdpath("data") .. "/site" })
+
+			local ensure_installed = {
 				"bash",
 				"c",
 				"diff",
@@ -40,40 +33,29 @@ return {
 				"vimdoc",
 				"xml",
 				"yaml",
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
-			textobjects = {
-				move = {
-					enable = true,
-					goto_next_start = {
-						["]f"] = "@function.outer",
-						["]c"] = "@class.outer",
-						["]a"] = "@parameter.inner",
-					},
-					goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-					goto_previous_start = {
-						["[f"] = "@function.outer",
-						["[c"] = "@class.outer",
-						["[a"] = "@parameter.inner",
-					},
-					goto_previous_end = {
-						["[F"] = "@function.outer",
-						["[C"] = "@class.outer",
-						["[A"] = "@parameter.inner",
-					},
-				},
-			},
-		},
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
+			}
+
+			local installed = ts.get_installed("parsers")
+			local missing = vim.tbl_filter(function(p)
+				return not vim.list_contains(installed, p)
+			end, ensure_installed)
+			if #missing > 0 then
+				ts.install(missing)
+			end
+
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("nvim-treesitter-attach", { clear = true }),
+				callback = function(args)
+					local buf = args.buf
+					local ft = vim.bo[buf].filetype
+					local lang = vim.treesitter.language.get_lang(ft) or ft
+					if not vim.treesitter.language.add(lang) then
+						return
+					end
+					pcall(vim.treesitter.start, buf, lang)
+					vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end,
+			})
 		end,
 	},
 }
