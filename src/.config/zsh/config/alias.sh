@@ -39,5 +39,3 @@ alias prb="git branch --show-current | pbcopy"
 alias ta="tmux new-session -A -s"
 alias tls="tmux ls"
 alias tks="tmux kill-session -t"
-
-function claude() { command claude --effort xhigh --allow-dangerously-skip-permissions --name "$(basename "$PWD")" "$@"; }
