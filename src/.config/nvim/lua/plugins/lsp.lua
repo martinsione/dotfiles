@@ -85,7 +85,7 @@ return {
 
       local mr = require("mason-registry")
       mr.refresh(function()
-        for _, tool in ipairs({ "eslint_d", "prettierd", "stylua" }) do
+        for _, tool in ipairs({ "oxfmt", "stylua" }) do
           if mr.has_package(tool) then
             local p = mr.get_package(tool)
             if not p:is_installed() then

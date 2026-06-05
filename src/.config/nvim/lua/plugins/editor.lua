@@ -47,8 +47,8 @@ return {
       window = { position = "right" },
     },
     dependencies = {
-      { "MunifTanjim/nui.nvim",        lazy = true },
-      { "nvim-lua/plenary.nvim",       lazy = true },
+      { "MunifTanjim/nui.nvim", lazy = true },
+      { "nvim-lua/plenary.nvim", lazy = true },
       { "nvim-tree/nvim-web-devicons", lazy = true, enabled = vim.g.have_nerd_font },
     },
   },
