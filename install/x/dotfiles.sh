@@ -17,10 +17,7 @@ dirs=(
 )
 
 symlinks=(
-  .claude/fetch-pricing.sh
-  .claude/get-auth-token.sh
   .claude/settings.json
-  .claude/statusline.sh
   .config/git
   .config/htop
   .config/kitty
