@@ -32,6 +32,7 @@ alias gr='git remote'
 alias gm='git merge'
 alias gs="git st"
 alias pr="gh pr view --web"
+alias prm="gh pr list --author '@me'"
 alias prc="gh pr view --json url -q .url | pbcopy"
 alias prb="git branch --show-current | pbcopy"
 
