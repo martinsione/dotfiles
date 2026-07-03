@@ -74,3 +74,6 @@ alias npm="sfw npm"
 alias pnpm="sfw pnpm"
 alias bun="sfw bun"
 # END: socket firewall aliases (managed by Iru)
+
+### Machine-local overrides (untracked local.sh; per-machine PATH/aliases/unaliases)
+[ -f "$ZSH_CONFIG_DIR/config/local.sh" ] && source "$ZSH_CONFIG_DIR/config/local.sh"

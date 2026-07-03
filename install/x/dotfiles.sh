@@ -6,7 +6,7 @@
 
 export repo_host="https://github.com/"
 export repo_path="martinsione/dotfiles.git"
-export dotfiles_dir="$HOME/.dotfiles"
+export dotfiles_dir="$HOME/Developer/martinsione/dotfiles"
 
 dirs=(
   ~/.cache/zsh
@@ -51,6 +51,7 @@ install_dependencies() {
 }
 
 clone_repo() {
+  mkdir -p "$(dirname "${dotfiles_dir}")"
   if [ -d "$HOME/dotfiles" ]; then
     mv "$HOME/dotfiles" "${dotfiles_dir}";
   elif [ ! -d "${dotfiles_dir}" ]; then
