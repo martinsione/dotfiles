@@ -1,11 +1,12 @@
-# Codex → Vercel AI Gateway. The key comes from the same per-machine secret
-# store that Claude Code's apiKeyHelper reads (Keychain on macOS, systemd-creds
-# on Linux; see ~/.claude/get-auth-token.sh for how to store it).
+# Vercel AI Gateway auth for codex and Claude Code. The key comes from the
+# per-machine secret store (Keychain on macOS, systemd-creds on Linux; see
+# ~/.claude/get-auth-token.sh for how to store it).
 #
-# This must be a real exported var, not a codex() wrapper function: the Codex
-# desktop app reaches this machine over SSH and boots `codex app-server`
+# These must be real exported vars, not wrapper functions or apiKeyHelper: the
+# Codex desktop app reaches this machine over SSH and boots `codex app-server`
 # through `$SHELL -l -i -c '... /bin/sh -c ...'` — exports survive into that
-# /bin/sh, shell functions don't.
+# /bin/sh, functions don't. Claude Code reads ANTHROPIC_AUTH_TOKEN directly
+# (ANTHROPIC_API_KEY must stay unset/empty — it takes precedence).
 #
 # The "vercel" provider lives in ~/.codex/config.toml, which is NOT symlinked
 # to the dotfiles because codex rewrites it with per-machine state (project
@@ -23,6 +24,7 @@
 #
 # One-off fallback to the ChatGPT login: codex -c model_provider=openai -c model=gpt-5.5
 export AI_GATEWAY_API_KEY="${AI_GATEWAY_API_KEY:-$(~/.claude/get-auth-token.sh 2>/dev/null)}"
+export ANTHROPIC_AUTH_TOKEN="$AI_GATEWAY_API_KEY"
 
 function find_projects() {
   local selected_dir=$(find ~/Developer \
