@@ -6,6 +6,7 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.codeium/windsurf/bin:$PATH"
 
 ### Environment
+export ANTHROPIC_BASE_URL="http://localhost:4317"
 export LOCALHOST_KEY="$HOME/.certs/localhost-key.pem"
 export LOCALHOST_CERT="$HOME/.certs/localhost.pem"
 export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
