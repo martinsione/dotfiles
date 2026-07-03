@@ -2,10 +2,13 @@
 # store that Claude Code's apiKeyHelper reads (Keychain on macOS, systemd-creds
 # on Linux; see ~/.claude/get-auth-token.sh for how to store it).
 #
-# The "vercel" provider/profile lives in ~/.codex/config.toml, which is NOT
-# symlinked to the dotfiles because codex rewrites it with per-machine state
-# (project trust levels, tui nux). On a new machine add to ~/.codex/config.toml:
-#   profile = "vercel"                      # top-level, makes it the default
+# The "vercel" provider lives in ~/.codex/config.toml, which is NOT symlinked
+# to the dotfiles because codex rewrites it with per-machine state (project
+# trust levels, tui nux). On a new machine add to ~/.codex/config.toml
+# (top-level keys before any [table]; note [profiles] / `profile =` were
+# removed in codex 0.142, so the provider is set as the base default):
+#   model_provider = "vercel"
+#   model = "openai/gpt-5.5"
 #
 #   [model_providers.vercel]
 #   name = "Vercel AI Gateway"
@@ -13,9 +16,7 @@
 #   env_key = "AI_GATEWAY_API_KEY"
 #   wire_api = "responses"
 #
-#   [profiles.vercel]
-#   model_provider = "vercel"
-#   model = "openai/gpt-5.5"
+# One-off fallback to the ChatGPT login: codex -c model_provider=openai -c model=gpt-5.5
 codex() {
   AI_GATEWAY_API_KEY="${AI_GATEWAY_API_KEY:-$(~/.claude/get-auth-token.sh)}" command codex "$@"
 }
