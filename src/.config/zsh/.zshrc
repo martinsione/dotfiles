@@ -61,8 +61,6 @@ export PATH=/Users/martin-aleph/.opencode/bin:$PATH
 # fx CLI
 export PATH="/Users/martin-vercel/.fx/bin:$PATH"
 
-alias claude="claude --effort max --allow-dangerously-skip-permissions --model opus"
-
 # pnpm
 export PNPM_HOME="/Users/martin-vercel/Library/pnpm"
 case ":$PATH:" in
