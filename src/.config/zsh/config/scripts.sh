@@ -2,6 +2,11 @@
 # store that Claude Code's apiKeyHelper reads (Keychain on macOS, systemd-creds
 # on Linux; see ~/.claude/get-auth-token.sh for how to store it).
 #
+# This must be a real exported var, not a codex() wrapper function: the Codex
+# desktop app reaches this machine over SSH and boots `codex app-server`
+# through `$SHELL -l -i -c '... /bin/sh -c ...'` — exports survive into that
+# /bin/sh, shell functions don't.
+#
 # The "vercel" provider lives in ~/.codex/config.toml, which is NOT symlinked
 # to the dotfiles because codex rewrites it with per-machine state (project
 # trust levels, tui nux). On a new machine add to ~/.codex/config.toml
@@ -17,9 +22,7 @@
 #   wire_api = "responses"
 #
 # One-off fallback to the ChatGPT login: codex -c model_provider=openai -c model=gpt-5.5
-codex() {
-  AI_GATEWAY_API_KEY="${AI_GATEWAY_API_KEY:-$(~/.claude/get-auth-token.sh)}" command codex "$@"
-}
+export AI_GATEWAY_API_KEY="${AI_GATEWAY_API_KEY:-$(~/.claude/get-auth-token.sh 2>/dev/null)}"
 
 function find_projects() {
   local selected_dir=$(find ~/Developer \
