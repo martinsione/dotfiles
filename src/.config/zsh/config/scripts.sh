@@ -2,7 +2,12 @@ function find_projects() {
   local selected_dir=$(find ~/Developer \
     -type d \( -name node_modules -o -name build -o -name dist \) -prune \
     -o \( -name .git -prune -print \) \
-    | sed 's/\/\.git$//' | fzf --layout=reverse --height 40%)
+    | while IFS= read -r git_path; do
+      local repo_dir="${git_path%/.git}"
+      git -C "$repo_dir" rev-parse --show-toplevel 2>/dev/null
+    done \
+    | sort -u \
+    | fzf --layout=reverse --height 40%)
   
   if [[ -n "$selected_dir" ]]; then
     cd "$selected_dir"

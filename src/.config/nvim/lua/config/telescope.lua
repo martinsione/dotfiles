@@ -16,7 +16,7 @@ local find_projects_command = function(opts)
   opts.cwd = opts.cwd or os.getenv("HOME") .. "/Developer"
   opts.ignore = opts.ignore or { "node_modules", "dist", "build" }
 
-  local find_cmd = { "find", opts.cwd, "-mindepth", "1", "-maxdepth", opts.maxdepth or "5" }
+  local find_cmd = { "find", vim.fn.expand(opts.cwd), "-mindepth", "1", "-maxdepth", tostring(opts.maxdepth or "5") }
 
   for _, ignore_dir in ipairs(opts.ignore) do
     table.insert(find_cmd, "-type")
@@ -34,7 +34,21 @@ local find_projects_command = function(opts)
   table.insert(find_cmd, "-prune")
   table.insert(find_cmd, "-print")
 
-  return find_cmd
+  local escaped_find_cmd = vim
+    .iter(find_cmd)
+    :map(function(arg)
+      return vim.fn.shellescape(arg)
+    end)
+    :totable()
+
+  return {
+    "sh",
+    "-c",
+    table.concat(escaped_find_cmd, " ")
+      .. " | while IFS= read -r git_path; do "
+      .. 'repo_dir=${git_path%/.git}; git -C "$repo_dir" rev-parse --show-toplevel 2>/dev/null; '
+      .. "done | sort -u",
+  }
 end
 
 local M = {}
@@ -108,18 +122,19 @@ M.projects = function(opts)
       sorter = conf.generic_sorter(opts),
       finder = finders.new_oneshot_job(find_projects_command(opts), {
         entry_maker = function(line)
-          local dir = line:gsub("/%.git$", "")
           return {
-            display = vim.fn.fnamemodify(dir, ":~"),
-            ordinal = dir,
-            value = dir,
+            display = vim.fn.fnamemodify(line, ":~"),
+            ordinal = line,
+            value = line,
           }
         end,
       }),
       attach_mappings = function(prompt_bufnr, _)
         actions.select_default:replace(function()
           local selection = action_state.get_selected_entry()
-          vim.cmd.tcd(selection.value)
+
+          local cd_scope = { tab = "tcd", window = "lcd", global = "cd" }
+          vim.fn.execute(cd_scope.tab .. " " .. selection.value, "silent")
           builtin.git_files({ cwd = selection.value })
         end)
         return true
