@@ -1,5 +1,7 @@
 #!/bin/sh
-# apiKeyHelper for Claude Code: prints the auth token (AI Gateway API key).
+# Prints the Vercel AI Gateway API key from the per-machine secret store.
+# zsh/config/scripts.sh exports it as AI_GATEWAY_API_KEY (codex) and
+# ANTHROPIC_AUTH_TOKEN (Claude Code) at shell startup.
 # macOS stores it in the Keychain; Linux in a systemd-creds encrypted file
 # (bound to the machine's host key, so the .cred file is useless off-box).
 #
@@ -14,7 +16,7 @@
 #   2. Make sure ANTHROPIC_BASE_URL points where you want (exported from .zshrc;
 #      override per-machine in zsh/config/local.sh, e.g. https://ai-gateway.vercel.sh).
 #   3. Run `claude /logout` once so Claude Code stops using an OAuth login and
-#      picks up this apiKeyHelper (wired up in ~/.claude/settings.json).
+#      picks up ANTHROPIC_AUTH_TOKEN from the environment.
 
 if [ "$(uname)" = "Darwin" ]; then
   security find-generic-password -a "$USER" -s "ANTHROPIC_AUTH_TOKEN" -w
