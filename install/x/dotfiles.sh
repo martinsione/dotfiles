@@ -10,12 +10,17 @@ export dotfiles_dir="$HOME/Developer/martinsione/dotfiles"
 
 dirs=(
   ~/.cache/zsh
+  ~/.claude
   ~/.config
   ~/.local
   ~/Repos
 )
 
 symlinks=(
+  .claude/fetch-pricing.sh
+  .claude/get-auth-token.sh
+  .claude/settings.json
+  .claude/statusline.sh
   .config/git
   .config/htop
   .config/kitty
@@ -71,7 +76,7 @@ create_dirs() {
 
 symlink_files() {
   for name in "${symlinks[@]}"; do
-    if [ ! -e "$name" ]; then
+    if [ ! -e "$HOME/${name}" ]; then
       ln -sfv "${dotfiles_dir}/src/${name}" "$HOME/${name}"
     else
       echo "${name} already exists."
