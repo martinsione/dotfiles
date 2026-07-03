@@ -1,17 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "apiKeyHelper": "security find-generic-password -a \"$USER\" -s \"ANTHROPIC_AUTH_TOKEN\" -w",
+  "apiKeyHelper": "~/.claude/get-auth-token.sh",
   "env": {
-    "ANTHROPIC_BASE_URL": "http://localhost:4317",
     "CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK": "1"
   },
   "effortLevel": "high",
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
-    "slack@claude-plugins-official": true
+    "slack@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
   },
   "model": "claude-fable-5",
   "permissions": { "defaultMode": "bypassPermissions" },
   "skipDangerousModePermissionPrompt": true,
-  "theme": "auto"
+  "theme": "auto",
+  "tui": "fullscreen"
 }
