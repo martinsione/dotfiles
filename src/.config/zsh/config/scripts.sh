@@ -1,3 +1,25 @@
+# Codex → Vercel AI Gateway. The key comes from the same per-machine secret
+# store that Claude Code's apiKeyHelper reads (Keychain on macOS, systemd-creds
+# on Linux; see ~/.claude/get-auth-token.sh for how to store it).
+#
+# The "vercel" provider/profile lives in ~/.codex/config.toml, which is NOT
+# symlinked to the dotfiles because codex rewrites it with per-machine state
+# (project trust levels, tui nux). On a new machine add to ~/.codex/config.toml:
+#   profile = "vercel"                      # top-level, makes it the default
+#
+#   [model_providers.vercel]
+#   name = "Vercel AI Gateway"
+#   base_url = "https://ai-gateway.vercel.sh/v1"
+#   env_key = "AI_GATEWAY_API_KEY"
+#   wire_api = "responses"
+#
+#   [profiles.vercel]
+#   model_provider = "vercel"
+#   model = "openai/gpt-5.5"
+codex() {
+  AI_GATEWAY_API_KEY="${AI_GATEWAY_API_KEY:-$(~/.claude/get-auth-token.sh)}" command codex "$@"
+}
+
 function find_projects() {
   local selected_dir=$(find ~/Developer \
     -type d \( -name node_modules -o -name build -o -name dist \) -prune \
