@@ -5,6 +5,7 @@ alias c="open $1 -a \"Cursor\""
 alias ..="cd .."
 alias ls="eza --group-directories-first"
 alias ll="eza -la --group-directories-first"
+alias tree="eza --tree"
 
 # Files
 alias cp="cp -iv"

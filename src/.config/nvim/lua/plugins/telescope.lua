@@ -40,6 +40,9 @@ return {
       local custom_pickers = require("config.telescope")
       local builtin = require("telescope.builtin")
 
+      map("n", "<space>fd", function()
+        custom_pickers.live_multigrep({ cwd = "~/Developer/martinsione/dotfiles" })
+      end, { desc = "Search dotfiles" })
       map("n", "<space>fw", custom_pickers.live_multigrep, { desc = "Search words" })
       map("n", "<space>fp", custom_pickers.projects, { desc = "Search projects" })
       map("n", "<space><space>", builtin.buffers, { desc = "Search buffers" })
