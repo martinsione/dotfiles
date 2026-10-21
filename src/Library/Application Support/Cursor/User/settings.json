@@ -72,4 +72,5 @@
     "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "cursor.general.fontSmoothingAntialiased": true,
+  "cursor.general.emailPrivacyEnabled": true,
 }
