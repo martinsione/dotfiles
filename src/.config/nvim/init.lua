@@ -1,11 +1,4 @@
-local system = vim.uv.os_uname().sysname
-if system == "Darwin" then
-  local output = vim.fn.system({ "defaults", "read", "-g", "AppleInterfaceStyle" })
-  vim.o.background = (output and string.match(output, "Dark")) and "dark" or "light"
-else
-  vim.o.background = "dark"
-end
-
+-- 'background' is detected from the terminal (OSC 11); the colorscheme re-applies when it changes
 vim.cmd.colorscheme("vercel")
 
 require("config.options")
