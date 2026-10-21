@@ -8,8 +8,10 @@ export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$H
 ### Environment
 export LOCALHOST_KEY="$HOME/.certs/localhost-key.pem"
 export LOCALHOST_CERT="$HOME/.certs/localhost.pem"
-export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
-export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
+if [[ $OSTYPE == darwin* ]]; then
+  export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
+  export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
+fi
 
 ### Completion (cached - only rebuild once daily)
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -70,6 +72,7 @@ alias npm="sfw npm"
 alias pnpm="sfw pnpm"
 alias bun="sfw bun"
 # END: socket firewall aliases (managed by Iru)
+(( $+commands[sfw] )) || unalias npm pnpm bun 2>/dev/null
 
 ### Machine-local overrides (untracked local.sh; per-machine PATH/aliases/unaliases)
 [ -f "$ZSH_CONFIG_DIR/config/local.sh" ] && source "$ZSH_CONFIG_DIR/config/local.sh"
