@@ -14,6 +14,8 @@ return {
     },
     config = function()
       local autocmd = vim.api.nvim_create_autocmd
+      local highlight = vim.lsp.protocol.Methods.textDocument_documentHighlight
+      local hl_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = true })
       autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
@@ -35,24 +37,18 @@ return {
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+          if client and client:supports_method(highlight) then
+            -- one set per buffer, even when several clients support highlights
+            vim.api.nvim_clear_autocmds({ group = hl_group, buffer = event.buf })
             autocmd({ "CursorHold", "CursorHoldI" }, {
-              group = augroup,
+              group = hl_group,
               buffer = event.buf,
               callback = vim.lsp.buf.document_highlight,
             })
             autocmd({ "CursorMoved", "CursorMovedI" }, {
-              group = augroup,
+              group = hl_group,
               buffer = event.buf,
               callback = vim.lsp.buf.clear_references,
-            })
-            autocmd("LspDetach", {
-              group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
-              callback = function(ev)
-                vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds({ group = augroup, buffer = ev.buf })
-              end,
             })
           end
 
@@ -61,6 +57,20 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, "[T]oggle Inlay [H]ints")
           end
+        end,
+      })
+
+      autocmd("LspDetach", {
+        group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+        callback = function(event)
+          -- keep highlights while another client still provides them
+          for _, c in ipairs(vim.lsp.get_clients({ bufnr = event.buf, method = highlight })) do
+            if c.id ~= event.data.client_id then
+              return
+            end
+          end
+          vim.lsp.util.buf_clear_references(event.buf)
+          vim.api.nvim_clear_autocmds({ group = hl_group, buffer = event.buf })
         end,
       })
 
@@ -80,7 +90,8 @@ return {
 
       require("mason-lspconfig").setup({
         ensure_installed = { "lua_ls", "vtsls", "tailwindcss" },
-        automatic_enable = true,
+        -- formatter-only servers; conform already runs these
+        automatic_enable = { exclude = { "oxfmt", "stylua" } },
       })
 
       local mr = require("mason-registry")
