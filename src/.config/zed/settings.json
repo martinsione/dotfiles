@@ -70,7 +70,11 @@
     "dock": "left",
     "play_sound_when_agent_done": "always",
     "single_file_review": true,
-    "use_modifier_to_send": false
+    "use_modifier_to_send": false,
+    "default_model": {
+      "provider": "vercel_ai_gateway",
+      "model": "anthropic/claude-fable-5"
+    }
   },
   "git_panel": {
     "show_count_badge": false,
@@ -126,5 +130,22 @@
         "name": "oxfmt"
       }
     }
-  ]
+  ],
+  "language_models": {
+    "vercel_ai_gateway": {
+      "api_url": "https://ai-gateway.vercel.sh/coding-agent/v1",
+      "available_models": [
+        {
+          "name": "anthropic/claude-fable-5",
+          "display_name": "Claude Fable 5",
+          "max_tokens": 1000000,
+          "max_output_tokens": 128000,
+          "capabilities": {
+            "tools": true,
+            "images": true
+          }
+        }
+      ]
+    }
+  }
 }
