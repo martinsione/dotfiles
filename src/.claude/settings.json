@@ -1,17 +1,104 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 99999,
+  "apiKeyHelper": "security find-generic-password -a \"$USER\" -s ANTHROPIC_AUTH_TOKEN -w 2>/dev/null || systemd-creds decrypt --user --name=anthropic_auth_token \"$HOME/.config/claude/anthropic_auth_token.cred\" -",
   "env": {
-    "ANTHROPIC_BASE_URL": "https://ai-gateway.vercel.sh",
-    "CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK": "1"
+    "ANTHROPIC_BASE_URL": "https://ai-gateway.vercel.sh/claude-code",
+    "CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK": "1",
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
   },
-  "effortLevel": "high",
+  "permissions": {
+    "allow": [
+      "Bash(vb update:*)",
+      "Bash(vb reply:*)",
+      "Bash(vb read:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
+  "skillOverrides": {
+    "architecture-reality-check": "off",
+    "verified-delivery": "off"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "vb hook stop --agent claude 2>/dev/null || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
-    "slack@claude-plugins-official": true
+    "slack@claude-plugins-official": true,
+    "pstack@local": true,
+    "typesafe@typesafe-ai": true,
+    "pstack@cursor-plugins": true
   },
-  "model": "claude-fable-5",
-  "permissions": { "defaultMode": "bypassPermissions" },
+  "extraKnownMarketplaces": {
+    "local": {
+      "source": {
+        "source": "directory",
+        "path": "/home/martin/.claude/marketplace"
+      }
+    },
+    "typesafe-ai": {
+      "source": {
+        "source": "github",
+        "repo": "typesafe-ai/skills"
+      }
+    },
+    "cursor-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "cursor/plugins"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "theme": "auto",
-  "tui": "fullscreen"
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(vercel:deploy)"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: private (basehub-ai/vboard, confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: main (default); no classic branch protection listed, rulesets not queryable here — do not assume unprotected",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Source control**: The trusted repo (basehub-ai/vboard on github.com) and its remote(s) only (no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: vboard.playground-vercel.tools, vboard-basehub.vercel.app, and other vboard-*.playground-vercel.tools / *.vercel.sh preview hosts observed in this project's usage (Vercel preview deployments for this repo); ai-gateway.vercel.sh, api.v0.dev",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: apps/v0-feedback/.env.local; .env*.local files generally (per .gitignore); share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (vboard project — a Vercel-deployed app with preview environments)",
+      "**Trusted repo**: /home/martin/Developer/basehub-ai/vboard (origin: github.com:basehub-ai/vboard), private repo",
+      "**Org-specific CLIs**: vercel (frequently used for this project's preview deployments)"
+    ]
+  }
 }
