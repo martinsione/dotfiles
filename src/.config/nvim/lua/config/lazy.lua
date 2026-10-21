@@ -13,5 +13,6 @@ require("lazy").setup({
   install = { colorscheme = { "vercel" } },
   checker = { enabled = false },
   change_detection = { enabled = false },
+  rocks = { enabled = false },
   spec = { { import = "plugins" } },
 })
