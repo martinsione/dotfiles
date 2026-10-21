@@ -1,8 +1,3 @@
-local has_telescope, telescope = pcall(require, "telescope")
-if not has_telescope then
-  error("This script requires nvim-telescope/telescope.nvim")
-end
-
 local action_state = require("telescope.actions.state")
 local actions = require("telescope.actions")
 local conf = require("telescope.config").values
@@ -19,27 +14,11 @@ local find_projects_command = function(opts)
   local find_cmd = { "find", vim.fn.expand(opts.cwd), "-mindepth", "1", "-maxdepth", tostring(opts.maxdepth or "5") }
 
   for _, ignore_dir in ipairs(opts.ignore) do
-    table.insert(find_cmd, "-type")
-    table.insert(find_cmd, "d")
-    table.insert(find_cmd, "-name")
-    table.insert(find_cmd, ignore_dir)
-    table.insert(find_cmd, "-prune")
-    table.insert(find_cmd, "-o")
+    vim.list_extend(find_cmd, { "-type", "d", "-name", ignore_dir, "-prune", "-o" })
   end
+  vim.list_extend(find_cmd, { "-type", "d", "-name", ".git", "-prune", "-print" })
 
-  table.insert(find_cmd, "-type")
-  table.insert(find_cmd, "d")
-  table.insert(find_cmd, "-name")
-  table.insert(find_cmd, ".git")
-  table.insert(find_cmd, "-prune")
-  table.insert(find_cmd, "-print")
-
-  local escaped_find_cmd = vim
-    .iter(find_cmd)
-    :map(function(arg)
-      return vim.fn.shellescape(arg)
-    end)
-    :totable()
+  local escaped_find_cmd = vim.tbl_map(vim.fn.shellescape, find_cmd)
 
   return {
     "sh",
@@ -54,8 +33,7 @@ end
 local M = {}
 
 M.project_search = function()
-  local is_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
-  if is_git_repo then
+  if vim.fs.root(0, ".git") then
     builtin.git_files()
   else
     builtin.find_files()
@@ -132,9 +110,7 @@ M.projects = function(opts)
       attach_mappings = function(prompt_bufnr, _)
         actions.select_default:replace(function()
           local selection = action_state.get_selected_entry()
-
-          local cd_scope = { tab = "tcd", window = "lcd", global = "cd" }
-          vim.fn.execute(cd_scope.tab .. " " .. selection.value, "silent")
+          vim.cmd.tcd({ selection.value, mods = { silent = true } })
           builtin.git_files({ cwd = selection.value })
         end)
         return true
