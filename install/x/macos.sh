@@ -81,9 +81,10 @@ clone_repo() {
     git submodule update --init --recursive
 }
 
+# create_symlink <repo path> [destination, default: same path under $HOME]
 create_symlink() {
     local src="$dotfiles_dir/$1"
-    local dst="$HOME/${1#src/}"
+    local dst="${2:-$HOME/${1#src/}}"
 
     # Check if destination already exists
     if [ -L "$dst" ]; then
@@ -96,8 +97,9 @@ create_symlink() {
             rm "$dst"
         fi
     elif [ -e "$dst" ]; then
-        warn "File/directory exists at $dst, removing..."
-        rm -rf "$dst"
+        local backup="$dst.bak.$(date +%Y%m%d%H%M%S)"
+        warn "File/directory exists at $dst, moving it to $backup"
+        mv "$dst" "$backup"
     fi
 
     # Create parent directory if it doesn't exist
@@ -130,5 +132,7 @@ log "Creating symlinks..."
 for link in "${symlinks[@]}"; do
     create_symlink "$link"
 done
+# vclaude (CLAUDE_CONFIG_DIR=~/.claude-vercel) shares the same settings
+create_symlink src/.claude/settings.json "$HOME/.claude-vercel/settings.json"
 
 log "Installation complete! ✨"
