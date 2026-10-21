@@ -1,6 +1,8 @@
 ZSH_CONFIG_DIR=$HOME/.config/zsh
 
 ### PATH (set early)
+# ~/.zprofile normally runs brew shellenv; only redo it when brew isn't on PATH yet.
+[[ $OSTYPE == darwin* ]] && (( ! $+commands[brew] )) && [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.fx/bin:$HOME/.codeium/windsurf/bin:$PATH"
@@ -11,6 +13,15 @@ export LOCALHOST_CERT="$HOME/.certs/localhost.pem"
 if [[ $OSTYPE == darwin* ]]; then
   export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
   export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
+  # Gateway keys live in the Keychain; one lookup per item (~16ms each).
+  () {
+    local kc=/usr/bin/security
+    # Same item Claude's apiKeyHelper reads
+    local aat="$($kc find-generic-password -a "$USER" -s ANTHROPIC_AUTH_TOKEN -w 2>/dev/null)"
+    export ANTHROPIC_AUTH_TOKEN="$aat" AI_GATEWAY_API_KEY="$aat"
+    export VERCEL_AI_GATEWAY_API_KEY="$($kc find-generic-password -s 'Vercel AI Gateway' -a 'vercel-ai-gateway' -w 2>/dev/null)"
+    export KIT_AI_GATEWAY_API_KEY="$($kc find-generic-password -s 'Vercel AI Gateway' -a 'vercel-desktop-key' -w 2>/dev/null)"
+  }
 fi
 
 ### Completion (cached - only rebuild once daily)
