@@ -1,4 +1,4 @@
-[ -x "$(command -v nvim)" ] && alias vim="nvim"
+(( $+commands[nvim] )) && alias vim="nvim"
 alias v="nvim"
 [[ $OSTYPE == darwin* ]] && c() { open -a Cursor "${@:-.}"; }
 
@@ -55,8 +55,7 @@ alias ta="tmux new-session -A -s"
 alias tls="tmux ls"
 alias tks="tmux kill-session -t"
 
-
+## Claude
 alias vclaude='CLAUDE_CONFIG_DIR="$HOME/.claude-vercel" claude'
 alias pclaude='env -u ANTHROPIC_BASE_URL -u ANTHROPIC_AUTH_TOKEN -u ANTHROPIC_API_KEY CLAUDE_CONFIG_DIR="$HOME/.claude-personal" claude'
 alias pclaude2='env -u ANTHROPIC_BASE_URL -u ANTHROPIC_AUTH_TOKEN -u ANTHROPIC_API_KEY CLAUDE_CONFIG_DIR="$HOME/.claude-personal-2" claude'
-
