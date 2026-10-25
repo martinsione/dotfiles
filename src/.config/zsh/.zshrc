@@ -16,11 +16,9 @@ if [[ $OSTYPE == darwin* ]]; then
   # Gateway keys live in the Keychain; one lookup per item (~16ms each).
   () {
     local kc=/usr/bin/security
-    # Same item Claude's apiKeyHelper reads
-    local aat="$($kc find-generic-password -a "$USER" -s ANTHROPIC_AUTH_TOKEN -w 2>/dev/null)"
-    export ANTHROPIC_AUTH_TOKEN="$aat" AI_GATEWAY_API_KEY="$aat"
     export VERCEL_AI_GATEWAY_API_KEY="$($kc find-generic-password -s 'Vercel AI Gateway' -a 'vercel-ai-gateway' -w 2>/dev/null)"
     export KIT_AI_GATEWAY_API_KEY="$($kc find-generic-password -s 'Vercel AI Gateway' -a 'vercel-desktop-key' -w 2>/dev/null)"
+    export AI_GATEWAY_API_KEY="$KIT_AI_GATEWAY_API_KEY"
   }
 fi
 
