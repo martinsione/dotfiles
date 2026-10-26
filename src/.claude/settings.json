@@ -1,19 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "apiKeyHelper": "/usr/bin/security find-generic-password -s 'Vercel AI Gateway' -a 'vercel-desktop-key' -w",
   "cleanupPeriodDays": 99999,
-  "apiKeyHelper": "security find-generic-password -a \"$USER\" -s ANTHROPIC_AUTH_TOKEN -w 2>/dev/null || systemd-creds decrypt --user --name=anthropic_auth_token \"$HOME/.config/claude/anthropic_auth_token.cred\" -",
   "env": {
-    "ANTHROPIC_BASE_URL": "https://ai-gateway.vercel.sh/claude-code",
     "CLAUDE_CODE_SKIP_FAST_MODE_ORG_CHECK": "1",
-    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
-    "ANTHROPIC_API_KEY": ""
+    "ENABLE_TOOL_SEARCH": "true",
+    "ANTHROPIC_BASE_URL": "https://ai-gateway.vercel.sh/claude-code",
+    "ANTHROPIC_API_KEY": "",
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
   },
   "permissions": {
-    "allow": [
-      "Bash(vb update:*)",
-      "Bash(vb reply:*)",
-      "Bash(vb read:*)"
-    ],
+    "allow": ["Bash(vb update:*)", "Bash(vb reply:*)", "Bash(vb read:*)"],
     "defaultMode": "auto"
   },
   "model": "opus",
@@ -22,125 +19,13 @@
     "verified-delivery": "off"
   },
   "hooks": {
-    "Stop": [
+    "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "vb hook stop --agent claude 2>/dev/null || true",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "StopFailure": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "SubagentStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "TeammateIdle": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-hook.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-hook.sh'; else cat >/dev/null 2>&1 || :; fi",
-            "timeout": 10
+            "command": "/bin/sh -c 'rex __internal session-start --agent claude --feature-session-naming=false 2>/dev/null || true'",
+            "timeout": 5
           }
         ]
       }
@@ -148,25 +33,12 @@
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
-    "slack@claude-plugins-official": true,
-    "pstack@local": true,
-    "typesafe@typesafe-ai": true,
     "pstack@cursor-plugins": true,
+    "slack@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
     "vercel@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "local": {
-      "source": {
-        "source": "directory",
-        "path": "/home/martin/.claude/marketplace"
-      }
-    },
-    "typesafe-ai": {
-      "source": {
-        "source": "github",
-        "repo": "typesafe-ai/skills"
-      }
-    },
     "cursor-plugins": {
       "source": {
         "source": "github",
@@ -176,7 +48,7 @@
   },
   "modelSettings": {
     "claude-opus-5-5": {
-      "effortLevel": "high"
+      "effortLevel": "medium"
     }
   },
   "tui": "fullscreen",
@@ -184,10 +56,7 @@
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "autoMode": {
-    "allow": [
-      "$defaults",
-      "Bash(vercel:deploy)"
-    ],
+    "allow": ["$defaults", "Bash(vercel:deploy)"],
     "environment": [
       "### Org-wide",
       "**Organization**: None configured",
@@ -214,9 +83,5 @@
       "**Trusted repo**: /home/martin/Developer/basehub-ai/vboard (origin: github.com:basehub-ai/vboard), private repo",
       "**Org-specific CLIs**: vercel (frequently used for this project's preview deployments)"
     ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "if [ -f \"$HOME\"'/.orca/agent-hooks/claude-statusline.sh' ] && [ -r \"$HOME\"'/.orca/agent-hooks/claude-statusline.sh' ] && [ -x \"$HOME\"'/.orca/agent-hooks/claude-statusline.sh' ]; then /bin/sh \"$HOME\"'/.orca/agent-hooks/claude-statusline.sh'; else cat >/dev/null 2>&1 || :; fi"
   }
 }
