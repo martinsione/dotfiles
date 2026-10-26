@@ -10,6 +10,8 @@ export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$H
 ### Environment
 export LOCALHOST_KEY="$HOME/.certs/localhost-key.pem"
 export LOCALHOST_CERT="$HOME/.certs/localhost.pem"
+# ssh doesn't forward COLORTERM, so remote apps fall back to 256 colors (Claude's orange turns pink).
+[[ -n $SSH_CONNECTION && -z $COLORTERM ]] && export COLORTERM=truecolor
 if [[ $OSTYPE == darwin* ]]; then
   export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
   export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
