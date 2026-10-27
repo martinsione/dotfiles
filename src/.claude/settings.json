@@ -10,7 +10,11 @@
     "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
   },
   "permissions": {
-    "allow": ["Bash(vb update:*)", "Bash(vb reply:*)", "Bash(vb read:*)"],
+    "allow": [
+      "Bash(vb update:*)",
+      "Bash(vb reply:*)",
+      "Bash(vb read:*)"
+    ],
     "defaultMode": "auto"
   },
   "model": "opus",
@@ -43,7 +47,8 @@
       "source": {
         "source": "github",
         "repo": "cursor/plugins"
-      }
+      },
+      "autoUpdate": true
     }
   },
   "modelSettings": {
@@ -56,7 +61,10 @@
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "autoMode": {
-    "allow": ["$defaults", "Bash(vercel:deploy)"],
+    "allow": [
+      "$defaults",
+      "Bash(vercel:deploy)"
+    ],
     "environment": [
       "### Org-wide",
       "**Organization**: None configured",
