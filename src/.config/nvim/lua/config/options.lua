@@ -8,35 +8,18 @@ vim.g.have_nerd_font = true
 local opt = vim.opt
 opt.clipboard = "unnamedplus" -- Sync with system clipboard
 
-if vim.env.SSH_TTY then
-  vim.g.clipboard = {
-    name = "OSC 52",
-    copy = {
-      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    },
-    paste = {
-      ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-      ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-    },
-  }
-end
-
-opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = "menuone,noselect,popup" -- popup shows docs for the selected LSP item
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.cursorline = true
 opt.expandtab = true
-opt.fillchars = { foldopen = "", foldclose = "", fold = " ", foldsep = " ", diff = "╱", eob = " " }
+opt.fillchars = { diff = "╱", eob = " " }
 opt.foldlevel = 99
 opt.formatoptions = "jcroqlnt"
-opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
+opt.grepprg = "rg --vimgrep" -- default adds -uu, which greps ignored files
 opt.ignorecase = true
-opt.inccommand = "nosplit" -- preview incremental substitute
 opt.jumpoptions = "view"
 opt.laststatus = 3 -- global statusline
 opt.linebreak = true
-opt.list = false
 opt.number = true
 opt.relativenumber = true
 opt.ruler = false
@@ -49,7 +32,6 @@ opt.sidescrolloff = 8
 opt.signcolumn = "yes"
 opt.smartcase = true
 opt.smartindent = true
-opt.spelllang = { "en" }
 opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.splitright = true
