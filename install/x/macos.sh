@@ -24,7 +24,6 @@ brew_packages=(
   ripgrep
   starship
   tmux
-  tree
 )
 
 # Colors for better visibility
@@ -132,7 +131,5 @@ log "Creating symlinks..."
 for link in "${symlinks[@]}"; do
     create_symlink "$link"
 done
-# vclaude (CLAUDE_CONFIG_DIR=~/.claude-vercel) shares the same settings
-create_symlink src/.claude/settings.json "$HOME/.claude-vercel/settings.json"
 
 log "Installation complete! ✨"
