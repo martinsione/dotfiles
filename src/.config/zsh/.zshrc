@@ -5,11 +5,9 @@ ZSH_CONFIG_DIR=$HOME/.config/zsh
 [[ $OSTYPE == darwin* ]] && (( ! $+commands[brew] )) && [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.fx/bin:$HOME/.codeium/windsurf/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.fx/bin:$PATH"
 
 ### Environment
-export LOCALHOST_KEY="$HOME/.certs/localhost-key.pem"
-export LOCALHOST_CERT="$HOME/.certs/localhost.pem"
 # ssh doesn't forward COLORTERM, so remote apps fall back to 256 colors (Claude's orange turns pink).
 [[ -n $SSH_CONNECTION && -z $COLORTERM ]] && export COLORTERM=truecolor
 if [[ $OSTYPE == darwin* ]]; then
@@ -61,19 +59,6 @@ eval "$(fnm env --shell=zsh --use-on-cd)"
 
 ### fzf (Ctrl-R history, Ctrl-T files, Alt-C cd)
 (( $+commands[fzf] )) && source <(fzf --zsh)
-
-### pyenv (lazy loaded)
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-if (( $+commands[pyenv] )); then
-  _pyenv_init() {
-    unfunction python python3 pip pip3 pyenv 2>/dev/null
-    eval "$(pyenv init - zsh)"
-  }
-  for cmd in python python3 pip pip3 pyenv; do
-    eval "$cmd() { _pyenv_init && $cmd \"\$@\" }"
-  done
-fi
 
 ### Prompt
 eval "$(starship init zsh)"
