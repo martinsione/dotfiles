@@ -6,28 +6,12 @@ local make_entry = require("telescope.make_entry")
 local pickers = require("telescope.pickers")
 local builtin = require("telescope.builtin")
 
-local find_projects_command = function(opts)
-  opts = opts or {}
-  opts.cwd = opts.cwd or os.getenv("HOME") .. "/Developer"
-  opts.ignore = opts.ignore or { "node_modules", "dist", "build" }
-
-  local find_cmd = { "find", vim.fn.expand(opts.cwd), "-mindepth", "1", "-maxdepth", tostring(opts.maxdepth or "5") }
-
-  for _, ignore_dir in ipairs(opts.ignore) do
-    vim.list_extend(find_cmd, { "-type", "d", "-name", ignore_dir, "-prune", "-o" })
-  end
-  vim.list_extend(find_cmd, { "-type", "d", "-name", ".git", "-prune", "-print" })
-
-  local escaped_find_cmd = vim.tbl_map(vim.fn.shellescape, find_cmd)
-
-  return {
-    "sh",
-    "-c",
-    table.concat(escaped_find_cmd, " ")
-      .. " | while IFS= read -r git_path; do "
-      .. 'repo_dir=${git_path%/.git}; git -C "$repo_dir" rev-parse --show-toplevel 2>/dev/null; '
-      .. "done | sort -u",
-  }
+-- Repos live at ~/Developer/{owner}/{repo} (plus a few at the top level), same glob as zsh's find_projects
+local find_projects = function(opts)
+  local root = vim.fn.expand(opts.cwd or "~/Developer")
+  local git_dirs =
+    vim.list_extend(vim.fn.globpath(root, "*/.git", false, true), vim.fn.globpath(root, "*/*/.git", false, true))
+  return vim.tbl_map(vim.fs.dirname, git_dirs)
 end
 
 local M = {}
@@ -98,7 +82,8 @@ M.projects = function(opts)
     .new(opts, {
       prompt_title = "Projects",
       sorter = conf.generic_sorter(opts),
-      finder = finders.new_oneshot_job(find_projects_command(opts), {
+      finder = finders.new_table({
+        results = find_projects(opts or {}),
         entry_maker = function(line)
           return {
             display = vim.fn.fnamemodify(line, ":~"),

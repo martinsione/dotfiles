@@ -9,14 +9,22 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map("n", "<CR>", '{->v:hlsearch ? ":nohl\\<CR>" : "\\<CR>"}()', { expr = true })
 
+-- Completion (LSP autocompletion is enabled per buffer in plugins/lsp.lua)
+-- <CR> accepts like <C-y>, picking the first item when none is selected yet
+map("i", "<CR>", function()
+  if vim.fn.pumvisible() == 0 then
+    return "<CR>"
+  end
+  return vim.fn.complete_info({ "selected" }).selected == -1 and "<C-n><C-y>" or "<C-y>"
+end, { expr = true })
+map("i", "<C-Space>", vim.lsp.completion.get)
+
 map("n", "<C-j>", "<cmd>cnext<CR>")
 map("n", "<C-k>", "<cmd>cprev<CR>")
 
 map("n", "<space>xx", "<cmd>source %<CR>")
 
--- Buffers
-map("n", "]b", "<cmd>bn<CR>")
-map("n", "[b", "<cmd>bp<CR>")
+-- Buffers (]b/[b are built in)
 map("n", "<space>bd", "<cmd>bd<CR>")
 
 -- Visual

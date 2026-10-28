@@ -50,10 +50,16 @@ brew install --cask \
 brew install \
     eza \
     fnm \
+    fzf \
     neovim \
     ripgrep \
     starship \
-    tmux
+    tmux \
+    lua-language-server \
+    stylua \
+    tailwindcss-language-server \
+    tree-sitter-cli \
+    vtsls
 
 ```
 

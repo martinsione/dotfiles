@@ -21,9 +21,17 @@ symlinks=(
 brew_packages=(
   eza
   fnm
+  fzf
+  neovim
   ripgrep
   starship
   tmux
+  # neovim: language servers, formatter, and the CLI nvim-treesitter compiles parsers with
+  lua-language-server
+  stylua
+  tailwindcss-language-server
+  tree-sitter-cli
+  vtsls
 )
 
 # Colors for better visibility
