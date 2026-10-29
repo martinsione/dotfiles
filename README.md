@@ -64,3 +64,11 @@ defaults write -g InitialKeyRepeat -int 10
 # Disable press-and-hold for keys in favor of key repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
+
+# Setup Arch (devbox)
+
+Installs `install/packages/arch/{pacman,aur}.list` (bootstrapping paru), clones the repo and creates the symlinks.
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/martinsione/dotfiles/refs/heads/macos/install/x/arch.sh) --install-deps
+```
