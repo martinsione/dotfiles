@@ -1,0 +1,12 @@
+#!/bin/sh
+# Print the Vercel AI Gateway key from the OS credential store, so it never sits in a file or the shell's
+# environment. Claude's apiKeyHelper calls this; zsh wrappers hand it to pi/opencode/fx per run.
+#   macOS: Keychain item "Vercel AI Gateway" / vercel-desktop-key
+#     store/rotate: security add-generic-password -U -s 'Vercel AI Gateway' -a vercel-desktop-key -w '<key>'
+#   Linux: host-bound systemd credential (re-create after a reinstall)
+#     store/rotate: printf '%s' '<key>' | systemd-creds encrypt --user --name=anthropic_auth_token - \
+#                     ~/.config/claude/anthropic_auth_token.cred
+if [ -x /usr/bin/security ]; then
+  exec /usr/bin/security find-generic-password -s 'Vercel AI Gateway' -a vercel-desktop-key -w
+fi
+exec systemd-creds decrypt --user --name=anthropic_auth_token "$HOME/.config/claude/anthropic_auth_token.cred" -

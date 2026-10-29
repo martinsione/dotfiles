@@ -13,6 +13,7 @@ symlinks=(
   src/.config/nvim
   src/.config/tmux
   src/.config/zsh
+  src/.local/bin/ai-gateway-key
   src/.zshrc
 )
 
