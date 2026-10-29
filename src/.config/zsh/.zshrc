@@ -13,13 +13,8 @@ export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$H
 if [[ $OSTYPE == darwin* ]]; then
   export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
   export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
-  # Gateway keys live in the Keychain; one lookup per item (~16ms each).
-  () {
-    local kc=/usr/bin/security
-    export VERCEL_AI_GATEWAY_API_KEY="$($kc find-generic-password -s 'Vercel AI Gateway' -a 'vercel-ai-gateway' -w 2>/dev/null)"
-    export KIT_AI_GATEWAY_API_KEY="$($kc find-generic-password -s 'Vercel AI Gateway' -a 'vercel-desktop-key' -w 2>/dev/null)"
-    export AI_GATEWAY_API_KEY="$KIT_AI_GATEWAY_API_KEY"
-  }
+  # Gateway key lives in the Keychain (~16ms per lookup, so only the one opencode reads)
+  export AI_GATEWAY_API_KEY="$(/usr/bin/security find-generic-password -s 'Vercel AI Gateway' -a 'vercel-desktop-key' -w 2>/dev/null)"
 fi
 
 ### Completion (cached - only rebuild once daily)
@@ -57,11 +52,20 @@ source $ZSH_CONFIG_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 ### fnm (node version manager)
 eval "$(fnm env --shell=zsh --use-on-cd)"
 
+# Source a tool's generated init script, cached per binary path so an upgrade (new path) regenerates it
+_cached_init() {
+  local bin=${commands[$1]:A}
+  [[ -n $bin ]] || return
+  local cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/init/${bin//\//%}.zsh
+  [[ -s $cache ]] || { mkdir -p ${cache:h} && "$@" >| $cache } || return
+  source $cache
+}
+
 ### fzf (Ctrl-R history, Ctrl-T files, Alt-C cd)
-(( $+commands[fzf] )) && source <(fzf --zsh)
+_cached_init fzf --zsh
 
 ### Prompt
-eval "$(starship init zsh)"
+_cached_init starship init zsh --print-full-init
 
 # BEGIN: socket firewall aliases (managed by Iru)
 alias npm="sfw npm"
