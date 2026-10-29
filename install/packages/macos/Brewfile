@@ -24,6 +24,7 @@ brew "colima"
 brew "docker", link: false
 brew "lazygit"
 brew "pnpm"
+brew "portless"
 brew "postgresql@15", restart_service: :changed
 brew "postgresql@18", link: true
 brew "scc"
