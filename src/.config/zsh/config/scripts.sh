@@ -1,12 +1,10 @@
 # Vercel AI Gateway key
 # - Claude Code: settings.json apiKeyHelper reads it at request time from Keychain (macOS) or
 #   systemd-creds (Linux, host-bound: re-create after a reinstall). To store/update:
-#     macOS: security add-generic-password -U -a "$USER" -s ANTHROPIC_AUTH_TOKEN -w '<key>'
+#     macOS: security add-generic-password -U -s 'Vercel AI Gateway' -a vercel-desktop-key -w '<key>'
 #     Linux: printf '%s' '<key>' | systemd-creds encrypt --user --name=anthropic_auth_token - \
 #              ~/.config/claude/anthropic_auth_token.cred
-# - codex: reads $AI_GATEWAY_API_KEY (env_key in ~/.codex/config.toml, not symlinked since codex
-#   rewrites it), so export it from the untracked local.sh. It must be a real export: the Codex
-#   desktop app boots `codex app-server` through `$SHELL -l -i -c ...`.
+# - opencode: reads $AI_GATEWAY_API_KEY, exported from the Keychain in .zshrc (macOS)
 
 # Repos live at ~/Developer/{owner}/{repo} (plus a few at the top level), so glob those instead of walking every tree.
 function find_projects() {
