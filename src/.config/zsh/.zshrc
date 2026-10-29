@@ -52,12 +52,16 @@ source $ZSH_CONFIG_DIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 ### fnm (node version manager)
 eval "$(fnm env --shell=zsh --use-on-cd)"
 
-# Source a tool's generated init script, cached per binary path so an upgrade (new path) regenerates it
+# Source a tool's generated init script, cached per binary path + mtime so upgrades regenerate it
+# (brew moves the binary to a new Cellar path; pacman replaces it in place)
+zmodload -F zsh/stat b:zstat
 _cached_init() {
-  local bin=${commands[$1]:A}
-  [[ -n $bin ]] || return
-  local cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/init/${bin//\//%}.zsh
-  [[ -s $cache ]] || { mkdir -p ${cache:h} && "$@" >| $cache } || return
+  local bin=${commands[$1]:A} mtime
+  [[ -n $bin ]] && zstat -A mtime +mtime $bin || return
+  local cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/init/${bin//\//%}-$mtime.zsh
+  if [[ ! -s $cache ]]; then
+    mkdir -p ${cache:h} && rm -f ${cache%-*}-*.zsh(N) && "$@" >| $cache || return
+  fi
   source $cache
 }
 
