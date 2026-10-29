@@ -107,4 +107,17 @@ vim.lsp.config("lua_ls", {
 -- Servers come from the system package manager (install/x/macos.sh, install/packages/arch), not mason;
 -- vtsls isn't in the Arch repos, so there it's `npm i -g @vtsls/language-server`.
 -- oxfmt has no global install: lspconfig runs the project's node_modules/.bin/oxfmt
+-- lspconfig falls back to a global oxfmt when the project's isn't installed; there is none, so only
+-- attach once node_modules/.bin/oxfmt exists (a config file alone isn't enough)
+local oxfmt_root = vim.lsp.config.oxfmt.root_dir
+vim.lsp.config("oxfmt", {
+  root_dir = function(bufnr, on_dir)
+    oxfmt_root(bufnr, function(root)
+      if root and vim.fn.executable(vim.fs.joinpath(root, "node_modules/.bin/oxfmt")) == 1 then
+        on_dir(root)
+      end
+    end)
+  end,
+})
+
 vim.lsp.enable({ "lua_ls", "vtsls", "tailwindcss", "oxfmt", "stylua" })
