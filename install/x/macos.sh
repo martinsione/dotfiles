@@ -12,6 +12,7 @@ symlinks=(
   src/.config/tmux
   src/.config/zed
   src/.config/zsh
+  src/.local/bin/ai-gateway-key
   src/.ssh/config
   src/.zshrc
   src/Library/Application\ Support/Cursor/User/keybindings.json

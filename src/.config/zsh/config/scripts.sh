@@ -1,10 +1,12 @@
-# Vercel AI Gateway key
-# - Claude Code: settings.json apiKeyHelper reads it at request time from Keychain (macOS) or
-#   systemd-creds (Linux, host-bound: re-create after a reinstall). To store/update:
-#     macOS: security add-generic-password -U -s 'Vercel AI Gateway' -a vercel-desktop-key -w '<key>'
-#     Linux: printf '%s' '<key>' | systemd-creds encrypt --user --name=anthropic_auth_token - \
-#              ~/.config/claude/anthropic_auth_token.cred
-# - Zed, Kit, opencode: read VERCEL_/KIT_/AI_GATEWAY_API_KEY, exported from the Keychain in .zshrc (macOS)
+# Vercel AI Gateway key: only ever read from the OS credential store by ai-gateway-key (src/.local/bin),
+# never exported, so it doesn't leak into every process, shell snapshot or log.
+# - Claude Code: settings.json apiKeyHelper runs ai-gateway-key per request
+# - Codex: the kit provider's auth.command reads the same store (written by the Vercel app)
+# - pi, opencode, fx only read $AI_GATEWAY_API_KEY, so it's set for each run of them
+for _agent in pi opencode fx; do
+  eval "$_agent() { AI_GATEWAY_API_KEY=\"\$(ai-gateway-key)\" command $_agent \"\$@\" }"
+done
+unset _agent
 
 # Repos live at ~/Developer/{owner}/{repo} (plus a few at the top level), so glob those instead of walking every tree.
 function find_projects() {
