@@ -2,8 +2,9 @@
 # never exported, so it doesn't leak into every process, shell snapshot or log.
 # - Claude Code: settings.json apiKeyHelper runs ai-gateway-key per request
 # - Codex: the kit provider's auth.command reads the same store (written by the Vercel app)
-# - pi, opencode, fx only read $AI_GATEWAY_API_KEY, so it's set for each run of them
-for _agent in pi opencode fx; do
+# - pi: ~/.pi/agent/auth.json has "key": "!$HOME/.local/bin/ai-gateway-key", so pi runs it itself
+# - opencode, fx only read $AI_GATEWAY_API_KEY, so it's set for each run of them
+for _agent in opencode fx; do
   eval "$_agent() { AI_GATEWAY_API_KEY=\"\$(ai-gateway-key)\" command $_agent \"\$@\" }"
 done
 unset _agent
