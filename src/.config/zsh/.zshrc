@@ -5,7 +5,7 @@ ZSH_CONFIG_DIR=$HOME/.config/zsh
 [[ $OSTYPE == darwin* ]] && (( ! $+commands[brew] )) && [[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 export BUN_INSTALL="$HOME/.bun"
 export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.fx/bin:$PATH"
+export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.config/kit/bin:$HOME/.fx/bin:$PATH"
 
 ### Environment
 # ssh doesn't forward COLORTERM, so remote apps fall back to 256 colors (Claude's orange turns pink).
