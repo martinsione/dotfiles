@@ -36,13 +36,20 @@
     "slack@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "typesafe@typesafe-ai": true,
-    "vercel@claude-plugins-official": true
+    "vercel@claude-plugins-official": true,
+    "pstack@cursor-plugins": true
   },
   "extraKnownMarketplaces": {
     "typesafe-ai": {
       "source": {
         "source": "github",
         "repo": "typesafe-ai/skills"
+      }
+    },
+    "cursor-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "~/Developer/martinsione/dotfiles/src/.agents/vendor/cursor-plugins"
       }
     }
   },
