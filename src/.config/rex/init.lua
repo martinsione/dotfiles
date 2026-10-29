@@ -1,0 +1,2 @@
+-- Rex config, loaded by the Rex server. Reload with `rex config reload`.
+-- Theme files live in ~/.config/ghostty/themes (shared with Ghostty).
