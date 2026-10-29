@@ -33,7 +33,6 @@
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
-    "pstack@cursor-plugins": true,
     "slack@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true,
     "typesafe@typesafe-ai": true,
@@ -45,13 +44,6 @@
         "source": "github",
         "repo": "typesafe-ai/skills"
       }
-    },
-    "cursor-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "cursor/plugins"
-      },
-      "autoUpdate": true
     }
   },
   "modelSettings": {
