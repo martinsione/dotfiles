@@ -103,34 +103,40 @@ create_symlink() {
 }
 
 
-# pstack for every agent, from the pinned submodule: its Claude Code build (the Cursor original plus one line
-# pointing Claude at its adapter doc), linked into ~/.agents/skills (Codex, opencode, pi, fx) and
-# ~/.claude/skills (Claude). Its skills link ../../docs and ../../README.md, so those sit beside each skills folder.
+# pstack, from the pinned submodule. The submodule is the cursor-plugins marketplace, so Claude installs pstack
+# as a plugin from it (pstack:<cmd>, pstack:poteto-agent). The other agents read ~/.agents/skills, which gets
+# links to the same Claude Code build (the Cursor original plus one line pointing Claude at its adapter); its
+# skills link ../../docs and ../../README.md, so those sit beside the skills folder.
 link_skills() {
-    local pstack="$dotfiles_dir/src/.agents/vendor/cursor-plugins/harness/pstack/claude-code"
+    local vendor="$dotfiles_dir/src/.agents/vendor/cursor-plugins"
+    local pstack="$vendor/harness/pstack/claude-code"
     local backup="$HOME/.agents/skills-backup-$(date +%Y%m%d%H%M%S)"
-    local root dst
-    for root in "$HOME/.agents" "$HOME/.claude"; do
-        mkdir -p "$root/skills"
-        for skill in "$pstack"/skills/*/; do
-            skill="${skill%/}"
-            dst="$root/skills/$(basename "$skill")"
-            # Move stale copies out of the folder, or agents load them as extra skills
-            if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-                mkdir -p "$backup" && mv "$dst" "$backup/"
-                warn "Moved old copy of $(basename "$skill") to $backup"
-            fi
-            ln -sfn "$skill" "$dst"
-        done
-        ln -sfn "$pstack/docs" "$root/docs"
-        ln -sfn "$pstack/README.md" "$root/README.md"
+    local dst
+    mkdir -p "$HOME/.agents/skills"
+    for skill in "$pstack"/skills/*/; do
+        skill="${skill%/}"
+        dst="$HOME/.agents/skills/$(basename "$skill")"
+        # Move stale copies out of the folder, or agents load them as extra skills
+        if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+            mkdir -p "$backup" && mv "$dst" "$backup/"
+            warn "Moved old copy of $(basename "$skill") to $backup"
+        fi
+        ln -sfn "$skill" "$dst"
     done
-    # Its subagents, which Claude alone runs
-    mkdir -p "$HOME/.claude/agents"
-    for agent in "$pstack"/agents/*.md; do
-        ln -sfn "$agent" "$HOME/.claude/agents/$(basename "$agent")"
-    done
-    log "Linked $(ls "$pstack/skills" | wc -l | tr -d ' ') pstack skills into ~/.agents/skills and ~/.claude/skills"
+    ln -sfn "$pstack/docs" "$HOME/.agents/docs"
+    ln -sfn "$pstack/README.md" "$HOME/.agents/README.md"
+    log "Linked $(ls "$pstack/skills" | wc -l | tr -d ' ') pstack skills into ~/.agents/skills"
+
+    if command -v claude &>/dev/null; then
+        claude plugin marketplace add "$vendor" &>/dev/null || claude plugin marketplace update cursor-plugins &>/dev/null
+        claude plugin install pstack@cursor-plugins &>/dev/null
+        # `marketplace add` writes this machine's absolute path into the shared settings.json; keep it portable
+        perl -pi -e 's|"\Q$ENV{HOME}\E(/Developer/martinsione/dotfiles/src/\.agents/vendor/cursor-plugins)"|"~$1"|' \
+            "$dotfiles_dir/src/.claude/settings.json"
+        log "Installed pstack@cursor-plugins in Claude from the submodule"
+    else
+        warn "claude not on PATH; install pstack later: claude plugin marketplace add $vendor && claude plugin install pstack@cursor-plugins"
+    fi
 }
 
 # Parse flags
