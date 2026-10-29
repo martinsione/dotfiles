@@ -17,7 +17,6 @@ brew "lua-language-server"
 brew "stylua"
 brew "tailwindcss-language-server"
 brew "tree-sitter-cli"
-brew "vtsls"
 
 # Dev
 brew "btop"
