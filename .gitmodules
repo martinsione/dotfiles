@@ -4,3 +4,6 @@
 [submodule "zsh-autosuggestions"]
 	path = src/.config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "src/.agents/vendor/cursor-plugins"]
+	path = src/.agents/vendor/cursor-plugins
+	url = https://github.com/cursor/plugins
