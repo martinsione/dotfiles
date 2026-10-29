@@ -48,7 +48,7 @@
   "agent_servers": {
     "claude-acp": {
       "default_mode": "bypassPermissions",
-      "default_model": "claude-opus-4-7",
+      "default_model": "claude-opus-5-5",
       "default_config_options": {
         "mode": "bypassPermissions"
       },
@@ -73,7 +73,7 @@
     "use_modifier_to_send": false,
     "default_model": {
       "provider": "vercel_ai_gateway",
-      "model": "anthropic/claude-fable-5.1"
+      "model": "anthropic/claude-opus-5.5"
     }
   },
   "git_panel": {
@@ -136,8 +136,8 @@
       "api_url": "https://ai-gateway.vercel.sh/coding-agent/v1",
       "available_models": [
         {
-          "name": "anthropic/claude-fable-5.1",
-          "display_name": "Claude Fable 5.1",
+          "name": "anthropic/claude-opus-5.5",
+          "display_name": "Claude Opus 5.5",
           "max_tokens": 1000000,
           "max_output_tokens": 128000,
           "capabilities": {
