@@ -101,24 +101,34 @@ create_symlink() {
 }
 
 
-# pstack for the agents that read ~/.agents/skills (Codex, opencode, pi, fx), from the pinned submodule.
-# Claude keeps the pstack plugin: a build of the same skills adapted to Claude Code (it doesn't read this folder).
+# pstack for every agent, from the pinned submodule: its Claude Code build (the Cursor original plus one line
+# pointing Claude at its adapter doc), linked into ~/.agents/skills (Codex, opencode, pi, fx) and
+# ~/.claude/skills (Claude). Its skills link ../../docs and ../../README.md, so those sit beside each skills folder.
 link_skills() {
-    local src_dir="$dotfiles_dir/src/.agents/vendor/cursor-plugins/pstack/skills"
-    local dst_dir="$HOME/.agents/skills"
+    local pstack="$dotfiles_dir/src/.agents/vendor/cursor-plugins/harness/pstack/claude-code"
     local backup="$HOME/.agents/skills-backup-$(date +%Y%m%d%H%M%S)"
-    mkdir -p "$dst_dir"
-    for skill in "$src_dir"/*/; do
-        skill="${skill%/}"
-        local dst="$dst_dir/$(basename "$skill")"
-        # Move stale copies out of the folder, or agents load them as extra skills
-        if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-            mkdir -p "$backup" && mv "$dst" "$backup/"
-            warn "Moved old copy of $(basename "$skill") to $backup"
-        fi
-        ln -sfn "$skill" "$dst"
+    local root dst
+    for root in "$HOME/.agents" "$HOME/.claude"; do
+        mkdir -p "$root/skills"
+        for skill in "$pstack"/skills/*/; do
+            skill="${skill%/}"
+            dst="$root/skills/$(basename "$skill")"
+            # Move stale copies out of the folder, or agents load them as extra skills
+            if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+                mkdir -p "$backup" && mv "$dst" "$backup/"
+                warn "Moved old copy of $(basename "$skill") to $backup"
+            fi
+            ln -sfn "$skill" "$dst"
+        done
+        ln -sfn "$pstack/docs" "$root/docs"
+        ln -sfn "$pstack/README.md" "$root/README.md"
     done
-    log "Linked $(ls "$src_dir" | wc -l | tr -d ' ') pstack skills into $dst_dir"
+    # Its subagents, which Claude alone runs
+    mkdir -p "$HOME/.claude/agents"
+    for agent in "$pstack"/agents/*.md; do
+        ln -sfn "$agent" "$HOME/.claude/agents/$(basename "$agent")"
+    done
+    log "Linked $(ls "$pstack/skills" | wc -l | tr -d ' ') pstack skills into ~/.agents/skills and ~/.claude/skills"
 }
 
 # Parse flags
