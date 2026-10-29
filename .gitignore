@@ -7,4 +7,3 @@ src/.config/zed/prompts
 src/.config/zed/themes
 src/.config/zsh/.zsh_history
 src/.config/zsh/config/local.sh
-src/.config/zsh/plugins

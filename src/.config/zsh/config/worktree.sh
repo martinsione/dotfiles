@@ -3,7 +3,7 @@
 
 WT_BASE="$HOME/Developer/worktrees"
 WT_CONFIG_FILE=".worktree"
-WT_VERCEL_REPOS=("$HOME/Developer/vercel/v0" "$HOME/Developer/vercel/v1" "$HOME/Developer/vercel/v2")
+WT_VERCEL_REPOS=("$HOME/Developer/vercel/v0")
 
 # Get the repo root (handles both main repo and worktrees)
 _wt_repo_root() {
