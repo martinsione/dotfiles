@@ -9,6 +9,7 @@ symlinks=(
   src/.config/ghostty
   src/.config/git
   src/.config/nvim
+  src/.config/rex
   src/.config/tmux
   src/.config/zed
   src/.config/zsh
