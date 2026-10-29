@@ -101,6 +101,26 @@ create_symlink() {
 }
 
 
+# pstack for the agents that read ~/.agents/skills (Codex, opencode, pi, fx), from the pinned submodule.
+# Claude keeps the pstack plugin: a build of the same skills adapted to Claude Code (it doesn't read this folder).
+link_skills() {
+    local src_dir="$dotfiles_dir/src/.agents/vendor/cursor-plugins/pstack/skills"
+    local dst_dir="$HOME/.agents/skills"
+    local backup="$HOME/.agents/skills-backup-$(date +%Y%m%d%H%M%S)"
+    mkdir -p "$dst_dir"
+    for skill in "$src_dir"/*/; do
+        skill="${skill%/}"
+        local dst="$dst_dir/$(basename "$skill")"
+        # Move stale copies out of the folder, or agents load them as extra skills
+        if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+            mkdir -p "$backup" && mv "$dst" "$backup/"
+            warn "Moved old copy of $(basename "$skill") to $backup"
+        fi
+        ln -sfn "$skill" "$dst"
+    done
+    log "Linked $(ls "$src_dir" | wc -l | tr -d ' ') pstack skills into $dst_dir"
+}
+
 # Parse flags
 install_deps_flag=false
 for arg in "$@"; do
@@ -135,5 +155,7 @@ done
 [ -L "$HOME/.fx/AGENTS.md" ] && rm "$HOME/.fx/AGENTS.md"
 mkdir -p "$HOME/.fx" && cp "$dotfiles_dir/src/.agents/AGENTS.md" "$HOME/.fx/AGENTS.md"
 log "Copied AGENTS.md to $HOME/.fx/AGENTS.md"
+
+link_skills
 
 log "Installation complete! ✨"
