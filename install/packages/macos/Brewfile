@@ -1,0 +1,59 @@
+tap "datadog-labs/pack"
+tap "localstack/tap"
+tap "mistertea/et"
+
+# Shell
+brew "eza"
+brew "fnm"
+brew "fzf"
+brew "gh"
+brew "ripgrep"
+brew "starship"
+brew "tmux"
+
+# Neovim: language servers, formatter, and the CLI nvim-treesitter compiles parsers with
+brew "neovim"
+brew "lua-language-server"
+brew "stylua"
+brew "tailwindcss-language-server"
+brew "tree-sitter-cli"
+brew "vtsls"
+
+# Dev
+brew "btop"
+brew "colima"
+brew "docker", link: false
+brew "lazygit"
+brew "pnpm"
+brew "postgresql@15", restart_service: :changed
+brew "postgresql@18", link: true
+brew "scc"
+brew "tfenv"
+brew "datadog-labs/pack/pup"
+cask "localstack/tap/lstk"
+cask "ngrok"
+
+# Remote
+brew "mosh"
+brew "mistertea/et/et"
+brew "rsync"
+
+# Misc
+brew "fastfetch"
+brew "ffmpeg"
+brew "fprobe"
+brew "yt-dlp"
+
+# Apps
+cask "1password"
+cask "cursor"
+cask "font-jetbrains-mono-nerd-font"
+cask "ghostty"
+cask "google-chrome"
+cask "keycastr"
+cask "raycast"
+cask "slack"
+cask "spotify"
+cask "whatsapp"
+cask "zed"
+cask "zoom"

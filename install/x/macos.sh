@@ -18,21 +18,6 @@ symlinks=(
   src/Library/Application\ Support/Cursor/User/settings.json
 )
 
-brew_packages=(
-  eza
-  fnm
-  fzf
-  neovim
-  ripgrep
-  starship
-  tmux
-  # neovim: language servers, formatter, and the CLI nvim-treesitter compiles parsers with
-  lua-language-server
-  stylua
-  tailwindcss-language-server
-  tree-sitter-cli
-  vtsls
-)
 
 # Colors for better visibility
 GREEN='\033[0;32m'
@@ -48,7 +33,7 @@ warn() {
     echo -e "${YELLOW}[!]${NC} $1"
 }
 
-install_deps() {
+install_brew() {
     # Install Homebrew if not installed
     if ! command -v brew &>/dev/null; then
         log "Installing Homebrew..."
@@ -66,9 +51,6 @@ install_deps() {
         log "Homebrew already installed"
     fi
 
-    log "Installing brew packages..."
-    brew install "${brew_packages[@]}"
-    log "Dependencies installed!"
 }
 
 clone_repo() {
@@ -126,13 +108,17 @@ for arg in "$@"; do
     esac
 done
 
-# Install dependencies if requested
+# Homebrew brings git (via the Command Line Tools), so it goes before the clone
 if $install_deps_flag; then
-    install_deps
+    install_brew
 fi
 
-# Clone repository
 clone_repo
+
+if $install_deps_flag; then
+    log "Installing brew packages..."
+    brew bundle --file="$dotfiles_dir/install/packages/macos/Brewfile"
+fi
 
 # Create symlinks
 log "Creating symlinks..."

@@ -22,45 +22,11 @@ pbcopy < ~/.ssh/id_ed25519.pub
    b Homebrew
 
 ```bash
-
-# Install executable
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# After installation, make it executable
-echo >> /Users/$USER/.zprofile echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/$USER/.zprofile eval "$(/opt/homebrew/bin/brew shellenv)"
+echo 'eval "$(/opt/homebrew/bin/brew shellenv zsh)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
-```
-
-```bash
-
-brew install --cask \
-    1password \
-    cursor \
-    discord \
-    font-jetbrains-mono-nerd-font \
-    font-zed-mono \
-    ghostty \
-    google-chrome \
-    raycast \
-    slack \
-    spotify \
-    whatsapp \
-    zed \
-    zoom
-
-brew install \
-    eza \
-    fnm \
-    fzf \
-    neovim \
-    ripgrep \
-    starship \
-    tmux \
-    lua-language-server \
-    stylua \
-    tailwindcss-language-server \
-    tree-sitter-cli \
-    vtsls
-
+brew bundle --file=~/Developer/martinsione/dotfiles/install/packages/macos/Brewfile
 ```
 
 4. UI/UX tweaks
