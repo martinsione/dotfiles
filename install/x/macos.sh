@@ -145,6 +145,26 @@ install_claude_plugin() {
     log "Installed $plugin@$marketplace in Claude"
 }
 
+# Your own skills (src/.agents/skills/<skill>), linked flat for every agent: ~/.agents/skills (pi, opencode,
+# Codex), ~/.claw/skills (fx) and ~/.claude/skills (Claude). A real folder of the same name is moved aside first.
+link_own_skills() {
+    local backup="$HOME/.agents/skills-backup-$(date +%Y%m%d%H%M%S)"
+    local skill root dst
+    for skill in "$dotfiles_dir"/src/.agents/skills/*/; do
+        skill="${skill%/}"
+        for root in "$HOME/.agents/skills" "$HOME/.claw/skills" "$HOME/.claude/skills"; do
+            mkdir -p "$root"
+            dst="$root/$(basename "$skill")"
+            if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+                mkdir -p "$backup" && mv "$dst" "$backup/$(basename "$(dirname "$root")")-$(basename "$skill")"
+                warn "Moved old $dst to $backup"
+            fi
+            ln -sfn "$skill" "$dst"
+        done
+    done
+    log "Linked $(ls "$dotfiles_dir/src/.agents/skills" | wc -l | tr -d ' ') own skills for every agent"
+}
+
 link_skills() {
     local vendor="$dotfiles_dir/src/.agents/vendor"
     link_vendor pstack "$vendor/cursor-plugins/harness/pstack/claude-code"
@@ -187,5 +207,6 @@ mkdir -p "$HOME/.fx" && cp "$dotfiles_dir/src/.agents/AGENTS.md" "$HOME/.fx/AGEN
 log "Copied AGENTS.md to $HOME/.fx/AGENTS.md"
 
 link_skills
+link_own_skills
 
 log "Installation complete! ✨"
