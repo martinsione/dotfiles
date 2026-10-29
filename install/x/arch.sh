@@ -103,40 +103,54 @@ create_symlink() {
 }
 
 
-# pstack, from the pinned submodule. The submodule is the cursor-plugins marketplace, so Claude installs pstack
-# as a plugin from it (pstack:<cmd>, pstack:poteto-agent). The other agents read ~/.agents/skills, which gets
-# links to the same Claude Code build (the Cursor original plus one line pointing Claude at its adapter); its
-# skills link ../../docs and ../../README.md, so those sit beside the skills folder.
-link_skills() {
-    local vendor="$dotfiles_dir/src/.agents/vendor/cursor-plugins"
-    local pstack="$vendor/harness/pstack/claude-code"
+# Vendored skills, from the pinned submodules. Each vendor gets one folder: ~/.agents/skills/<vendor> links to
+# its plugin build, so its skills sit at <vendor>/skills/<skill> and their ../../docs links resolve inside it.
+# pi, opencode and Codex find skills that deep (Codex reads the plugin manifest and names them <vendor>:<skill>).
+# fx only looks one level down and ignores symlinks inside ~/.fx, so it gets flat links in ~/.claw/skills, a root
+# only fx reads. Claude installs each vendor as a plugin instead, which gives it the <vendor>:<skill> names.
+link_vendor() {
+    local name="$1" build="$2"
     local backup="$HOME/.agents/skills-backup-$(date +%Y%m%d%H%M%S)"
-    local dst
-    mkdir -p "$HOME/.agents/skills"
-    for skill in "$pstack"/skills/*/; do
-        skill="${skill%/}"
-        dst="$HOME/.agents/skills/$(basename "$skill")"
-        # Move stale copies out of the folder, or agents load them as extra skills
-        if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-            mkdir -p "$backup" && mv "$dst" "$backup/"
-            warn "Moved old copy of $(basename "$skill") to $backup"
-        fi
-        ln -sfn "$skill" "$dst"
+    local entry skill
+    mkdir -p "$HOME/.agents/skills" "$HOME/.claw/skills"
+    # Drop flat links from before vendors had their own folder
+    for entry in "$HOME/.agents/skills"/* "$HOME/.fx/skills"/* "$HOME/.claw/skills"/*; do
+        [ -L "$entry" ] && [ "$(readlink "$entry")" = "$build/skills/$(basename "$entry")" ] && rm "$entry"
     done
-    ln -sfn "$pstack/docs" "$HOME/.agents/docs"
-    ln -sfn "$pstack/README.md" "$HOME/.agents/README.md"
-    log "Linked $(ls "$pstack/skills" | wc -l | tr -d ' ') pstack skills into ~/.agents/skills"
-
-    if command -v claude &>/dev/null; then
-        claude plugin marketplace add "$vendor" &>/dev/null || claude plugin marketplace update cursor-plugins &>/dev/null
-        claude plugin install pstack@cursor-plugins &>/dev/null
-        # `marketplace add` writes this machine's absolute path into the shared settings.json; keep it portable
-        perl -pi -e 's|"\Q$ENV{HOME}\E(/Developer/martinsione/dotfiles/src/\.agents/vendor/cursor-plugins)"|"~$1"|' \
-            "$dotfiles_dir/src/.claude/settings.json"
-        log "Installed pstack@cursor-plugins in Claude from the submodule"
-    else
-        warn "claude not on PATH; install pstack later: claude plugin marketplace add $vendor && claude plugin install pstack@cursor-plugins"
+    for f in docs README.md; do
+        [ -L "$HOME/.agents/$f" ] && [ "$(readlink "$HOME/.agents/$f")" = "$build/$f" ] && rm "$HOME/.agents/$f"
+    done
+    if [ -e "$HOME/.agents/skills/$name" ] && [ ! -L "$HOME/.agents/skills/$name" ]; then
+        mkdir -p "$backup" && mv "$HOME/.agents/skills/$name" "$backup/"
+        warn "Moved old $name folder to $backup"
     fi
+    ln -sfn "$build" "$HOME/.agents/skills/$name"
+    for skill in "$build"/skills/*/; do
+        skill="${skill%/}"
+        ln -sfn "$skill" "$HOME/.claw/skills/$(basename "$skill")"
+    done
+    log "Linked $name ($(ls "$build/skills" | wc -l | tr -d ' ') skills) into ~/.agents/skills/$name and ~/.claw/skills"
+}
+
+# Claude: register a vendor submodule as a plugin marketplace and install a plugin from it
+install_claude_plugin() {
+    local marketplace="$1" plugin="$2" vendor="$3"
+    if ! command -v claude &>/dev/null; then
+        warn "claude not on PATH; later run: claude plugin marketplace add $vendor && claude plugin install $plugin@$marketplace"
+        return
+    fi
+    claude plugin marketplace add "$vendor" &>/dev/null || claude plugin marketplace update "$marketplace" &>/dev/null
+    claude plugin install "$plugin@$marketplace" &>/dev/null
+    # `marketplace add` writes this machine's absolute path into the shared settings.json; keep it portable
+    perl -pi -e 's|"\Q$ENV{HOME}\E(/Developer/martinsione/dotfiles/src/\.agents/vendor/)|"~$1|' \
+        "$dotfiles_dir/src/.claude/settings.json"
+    log "Installed $plugin@$marketplace in Claude"
+}
+
+link_skills() {
+    local vendor="$dotfiles_dir/src/.agents/vendor"
+    link_vendor pstack "$vendor/cursor-plugins/harness/pstack/claude-code"
+    install_claude_plugin cursor-plugins pstack "$vendor/cursor-plugins"
 }
 
 # Parse flags
