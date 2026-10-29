@@ -126,4 +126,9 @@ for link in "${symlinks[@]}"; do
     create_symlink "$link"
 done
 
+# One AGENTS.md for every coding agent, linked where each reads its global instructions
+for dst in .claude/CLAUDE.md .codex/AGENTS.md .config/opencode/AGENTS.md .pi/agent/AGENTS.md .fx/AGENTS.md; do
+    create_symlink src/.agents/AGENTS.md "$HOME/$dst"
+done
+
 log "Installation complete! ✨"
