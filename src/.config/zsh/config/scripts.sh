@@ -4,7 +4,7 @@
 #     macOS: security add-generic-password -U -s 'Vercel AI Gateway' -a vercel-desktop-key -w '<key>'
 #     Linux: printf '%s' '<key>' | systemd-creds encrypt --user --name=anthropic_auth_token - \
 #              ~/.config/claude/anthropic_auth_token.cred
-# - opencode: reads $AI_GATEWAY_API_KEY, exported from the Keychain in .zshrc (macOS)
+# - Zed, Kit, opencode: read VERCEL_/KIT_/AI_GATEWAY_API_KEY, exported from the Keychain in .zshrc (macOS)
 
 # Repos live at ~/Developer/{owner}/{repo} (plus a few at the top level), so glob those instead of walking every tree.
 function find_projects() {

@@ -13,8 +13,17 @@ export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$H
 if [[ $OSTYPE == darwin* ]]; then
   export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
   export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
-  # Gateway key lives in the Keychain (~16ms per lookup, so only the one opencode reads)
-  export AI_GATEWAY_API_KEY="$(/usr/bin/security find-generic-password -s 'Vercel AI Gateway' -a 'vercel-desktop-key' -w 2>/dev/null)"
+  # Gateway keys live in the Keychain. Each lookup takes ~16ms, so run both at once and read the results.
+  # VERCEL_* is what the Vercel app's Zed setup expects, KIT_* is Kit's, AI_GATEWAY_* is opencode's.
+  () {
+    local kc=/usr/bin/security svc='Vercel AI Gateway' gw desktop
+    exec {gw}< <($kc find-generic-password -s $svc -a vercel-ai-gateway -w 2>/dev/null)
+    exec {desktop}< <($kc find-generic-password -s $svc -a vercel-desktop-key -w 2>/dev/null)
+    IFS= read -r -u $gw VERCEL_AI_GATEWAY_API_KEY
+    IFS= read -r -u $desktop KIT_AI_GATEWAY_API_KEY
+    exec {gw}<&- {desktop}<&-
+    export VERCEL_AI_GATEWAY_API_KEY KIT_AI_GATEWAY_API_KEY AI_GATEWAY_API_KEY=$KIT_AI_GATEWAY_API_KEY
+  }
 fi
 
 ### Completion (cached - only rebuild once daily)
@@ -70,6 +79,7 @@ _cached_init fzf --zsh
 
 ### Prompt
 _cached_init starship init zsh --print-full-init
+unset RPROMPT # no right_format configured; otherwise starship runs a second time per prompt (~7ms)
 
 # BEGIN: socket firewall aliases (managed by Iru)
 alias npm="sfw npm"
