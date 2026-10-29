@@ -129,8 +129,12 @@ for link in "${symlinks[@]}"; do
 done
 
 # One AGENTS.md for every coding agent, linked where each reads its global instructions
-for dst in .claude/CLAUDE.md .codex/AGENTS.md .config/opencode/AGENTS.md .pi/agent/AGENTS.md .fx/AGENTS.md; do
+for dst in .claude/CLAUDE.md .codex/AGENTS.md .config/opencode/AGENTS.md .pi/agent/AGENTS.md; do
     create_symlink src/.agents/AGENTS.md "$HOME/$dst"
 done
+# fx refuses symlinked instruction files, so it gets a copy (refreshed on every run of this script)
+[ -L "$HOME/.fx/AGENTS.md" ] && rm "$HOME/.fx/AGENTS.md"
+mkdir -p "$HOME/.fx" && cp "$dotfiles_dir/src/.agents/AGENTS.md" "$HOME/.fx/AGENTS.md"
+log "Copied AGENTS.md to $HOME/.fx/AGENTS.md"
 
 log "Installation complete! ✨"
