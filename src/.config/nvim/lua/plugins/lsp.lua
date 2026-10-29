@@ -104,15 +104,38 @@ vim.lsp.config("lua_ls", {
   },
 })
 
--- Servers come from the system package manager (install/x/macos.sh, install/packages/arch), not mason;
--- vtsls isn't in the Arch repos, so there it's `npm i -g @vtsls/language-server`.
--- oxfmt has no global install: lspconfig runs the project's node_modules/.bin/oxfmt
--- lspconfig falls back to a global oxfmt when the project's isn't installed; there is none, so only
--- attach once node_modules/.bin/oxfmt exists (a config file alone isn't enough)
-local oxfmt_root = vim.lsp.config.oxfmt.root_dir
+-- Servers come from the system package manager (install/packages); TypeScript and oxfmt come from each
+-- project's node_modules. lspconfig's root_dir picks the project folder a server starts in, and starts
+-- <folder>/node_modules/.bin/<server>, falling back to a global binary (we install none) or a warning.
+-- So only let them attach when that folder has its own copy.
+
+-- tsc --lsp is TypeScript 7's native server; projects on older TypeScript get no TS server.
+-- Own root_dir/cmd: lspconfig's warns when the project has no TS 7, and its binary cache doesn't survive
+-- the config being reloaded, so it ends up starting a global tsc. Root: lockfile folder, else .git
+vim.lsp.config("tsc", {
+  cmd = function(dispatchers, config)
+    return vim.lsp.rpc.start(
+      { vim.fs.joinpath(config.root_dir, "node_modules/.bin/tsc"), "--lsp", "--stdio" },
+      dispatchers
+    )
+  end,
+  root_dir = function(bufnr, on_dir)
+    local lockfiles = { "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" }
+    local root = vim.fs.root(bufnr, { lockfiles, { ".git" } })
+    local ok, major = pcall(function()
+      local pkg = vim.fs.joinpath(root, "node_modules/typescript/package.json")
+      return tonumber(vim.json.decode(table.concat(vim.fn.readfile(pkg), "\n")).version:match("^(%d+)"))
+    end)
+    if root and ok and major and major >= 7 then
+      on_dir(root)
+    end
+  end,
+})
+
+local oxfmt_root_dir = vim.lsp.config.oxfmt.root_dir
 vim.lsp.config("oxfmt", {
   root_dir = function(bufnr, on_dir)
-    oxfmt_root(bufnr, function(root)
+    oxfmt_root_dir(bufnr, function(root)
       if root and vim.fn.executable(vim.fs.joinpath(root, "node_modules/.bin/oxfmt")) == 1 then
         on_dir(root)
       end
@@ -120,4 +143,4 @@ vim.lsp.config("oxfmt", {
   end,
 })
 
-vim.lsp.enable({ "lua_ls", "vtsls", "tailwindcss", "oxfmt", "stylua" })
+vim.lsp.enable({ "lua_ls", "tsc", "tailwindcss", "oxfmt", "stylua" })
