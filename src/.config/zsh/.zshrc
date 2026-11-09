@@ -10,6 +10,8 @@ export PATH="$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$HOME/.opencode/bin:$H
 ### Environment
 # ssh doesn't forward COLORTERM, so remote apps fall back to 256 colors (Claude's orange turns pink).
 [[ -n $SSH_CONNECTION && -z $COLORTERM ]] && export COLORTERM=truecolor
+# Tailscale SSH drops the client's TERM and `login` falls back to dumb, which disables starship and line editing.
+[[ -n $SSH_CONNECTION && -t 1 && ( -z $TERM || $TERM == dumb ) ]] && export TERM=xterm-256color
 if [[ $OSTYPE == darwin* ]]; then
   export DOCKER_HOST="unix://$HOME/.colima/default/docker.sock"
   export WRANGLER_DOCKER_BIN=/opt/homebrew/bin/docker
