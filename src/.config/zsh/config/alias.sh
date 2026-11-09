@@ -57,5 +57,5 @@ alias tks="tmux kill-session -t"
 
 ## Claude
 # One config dir (~/.claude). Plain `claude` uses the Vercel AI Gateway (apiKeyHelper in settings.json);
-# `pclaude` blanks the helper and base URL so the claude.ai subscription login is used instead.
-alias pclaude='env -u ANTHROPIC_BASE_URL -u ANTHROPIC_AUTH_TOKEN -u ANTHROPIC_API_KEY claude --settings '"'"'{"apiKeyHelper":"","env":{"ANTHROPIC_BASE_URL":""}}'"'"
+# `pclaude` blanks the helper and base URL so the claude.ai subscription login is used instead, and pins subagents to opus.
+alias pclaude='env -u ANTHROPIC_BASE_URL -u ANTHROPIC_AUTH_TOKEN -u ANTHROPIC_API_KEY claude --settings '"'"'{"apiKeyHelper":"","env":{"ANTHROPIC_BASE_URL":"","CLAUDE_CODE_SUBAGENT_MODEL":"opus"}}'"'"

@@ -7,7 +7,8 @@
     "ENABLE_TOOL_SEARCH": "true",
     "ANTHROPIC_BASE_URL": "https://ai-gateway.vercel.sh/claude-code",
     "ANTHROPIC_API_KEY": "",
-    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek/deepseek-v4.1-flash-1017"
   },
   "permissions": {
     "allow": [
