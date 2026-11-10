@@ -8,7 +8,9 @@
     "ANTHROPIC_BASE_URL": "https://ai-gateway.vercel.sh/claude-code",
     "ANTHROPIC_API_KEY": "",
     "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
-    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek/deepseek-v4.1-flash-1017"
+    "CLAUDE_CODE_SUBAGENT_MODEL": "deepseek/deepseek-v4.1-flash-1017",
+    "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "1000",
+    "CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH": "10"
   },
   "permissions": {
     "allow": [
