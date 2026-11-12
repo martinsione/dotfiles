@@ -210,4 +210,7 @@ log "Copied AGENTS.md to $HOME/.fx/AGENTS.md"
 link_skills
 link_own_skills
 
+log "Applying Rex app settings..."
+"$dotfiles_dir/install/x/rex-settings.sh" apply
+
 log "Installation complete! ✨"
